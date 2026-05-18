@@ -1,0 +1,440 @@
+2026-05-09T01:18:37.315Z vite:config bundled config file loaded in 225.94ms
+2026-05-09T01:18:37.389Z vite:config using resolved config: {
+  plugins: [
+    'vite:optimized-deps',
+    'vite:watch-package-data',
+    'vite:pre-alias',
+    'alias',
+    'vite:react-babel',
+    'vite:react-refresh',
+    'vite:modulepreload-polyfill',
+    'vite:resolve',
+    'vite:html-inline-proxy',
+    'vite:css',
+    'vite:esbuild',
+    'vite:json',
+    'vite:wasm-helper',
+    'vite:worker',
+    'vite:asset',
+    'vite:wasm-fallback',
+    'vite:define',
+    'vite:css-post',
+    'vite:worker-import-meta-url',
+    'vite:asset-import-meta-url',
+    'vite:dynamic-import-vars',
+    'vite:import-glob',
+    'vite:client-inject',
+    'vite:css-analysis',
+    'vite:import-analysis'
+  ],
+  server: {
+    preTransformRequests: true,
+    port: 5173,
+    proxy: { '/api': [Object], '/media-files': [Object] },
+    host: '127.0.0.1',
+    sourcemapIgnoreList: [Function: isInNodeModules$1],
+    middlewareMode: false,
+    fs: {
+      strict: true,
+      allow: [Array],
+      deny: [Array],
+      cachedChecks: undefined
+    }
+  },
+  optimizeDeps: {
+    holdUntilCrawlEnd: true,
+    force: undefined,
+    esbuildOptions: { preserveSymlinks: false, jsx: 'automatic' },
+    include: [
+      'react',
+      'react-dom',
+      'react/jsx-dev-runtime',
+      'react/jsx-runtime'
+    ]
+  },
+  esbuild: { jsxDev: true, jsx: 'automatic', jsxImportSource: undefined },
+  build: {
+    target: [ 'es2020', 'edge88', 'firefox78', 'chrome87', 'safari14' ],
+    cssTarget: [ 'es2020', 'edge88', 'firefox78', 'chrome87', 'safari14' ],
+    outDir: 'dist',
+    assetsDir: 'assets',
+    assetsInlineLimit: 4096,
+    cssCodeSplit: true,
+    sourcemap: false,
+    rollupOptions: { onwarn: [Function: onwarn] },
+    minify: 'esbuild',
+    terserOptions: {},
+    write: true,
+    emptyOutDir: null,
+    copyPublicDir: true,
+    manifest: false,
+    lib: false,
+    ssr: false,
+    ssrManifest: false,
+    ssrEmitAssets: false,
+    reportCompressedSize: true,
+    chunkSizeWarningLimit: 500,
+    watch: null,
+    commonjsOptions: { include: [Array], extensions: [Array] },
+    dynamicImportVarsOptions: { warnOnError: true, exclude: [Array] },
+    modulePreload: { polyfill: true },
+    cssMinify: true
+  },
+  resolve: {
+    mainFields: [ 'browser', 'module', 'jsnext:main', 'jsnext' ],
+    conditions: [],
+    extensions: [
+      '.mjs',  '.js',
+      '.mts',  '.ts',
+      '.jsx',  '.tsx',
+      '.json'
+    ],
+    dedupe: [ 'react', 'react-dom' ],
+    preserveSymlinks: false,
+    alias: [ [Object], [Object] ]
+  },
+  configFile: 'C:/Users/LIUHENGRU/Desktop/design-1/frontend/vite.config.js',
+  configFileDependencies: [ 'C:/Users/LIUHENGRU/Desktop/design-1/frontend/vite.config.js' ],
+  inlineConfig: {
+    root: undefined,
+    base: undefined,
+    mode: undefined,
+    configFile: undefined,
+    logLevel: undefined,
+    clearScreen: undefined,
+    optimizeDeps: { force: undefined },
+    server: { host: '127.0.0.1' }
+  },
+  root: 'C:/Users/LIUHENGRU/Desktop/design-1/frontend',
+  base: '/',
+  decodedBase: '/',
+  rawBase: '/',
+  publicDir: 'C:/Users/LIUHENGRU/Desktop/design-1/frontend/public',
+  cacheDir: 'C:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite',
+  command: 'serve',
+  mode: 'development',
+  ssr: {
+    target: 'node',
+    optimizeDeps: { noDiscovery: true, esbuildOptions: [Object] }
+  },
+  isWorker: false,
+  mainConfig: null,
+  bundleChain: [],
+  isProduction: false,
+  css: { lightningcss: undefined },
+  preview: {
+    port: undefined,
+    strictPort: undefined,
+    host: '127.0.0.1',
+    allowedHosts: undefined,
+    https: undefined,
+    open: undefined,
+    proxy: { '/api': [Object], '/media-files': [Object] },
+    cors: undefined,
+    headers: undefined
+  },
+  envDir: 'C:/Users/LIUHENGRU/Desktop/design-1/frontend',
+  env: { BASE_URL: '/', MODE: 'development', DEV: true, PROD: false },
+  assetsInclude: [Function: assetsInclude],
+  logger: {
+    hasWarned: false,
+    info: [Function: info],
+    warn: [Function: warn],
+    warnOnce: [Function: warnOnce],
+    error: [Function: error],
+    clearScreen: [Function: clearScreen],
+    hasErrorLogged: [Function: hasErrorLogged]
+  },
+  packageCache: Map(1) {
+    'fnpd_C:/Users/LIUHENGRU/Desktop/design-1/frontend' => {
+      dir: 'C:/Users/LIUHENGRU/Desktop/design-1/frontend',
+      data: [Object],
+      hasSideEffects: [Function: hasSideEffects],
+      webResolvedImports: {},
+      nodeResolvedImports: {},
+      setResolvedCache: [Function: setResolvedCache],
+      getResolvedCache: [Function: getResolvedCache]
+    },
+    set: [Function (anonymous)]
+  },
+  createResolver: [Function: createResolver],
+  worker: { format: 'iife', plugins: '() => plugins', rollupOptions: {} },
+  appType: 'spa',
+  experimental: { importGlobRestoreExtension: false, hmrPartialAccept: false },
+  webSocketToken: 'Cs63ti4J9o22',
+  additionalAllowedHosts: [ '127.0.0.1', '127.0.0.1' ],
+  getSortedPlugins: [Function: getSortedPlugins],
+  getSortedPluginHooks: [Function: getSortedPluginHooks]
+}
+2026-05-09T01:18:37.466Z vite:deps Hash is consistent. Skipping. Use --force to override.
+2026-05-09T01:19:49.689Z vite:html-fallback Rewriting GET / to /index.html
+2026-05-09T01:19:49.807Z vite:time [31m127.28ms[39m [2m/index.html[22m
+2026-05-09T01:19:49.822Z vite:resolve [33m25.74ms[39m [36m/src/main.jsx[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/main.jsx[22m
+2026-05-09T01:19:49.840Z vite:load [33m11.92ms[39m [fs] [2m/src/main.jsx[22m
+2026-05-09T01:19:51.387Z vite:resolve [32m1.28ms[39m [36m/src/pages/HomePage.jsx[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/pages/HomePage.jsx[22m
+2026-05-09T01:19:51.399Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:51.402Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m
+2026-05-09T01:19:51.425Z vite:resolve [32m6.22ms[39m [36m./App[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/App.jsx[22m
+2026-05-09T01:19:51.427Z vite:resolve [32m7.86ms[39m [36m./styles/global.css[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/styles/global.css[22m
+2026-05-09T01:19:51.428Z vite:resolve [32m9.36ms[39m [36mreact/jsx-dev-runtime[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:51.429Z vite:resolve [32m9.74ms[39m [36mreact[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:51.429Z vite:resolve [33m10.50ms[39m [36mreact-dom/client[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/react-dom_client.js?v=0d36ac06[22m
+2026-05-09T01:19:51.430Z vite:resolve [33m11.17ms[39m [36mreact-router-dom[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/react-router-dom.js?v=0d36ac06[22m
+2026-05-09T01:19:51.434Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:51.439Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:51.440Z vite:import-analysis /node_modules/.vite/deps/react-dom_client.js?v=0d36ac06 needs interop
+2026-05-09T01:19:51.444Z vite:optimize-deps load [36mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/react_jsx-dev-runtime.js[39m
+2026-05-09T01:19:51.445Z vite:optimize-deps load [36mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/react.js[39m
+2026-05-09T01:19:51.446Z vite:optimize-deps load [36mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/react-dom_client.js[39m
+2026-05-09T01:19:51.446Z vite:optimize-deps load [36mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/react-router-dom.js[39m
+2026-05-09T01:19:51.447Z vite:import-analysis [33m35.18ms[39m [2m[6 imports rewritten] [2msrc/main.jsx[22m[2m[22m
+2026-05-09T01:19:51.457Z vite:transform [31m1611.26ms[39m [2m/src/main.jsx[22m
+2026-05-09T01:19:51.468Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:51.469Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m
+2026-05-09T01:19:51.481Z vite:load [31m89.62ms[39m [fs] [2m/src/pages/HomePage.jsx[22m
+2026-05-09T01:19:51.979Z vite:load [31m535.48ms[39m [fs] [2m/src/App.jsx[22m
+2026-05-09T01:19:52.069Z vite:load [31m625.03ms[39m [plugin] [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:52.075Z vite:resolve [32m1.22ms[39m [36m./chunk-DRWLMN53.js[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/chunk-DRWLMN53.js?v=0d36ac06[22m
+2026-05-09T01:19:52.077Z vite:resolve [32m3.17ms[39m [36m./chunk-G3PMV62Z.js[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/chunk-G3PMV62Z.js?v=0d36ac06[22m
+2026-05-09T01:19:52.080Z vite:optimize-deps load [36mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/chunk-DRWLMN53.js[39m
+2026-05-09T01:19:52.081Z vite:optimize-deps load [36mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/chunk-G3PMV62Z.js[39m
+2026-05-09T01:19:52.083Z vite:import-analysis [33m10.30ms[39m [2m[2 imports rewritten] [2mnode_modules/.vite/deps/react.js?v=0d36ac06[22m[2m[22m
+2026-05-09T01:19:52.084Z vite:transform [33m13.10ms[39m [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:52.085Z vite:load [31m641.55ms[39m [fs] [2m/src/styles/global.css[22m
+2026-05-09T01:19:52.102Z vite:hmr [self-accepts] [2msrc/styles/global.css[22m
+2026-05-09T01:19:52.104Z vite:import-analysis [32m9.15ms[39m [2m[0 imports rewritten] [2msrc/styles/global.css[22m[2m[22m
+2026-05-09T01:19:52.105Z vite:transform [33m18.47ms[39m [2m/src/styles/global.css[22m
+2026-05-09T01:19:52.108Z vite:load [31m664.10ms[39m [plugin] [2m/node_modules/.vite/deps/react-dom_client.js?v=0d36ac06[22m
+2026-05-09T01:19:52.111Z vite:resolve [32m1.60ms[39m [36m./chunk-PJEEZAML.js[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/chunk-PJEEZAML.js?v=0d36ac06[22m
+2026-05-09T01:19:52.114Z vite:optimize-deps load [36mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/chunk-PJEEZAML.js[39m
+2026-05-09T01:19:52.115Z vite:import-analysis [32m6.21ms[39m [2m[3 imports rewritten] [2mnode_modules/.vite/deps/react-dom_client.js?v=0d36ac06[22m[2m[22m
+2026-05-09T01:19:52.116Z vite:transform [32m7.69ms[39m [2m/node_modules/.vite/deps/react-dom_client.js?v=0d36ac06[22m
+2026-05-09T01:19:52.119Z vite:load [31m674.98ms[39m [plugin] [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:52.123Z vite:import-analysis [32m2.56ms[39m [2m[2 imports rewritten] [2mnode_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m[2m[22m
+2026-05-09T01:19:52.124Z vite:transform [32m4.29ms[39m [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:52.125Z vite:load [31m681.17ms[39m [plugin] [2m/node_modules/.vite/deps/react-router-dom.js?v=0d36ac06[22m
+2026-05-09T01:19:52.134Z vite:import-analysis [32m6.95ms[39m [2m[3 imports rewritten] [2mnode_modules/.vite/deps/react-router-dom.js?v=0d36ac06[22m[2m[22m
+2026-05-09T01:19:52.135Z vite:transform [32m9.34ms[39m [2m/node_modules/.vite/deps/react-router-dom.js?v=0d36ac06[22m
+2026-05-09T01:19:52.138Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:52.139Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m
+2026-05-09T01:19:52.159Z vite:resolve [32m6.06ms[39m [36m./CommunityPage[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/pages/CommunityPage.jsx[22m
+2026-05-09T01:19:52.161Z vite:resolve [32m7.55ms[39m [36m../api/services[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/api/services.js[22m
+2026-05-09T01:19:52.162Z vite:resolve [32m8.44ms[39m [36m../utils/dayparts[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/utils/dayparts.js[22m
+2026-05-09T01:19:52.163Z vite:resolve [32m9.48ms[39m [36m../utils/view[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/utils/view.js[22m
+2026-05-09T01:19:52.166Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.167Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.178Z vite:cache [memory] [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:52.179Z vite:cache [memory] [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:52.179Z vite:cache [memory] [2m/node_modules/.vite/deps/react-router-dom.js?v=0d36ac06[22m
+2026-05-09T01:19:52.181Z vite:hmr [self-accepts] [2msrc/pages/HomePage.jsx[22m
+2026-05-09T01:19:52.182Z vite:load [33m15.46ms[39m [plugin] [2m/@react-refresh[22m
+2026-05-09T01:19:52.184Z vite:import-analysis [33m33.06ms[39m [2m[8 imports rewritten] [2msrc/pages/HomePage.jsx[22m[2m[22m
+2026-05-09T01:19:52.227Z vite:transform [31m743.24ms[39m [2m/src/pages/HomePage.jsx[22m
+2026-05-09T01:19:52.233Z vite:time [31m849.52ms[39m [2m/src/pages/HomePage.jsx[22m
+2026-05-09T01:19:52.244Z vite:import-analysis [32m1.91ms[39m [2m[0 imports rewritten] [2m/@react-refresh[22m[2m[22m
+2026-05-09T01:19:52.245Z vite:transform [31m61.17ms[39m [2m/@react-refresh[22m
+2026-05-09T01:19:52.275Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:52.277Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m
+2026-05-09T01:19:52.293Z vite:resolve [33m12.92ms[39m [36m./pages/AuthPage[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/pages/AuthPage.jsx[22m
+2026-05-09T01:19:52.294Z vite:resolve [33m13.95ms[39m [36m./pages/HomePage[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/pages/HomePage.jsx[22m
+2026-05-09T01:19:52.295Z vite:resolve [33m14.91ms[39m [36m./pages/SearchPage[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/pages/SearchPage.jsx[22m
+2026-05-09T01:19:52.295Z vite:resolve [33m15.75ms[39m [36m./pages/ExplorePage[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/pages/ExplorePage.jsx[22m
+2026-05-09T01:19:52.296Z vite:resolve [33m16.42ms[39m [36m./pages/ProfilePage[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/pages/ProfilePage.jsx[22m
+2026-05-09T01:19:52.297Z vite:resolve [33m17.04ms[39m [36m./pages/DaypartPlaylistPage[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/pages/DaypartPlaylistPage.jsx[22m
+2026-05-09T01:19:52.297Z vite:resolve [33m17.66ms[39m [36m./pages/ArtistPage[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/pages/ArtistPage.jsx[22m
+2026-05-09T01:19:52.298Z vite:resolve [33m18.18ms[39m [36m./pages/TrackDetailPage[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/pages/TrackDetailPage.jsx[22m
+2026-05-09T01:19:52.298Z vite:resolve [33m18.67ms[39m [36m./pages/PlaybackHistoryPage[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/pages/PlaybackHistoryPage.jsx[22m
+2026-05-09T01:19:52.299Z vite:resolve [33m19.20ms[39m [36m./components/PlayerBar[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/components/PlayerBar.jsx[22m
+2026-05-09T01:19:52.299Z vite:resolve [33m19.55ms[39m [36m./components/AssistantWidget[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/components/AssistantWidget.jsx[22m
+2026-05-09T01:19:52.300Z vite:resolve [33m19.90ms[39m [36m./api/services[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/api/services.js[22m
+2026-05-09T01:19:52.300Z vite:resolve [33m20.33ms[39m [36m./utils/view[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/utils/view.js[22m
+2026-05-09T01:19:52.301Z vite:cache [memory] [2m/@react-refresh[22m
+2026-05-09T01:19:52.302Z vite:cache [memory] [2m/src/pages/HomePage.jsx[22m
+2026-05-09T01:19:52.303Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.304Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.305Z vite:cache [memory] [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:52.306Z vite:cache [memory] [2m/node_modules/.vite/deps/react-router-dom.js?v=0d36ac06[22m
+2026-05-09T01:19:52.307Z vite:cache [memory] [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:52.308Z vite:hmr [self-accepts] [2msrc/App.jsx[22m
+2026-05-09T01:19:52.309Z vite:import-analysis [33m30.67ms[39m [2m[17 imports rewritten] [2msrc/App.jsx[22m[2m[22m
+2026-05-09T01:19:52.314Z vite:transform [31m330.96ms[39m [2m/src/App.jsx[22m
+2026-05-09T01:19:52.343Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:52.344Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m
+2026-05-09T01:19:52.349Z vite:load [31m269.50ms[39m [plugin] [2m/node_modules/.vite/deps/chunk-G3PMV62Z.js?v=0d36ac06[22m
+2026-05-09T01:19:52.351Z vite:import-analysis [32m0.21ms[39m [2m[no imports] [2mnode_modules/.vite/deps/chunk-G3PMV62Z.js?v=0d36ac06[22m[2m[22m
+2026-05-09T01:19:52.352Z vite:transform [32m2.20ms[39m [2m/node_modules/.vite/deps/chunk-G3PMV62Z.js?v=0d36ac06[22m
+2026-05-09T01:19:52.353Z vite:load [31m273.68ms[39m [plugin] [2m/node_modules/.vite/deps/chunk-DRWLMN53.js?v=0d36ac06[22m
+2026-05-09T01:19:52.357Z vite:cache [memory] [2m/node_modules/.vite/deps/chunk-G3PMV62Z.js?v=0d36ac06[22m
+2026-05-09T01:19:52.358Z vite:import-analysis [32m3.32ms[39m [2m[1 imports rewritten] [2mnode_modules/.vite/deps/chunk-DRWLMN53.js?v=0d36ac06[22m[2m[22m
+2026-05-09T01:19:52.359Z vite:transform [32m5.01ms[39m [2m/node_modules/.vite/deps/chunk-DRWLMN53.js?v=0d36ac06[22m
+2026-05-09T01:19:52.367Z vite:load [31m184.98ms[39m [fs] [2m/src/pages/CommunityPage.jsx[22m
+2026-05-09T01:19:52.428Z vite:load [31m245.69ms[39m [fs] [2m/src/api/services.js[22m
+2026-05-09T01:19:52.432Z vite:resolve [32m1.06ms[39m [36m./http[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/api/http.js[22m
+2026-05-09T01:19:52.434Z vite:import-analysis [32m2.73ms[39m [2m[1 imports rewritten] [2msrc/api/services.js[22m[2m[22m
+2026-05-09T01:19:52.435Z vite:transform [32m4.02ms[39m [2m/src/api/services.js[22m
+2026-05-09T01:19:52.436Z vite:load [31m253.37ms[39m [fs] [2m/src/utils/view.js[22m
+2026-05-09T01:19:52.437Z vite:import-analysis [32m0.07ms[39m [2m[no imports] [2msrc/utils/view.js[22m[2m[22m
+2026-05-09T01:19:52.437Z vite:transform [32m1.01ms[39m [2m/src/utils/view.js[22m
+2026-05-09T01:19:52.439Z vite:load [31m256.88ms[39m [fs] [2m/src/utils/dayparts.js[22m
+2026-05-09T01:19:52.441Z vite:resolve [32m0.91ms[39m [36m./view[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/utils/view.js[22m
+2026-05-09T01:19:52.442Z vite:cache [memory] [2m/src/utils/view.js[22m
+2026-05-09T01:19:52.443Z vite:import-analysis [32m2.60ms[39m [2m[1 imports rewritten] [2msrc/utils/dayparts.js[22m[2m[22m
+2026-05-09T01:19:52.444Z vite:transform [32m3.47ms[39m [2m/src/utils/dayparts.js[22m
+2026-05-09T01:19:52.447Z vite:load [31m332.99ms[39m [plugin] [2m/node_modules/.vite/deps/chunk-PJEEZAML.js?v=0d36ac06[22m
+2026-05-09T01:19:52.475Z vite:cache [memory] [2m/node_modules/.vite/deps/chunk-DRWLMN53.js?v=0d36ac06[22m
+2026-05-09T01:19:52.475Z vite:cache [memory] [2m/node_modules/.vite/deps/chunk-G3PMV62Z.js?v=0d36ac06[22m
+2026-05-09T01:19:52.476Z vite:import-analysis [33m18.28ms[39m [2m[2 imports rewritten] [2mnode_modules/.vite/deps/chunk-PJEEZAML.js?v=0d36ac06[22m[2m[22m
+2026-05-09T01:19:52.476Z vite:transform [33m28.79ms[39m [2m/node_modules/.vite/deps/chunk-PJEEZAML.js?v=0d36ac06[22m
+2026-05-09T01:19:52.498Z vite:cache [memory] [2m/@react-refresh[22m
+2026-05-09T01:19:52.499Z vite:cache [memory] [2m/src/api/services.js[22m
+2026-05-09T01:19:52.500Z vite:cache [memory] [2m/src/utils/view.js[22m
+2026-05-09T01:19:52.500Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.501Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.502Z vite:cache [memory] [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:52.502Z vite:cache [memory] [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:52.503Z vite:hmr [self-accepts] [2msrc/pages/CommunityPage.jsx[22m
+2026-05-09T01:19:52.503Z vite:import-analysis [32m6.79ms[39m [2m[5 imports rewritten] [2msrc/pages/CommunityPage.jsx[22m[2m[22m
+2026-05-09T01:19:52.505Z vite:transform [31m135.83ms[39m [2m/src/pages/CommunityPage.jsx[22m
+2026-05-09T01:19:52.507Z vite:load [31m197.99ms[39m [fs] [2m/src/pages/AuthPage.jsx[22m
+2026-05-09T01:19:52.526Z vite:load [31m216.94ms[39m [fs] [2m/src/pages/SearchPage.jsx[22m
+2026-05-09T01:19:52.545Z vite:load [31m235.84ms[39m [fs] [2m/src/pages/ExplorePage.jsx[22m
+2026-05-09T01:19:52.565Z vite:load [31m256.12ms[39m [fs] [2m/src/pages/DaypartPlaylistPage.jsx[22m
+2026-05-09T01:19:52.600Z vite:load [31m291.09ms[39m [fs] [2m/src/pages/ArtistPage.jsx[22m
+2026-05-09T01:19:52.622Z vite:load [31m312.88ms[39m [fs] [2m/src/pages/ProfilePage.jsx[22m
+2026-05-09T01:19:52.686Z vite:load [31m377.12ms[39m [fs] [2m/src/pages/TrackDetailPage.jsx[22m
+2026-05-09T01:19:52.745Z vite:load [31m435.86ms[39m [fs] [2m/src/pages/PlaybackHistoryPage.jsx[22m
+2026-05-09T01:19:52.802Z vite:load [31m492.31ms[39m [fs] [2m/src/components/PlayerBar.jsx[22m
+2026-05-09T01:19:52.852Z vite:load [31m542.72ms[39m [fs] [2m/src/components/AssistantWidget.jsx[22m
+2026-05-09T01:19:52.887Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:52.888Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m
+2026-05-09T01:19:52.914Z vite:load [31m480.32ms[39m [fs] [2m/src/api/http.js[22m
+2026-05-09T01:19:52.916Z vite:resolve [32m0.25ms[39m [36maxios[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/axios.js?v=0d36ac06[22m
+2026-05-09T01:19:52.919Z vite:optimize-deps load [36mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/axios.js[39m
+2026-05-09T01:19:52.920Z vite:import-analysis [32m4.70ms[39m [2m[1 imports rewritten] [2msrc/api/http.js[22m[2m[22m
+2026-05-09T01:19:52.921Z vite:transform [32m6.05ms[39m [2m/src/api/http.js[22m
+2026-05-09T01:19:52.946Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:52.948Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m
+2026-05-09T01:19:52.949Z vite:load [33m30.32ms[39m [plugin] [2m/node_modules/.vite/deps/axios.js?v=0d36ac06[22m
+2026-05-09T01:19:52.956Z vite:cache [memory] [2m/node_modules/.vite/deps/chunk-G3PMV62Z.js?v=0d36ac06[22m
+2026-05-09T01:19:52.957Z vite:import-analysis [32m6.64ms[39m [2m[1 imports rewritten] [2mnode_modules/.vite/deps/axios.js?v=0d36ac06[22m[2m[22m
+2026-05-09T01:19:52.959Z vite:transform [32m8.92ms[39m [2m/node_modules/.vite/deps/axios.js?v=0d36ac06[22m
+2026-05-09T01:19:52.980Z vite:resolve [33m11.84ms[39m [36m../components/TimelineStrip[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/components/TimelineStrip.jsx[22m
+2026-05-09T01:19:52.982Z vite:cache [memory] [2m/@react-refresh[22m
+2026-05-09T01:19:52.984Z vite:cache [memory] [2m/src/api/services.js[22m
+2026-05-09T01:19:52.985Z vite:cache [memory] [2m/src/utils/view.js[22m
+2026-05-09T01:19:52.986Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.988Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.990Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.992Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.994Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.996Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:52.997Z vite:cache [memory] [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:52.998Z vite:cache [memory] [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:52.999Z vite:cache [memory] [2m/node_modules/.vite/deps/react-router-dom.js?v=0d36ac06[22m
+2026-05-09T01:19:53.000Z vite:hmr [self-accepts] [2msrc/pages/ArtistPage.jsx[22m
+2026-05-09T01:19:53.001Z vite:hmr [self-accepts] [2msrc/pages/ExplorePage.jsx[22m
+2026-05-09T01:19:53.002Z vite:hmr [self-accepts] [2msrc/pages/PlaybackHistoryPage.jsx[22m
+2026-05-09T01:19:53.004Z vite:import-analysis [33m37.40ms[39m [2m[6 imports rewritten] [2msrc/pages/ArtistPage.jsx[22m[2m[22m
+2026-05-09T01:19:53.005Z vite:import-analysis [33m38.33ms[39m [2m[6 imports rewritten] [2msrc/pages/ExplorePage.jsx[22m[2m[22m
+2026-05-09T01:19:53.006Z vite:import-analysis [33m39.19ms[39m [2m[6 imports rewritten] [2msrc/pages/PlaybackHistoryPage.jsx[22m[2m[22m
+2026-05-09T01:19:53.013Z vite:transform [31m411.54ms[39m [2m/src/pages/ArtistPage.jsx[22m
+2026-05-09T01:19:53.014Z vite:transform [31m468.19ms[39m [2m/src/pages/ExplorePage.jsx[22m
+2026-05-09T01:19:53.016Z vite:transform [31m269.02ms[39m [2m/src/pages/PlaybackHistoryPage.jsx[22m
+2026-05-09T01:19:53.029Z vite:cache [memory] [2m/@react-refresh[22m
+2026-05-09T01:19:53.031Z vite:cache [memory] [2m/src/api/services.js[22m
+2026-05-09T01:19:53.032Z vite:cache [memory] [2m/src/utils/view.js[22m
+2026-05-09T01:19:53.033Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.035Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.036Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.038Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.039Z vite:cache [memory] [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:53.040Z vite:cache [memory] [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:53.042Z vite:hmr [self-accepts] [2msrc/components/PlayerBar.jsx[22m
+2026-05-09T01:19:53.043Z vite:hmr [self-accepts] [2msrc/components/AssistantWidget.jsx[22m
+2026-05-09T01:19:53.044Z vite:import-analysis [33m22.91ms[39m [2m[3 imports rewritten] [2msrc/components/PlayerBar.jsx[22m[2m[22m
+2026-05-09T01:19:53.045Z vite:import-analysis [33m24.27ms[39m [2m[5 imports rewritten] [2msrc/components/AssistantWidget.jsx[22m[2m[22m
+2026-05-09T01:19:53.051Z vite:transform [31m247.12ms[39m [2m/src/components/PlayerBar.jsx[22m
+2026-05-09T01:19:53.052Z vite:transform [31m198.04ms[39m [2m/src/components/AssistantWidget.jsx[22m
+2026-05-09T01:19:53.078Z vite:cache [memory] [2m/@react-refresh[22m
+2026-05-09T01:19:53.081Z vite:cache [memory] [2m/src/api/services.js[22m
+2026-05-09T01:19:53.081Z vite:cache [memory] [2m/src/utils/view.js[22m
+2026-05-09T01:19:53.083Z vite:cache [memory] [2m/src/utils/dayparts.js[22m
+2026-05-09T01:19:53.084Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.085Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.087Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.088Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.090Z vite:cache [memory] [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:53.091Z vite:cache [memory] [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:53.092Z vite:cache [memory] [2m/node_modules/.vite/deps/react-router-dom.js?v=0d36ac06[22m
+2026-05-09T01:19:53.093Z vite:hmr [self-accepts] [2msrc/pages/SearchPage.jsx[22m
+2026-05-09T01:19:53.094Z vite:hmr [self-accepts] [2msrc/pages/DaypartPlaylistPage.jsx[22m
+2026-05-09T01:19:53.096Z vite:import-analysis [33m29.55ms[39m [2m[6 imports rewritten] [2msrc/pages/SearchPage.jsx[22m[2m[22m
+2026-05-09T01:19:53.097Z vite:import-analysis [33m30.62ms[39m [2m[7 imports rewritten] [2msrc/pages/DaypartPlaylistPage.jsx[22m[2m[22m
+2026-05-09T01:19:53.103Z vite:transform [31m575.23ms[39m [2m/src/pages/SearchPage.jsx[22m
+2026-05-09T01:19:53.104Z vite:transform [31m536.95ms[39m [2m/src/pages/DaypartPlaylistPage.jsx[22m
+2026-05-09T01:19:53.108Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:53.109Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m
+2026-05-09T01:19:53.172Z vite:cache [memory] [2m/@react-refresh[22m
+2026-05-09T01:19:53.175Z vite:cache [memory] [2m/src/api/services.js[22m
+2026-05-09T01:19:53.176Z vite:cache [memory] [2m/src/utils/view.js[22m
+2026-05-09T01:19:53.177Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.179Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.181Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.182Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.183Z vite:cache [memory] [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:53.185Z vite:cache [memory] [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:53.185Z vite:hmr [self-accepts] [2msrc/pages/AuthPage.jsx[22m
+2026-05-09T01:19:53.186Z vite:cache [memory] [2m/node_modules/.vite/deps/react-router-dom.js?v=0d36ac06[22m
+2026-05-09T01:19:53.187Z vite:hmr [self-accepts] [2msrc/pages/TrackDetailPage.jsx[22m
+2026-05-09T01:19:53.188Z vite:import-analysis [33m24.77ms[39m [2m[5 imports rewritten] [2msrc/pages/AuthPage.jsx[22m[2m[22m
+2026-05-09T01:19:53.189Z vite:import-analysis [33m25.62ms[39m [2m[6 imports rewritten] [2msrc/pages/TrackDetailPage.jsx[22m[2m[22m
+2026-05-09T01:19:53.194Z vite:transform [31m685.66ms[39m [2m/src/pages/AuthPage.jsx[22m
+2026-05-09T01:19:53.195Z vite:transform [31m506.73ms[39m [2m/src/pages/TrackDetailPage.jsx[22m
+2026-05-09T01:19:53.198Z vite:load [31m194.26ms[39m [fs] [2m/src/components/TimelineStrip.jsx[22m
+2026-05-09T01:19:53.226Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:53.228Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m
+2026-05-09T01:19:53.285Z vite:resolve [32m6.25ms[39m [36m../components/EChartCard[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/components/EChartCard.jsx[22m
+2026-05-09T01:19:53.287Z vite:resolve [32m7.59ms[39m [36m../utils/chartTransform[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/src/utils/chartTransform.js[22m
+2026-05-09T01:19:53.287Z vite:cache [memory] [2m/@react-refresh[22m
+2026-05-09T01:19:53.289Z vite:cache [memory] [2m/src/api/services.js[22m
+2026-05-09T01:19:53.291Z vite:cache [memory] [2m/src/utils/view.js[22m
+2026-05-09T01:19:53.291Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.292Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.293Z vite:cache [memory] [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:53.293Z vite:cache [memory] [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:53.294Z vite:cache [memory] [2m/node_modules/.vite/deps/react-router-dom.js?v=0d36ac06[22m
+2026-05-09T01:19:53.295Z vite:hmr [self-accepts] [2msrc/pages/ProfilePage.jsx[22m
+2026-05-09T01:19:53.296Z vite:import-analysis [33m18.47ms[39m [2m[8 imports rewritten] [2msrc/pages/ProfilePage.jsx[22m[2m[22m
+2026-05-09T01:19:53.298Z vite:transform [31m675.21ms[39m [2m/src/pages/ProfilePage.jsx[22m
+2026-05-09T01:19:53.300Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:53.301Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m
+2026-05-09T01:19:53.308Z vite:cache [memory] [2m/@react-refresh[22m
+2026-05-09T01:19:53.309Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.310Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.311Z vite:cache [memory] [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:53.312Z vite:cache [memory] [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:53.313Z vite:hmr [self-accepts] [2msrc/components/TimelineStrip.jsx[22m
+2026-05-09T01:19:53.314Z vite:import-analysis [32m6.69ms[39m [2m[3 imports rewritten] [2msrc/components/TimelineStrip.jsx[22m[2m[22m
+2026-05-09T01:19:53.315Z vite:transform [31m116.57ms[39m [2m/src/components/TimelineStrip.jsx[22m
+2026-05-09T01:19:53.345Z vite:load [33m49.72ms[39m [fs] [2m/src/components/EChartCard.jsx[22m
+2026-05-09T01:19:53.354Z vite:load [31m58.71ms[39m [fs] [2m/src/utils/chartTransform.js[22m
+2026-05-09T01:19:53.356Z vite:import-analysis [32m0.16ms[39m [2m[no imports] [2msrc/utils/chartTransform.js[22m[2m[22m
+2026-05-09T01:19:53.356Z vite:transform [32m1.26ms[39m [2m/src/utils/chartTransform.js[22m
+2026-05-09T01:19:53.362Z vite:cache [memory] [2m/@react-refresh[22m
+2026-05-09T01:19:53.363Z vite:resolve [32m1.11ms[39m [36mecharts[39m -> [2mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/echarts.js?v=0d36ac06[22m
+2026-05-09T01:19:53.363Z vite:import-analysis /node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.364Z vite:import-analysis /node_modules/.vite/deps/react.js?v=0d36ac06 needs interop
+2026-05-09T01:19:53.366Z vite:cache [memory] [2m/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=0d36ac06[22m
+2026-05-09T01:19:53.366Z vite:cache [memory] [2m/node_modules/.vite/deps/react.js?v=0d36ac06[22m
+2026-05-09T01:19:53.367Z vite:hmr [self-accepts] [2msrc/components/EChartCard.jsx[22m
+2026-05-09T01:19:53.368Z vite:optimize-deps load [36mC:/Users/LIUHENGRU/Desktop/design-1/frontend/node_modules/.vite/deps/echarts.js[39m
+2026-05-09T01:19:53.369Z vite:import-analysis [32m7.86ms[39m [2m[4 imports rewritten] [2msrc/components/EChartCard.jsx[22m[2m[22m
+2026-05-09T01:19:53.370Z vite:transform [33m23.62ms[39m [2m/src/components/EChartCard.jsx[22m
+2026-05-09T01:19:53.381Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:53.383Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m
+2026-05-09T01:19:53.400Z vite:load [33m32.47ms[39m [plugin] [2m/node_modules/.vite/deps/echarts.js?v=0d36ac06[22m
+2026-05-09T01:19:53.488Z vite:cache [memory] [2m/node_modules/.vite/deps/chunk-G3PMV62Z.js?v=0d36ac06[22m
+2026-05-09T01:19:53.489Z vite:import-analysis [31m63.96ms[39m [2m[1 imports rewritten] [2mnode_modules/.vite/deps/echarts.js?v=0d36ac06[22m[2m[22m
+2026-05-09T01:19:53.490Z vite:transform [31m88.97ms[39m [2m/node_modules/.vite/deps/echarts.js?v=0d36ac06[22m
+2026-05-09T01:19:53.517Z vite:hmr [file change] [2mvite-dev.err.log[22m
+2026-05-09T01:19:53.518Z vite:hmr [no modules matched] [2mvite-dev.err.log[22m

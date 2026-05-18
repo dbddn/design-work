@@ -1,0 +1,552 @@
+{
+  "functional": [
+    {
+      "module": "用户注册",
+      "path": "/api/auth/register",
+      "input": {
+        "username": "test_73721589",
+        "email": "test_73721589@example.com",
+        "password": "Pass123456"
+      },
+      "actual": "HTTP 200",
+      "pass": true
+    },
+    {
+      "module": "用户登录",
+      "path": "/api/auth/login",
+      "input": {
+        "username": "test_73721589",
+        "password": "Pass123456"
+      },
+      "actual": "HTTP 200",
+      "pass": true
+    },
+    {
+      "module": "音乐搜索",
+      "path": "/api/tracks/search?q=%E7%88%B1&page=0&size=5",
+      "input": null,
+      "actual": "HTTP 200, total=610, items=5",
+      "pass": true
+    },
+    {
+      "module": "音乐播放资源获取",
+      "path": "/api/tracks/1412672836",
+      "input": null,
+      "actual": "HTTP 200, id=1412672836",
+      "pass": true
+    },
+    {
+      "module": "音乐播放资源刷新",
+      "path": "/api/tracks/1412672836/refresh-playback",
+      "input": null,
+      "actual": "HTTP 200, id=1412672836",
+      "pass": true
+    },
+    {
+      "module": "普通推荐",
+      "path": "/api/recommendations?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "actual": "HTTP 200, tracks=0, onboardingRequired=True",
+      "pass": true
+    },
+    {
+      "module": "分时段推荐",
+      "path": "/api/recommendations/dayparts?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "actual": "HTTP 200, playlists=0, onboardingRequired=True",
+      "pass": true
+    },
+    {
+      "module": "保存初始偏好",
+      "path": "/api/recommendations/onboarding/preferences",
+      "input": {
+        "genres": [
+          "清新",
+          "治愈",
+          "欢快"
+        ],
+        "gender": "unknown"
+      },
+      "actual": "HTTP 200, tracks=20, onboardingRequired=False",
+      "pass": true
+    },
+    {
+      "module": "普通推荐-偏好后",
+      "path": "/api/recommendations?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "actual": "HTTP 200, tracks=10, onboardingRequired=False",
+      "pass": true
+    },
+    {
+      "module": "分时段推荐-偏好后",
+      "path": "/api/recommendations/dayparts?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "actual": "HTTP 200, playlists=4, onboardingRequired=False",
+      "pass": true
+    },
+    {
+      "module": "歌单创建",
+      "path": "/api/playlists",
+      "input": {
+        "name": "论文测试歌单-220e"
+      },
+      "actual": "HTTP 200, id=25",
+      "pass": true
+    },
+    {
+      "module": "歌曲加入歌单",
+      "path": "/api/playlists/25/tracks",
+      "input": {
+        "trackId": 1412672836
+      },
+      "actual": "HTTP 200, id=25",
+      "pass": true
+    },
+    {
+      "module": "播放事件记录",
+      "path": "/api/player/events",
+      "input": {
+        "trackId": 1412672836,
+        "eventType": "play",
+        "progressSec": 30,
+        "completed": true
+      },
+      "actual": "HTTP 200",
+      "pass": true
+    },
+    {
+      "module": "播放历史记录",
+      "path": "/api/history?limit=10",
+      "input": null,
+      "actual": "HTTP 200, listSize=1",
+      "pass": true
+    },
+    {
+      "module": "数据可视化-热力图",
+      "path": "/api/analytics/heatmap?days=30",
+      "input": null,
+      "actual": "HTTP 200, listSize=30",
+      "pass": true
+    },
+    {
+      "module": "数据可视化-流派分布",
+      "path": "/api/analytics/genres?days=30",
+      "input": null,
+      "actual": "HTTP 200, listSize=1",
+      "pass": true
+    },
+    {
+      "module": "AI助手接口",
+      "path": "/api/assistant/chat",
+      "input": {
+        "message": "请根据我的听歌偏好推荐一首歌",
+        "history": [],
+        "scene": "default",
+        "emotion": "neutral"
+      },
+      "actual": "HTTP 200",
+      "pass": true
+    },
+    {
+      "module": "MCP调试接口",
+      "path": "/api/recommendations/debug/mcp?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "actual": "HTTP 200, raw=0, matched=0, unmatched=0, fallback=True",
+      "pass": true
+    },
+    {
+      "module": "MCP调试接口-偏好后",
+      "path": "/api/recommendations/debug/mcp?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "actual": "HTTP 200, raw=0, matched=0, unmatched=0, fallback=True",
+      "pass": true
+    },
+    {
+      "module": "MCP失败后本地回退逻辑-访客锁定",
+      "path": "/api/recommendations?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "actual": "HTTP 200, tracks=0, onboardingRequired=False, guest=True",
+      "pass": true
+    }
+  ],
+  "performance": [
+    {
+      "interface": "/api/recommendations",
+      "count": 5,
+      "min_ms": 207.96,
+      "max_ms": 313.09,
+      "avg_ms": 249.47,
+      "statuses": [
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "all_ok": true,
+      "samples": [
+        313.09,
+        230.69,
+        281.92,
+        213.68,
+        207.96
+      ]
+    },
+    {
+      "interface": "/api/recommendations/dayparts",
+      "count": 5,
+      "min_ms": 2283.2,
+      "max_ms": 2480.62,
+      "avg_ms": 2390.84,
+      "statuses": [
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "all_ok": true,
+      "samples": [
+        2283.2,
+        2364.78,
+        2395.3,
+        2430.29,
+        2480.62
+      ]
+    },
+    {
+      "interface": "/api/tracks/search",
+      "count": 5,
+      "min_ms": 84.14,
+      "max_ms": 186.48,
+      "avg_ms": 139.61,
+      "statuses": [
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "all_ok": true,
+      "samples": [
+        186.48,
+        84.14,
+        146.83,
+        135.43,
+        145.17
+      ]
+    },
+    {
+      "interface": "/api/playlists/mine",
+      "count": 5,
+      "min_ms": 14.3,
+      "max_ms": 24.38,
+      "avg_ms": 19.0,
+      "statuses": [
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "all_ok": true,
+      "samples": [
+        19.97,
+        15.57,
+        14.3,
+        24.38,
+        20.8
+      ]
+    },
+    {
+      "interface": "/api/analytics/heatmap",
+      "count": 5,
+      "min_ms": 12.52,
+      "max_ms": 34.03,
+      "avg_ms": 26.97,
+      "statuses": [
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "all_ok": true,
+      "samples": [
+        34.03,
+        12.52,
+        31.8,
+        33.61,
+        22.91
+      ]
+    },
+    {
+      "interface": "/api/analytics/genres",
+      "count": 5,
+      "min_ms": 20.53,
+      "max_ms": 48.63,
+      "avg_ms": 32.64,
+      "statuses": [
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "all_ok": true,
+      "samples": [
+        48.63,
+        20.53,
+        34.19,
+        36.53,
+        23.31
+      ]
+    },
+    {
+      "interface": "/api/music/search(不存在)",
+      "count": 5,
+      "min_ms": 11.67,
+      "max_ms": 16.98,
+      "avg_ms": 14.8,
+      "statuses": [
+        500,
+        500,
+        500,
+        500,
+        500
+      ],
+      "all_ok": false,
+      "samples": [
+        13.69,
+        11.67,
+        16.9,
+        14.77,
+        16.98
+      ]
+    },
+    {
+      "interface": "/api/analytics/genre-distribution(不存在)",
+      "count": 5,
+      "min_ms": 8.62,
+      "max_ms": 30.33,
+      "avg_ms": 14.9,
+      "statuses": [
+        500,
+        500,
+        500,
+        500,
+        500
+      ],
+      "all_ok": false,
+      "samples": [
+        15.52,
+        10.11,
+        30.33,
+        8.62,
+        9.9
+      ]
+    },
+    {
+      "interface": "/api/analytics/radar(不存在)",
+      "count": 5,
+      "min_ms": 11.2,
+      "max_ms": 36.9,
+      "avg_ms": 17.52,
+      "statuses": [
+        500,
+        500,
+        500,
+        500,
+        500
+      ],
+      "all_ok": false,
+      "samples": [
+        13.99,
+        36.9,
+        12.26,
+        11.2,
+        13.24
+      ]
+    }
+  ],
+  "dayparts": [
+    {
+      "key": "morning",
+      "label": "上午",
+      "count": 10,
+      "topGenres": "感动(3), genre-0(2), 孤寂(2)",
+      "tags": [
+        "清醒",
+        "提神",
+        "通勤",
+        "学习启动"
+      ],
+      "aiSuccess": false,
+      "fallbackUsed": false,
+      "fallbackReason": "PERSISTED_PLAYLIST_PENDING_USE_MCP",
+      "title": "上午个性化歌单"
+    },
+    {
+      "key": "afternoon",
+      "label": "下午",
+      "count": 10,
+      "topGenres": "浪漫(1), 忧郁(1), 治愈(1)",
+      "tags": [
+        "轻松",
+        "专注",
+        "稳定节奏",
+        "陪伴工作"
+      ],
+      "aiSuccess": false,
+      "fallbackUsed": false,
+      "fallbackReason": "PERSISTED_PLAYLIST_PENDING_USE_MCP",
+      "title": "下午个性化歌单"
+    },
+    {
+      "key": "evening",
+      "label": "晚上",
+      "count": 10,
+      "topGenres": "舒缓(3), 宁静(2), 浪漫(1)",
+      "tags": [
+        "放松",
+        "舒缓",
+        "陪伴",
+        "夜色氛围"
+      ],
+      "aiSuccess": false,
+      "fallbackUsed": false,
+      "fallbackReason": "PERSISTED_PLAYLIST_PENDING_USE_MCP",
+      "title": "晚上个性化歌单"
+    },
+    {
+      "key": "midnight",
+      "label": "深夜",
+      "count": 10,
+      "topGenres": "感动(3), genre-0(2), 宁静(2)",
+      "tags": [
+        "沉浸",
+        "安静",
+        "低刺激",
+        "夜深人静"
+      ],
+      "aiSuccess": false,
+      "fallbackUsed": false,
+      "fallbackReason": "PERSISTED_PLAYLIST_PENDING_USE_MCP",
+      "title": "深夜个性化歌单"
+    }
+  ],
+  "mcp": [
+    {
+      "name": "MCP调试接口",
+      "userId": "u_1428633ccfc94a2a",
+      "scene": "default",
+      "emotion": "neutral",
+      "limit": 10,
+      "raw": 0,
+      "matched": 0,
+      "unmatched": 0,
+      "fallback": true,
+      "error": null,
+      "mappedArgs": {
+        "genres": [],
+        "descriptors": [
+          "balanced"
+        ],
+        "similar_to": [
+          "丁当 - 敢爱敢当"
+        ],
+        "secondary_genres": [],
+        "min_rating": 3.5,
+        "max_results": 10,
+        "hybrid_weight": 0.68
+      }
+    },
+    {
+      "name": "MCP调试接口-偏好后",
+      "userId": "u_1428633ccfc94a2a",
+      "scene": "default",
+      "emotion": "neutral",
+      "limit": 10,
+      "raw": 0,
+      "matched": 0,
+      "unmatched": 0,
+      "fallback": true,
+      "error": null,
+      "mappedArgs": {
+        "genres": [],
+        "descriptors": [
+          "balanced"
+        ],
+        "similar_to": [
+          "丁当 - 敢爱敢当"
+        ],
+        "secondary_genres": [],
+        "min_rating": 3.5,
+        "max_results": 10,
+        "hybrid_weight": 0.68
+      }
+    },
+    {
+      "name": "MCP调试接口-运动活力",
+      "userId": "u_1428633ccfc94a2a",
+      "scene": "workout",
+      "emotion": "energetic",
+      "limit": 10,
+      "raw": 10,
+      "matched": 10,
+      "unmatched": 0,
+      "fallback": false,
+      "error": null,
+      "mappedArgs": {
+        "genres": [
+          "electronic"
+        ],
+        "descriptors": [
+          "intense",
+          "driving",
+          "uplifting",
+          "exciting"
+        ],
+        "similar_to": [
+          "丁当 - 敢爱敢当"
+        ],
+        "secondary_genres": [],
+        "min_rating": 3.5,
+        "max_results": 10,
+        "hybrid_weight": 0.68
+      }
+    }
+  ],
+  "reco_effect": [
+    {
+      "method": "MCP混合推荐接口（当前用户偏好后）",
+      "sample": 10,
+      "avgHit": 0,
+      "hitRate": 0.0,
+      "score": null,
+      "note": "命中=返回tracks.genre属于用户初始偏好[清新,治愈,欢快]"
+    },
+    {
+      "method": "保存偏好后即时推荐",
+      "sample": 20,
+      "avgHit": 0,
+      "hitRate": 0.0,
+      "score": null,
+      "note": "同一推荐接口在保存偏好后立即返回结果"
+    },
+    {
+      "method": "关键词搜索结果基线（爱）",
+      "sample": 5,
+      "avgHit": 2,
+      "hitRate": 0.4,
+      "score": null,
+      "note": "非推荐策略，仅作偏好标签命中基线"
+    }
+  ],
+  "state": {
+    "userId": "u_1428633ccfc94a2a",
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0XzczNzIxNTg5IiwidWlkIjoidV8xNDI4NjMzY2NmYzk0YTJhIiwiZ3Vlc3QiOmZhbHNlLCJpYXQiOjE3NzkwNzA0MzcsImV4cCI6MTc3OTE1NjgzN30.hR-vnp4H6G7Qc5znljymBE7qMidulIXmOFJ7FAL-Udc",
+    "trackId": 1412672836,
+    "playlistId": 25
+  }
+}

@@ -1,0 +1,200 @@
+[
+  {
+    "interface": "/api/recommendations",
+    "count": 5,
+    "min_ms": 207.96,
+    "max_ms": 313.09,
+    "avg_ms": 249.47,
+    "statuses": [
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "all_ok": true,
+    "samples": [
+      313.09,
+      230.69,
+      281.92,
+      213.68,
+      207.96
+    ]
+  },
+  {
+    "interface": "/api/recommendations/dayparts",
+    "count": 5,
+    "min_ms": 2283.2,
+    "max_ms": 2480.62,
+    "avg_ms": 2390.84,
+    "statuses": [
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "all_ok": true,
+    "samples": [
+      2283.2,
+      2364.78,
+      2395.3,
+      2430.29,
+      2480.62
+    ]
+  },
+  {
+    "interface": "/api/tracks/search",
+    "count": 5,
+    "min_ms": 84.14,
+    "max_ms": 186.48,
+    "avg_ms": 139.61,
+    "statuses": [
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "all_ok": true,
+    "samples": [
+      186.48,
+      84.14,
+      146.83,
+      135.43,
+      145.17
+    ]
+  },
+  {
+    "interface": "/api/playlists/mine",
+    "count": 5,
+    "min_ms": 14.3,
+    "max_ms": 24.38,
+    "avg_ms": 19.0,
+    "statuses": [
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "all_ok": true,
+    "samples": [
+      19.97,
+      15.57,
+      14.3,
+      24.38,
+      20.8
+    ]
+  },
+  {
+    "interface": "/api/analytics/heatmap",
+    "count": 5,
+    "min_ms": 12.52,
+    "max_ms": 34.03,
+    "avg_ms": 26.97,
+    "statuses": [
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "all_ok": true,
+    "samples": [
+      34.03,
+      12.52,
+      31.8,
+      33.61,
+      22.91
+    ]
+  },
+  {
+    "interface": "/api/analytics/genres",
+    "count": 5,
+    "min_ms": 20.53,
+    "max_ms": 48.63,
+    "avg_ms": 32.64,
+    "statuses": [
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "all_ok": true,
+    "samples": [
+      48.63,
+      20.53,
+      34.19,
+      36.53,
+      23.31
+    ]
+  },
+  {
+    "interface": "/api/music/search(不存在)",
+    "count": 5,
+    "min_ms": 11.67,
+    "max_ms": 16.98,
+    "avg_ms": 14.8,
+    "statuses": [
+      500,
+      500,
+      500,
+      500,
+      500
+    ],
+    "all_ok": false,
+    "samples": [
+      13.69,
+      11.67,
+      16.9,
+      14.77,
+      16.98
+    ]
+  },
+  {
+    "interface": "/api/analytics/genre-distribution(不存在)",
+    "count": 5,
+    "min_ms": 8.62,
+    "max_ms": 30.33,
+    "avg_ms": 14.9,
+    "statuses": [
+      500,
+      500,
+      500,
+      500,
+      500
+    ],
+    "all_ok": false,
+    "samples": [
+      15.52,
+      10.11,
+      30.33,
+      8.62,
+      9.9
+    ]
+  },
+  {
+    "interface": "/api/analytics/radar(不存在)",
+    "count": 5,
+    "min_ms": 11.2,
+    "max_ms": 36.9,
+    "avg_ms": 17.52,
+    "statuses": [
+      500,
+      500,
+      500,
+      500,
+      500
+    ],
+    "all_ok": false,
+    "samples": [
+      13.99,
+      36.9,
+      12.26,
+      11.2,
+      13.24
+    ]
+  }
+]

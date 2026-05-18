@@ -1,0 +1,2123 @@
+{
+  "state": {
+    "userId": "u_1428633ccfc94a2a",
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0XzczNzIxNTg5IiwidWlkIjoidV8xNDI4NjMzY2NmYzk0YTJhIiwiZ3Vlc3QiOmZhbHNlLCJpYXQiOjE3NzkwNzA0MzcsImV4cCI6MTc3OTE1NjgzN30.hR-vnp4H6G7Qc5znljymBE7qMidulIXmOFJ7FAL-Udc",
+    "trackId": 1412672836,
+    "playlistId": 25
+  },
+  "extra": [
+    {
+      "module": "保存初始偏好",
+      "method": "POST",
+      "path": "/api/recommendations/onboarding/preferences",
+      "input": {
+        "genres": [
+          "清新",
+          "治愈",
+          "欢快"
+        ],
+        "gender": "unknown"
+      },
+      "status": 200,
+      "ms": 490.32,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "requestId": "local-1779070480272",
+          "strategyVersion": "v2",
+          "hybridWeight": {
+            "popular": 0.18,
+            "content": 0.44,
+            "scene": 0.22,
+            "collaborative": 0.16
+          },
+          "tracks": [
+            {
+              "id": 1412672844,
+              "mcpTrackId": "1412672844",
+              "title": "Forget it （feat. Mac Ova Seas）",
+              "artist": "SETI / mac ova seas",
+              "album": "nightfall EP",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/_jRndEytHJkJbSkoOUQ49g==/109951169859352741.jpg",
+              "durationSec": 216,
+              "description": "榜单同步入库：Forget it （feat. Mac Ova Seas） - SETI / mac ova seas",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672843,
+              "mcpTrackId": "1412672843",
+              "title": "坚定的浪潮",
+              "artist": "念念不忘",
+              "album": "众生赋，人间录",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/-fDlxXgXgIzfn9--8SwJog==/109951172869512177.jpg",
+              "durationSec": 237,
+              "description": "榜单同步入库：坚定的浪潮 - 念念不忘",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672842,
+              "mcpTrackId": "1412672842",
+              "title": "坠夏",
+              "artist": "曾舜晞",
+              "album": "夏日戏剧",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/csqn0fgNHO3QDQ5llTjWOg==/109951173183850803.jpg",
+              "durationSec": 160,
+              "description": "榜单同步入库：坠夏 - 曾舜晞",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672841,
+              "mcpTrackId": "1412672841",
+              "title": "春树",
+              "artist": "银河快递",
+              "album": "春树",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/Frivz0wQeVOsU-mvuEqZZw==/109951173137293067.jpg",
+              "durationSec": 207,
+              "description": "榜单同步入库：春树 - 银河快递",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672840,
+              "mcpTrackId": "1412672840",
+              "title": "人间逍遥客",
+              "artist": "Winky诗",
+              "album": "人间逍遥客",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/A4QWaVJWR7X3NsjNCjlxcA==/109951173136991146.jpg",
+              "durationSec": 215,
+              "description": "榜单同步入库：人间逍遥客 - Winky诗",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672839,
+              "mcpTrackId": "1412672839",
+              "title": "SGA",
+              "artist": "CHILLSENONE / Top Barry",
+              "album": "V8",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/4NbUWGcSUwK_KS2awOjYMA==/109951173132859393.jpg",
+              "durationSec": 140,
+              "description": "榜单同步入库：SGA - CHILLSENONE / Top Barry",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672838,
+              "mcpTrackId": "1412672838",
+              "title": "旧商务",
+              "artist": "马赫mood / 夏辰熙",
+              "album": "旧商务",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/t_n9MCP07DpiaH95bK_hXg==/109951173149474396.jpg",
+              "durationSec": 222,
+              "description": "榜单同步入库：旧商务 - 马赫mood / 夏辰熙",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672837,
+              "mcpTrackId": "1412672837",
+              "title": "一半一半（Live）",
+              "artist": "希林娜依高 / 欧阳娣娣（Didi Ouyang） / 王晓赟子",
+              "album": "《超燃青春的合唱》第3期",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/_v6hX7K1aSLBq5fMtlxZXA==/109951173184162340.jpg",
+              "durationSec": 238,
+              "description": "榜单同步入库：一半一半（Live） - 希林娜依高 / 欧阳娣娣（Didi Ouyang） / 王晓赟子",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672836,
+              "mcpTrackId": "1412672836",
+              "title": "身不由己",
+              "artist": "丁当",
+              "album": "敢爱敢当",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/1KFjoJtWpnt16KiB4R0Kdw==/109951168144534489.jpg",
+              "durationSec": 255,
+              "description": "榜单同步入库：身不由己 - 丁当",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672835,
+              "mcpTrackId": "1412672835",
+              "title": "颜色",
+              "artist": "Gareth.T",
+              "album": "颜色",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/NBYS2W-x3p2IVNvHMcylMg==/109951170940524301.jpg",
+              "durationSec": 211,
+              "description": "榜单同步入库：颜色 - Gareth.T",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672834,
+              "mcpTrackId": "1412672834",
+              "title": "排尾后巷",
+              "artist": "万妮达Vinida Weng",
+              "album": "排尾后巷",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/Lpel5n3XhaGUlZTUwnwnYQ==/109951173102884187.jpg",
+              "durationSec": 150,
+              "description": "榜单同步入库：排尾后巷 - 万妮达Vinida Weng",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672833,
+              "mcpTrackId": "1412672833",
+              "title": "新鲜感",
+              "artist": "颜人中",
+              "album": "新鲜感",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/NI-he-6dYj703tHhWlXM4w==/109951173093985476.jpg",
+              "durationSec": 212,
+              "description": "榜单同步入库：新鲜感 - 颜人中",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672832,
+              "mcpTrackId": "1412672832",
+              "title": "孤独Person",
+              "artist": "Herme4 / WhyAce / Zy",
+              "album": "孤独Person",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/nzhOTjQKov7BSfThq5zMQw==/109951173022447909.jpg",
+              "durationSec": 169,
+              "description": "榜单同步入库：孤独Person - Herme4 / WhyAce / Zy",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672831,
+              "mcpTrackId": "1412672831",
+              "title": "新生活",
+              "artist": "王齐铭WatchMe / LSGCsikoriot",
+              "album": "新生活",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/xWWFtgjV7BgpLXhxdWfQEw==/109951169929918547.jpg",
+              "durationSec": 183,
+              "description": "榜单同步入库：新生活 - 王齐铭WatchMe / LSGCsikoriot",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672830,
+              "mcpTrackId": "1412672830",
+              "title": "枪火",
+              "artist": "宝石Gem",
+              "album": "通俗说唱",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/orkneHWYJVnCLxldcm12YA==/109951171484030155.jpg",
+              "durationSec": 198,
+              "description": "榜单同步入库：枪火 - 宝石Gem",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672829,
+              "mcpTrackId": "1412672829",
+              "title": "答案",
+              "artist": "冒海飞 / 徐丽东",
+              "album": "音乐剧《嫌疑人X的献身》同名OST",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/u_LqISk142zvjPxgLFVtcA==/109951168849172822.jpg",
+              "durationSec": 180,
+              "description": "榜单同步入库：答案 - 冒海飞 / 徐丽东",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672828,
+              "mcpTrackId": "1412672828",
+              "title": "主角",
+              "artist": "王菲",
+              "album": "主角",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/CEXNU9v1y1PI6YB-136NOQ==/109951173178804489.jpg",
+              "durationSec": 300,
+              "description": "榜单同步入库：主角 - 王菲",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672827,
+              "mcpTrackId": "1412672827",
+              "title": "还有明天",
+              "artist": "塞壬唱片-MSR / BaoUner",
+              "album": "人们，我们OST",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/GZzxFWRPjHzt2o_3aUddzg==/109951173017722451.jpg",
+              "durationSec": 127,
+              "description": "榜单同步入库：还有明天 - 塞壬唱片-MSR / BaoUner",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672826,
+              "mcpTrackId": "1412672826",
+              "title": "傻悲欢",
+              "artist": "石岩",
+              "album": "傻悲欢",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/EjAPLDmpzc50yTl0SlgpVw==/109951173043927360.jpg",
+              "durationSec": 256,
+              "description": "榜单同步入库：傻悲欢 - 石岩",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672825,
+              "mcpTrackId": "1412672825",
+              "title": "美力场",
+              "artist": "陈婧霏",
+              "album": "美力场",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/iyXOZYY9c6Uh38b4ntgZrA==/109951173047644649.jpg",
+              "durationSec": 187,
+              "description": "榜单同步入库：美力场 - 陈婧霏",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            }
+          ],
+          "userStage": "SPARSE_USER",
+          "guest": false,
+          "onboardingRequired": false,
+          "selectedGenres": [
+            "清新",
+            "治愈",
+            "欢快"
+          ],
+          "onboardingOptions": [
+            "清新",
+            "治愈",
+            "欢快",
+            "孤寂",
+            "忧郁",
+            "思念",
+            "怀旧",
+            "宁静",
+            "舒缓",
+            "浪漫"
+          ],
+          "playCount30d": 1,
+          "summary": "你的听歌数据还在积累阶段，当前会优先放大内容过滤与风格匹配。"
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "普通推荐-偏好后",
+      "method": "GET",
+      "path": "/api/recommendations?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "status": 200,
+      "ms": 305.42,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "requestId": "local-1779070480592",
+          "strategyVersion": "v2",
+          "hybridWeight": {
+            "popular": 0.18,
+            "content": 0.44,
+            "scene": 0.22,
+            "collaborative": 0.16
+          },
+          "tracks": [
+            {
+              "id": 1412672844,
+              "mcpTrackId": "1412672844",
+              "title": "Forget it （feat. Mac Ova Seas）",
+              "artist": "SETI / mac ova seas",
+              "album": "nightfall EP",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/_jRndEytHJkJbSkoOUQ49g==/109951169859352741.jpg",
+              "durationSec": 216,
+              "description": "榜单同步入库：Forget it （feat. Mac Ova Seas） - SETI / mac ova seas",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672843,
+              "mcpTrackId": "1412672843",
+              "title": "坚定的浪潮",
+              "artist": "念念不忘",
+              "album": "众生赋，人间录",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/-fDlxXgXgIzfn9--8SwJog==/109951172869512177.jpg",
+              "durationSec": 237,
+              "description": "榜单同步入库：坚定的浪潮 - 念念不忘",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672842,
+              "mcpTrackId": "1412672842",
+              "title": "坠夏",
+              "artist": "曾舜晞",
+              "album": "夏日戏剧",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/csqn0fgNHO3QDQ5llTjWOg==/109951173183850803.jpg",
+              "durationSec": 160,
+              "description": "榜单同步入库：坠夏 - 曾舜晞",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672841,
+              "mcpTrackId": "1412672841",
+              "title": "春树",
+              "artist": "银河快递",
+              "album": "春树",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/Frivz0wQeVOsU-mvuEqZZw==/109951173137293067.jpg",
+              "durationSec": 207,
+              "description": "榜单同步入库：春树 - 银河快递",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672840,
+              "mcpTrackId": "1412672840",
+              "title": "人间逍遥客",
+              "artist": "Winky诗",
+              "album": "人间逍遥客",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/A4QWaVJWR7X3NsjNCjlxcA==/109951173136991146.jpg",
+              "durationSec": 215,
+              "description": "榜单同步入库：人间逍遥客 - Winky诗",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672839,
+              "mcpTrackId": "1412672839",
+              "title": "SGA",
+              "artist": "CHILLSENONE / Top Barry",
+              "album": "V8",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/4NbUWGcSUwK_KS2awOjYMA==/109951173132859393.jpg",
+              "durationSec": 140,
+              "description": "榜单同步入库：SGA - CHILLSENONE / Top Barry",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672838,
+              "mcpTrackId": "1412672838",
+              "title": "旧商务",
+              "artist": "马赫mood / 夏辰熙",
+              "album": "旧商务",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/t_n9MCP07DpiaH95bK_hXg==/109951173149474396.jpg",
+              "durationSec": 222,
+              "description": "榜单同步入库：旧商务 - 马赫mood / 夏辰熙",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672837,
+              "mcpTrackId": "1412672837",
+              "title": "一半一半（Live）",
+              "artist": "希林娜依高 / 欧阳娣娣（Didi Ouyang） / 王晓赟子",
+              "album": "《超燃青春的合唱》第3期",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/_v6hX7K1aSLBq5fMtlxZXA==/109951173184162340.jpg",
+              "durationSec": 238,
+              "description": "榜单同步入库：一半一半（Live） - 希林娜依高 / 欧阳娣娣（Didi Ouyang） / 王晓赟子",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672836,
+              "mcpTrackId": "1412672836",
+              "title": "身不由己",
+              "artist": "丁当",
+              "album": "敢爱敢当",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/1KFjoJtWpnt16KiB4R0Kdw==/109951168144534489.jpg",
+              "durationSec": 255,
+              "description": "榜单同步入库：身不由己 - 丁当",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672835,
+              "mcpTrackId": "1412672835",
+              "title": "颜色",
+              "artist": "Gareth.T",
+              "album": "颜色",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/NBYS2W-x3p2IVNvHMcylMg==/109951170940524301.jpg",
+              "durationSec": 211,
+              "description": "榜单同步入库：颜色 - Gareth.T",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            }
+          ],
+          "userStage": "SPARSE_USER",
+          "guest": false,
+          "onboardingRequired": false,
+          "selectedGenres": [
+            "清新",
+            "治愈",
+            "欢快"
+          ],
+          "onboardingOptions": [
+            "清新",
+            "治愈",
+            "欢快",
+            "孤寂",
+            "忧郁",
+            "思念",
+            "怀旧",
+            "宁静",
+            "舒缓",
+            "浪漫"
+          ],
+          "playCount30d": 1,
+          "summary": "你的听歌数据还在积累阶段，当前会优先放大内容过滤与风格匹配。"
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "分时段推荐-偏好后",
+      "method": "GET",
+      "path": "/api/recommendations/dayparts?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "status": 200,
+      "ms": 3079.45,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "requestId": "daypart-1779070480885",
+          "strategyVersion": "v2",
+          "userStage": "SPARSE_USER",
+          "guest": false,
+          "onboardingRequired": false,
+          "selectedGenres": [
+            "清新",
+            "治愈",
+            "欢快"
+          ],
+          "onboardingOptions": [
+            "清新",
+            "治愈",
+            "欢快",
+            "孤寂",
+            "忧郁",
+            "思念",
+            "怀旧",
+            "宁静",
+            "舒缓",
+            "浪漫"
+          ],
+          "playCount30d": 1,
+          "summary": "",
+          "playlists": [
+            {
+              "key": "morning",
+              "label": "上午",
+              "mood": "清醒启动",
+              "description": "适合通勤、学习启动和逐步提神的早间播放。",
+              "playlistTitle": "上午个性化歌单",
+              "playlistSubtitle": "上午提神",
+              "playlistReason": "适合通勤、学习启动和逐步提神的早间播放。最近偏好更靠近 unknown，并保留了当前时段需要的节奏与情绪。",
+              "tags": [
+                "清醒",
+                "提神",
+                "通勤",
+                "学习启动"
+              ],
+              "tracks": [
+                {
+                  "id": 1396146256,
+                  "mcpTrackId": "1396146256",
+                  "title": "Real Me",
+                  "artist": "王以太",
+                  "album": "演.说.家",
+                  "genre": "感动",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏感动氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 王以太*-* 作词 : 王以太*-*制作人/编曲 Producer: 陈令韬*-*可能你并不在意聆听音乐*-*可能任何人的名字都没有听说过*-*可能所有信息只从网络拼凑*-*每天在外为了钱和尊严拼搏*-*可能有些时候你同样也会非常用力*-*想要摆脱懒惰但是谈何容易*-*现实的压力干扰你的梦境*-*想要做个梦 也要别人同意*-*我理解你但并不奢望你能理解我*-*毕竟哪个可以代替我切体验*-*我理解你需要所有人去理解你*-*所以才把底线放在微博里面*-*我也一样希望别个都能认真听我说*-*所以我在麦克风前和别个有区别*-*同时所有人都在逼我说*-*每句话 发自内心还是配合游戏规则*-*说白了这个show对我来说不是比赛*-*因为个性不能被人拿来指指点点*-*不管他人叫我闪火还是叫我以太*-*我的决定都考虑到了未来不是眼前*-*我绝对不会辜负任何一份信任*-*但是感恩难道要特地做给你看？*-*现在所有人都能熟练用keep it real*-*真正的real除了老天没人能评判*-*only God can judge me*-*不要在意我的脸 我的钱 我的选择*-*cause only God can judge me*-*不要过度揣测 当你也负担满背*-*but i love the real you*-*谢谢你在我撒子都没得的时候依然站在我的身边*-*let me bring out the real me*-*倾注真心用音乐来填补我的遗憾*-*就算赚很多钱也是real me*-*穷困潦倒我也保持real me*-*在我杯子里面加点酒精*-*天上偶尔他会划过流星*-*money 不能让我怀疑real me*-*再多问题我也保持real me*-*在我音乐里面继续走心*-*经典他肯定会超越流行*-*yea i feel great now*-*glory gonna stay now*-*yea i feel great now*-*glory gonna stay now*-*yea i feel great now*-*glory gonna stay now*-*yea i feel great now*-*glory gonna stay now*-*Please ride with me*-*Fly with me*-*Ride with me*-*Fly with me*-*混音 Mixing Engineer: 小武*-*人声制作 Vocal Production: 王晓夫*-*录音 Recording: 小武 @Sync Studio*-*母带 Mastering Engineer: Craig J Williams*-*监制 Music Supervisor: 王晓夫/陈令韬*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1353428265,
+                  "mcpTrackId": "1353428265",
+                  "title": "最后的狂欢",
+                  "artist": "杨和苏KeyNG",
+                  "album": "加冕",
+                  "genre": "忧郁",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏忧郁氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 杨和苏KeyNG*-* 作词 : 杨和苏KeyNG*-*编曲：陈令韬*-**-*如果明天你就不能吐露真言*-*你得放下所有努力挣钱*-*如果无尽的冬夜 将统治这片大地*-*让你再也没有办法见到春天*-*如果只有死掉 才能继续活*-*要做你觉得行不通的 才能通过*-*如果一切的一切都是个梦*-*现实的障碍没有办法冲破*-*Would you still fight with me?*-*还是你们都要掉头离去*-*留我一个人在原地*-*在世界的边际 连敷衍的话都讲不出一句*-*Would you still die with me?*-*还是你们早已没有力气*-*只剩下我疯狂的母亲*-*在那空旷的树林里 继续找寻着我的遗体*-*在*-*最后的狂欢*-*头上已*-*没有了皇冠*-*当我在*-*最后的狂欢*-*心里已*-*没有了伤感*-**-*如果交不起房租 就没有房住*-*你越是忙碌 却好像越是盲目*-*如果你爱的人 想要你做恨的事*-*但你最恨的人 做着你最爱的事*-*你会继续偏执 还是让步*-*一个人坚持 或寻求帮助*-*是像天使祷告 或打开电视找到*-*你觉得最最最好笑的娱乐栏目*-*如果你喊着“清醒，快清醒！”*-*但没有一个人愿意被惊醒*-*他们都在庆幸 自己活在梦里多么幸运*-*因为让“健康”的人最心紧的事情*-*就是知道他的病情 wow(好吧)*-*如果“昨天”不被原谅 若*-*“明天”不过是个幻象 说*-*“今天”到底还有什么 能够束缚住我*-*让我不能去张开嘴巴乱讲*-*Would you still fight with me?*-*还是你们都要掉头离去*-*留我一个人在原地*-*在世界的边际 连敷衍的话都讲不出一句*-*Would you still die with me?*-*还是你们早已没有力气*-*只剩下我疯狂的母亲*-*在那空旷的树林里 继续找寻着我的遗体*-*在*-*最后的狂欢*-*头上已*-*没有了皇冠*-*当我在*-*最后的狂欢*-*心里已*-*没有了伤感*-*你深爱的城市并不很爱你呢*-*头脑一片空白我该怎么选择*-*你深爱的城市并不很爱你呢*-*头脑一片空白我该怎么选择*-**-*录音室：Tweak Tone Labs*-*混音室：432hz Studio*-*制作人：陈令韬*-*监制：陈令韬*-*混音：李金城*-*混音监制：陈令韬*-*母带：李金城*-*录音师：郑晓桐*-*音频编辑：郑晓桐*-*Recorded at: 北京*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 511229037,
+                  "mcpTrackId": "511229037",
+                  "title": "Back In My Zone",
+                  "artist": "VaVa毛衍七",
+                  "album": "21",
+                  "genre": "genre-0",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏genre-0氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : Double G*-* 作词 : VAVA*-*编曲 Arranged by Double_G*-*Back in my zone*-*That's my house*-*That's my name*-*That's my dog*-*曾经讨厌我的现在 give me a call*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*That's my home*-*That's my money*-*That's my gold*-*很高兴能让大家都以我为荣*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*我知道自己和他们都不一样*-*同学们毕了业但现在多迷茫*-*我不听所有人劝开始玩说唱*-*这一巴掌打下去声音多响亮*-*老师们说我不好好学习*-*长大了没出路*-*当初下的定论太早现在改口说失误*-*妈妈要我天天向上她为我将来铺路*-*我自己的未来自己做主自己来支付*-*听到了流言蜚语*-*谁又在背后嚼舌根*-*说我不懂规矩 谣言也造的那么真*-*当我身处险境而你带着有色眼镜*-*小人势力 鉴定完毕*-*抱歉我不认识你*-*That's my house*-*That's my name*-*That's my dog*-*曾经讨厌我的现在 give me a call*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*That's my home*-*That's my money*-*That's my gold*-*很高兴能让大家都以我为荣*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*佛说命运看因果*-*曾经他们不信我*-*最多是小爆炸不能成为燎原的星火*-*我很庆幸自己是个非常有主见的人*-*伟大的神*-*谢谢你帮我打开了那扇门*-*直到我进步超速*-*想更上个高度*-*老师的孩子也爱音乐*-*求我叫他些招数*-*我就是想要你们全都看见我发光*-*不敢正面直视我心里都敢到发慌*-****** I am young 所以 young soul*-*摸起来烫手*-*我喜欢享受 什么才叫做抢手*-*灵魂和思想全都活在现下*-*Me and my squad 从头到脚正在慢慢变化*-*It's VAVA*-*That's my house*-*That's my name*-*That's my dog*-*曾经讨厌我的现在 give me a call*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*That's my home*-*That's my money*-*That's my gold*-*很高兴能让大家都以我为荣*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*老学校我受过好处费*-*老街上我喝酒找宿醉*-*忘了当时为了保护谁*-*躲避追赶藏进老木柜*-*当时所有人看见我都是避之不及*-*现在变成他们跟我套近乎的话题*-*比谁都要用功*-*自尊心在怂恿*-*我发誓一定要做*-*就做最勤劳的蜜蜂*-*把钱都拽在手里让他们在旁边看*-*开辟了新的大路让他们都旁边站*-*That's my house*-*That's my name*-*That's my dog*-*曾经讨厌我的现在 give me a call*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*That's my home*-*That's my money*-*That's my gold*-*很高兴能让大家都以我为荣*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-**-*制作人 Produced by Double_G*-*混音 Mixed by Double_G at Yes Music Studio*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1412575420,
+                  "mcpTrackId": "1412575420",
+                  "title": "想入非非",
+                  "artist": "Free-Out",
+                  "album": "Free-Out Tape Vol.1",
+                  "genre": "孤寂",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏孤寂氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : J Nash*-* 作词 : Lil Howcy/Round_2/G.G（张思源）*-*Lil Howcy：*-*我喜欢一个人窝在家里远离那些匆匆忙忙*-*看他们慌慌张张*-*但出了任何问题有我在*-*像属于三界之外的流派*-*看那些妖魔鬼怪趁我睡着偷偷钻进床底*-*就梦游拿起手柄对着他们疯狂双击*-*小兵不存在*-*你知道我的妈妈心里一直觉得我有才*-*有成千上万个生命落在人海之中*-*当无数妄想被击破了别用伤来止痛*-*所有恶性循环是否真的让人顽强*-*万众瞩目下的冲动随你闪亮登场*-*大家想入非非 但是菲菲是谁*-*该听谁来指挥 又由谁来支配 baby i don't know*-*万象伴你入睡 牵住你的味蕾 来无穷回味*-*让你接着听我的歌 坠入粉色的河*-*G.G(张思源):*-*都别再call我了 我现在没有空*-*烦心的都丢在云里 我在下面做个梦*-*我想我有点累 这命运是魔鬼*-*早安：*-*给我一个微笑*-*看谁加入了Free-Out*-*忍不住翘起嘴角了吧*-*不想睡觉了吧哦哦*-*都跟我一起去外面走走*-*my baby girl*-*说走就走吧我们去探险*-*早就受够了在原地转圈*-*至于where to go*-*这根本不重要*-*你能跟我走*-*我已经快疯掉*-*想带你去海边*-*你不喜欢 改签*-*跟无聊拜拜拜*-*喜欢就买买买*-*我也不知道我为什么突然这么有钱*-*很多说唱歌手都在歌里突然变有钱*-*那我也跟他们一样 要在钱里游啊游*-*我的桃子超贵当然不止9块9*-*我现在根本不再相信任何rapper说的话*-*那就一起来做梦吧比比看谁做的大想入非非～*-*G.G(张思源):*-*都别再call我了 我现在没有空*-*烦心的都丢在云里 我在下面做个梦*-*我想我有点累 这命运是魔鬼*-*G.G（张思源）：*-*我在南非挖金矿在缅甸选翡翠*-*在西班牙看斗牛赶去上海滩的舞会*-*脑袋 最近当机 嗜好 睡觉*-*但别替我着急 GG在Free-Out*-* 在圣诞月选择和初雪一起掉进雨林*-*没有汽车尾气只有夏威夷的草裙*-*东部热风带领太平洋的气息*-*别打我手机 彩虹下面呼吸*-*我呼吸着自由 yeah*-*我呼吸着温柔 en*-*这放纵的甜头 yeah*-*从未有的感受 en en en*-*no way to know*-*i say no way to know*-*看夜里的霓虹*-*像错过的行踪*-*G.G(张思源):*-*都别再call我了 我现在没有空*-*烦心的都丢在云里 我在下面做个梦*-*我想我有点累 这命运是魔鬼*-*都别再call我了 我现在没有空*-*烦心的都丢在云里 我在下面做个梦*-*我想我有点累 这命运是魔鬼*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 29769315,
+                  "mcpTrackId": "29769315",
+                  "title": "达尔文",
+                  "artist": "刘瑞琦",
+                  "album": "热门华语252",
+                  "genre": "感动",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏感动氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "[by:暖城小筑]*-*[ti:达尔文]*-*[ar:蔡健雅]*-*[al:]*-*我的青春 也不是没伤痕*-*是明白爱是信仰的延伸*-*甚么特征 人缘还是眼神*-*也不会预知爱不爱的可能*-*保持单身 忍不住又沉沦*-*兜着圈子来去有时苦等*-*人的一生 感情是旋转门*-*转到了最后真心的就不分*-*有过竞争 有过牺牲*-*被爱筛选过程*-*学会认真 学会忠诚*-*适者才能生存*-*懂得永恒 得要我们*-*进化成更好的人*-*我的青春 有时还蛮单纯*-*相信幸福取决于爱得深*-*读进化论 我赞成达尔文*-*没实力的就有淘汰的可能*-*我的替身 已换过多少轮*-*记忆在旧情人心中变冷*-*我的一生 有几道旋转门*-*转到了最后只剩你我没分*-*有过竞争 有过牺牲*-*被爱筛选过程*-*学会认真 学会忠诚*-*适者才能生存*-*懂得永恒 得要我们*-*进化成更好的人*-*有过竞争 有过牺牲*-*被爱筛选过程*-*学会认真 学会忠诚*-*适者才能生存*-*懂得永恒 得要我们*-*进化成更好的人*-*懂得永恒 得要我们*-*进化成更好的人*-*进化成更好的人*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 28038062,
+                  "mcpTrackId": "28038062",
+                  "title": "这个人已经与我无关",
+                  "artist": "田馥甄",
+                  "album": "渺小",
+                  "genre": "感动",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏感动氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 郭文宗*-* 作词 : 黄伟文*-*编曲：于京延*-*杂志说 狮子座 本星期 艳遇很多*-*为什么 我还是会 眉头一锁*-*有几个 朋友说 他最近 老了很多*-*我苦笑 我为什么 还在乎这个*-*其实这个人 已与我无关*-*翻他的脸书 翻得这么晚*-*不过是我手指头 自作主张的坏习惯*-*其实这个人 已与我无关*-*当他看到我 婚礼邀请函*-*他一定也这样说 心中不起一丝波澜*-*一二三 一二三 健身房 灯还没关*-*突然间 才想起来 是为谁流汗*-*其实这个人 已与我无关*-*翻他的脸书 翻得这么晚*-*不过是我手指头 自作主张的坏习惯*-*其实这个人 已与我无关*-*有天我照片 出现讣闻版*-*他一定也这样说 心中不起一丝波澜*-*其实这个人 已与我无关*-*手机里的他 笑得多灿烂*-*不过是一直很忙 无用的资料忘了删*-*其实这个人 已与我无关*-*他前面的路 是光明暗淡*-*我决定袖手旁观 至少不能比他更慢*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 546282750,
+                  "mcpTrackId": "546282750",
+                  "title": "Better Than Me？Feat. 辛巴 & Pact",
+                  "artist": "王以太",
+                  "album": "Feel & Sight",
+                  "genre": "孤寂",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏孤寂氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "[by:DEEPURPINK]*-* 作曲 : senoria*-* 作词 : 王以太*-*没有人better than me*-*为什么你觉得better than me say who?*-*没有人better than me*-*为什么你觉得better than me say who?*-*没有人better than me*-*为什么你觉得better than me say who?*-*没有人better than me*-*虚伪的诋毁都不用在意say who*-*没有人better than me*-*不管谁在我面前我都淡定*-*say我 鹤立鸡群的丹顶看*-*这些个废老铁给的反应说我*-*不够trap不够流行 不够turn up不得人跟我留影*-*究竟 你算不算说唱歌手*-*没得gold chain雷鬼辫子头型*-*现在听好 我的状态不止一种而是五彩斑斓*-*老子写的歌词而你们只描绘贪婪*-*见识够我写本书你只够写个专栏*-*反叛到底为了下一代能翻盘*-*下一代肯定会说王闪火是个badass*-*思想紧凑从来不会自由散漫*-*朝向背脊上的刀*-*lord帮我反弹直面我的冲击所有rapper全都只能感叹*-*没有人better than me*-*为什么你觉得better than me say who?*-*没有人better than me*-*为什么你觉得better than me say who?*-*没有人better than me*-*为什么你觉得better than me say who?*-*没有人better than me*-*虚伪的诋毁都不用在意say woo*-*没有人 没有人 怎么没有人 怎么没有人*-*没有人 没有人 怎么没有人 怎么没有人*-*没有人 没有人 怎么没有人 没有人*-*没有人 没有人 怎么没有人*-*Simba:从不是球场上大呼小叫 那一个 却比任何人都要坚韧*-*直到我亲手杀死比赛的那一刻 也不用你来认可我的天分*-*总有人喜欢指手画脚 当然不乏更多LOSER躲在背后放肆喷*-*再次回敬你的疑问 除了自己没有敌人 从来不怕天黑这条巷子深*-*“要学会配合规则 主动一点制造争议 否则我们真的对你很失望*-*没人听你自诩词藻风趣 想想我就生气 看你微博微薄的粉丝量”*-*屏蔽了满眼蹭热度的标题党 庆幸我没有入围你的超级榜*-*他们达不到我功力 查不到我踪迹 我是射杀你偶像转身离去的小李广*-*say say say woo*-*没有人 better than me*-*I say nobody nobody better than me*-*兄弟 配的上拥有胜利 必须承受起所有非议和攻击*-*say woo没有人better than me 都是自命不凡的一群庸医*-*say woo没有人better than me 别让傲慢来自无知和空虚*-*Pact:They call me SAD MAN SAD MAN*-*But M a right one*-*帮你把脑子拿去 修 不敢怠慢*-*以为能缩小差距 秋 天是Deadline*-*可还是没有 Hit song 甚至 Best rhyme*-*都 在意的是 Face on 那里*-*怎么再 怎么快 怎么卖 掉自己怎么*-*都 想像变成老外 想要怪 想要坏 却没几个会用MIC*-*当然我也受够了追问*-*受够了回答Cuz we live in the prison*-*可为了计划 我控制着悲愤*-*但来自地下 We teach Ya’ll how to breathing*-*No reason I gotta 2K*-*One for my Boo-Bae one for my Kool-Aid*-*把握好度 数 Cool 看人们宿醉*-*What you gonna do 别误 会 我的部 队 Woo*-*We wanna ghetto food now Woo*-*你也是真 爱 吐 槽 Woo*-*但即使你 再 阻 挠 Woo*-*我还有另 外 五 条 路*-*那如 果你相信我的话*-*去想想以前我的话*-*如果你开始询问 有没有赶上我的话*-*记住愚蠢的勤奋比懒惰可怕*-*那都在拼命的往上挤*-*可为什么你总是显得太小气*-*那对号入座的别生气*-*我只是比你早点开始做自己*-*那别再催我快点出专辑*-*我还是喜欢音乐讨厌做生意*-*But you wait a couple months then you gonna see*-*You never find nobody better than me*-*没有人better than me*-*为什么你觉得better than me say who?*-*没有人better than me*-*为什么你觉得better than me say who?*-*没有人better than me*-*为什么你觉得better than me say who?*-*没有人better than me*-*虚伪的诋毁都不用在意say woo*-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 556135526,
+                  "mcpTrackId": "556135526",
+                  "title": "战斗",
+                  "artist": "K￥LLER",
+                  "album": "战斗 (feat. 福克斯&Viito)",
+                  "genre": "genre-0",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏genre-0氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "[00:00]编曲：K￥LLER*-*[00:02]混音：Austin Leeds/WarRonZ*-*[00:05]母带：Austin Leeds*-*[00:08]Verse1福克斯：*-*[00:11]我战斗不仅为了让敌人颤 抖*-*[00:13]也不是为了大口喝酒无理取闹无端嘶吼*-*[00:17]对着一望无际的端口渴望心中的自由*-*[00:19]那些子虚乌有都不断涌上心头*-*[00:23]像是勾兑过的清酒*-*[00:24]谈不上甘甜可口*-*[00:25]抓住机遇决不轻易的松手*-*[00:28]也许人生亦是场战斗*-*[00:30]久经沙场不足够*-*[00:31]咬住战机也不会轻易妥协松口*-*[00:34]在城池镇守 神识震走 一声怒吼*-*[00:37]却未能将周遭的敌人尽数全部带走*-*[00:39]将自己推上浪尖和风口 显露身手 包扎伤口*-*[00:43]这世界等着真实的声音来大胆开口*-*[00:46]我曾见过那生活在底层的人士毫无理由的奋斗*-*[00:49]艰难的把自己的生活过得精神抖擞*-*[00:52]也曾见过那身居权位之人终日灵魂游走*-*[00:55]整日在人性暗淡的职场自在梦游*-*[00:58]我并没想给年轻人树立一个怎样的榜样*-*[01:00]却并不希望 让年轻人对这世界失望*-*[01:03]即使世界满目疮痍，疲惫的满脸沧桑*-*[01:06]我也依然鼓励他们活出自己的模样。*-*[01:09]孩子你可深知*-*[01:11]可怕的不是燕雀不知鸿鹄之志，*-*[01:13]而是那鸿鹄未能展翅，*-*[01:15]已被这群燕雀逼死。*-*[01:17]如果环境成为了杀死一个人的武器，*-*[01:19]那我们就该果断战斗到底*-*[01:21]所以你为了什么而战斗？你为了什么而战斗？为了什么而战斗！？*-*[01:25]令你的敌人颤抖？*-*[01:27]所以你为了什么而战斗？你为了什么而战斗？为了什么而战斗！？*-*[01:31]面对真实开口！*-*[01:33]听 这是命运传来的声音*-*[01:36]像某种回应 向我靠近 足以要命*-*[01:39]你再听 这声音有些忽远忽近*-*[01:42]像天使般的空灵 让我渐渐舒心*-*[01:45]Hook1福克斯：*-*[01:45]听 这是命运传来的声音 像是某种回应*-*[01:48]向我靠近 足以要人命*-*[01:50]你再听 这声音有些忽远忽近 像天使般的空灵 让我渐渐感到舒心*-*[01:56]Verse2 Viito：*-*[01:57]Why do you let yourself live a meaningless life*-*[01:59]You should throw up your fist, what we need is to fight*-*[02:02]We just being programmed, you ain't being polite*-*[02:05]Social media brainwashing you to reach in your mind*-*[02:08]**** a piece of the pie, they want to keep us obedient*-*[02:11]If you disagree, they will label you and call you a deviant*-*[02:14]Look under the surface at this ******* government greediness*-*[02:17]About to put a stop to the propaganda they feeding us*-*[02:20]Whenever they see bad news, it's like they can't keep up*-*[02:23]By the next week it's forgotten, they get amnesia*-*[02:25]Everyday this **** keeps going makes me angrier*-*[02:28]That's why Viito and Fox are here to be the panacea*-*[02:31]Can't believe the way they trying to kill off creativity*-*[02:35]If everyone was carbon copy, we can't make no history*-*[02:37]It's time for you to wake the **** up, have you an epiphany*-*[02:40]Mainstream trying to throw our brains inside of a rotisserie*-*[02:43]No liberty, this system got us living by some grades*-*[02:46]Focused on singing but not the music or the words you going to say*-*[02:49]If you agree then come on stage, stand up, be unafraid*-*[02:52]Fight for our lives, and our rights, we won't live as ******* slaves*-*[02:54]Hook福克斯：*-*[02:55]听 这是命运传来的声音 像是某种回应*-*[02:59]向我靠近 足以要人命*-*[03:00]你再听 这声音有些忽远忽近 像天使般的空灵 让我渐渐感到舒心*-*[03:03]听 这是命运传来的声音 像是某种回应*-*[03:10]向我靠近 足以要人命*-*[03:12]你再听 这声音有些忽远忽近 像天使般的空灵 让我渐渐感到舒心*-*[03:18]Outro福克斯：*-*[03:19]I fight for ma family fight for ma team*-*[03:21]Fight for ma city fight for ma dream*-*[03:24]追寻战斗的意义与必胜的决心*-*[03:27]我们该为何而战？ We fight for the world…*-* 作曲 : 福克斯*-* 作词 : 福克斯/Chinkid Vitto*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 191024,
+                  "mcpTrackId": "191024",
+                  "title": "高飞",
+                  "artist": "张杰",
+                  "album": "最接近天堂的地方",
+                  "genre": "清新",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏清新氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 深白色*-* 作词 : 深白色*-* 奔跑穿越无尽的荒原*-* 逐梦的脚步突然停歇*-* 无边断崖横在眼前*-* 我懂 我要 蜕变*-**-* 偶尔想起温暖的昨天*-* 为了梦想不再留恋*-* 新的起点就在眼前*-* 我已做好准备*-**-* 我要高飞 到天空的顶点*-* 我要飞到无人能及的视界*-* 飞得再累 不准自己跌坠*-* 直到太阳就在我的指尖*-**-* 我要高飞 到世界的边缘*-* 我要飞越没人到达的绝对*-* 不到终点 不准流下眼泪*-* 要把最震撼的吶喊留在灿烂瞬间*-**-* 偶尔想起温暖的昨天*-* 为了梦想不再留恋*-* 新的起点就在眼前*-* 我已做好准备*-**-* 我要高飞 到天空的顶点*-* 我要飞到无人能及的视界*-* 飞得再累 不准自己跌坠*-* 直到太阳就在我的指尖*-**-* 我要高飞 到世界的边缘*-* 我要飞越没人到达的绝对*-* 不到终点 不准流下眼泪*-* 要把最震撼的吶喊留在灿烂瞬间*-* 我要高飞 到天空的顶点*-* 我要飞到无人能及的视界*-* 飞得再累 不准自己跌坠*-* 直到太阳就在我的指尖*-**-* 我要高飞 到世界的边缘*-* 我要飞越没人到达的绝对*-* 不到终点 不准流下眼泪*-* 要把最震撼的吶喊留在灿烂瞬间*-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 520352954,
+                  "mcpTrackId": "520352954",
+                  "title": "Dance",
+                  "artist": "武装押韵",
+                  "album": "Dance",
+                  "genre": "浪漫",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏浪漫氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 武装押韵*-* 作词 : 武装押韵*-*当你还在看这个黑白不分的世界*-*都在颠倒煎熬的日夜*-*没有回报尊重达一声致谢*-*猜疑或排挤没必要那么直接*-*还没放松没放慢脚步*-*还没找到你的方向先调整角度*-*成功的捷径不止这一条小路*-*伤害别人之前先学会自我保护*-*这地方太浮躁想要带你离开*-*不想你成为下一个意外*-*与你的故事全部都记在*-*不只是心中脑海的地带*-*这节奏怎么唱 怎么忘 怎么放 怎么样*-*怎么全都跟着晃 怎么拳头还没放下（吓）的全都听不到*-*歌词我听不到 我真的听不到*-*那就放下这包袱 全身心的投入*-*都给我动起来别再选择原地踏步*-*忘记烦恼 保持专注*-*打开枷锁心灵的窗户*-*我带着你跑 共同去寻找*-*相互的你好没有烦恼的群岛*-*不图回报 相互的依靠*-*远方传来迷人的微笑*-*shall we dance like Elvis*-*dance like Elvis*-*shall we dance dance*-*like noone can contorl*2*-*NINEONE*-*最近干了太多合你口味我不爽的事儿*-*我不想用其他来证明圈子能有我的地儿*-*if u prove it*-*but people don't take ya*-*so why dont f**** da 不屑*-*only u can save ya*-*I'm artist*-*mark the target*-*I need no power*-*I'm party animal*-*I do things incredible*-*I dont care u anymore*-*既然百花齐放我就摘几朵*-*管他台上台下有多少人真的在意我*-*cause emm 看我全开的范儿*-*秒了那些商演团队自封的腕儿*-*可能来的不算早但时机赶的巧*-*一开口让老的新的眼睛tm全都看向这儿*-*U guys ready*-*I guess u like it*-*把地板踩碎*-*这样做才对*-*U guys ready*-*喝醉了再会*-*遇见你太美*-*只想问*-*shall we dance like Elvis*-*dance like Elvis*-*shall we dance dance*-*like noone can contorl*2*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                }
+              ],
+              "explanations": {},
+              "aiEnabled": true,
+              "aiSuccess": false,
+              "fallbackUsed": false,
+              "fallbackReason": "PERSISTED_PLAYLIST_PENDING_USE_MCP",
+              "candidateCount": 10,
+              "finalCount": 10
+            },
+            {
+              "key": "afternoon",
+              "label": "下午",
+              "mood": "轻松专注",
+              "description": "适合午后保持稳定节奏，轻松但不松散。",
+              "playlistTitle": "下午个性化歌单",
+              "playlistSubtitle": "下午稳态",
+              "playlistReason": "适合午后保持稳定节奏，轻松但不松散。最近偏好更靠近 unknown，并保留了当前时段需要的节奏与情绪。",
+              "tags": [
+                "轻松",
+                "专注",
+                "稳定节奏",
+                "陪伴工作"
+              ],
+              "tracks": [
+                {
+                  "id": 1340914733,
+                  "mcpTrackId": "1340914733",
+                  "title": "此时此刻",
+                  "artist": "Round_2",
+                  "album": "此时此刻",
+                  "genre": "浪漫",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏浪漫氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : Round_2*-* 作词 : Round_2/泥鳅*-*编曲：Yondo*-*MIX：Ice paper*-*给你我的心情*-*如果你能倾听*-*听清我的hiphop dream 在ring a ring a ring*-*要和时间赛跑 就是right now*-*moving like hot sauce*-*not like yall*-*早安*-*o my girl 你上了贼船*-*别往下看 这里没有围栏*-*一不小心就踏进了纯粹的蓝色中*-*别管它大海又或是天空*-*逃避虽然可耻可是有时该用到*-*但到底是对 是错 其实也都不太重要*-*要你想要的 all in 管他妈什么回报*-*凹个想凹的 造型 眼泪要带着微笑*-*right now 刮什么风 如果是男子汉怕什么冲*-*锋 加速飞到空中 旋风冲锋龙卷风～都冲也冲不过我怎么想的通 中庸 bull **** 哪怕只是一场空我也要轰轰烈烈*-*真真切切 日日夜夜 我想的的确确 让你能感受得到*-*要么此时此刻 要么never ever try*-*你问我何时最骄傲 我么？就是现在*-*给你我的心情*-*如果你能倾听*-*听清我的hiphop dream 在ring a ring a ring*-*要和时间赛跑 就是right now*-*moving like hot sauce*-*not like yall*-*贰万*-*这个漫漫的长夜还是那么黑*-*我想把路灯变这个漫漫的长夜还是那么黑*-*我想把路灯变暗淡后带你飞*-*想要变成艺术家把你一切都描绘*-*让你永远18岁 让你不会再憔悴*-*其实挺急的的 因为时光留不住*-*匆匆 而来 我想要带你兜风*-*去感受那些平静感受春风拂面*-*去感受那些你从未曾感受过的一切*-*时间 还在不停的滴答滴*-*相信我说的话 就跟着你的心*-*及时行乐别停了享受所有你所爱的*-*快乐不是拿来卖的那是心里都存在的*-*你说感动 是音乐让我们接近*-*你听过我的内心软弱又坚硬*-*说真的繁杂琐碎我都懒得管了*-*现在的我只想最直接的的留住此时此刻*-*给你我的心情*-*如果你能倾听*-*听清我的hiphop dream 在ring a ring a ring*-*要和时间赛跑 就是right now*-*moving like hot sauce*-*not like yall*-*泥鳅*-*你看窗外的雨不知疲倦的一直下着*-*墙上的时钟tictokticktok*-*你把钟爱的影片拿来不停地投屏*-*情节到了明年就变得不流行*-*但那些情感深深地注入了灵魂*-*在每个摇摇晃晃的凌晨*-*酒精与大脑总会形成完美的平衡*-*负面情绪被抛进云层*-*只有在当下 才是你 最完美的 melody*-*何必在乎别人是否真的瞧得起*-*你当然可以选择逃避 就为了那点毛利*-*其他人无所谓但时间不会饶了你*-*想看见大步向前走的少年*-*继续帅气保持压低的帽檐*-*当他跨过陷阱丛林再也不用别人同情*-*他的笑容总有一天变得耀眼*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1353428265,
+                  "mcpTrackId": "1353428265",
+                  "title": "最后的狂欢",
+                  "artist": "杨和苏KeyNG",
+                  "album": "加冕",
+                  "genre": "忧郁",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏忧郁氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 杨和苏KeyNG*-* 作词 : 杨和苏KeyNG*-*编曲：陈令韬*-**-*如果明天你就不能吐露真言*-*你得放下所有努力挣钱*-*如果无尽的冬夜 将统治这片大地*-*让你再也没有办法见到春天*-*如果只有死掉 才能继续活*-*要做你觉得行不通的 才能通过*-*如果一切的一切都是个梦*-*现实的障碍没有办法冲破*-*Would you still fight with me?*-*还是你们都要掉头离去*-*留我一个人在原地*-*在世界的边际 连敷衍的话都讲不出一句*-*Would you still die with me?*-*还是你们早已没有力气*-*只剩下我疯狂的母亲*-*在那空旷的树林里 继续找寻着我的遗体*-*在*-*最后的狂欢*-*头上已*-*没有了皇冠*-*当我在*-*最后的狂欢*-*心里已*-*没有了伤感*-**-*如果交不起房租 就没有房住*-*你越是忙碌 却好像越是盲目*-*如果你爱的人 想要你做恨的事*-*但你最恨的人 做着你最爱的事*-*你会继续偏执 还是让步*-*一个人坚持 或寻求帮助*-*是像天使祷告 或打开电视找到*-*你觉得最最最好笑的娱乐栏目*-*如果你喊着“清醒，快清醒！”*-*但没有一个人愿意被惊醒*-*他们都在庆幸 自己活在梦里多么幸运*-*因为让“健康”的人最心紧的事情*-*就是知道他的病情 wow(好吧)*-*如果“昨天”不被原谅 若*-*“明天”不过是个幻象 说*-*“今天”到底还有什么 能够束缚住我*-*让我不能去张开嘴巴乱讲*-*Would you still fight with me?*-*还是你们都要掉头离去*-*留我一个人在原地*-*在世界的边际 连敷衍的话都讲不出一句*-*Would you still die with me?*-*还是你们早已没有力气*-*只剩下我疯狂的母亲*-*在那空旷的树林里 继续找寻着我的遗体*-*在*-*最后的狂欢*-*头上已*-*没有了皇冠*-*当我在*-*最后的狂欢*-*心里已*-*没有了伤感*-*你深爱的城市并不很爱你呢*-*头脑一片空白我该怎么选择*-*你深爱的城市并不很爱你呢*-*头脑一片空白我该怎么选择*-**-*录音室：Tweak Tone Labs*-*混音室：432hz Studio*-*制作人：陈令韬*-*监制：陈令韬*-*混音：李金城*-*混音监制：陈令韬*-*母带：李金城*-*录音师：郑晓桐*-*音频编辑：郑晓桐*-*Recorded at: 北京*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1357991046,
+                  "mcpTrackId": "1357991046",
+                  "title": "Sunset",
+                  "artist": "NINEONE#",
+                  "album": "Dear X",
+                  "genre": "治愈",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏治愈氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : NINEONE#*-* 作词 : NINEONE#*-*编曲：Mantra*-*录音：Miso Music*-*混音：仔仔*-*母带：仔仔*-*执行制作人Production Manager：李智*-*制作人Producer：李俊驹*-*总监制Executive Producer ：李宏杰*-*封面设计：999%*-**-*I dont wanna fight for you*-**-*baby our love like a sunset*-*我们的爱情像极了落日余晖*-*all the bad things seem to come alive*-*所有的悲戚统统袭来*-*baby our love like a sunset*-*我们的爱情像极了落日余晖*-*it will pass away we all gone die*-*美好不再复返 像是世界末日*-*I don't wanna fight for you*-*我不想再为你而战了*-*I won't ever fight for you*-*我不会再为你而战了*-**-*一颗冰凉的狂欢星球*-*两个人找不完的因由*-*在笼络没存档的今后*-*反正没答案的全都归为统治者的阴谋*-*转身走的我*-*再也不会选择*-*破 口大骂了*-*也不想再看你装的有多难过*-*散落的人怎么装不斑驳*-*wooo*-*baby our love like a sunset*-*我们的爱情像极了落日余晖*-*all the bad things seem to come alive*-*所有的悲戚统统袭来*-*baby our love like a sunset*-*我们的爱情像极了落日余晖*-*it will pass away we all gone die*-*美好不再复返 像是世界末日*-*I don't wanna fight for you*-*我不想再为你而战了*-*I won't ever fight for you*-*我不会再为你而战了*-*可是我 总会觉得哪里不太对*-*可是我 碰巧和你一样是败类*-*不是我 要和另个自己搞暧昧*-*只是我 在那之后夜里不再睡*-*ei 放心我学不会膈应谁的new life*-*没感情的killer只会做事不问由来*-*曾经我以为你是我最有力的后台*-*但一切到头来*-*那些滚蛋both like shxxxt*-*资本家们玩的游戏我没想卷入*-*没为了快速到达终点躲避开远路*-*花一年时间看到那些人的真面目*-*捅了自己无数刀 但我提高了分辨度*-*baby I don't really know*-*how to控制我的气场*-*从今以后谁也别想给我买弄伎俩*-*称了重的痛 ei 碰巧我做了梦ei*-*粉碎之后再重新建起你所谓的懂ei*-*I dont wanna fight for you*-**-*baby our love like a sunset*-*我们的爱情像极了落日余晖*-*all the bad things seem to come alive*-*所有的悲戚统统袭来*-*baby our love like a sunset*-*我们的爱情像极了落日余晖*-*it will pass away we all gone die*-*美好不再复返 像是世界末日*-*I don't wanna fight for you*-*我不想再为你而战了*-*I won't ever fight for you*-*我不会再为你而战了*-**-*制作公司：北京惟又双文化传播有限公司*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 27731179,
+                  "mcpTrackId": "27731179",
+                  "title": "有一个姑娘",
+                  "artist": "李荣浩",
+                  "album": "模特",
+                  "genre": "思念",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏思念氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 李正帆*-*作词 : 琼瑶*-*编曲 : 李荣浩*-*有一个姑娘 她有一些任性*-*她还有一些嚣张*-*有一个姑娘 她有一些叛逆*-*她还有一些疯狂*-*HA 那个姑娘啊 是那个姑娘呀*-*HA 你就是这个姑娘*-**-*有一个姑娘 她有一些任性*-*她还有一些嚣张*-*有一个姑娘 她有一些叛逆*-*她还有一些疯狂*-*HA 那个姑娘啊 是那个姑娘呀*-*HA 你就是这个姑娘*-*整天嘻嘻哈哈 看到风儿就起浪*-*也曾迷迷糊糊大祸小祸一起闯*-*还曾山山水水 敢爱敢恨走四方*-**-*整天嘻嘻哈哈 看到风儿就起浪*-*也曾迷迷糊糊大祸小祸一起闯*-*还曾山山水水 敢爱敢恨走四方*-**-*更曾轰轰烈烈拼死拼活爱一场*-**-*你就是这个姑娘*-**-*有一个姑娘 她有一些任性*-*她还有一些嚣张*-*有一个姑娘 她有一些叛逆*-*她还有一些疯狂*-*HA 那个姑娘啊 是那个姑娘呀*-*HA 你就是这个姑娘*-*整天嘻嘻哈哈 看到风儿就起浪*-*也曾迷迷糊糊大祸小祸一起闯*-*还曾山山水水 敢爱敢恨走四方*-**-*整天嘻嘻哈哈 看到风儿就起浪*-*也曾迷迷糊糊大祸小祸一起闯*-*还曾山山水水 敢爱敢恨走四方*-*更曾轰轰烈烈拼死拼活爱一场*-**-*还曾山山水水 敢爱敢恨走四方*-**-*整天嘻嘻哈哈 看到风儿就起浪*-*也曾迷迷糊糊大祸小祸一起闯*-*还曾山山水水 敢爱敢恨走四方*-*更曾轰轰烈烈拼死拼活爱一场*-**-*有一个姑娘 她有一些任性*-*她还有一些嚣张*-*有一个姑娘 她有一些叛逆*-*她还有一些疯狂*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 520277152,
+                  "mcpTrackId": "520277152",
+                  "title": "姗姗",
+                  "artist": "金玟岐",
+                  "album": "大七电台",
+                  "genre": "感动",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏感动氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 金玟岐*-* 作词 : 金玟岐*-*制作人/编曲：薛琳可*-**-*姗姗 最近睡眠好吗*-*好久 没跟你说说话*-*看到 你签名里写着*-*正能量的话*-*越活泼越难过吧*-*越洒脱越放不下*-*成人后情绪总反着表达*-*几杯黄汤以后 你说*-**-*走着走着怎么脚步渐渐慢了*-*忙着忙着怎么生活变得拖沓*-*街角的旧楼推倒了*-*怀旧的人 住在热闹繁华的大厦*-**-*爱着爱着怎么爱人就不见了*-*想着想着怎么样子也模糊了*-*当初多特别的一个*-*平凡的 丢进人海里匆匆着*-**-*姗姗 我们放下电话*-*今晚 让它被冷落吧*-*承认 我们没有活成*-*社交网络的样子*-*越活泼越难过吧*-*越洒脱越放不下*-*成人后情绪总反着表达*-*你想哭就哭吧*-*明天总要微笑啊*-**-*走着走着怎么脚步渐渐慢了*-*忙着忙着怎么生活变得拖沓*-*街角的旧楼推倒了*-*怀旧的人 住在热闹繁华的大厦*-**-*爱着爱着怎么爱人就不见了*-*想着想着怎么样子也模糊了*-*当初多特别的一个*-*平凡的 丢进人海里匆匆着*-**-*也许没那么复杂*-*走着走着如果觉得累就停吧*-*忙着忙着迷失了就安静一下*-*繁华的大厦不会塌*-*每一个人 三餐一宿都会有个家*-**-*爱着爱着总有人教我们长大*-*想着想着快乐总大过悲伤啊*-*叫幸福的花 晚点开*-*栽种的人 谦卑中学会了强大*-**-*姗姗  最近睡眠好吗*-*听完  这首歌  快睡吧*-**-*吉他：薛峰*-*贝斯：韩阳*-*钢琴：薛琳可*-*鼓与打击乐：武勇恒 a.k.a. 贝贝*-*短号：Stewart Kirwan*-*录音：汝文博@BIG.J Studio,Beijing*-*            李游@55 TEC Studio,Beijing*-*混音：赵婧@BIG.J Studio,Beijing*-*母带：Greg Calbi@Sterling Sound,NYC*-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 534539367,
+                  "mcpTrackId": "534539367",
+                  "title": "Can't Stop (A组现场版) ",
+                  "artist": "邓烺怡",
+                  "album": "偶像练习生 表演曲目合集",
+                  "genre": "欢快",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏欢快氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : Heaven Light/ 郑容和*-* 作词 : 郑容和/Heaven Light*-*中文填词：吕易秋*-*编曲：Heaven Light*-*改编编曲：郑楠*-**-*范丞丞：*-*Can’t stop me now.*-*Can’t stop me now.*-*你像春天的 慵懒 味道 一直在环绕(郑锐彬)*-*范丞丞：*-*Can’t stop me now.*-*Can’t stop me now babe*-*尤长靖:*-*无法停止 每分每秒*-*I can’t stop loving u*-*还没分开多久 连呼吸都会让我 Miss U(邓烺怡)*-*每天想你太久 失去遗忘的理由(林超泽)*-*想守在你身后 想陪在你左右(范丞丞)*-*该怎么说出口 我好喜欢你的温柔(郑锐彬)*-*每天能见到你 就觉得足够(邓烺怡、林超泽、Justin)*-*哪怕只有相同 的问候(邓烺怡、林超泽、Justin)*-*对你的爱 胜过了整个 宇宙(尤长靖)+（邓烺怡、林超泽、Justin）*-*范丞丞:*-*Can’t stop me now.*-*Can’t stop me now.*-*你像春天的 慵懒 味道 一直在环绕（吕晨瑜）*-*Can’t stop me now.（尤长靖）*-*Can’t stop me now babe（尤长靖）.*-*无法停止 每分每秒（邓烺怡）*-*I can’t stop loving u（郑锐彬）.*-*Justin：*-*从 不会哪怕拒绝一次*-*像 爱你爱到失去理智*-*也 许我快要疯了 可我内心就是*-*想你想到无法克制 miss u*-*一句话 就让 我微笑（林超泽）*-*这份 快乐我 根本 戒不掉（林超泽）*-*Justin：*-*I need u*-*最简 单的句子*-*该摆什么pose 说出我爱你的样子*-*不再欲言又止*-*就这样一直幸福好不好 I pray*-*你 的爱我会收好 陪你慢慢变老（林超泽）*-*看 时间偷偷溜掉（林超泽）*-*你对我 多重要 希望你 能知道（林超泽）*-*让 我爱你好吗~ woo（尤长靖） ohh（范丞丞）*-*Can’t stop me now.（集体）*-*Can’t stop me now. （集体）*-*你像春天的 慵懒 味道 一直在环绕（郑锐彬）*-*Can’t stop me now. （集体）*-*Can’t stop me now babe. （集体）*-*无法停止 每分每秒（集体）*-*I can’t stop loving u.（尤长靖）*-*范丞丞:*-*记得 和煦微风里 上扬的嘴角*-*记得 温暖阳光下 柔软的拥抱*-*无法停止 每分每秒（集体）*-*I can’t stop loving u. （范丞丞）*-*I can’t stop loving u.（集体）*-**-*音乐总监：郑楠*-*声乐指导：坞拉、陈郁欢、龙飞*-*混音：赵靖*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 465921643,
+                  "mcpTrackId": "465921643",
+                  "title": "作词人",
+                  "artist": "RAiNBOW计划",
+                  "album": "黄",
+                  "genre": "宁静",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏宁静氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 刘雨含*-* 作词 : 林展秋/刘雨含*-*演唱：刘雨含*-*编曲：刘德隆*-*制作人：林展秋*-*吉他：刘德隆*-*录音师：周龙*-*录音室：2496 Top Music*-*混音师：周龙*-*混音室：起点音乐 Origin Music*-*歌词制作：王智杰*-**-*怎么写一首好歌 没有目的*-*我只是有很多话 想告诉你*-*我并非你所看到的 特立独行*-*那些所谓的秘密*-*只不过因为 无人倾听*-**-*跻身在拥挤人群 像个附属品*-*假装没有异议 就做到所谓讨喜*-*我并非你所以为的 从不介意*-*变得越不像自己 越远离*-**-*告诉我 你的名字*-*你的坚持 你眼里的我的样子*-**-*我将用看海的姿态 等你回来*-*当学会不奢望 不失望 却抱有希望*-*写下最光荣的心事 造出最感人的句子*-**-*爱的人都已经来过 匆匆而过*-*当了解不责怪 不悲哀 比大多数人慷慨*-*寂寞就别勉强寂寞*-**-*我想写一首好歌 另有目的*-*借大众之口 流行地告诉你*-*我并非你所看到的 字字珠玑*-*这句没什么意义*-*你看我不也展示给你？*-**-*游戏在烟火人间 偶尔装上帝*-*保持一点距离 就做到所谓怜悯*-*我并非你所以为的 充满阅历*-*感情里不失感性 又得体*-**-*告诉我 你的名字*-*你的坚持 你眼里的我的样子*-**-*我将用看海的姿态 等你回来*-*当学会不奢望 不失望 却抱有希望*-*写下最光荣的心事 造出最感人的句子*-**-*爱的人都已经来过 匆匆而过*-*当了解不责怪 不悲哀 比大多数人慷慨*-*「寂寞就别勉强寂寞」 听起来真叫人难过*-**-*爱的人 都已经爱过 别说错过*-*当终于不责怪 不悲哀 教大多数人释怀*-*寂寞却来安慰寂寞*-**-*「押韵是最没有负担的一件事。」*-**-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1412575420,
+                  "mcpTrackId": "1412575420",
+                  "title": "想入非非",
+                  "artist": "Free-Out",
+                  "album": "Free-Out Tape Vol.1",
+                  "genre": "孤寂",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏孤寂氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : J Nash*-* 作词 : Lil Howcy/Round_2/G.G（张思源）*-*Lil Howcy：*-*我喜欢一个人窝在家里远离那些匆匆忙忙*-*看他们慌慌张张*-*但出了任何问题有我在*-*像属于三界之外的流派*-*看那些妖魔鬼怪趁我睡着偷偷钻进床底*-*就梦游拿起手柄对着他们疯狂双击*-*小兵不存在*-*你知道我的妈妈心里一直觉得我有才*-*有成千上万个生命落在人海之中*-*当无数妄想被击破了别用伤来止痛*-*所有恶性循环是否真的让人顽强*-*万众瞩目下的冲动随你闪亮登场*-*大家想入非非 但是菲菲是谁*-*该听谁来指挥 又由谁来支配 baby i don't know*-*万象伴你入睡 牵住你的味蕾 来无穷回味*-*让你接着听我的歌 坠入粉色的河*-*G.G(张思源):*-*都别再call我了 我现在没有空*-*烦心的都丢在云里 我在下面做个梦*-*我想我有点累 这命运是魔鬼*-*早安：*-*给我一个微笑*-*看谁加入了Free-Out*-*忍不住翘起嘴角了吧*-*不想睡觉了吧哦哦*-*都跟我一起去外面走走*-*my baby girl*-*说走就走吧我们去探险*-*早就受够了在原地转圈*-*至于where to go*-*这根本不重要*-*你能跟我走*-*我已经快疯掉*-*想带你去海边*-*你不喜欢 改签*-*跟无聊拜拜拜*-*喜欢就买买买*-*我也不知道我为什么突然这么有钱*-*很多说唱歌手都在歌里突然变有钱*-*那我也跟他们一样 要在钱里游啊游*-*我的桃子超贵当然不止9块9*-*我现在根本不再相信任何rapper说的话*-*那就一起来做梦吧比比看谁做的大想入非非～*-*G.G(张思源):*-*都别再call我了 我现在没有空*-*烦心的都丢在云里 我在下面做个梦*-*我想我有点累 这命运是魔鬼*-*G.G（张思源）：*-*我在南非挖金矿在缅甸选翡翠*-*在西班牙看斗牛赶去上海滩的舞会*-*脑袋 最近当机 嗜好 睡觉*-*但别替我着急 GG在Free-Out*-* 在圣诞月选择和初雪一起掉进雨林*-*没有汽车尾气只有夏威夷的草裙*-*东部热风带领太平洋的气息*-*别打我手机 彩虹下面呼吸*-*我呼吸着自由 yeah*-*我呼吸着温柔 en*-*这放纵的甜头 yeah*-*从未有的感受 en en en*-*no way to know*-*i say no way to know*-*看夜里的霓虹*-*像错过的行踪*-*G.G(张思源):*-*都别再call我了 我现在没有空*-*烦心的都丢在云里 我在下面做个梦*-*我想我有点累 这命运是魔鬼*-*都别再call我了 我现在没有空*-*烦心的都丢在云里 我在下面做个梦*-*我想我有点累 这命运是魔鬼*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1301889639,
+                  "mcpTrackId": "1301889639",
+                  "title": "谁（Cover：廖俊涛）",
+                  "artist": "司南",
+                  "album": "司南的pop cover",
+                  "genre": "清新",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏清新氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 无*-* 作词 : 无*-*谁*-*翻唱/海报：司南*-*后期：圣雨轻纱*-*并没要求有谁能体会*-*更别善做慈悲*-*同情才不会给我安慰*-*反而让我流泪*-*走得越近心越像刺猬*-*从未卸下防备*-*不如早就把我向外推*-*彻底粉碎*-*在你眼中我是谁*-*你想我代替谁*-*彼此交换喜悲*-*]爱的多的人总先掉眼泪*-*在我眼中你是谁*-*霸占被爱的滋味*-*拥抱让你好累*-*爱的多的人总先变虚伪*-*爱总让我掉虚伪的眼泪*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 511229037,
+                  "mcpTrackId": "511229037",
+                  "title": "Back In My Zone",
+                  "artist": "VaVa毛衍七",
+                  "album": "21",
+                  "genre": "genre-0",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏genre-0氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : Double G*-* 作词 : VAVA*-*编曲 Arranged by Double_G*-*Back in my zone*-*That's my house*-*That's my name*-*That's my dog*-*曾经讨厌我的现在 give me a call*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*That's my home*-*That's my money*-*That's my gold*-*很高兴能让大家都以我为荣*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*我知道自己和他们都不一样*-*同学们毕了业但现在多迷茫*-*我不听所有人劝开始玩说唱*-*这一巴掌打下去声音多响亮*-*老师们说我不好好学习*-*长大了没出路*-*当初下的定论太早现在改口说失误*-*妈妈要我天天向上她为我将来铺路*-*我自己的未来自己做主自己来支付*-*听到了流言蜚语*-*谁又在背后嚼舌根*-*说我不懂规矩 谣言也造的那么真*-*当我身处险境而你带着有色眼镜*-*小人势力 鉴定完毕*-*抱歉我不认识你*-*That's my house*-*That's my name*-*That's my dog*-*曾经讨厌我的现在 give me a call*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*That's my home*-*That's my money*-*That's my gold*-*很高兴能让大家都以我为荣*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*佛说命运看因果*-*曾经他们不信我*-*最多是小爆炸不能成为燎原的星火*-*我很庆幸自己是个非常有主见的人*-*伟大的神*-*谢谢你帮我打开了那扇门*-*直到我进步超速*-*想更上个高度*-*老师的孩子也爱音乐*-*求我叫他些招数*-*我就是想要你们全都看见我发光*-*不敢正面直视我心里都敢到发慌*-****** I am young 所以 young soul*-*摸起来烫手*-*我喜欢享受 什么才叫做抢手*-*灵魂和思想全都活在现下*-*Me and my squad 从头到脚正在慢慢变化*-*It's VAVA*-*That's my house*-*That's my name*-*That's my dog*-*曾经讨厌我的现在 give me a call*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*That's my home*-*That's my money*-*That's my gold*-*很高兴能让大家都以我为荣*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*老学校我受过好处费*-*老街上我喝酒找宿醉*-*忘了当时为了保护谁*-*躲避追赶藏进老木柜*-*当时所有人看见我都是避之不及*-*现在变成他们跟我套近乎的话题*-*比谁都要用功*-*自尊心在怂恿*-*我发誓一定要做*-*就做最勤劳的蜜蜂*-*把钱都拽在手里让他们在旁边看*-*开辟了新的大路让他们都旁边站*-*That's my house*-*That's my name*-*That's my dog*-*曾经讨厌我的现在 give me a call*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*That's my home*-*That's my money*-*That's my gold*-*很高兴能让大家都以我为荣*-*Back in my zone*-*Back in my zone*-*Back in my zone*-*Back in my zone*-**-*制作人 Produced by Double_G*-*混音 Mixed by Double_G at Yes Music Studio*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                }
+              ],
+              "explanations": {},
+              "aiEnabled": true,
+              "aiSuccess": false,
+              "fallbackUsed": false,
+              "fallbackReason": "PERSISTED_PLAYLIST_PENDING_USE_MCP",
+              "candidateCount": 10,
+              "finalCount": 10
+            },
+            {
+              "key": "evening",
+              "label": "晚上",
+              "mood": "松弛陪伴",
+              "description": "适合傍晚到夜间的放松、舒缓与陪伴。",
+              "playlistTitle": "晚上个性化歌单",
+              "playlistSubtitle": "夜晚放松",
+              "playlistReason": "适合傍晚到夜间的放松、舒缓与陪伴。最近偏好更靠近 unknown，并保留了当前时段需要的节奏与情绪。",
+              "tags": [
+                "放松",
+                "舒缓",
+                "陪伴",
+                "夜色氛围"
+              ],
+              "tracks": [
+                {
+                  "id": 1294924898,
+                  "mcpTrackId": "1294924898",
+                  "title": "不醒",
+                  "artist": "安全着陆",
+                  "album": "安全自救手册",
+                  "genre": "宁静",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏宁静氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : Robaholic*-* 作词 : 泥鳅*-*编曲/混音 Robaholic*-*大道理你我都明白*-*可我们活在梦中迟迟不醒来*-*讲道理你我都能讲的很精彩*-*但是却打动不了自己的病态*-*大道理 都明白*-*在梦中 不醒来*-*我讲得 很精彩*-*你觉得 病态*-*又是习惯性的熬到天亮 城市就要苏醒我才入睡*-*泡的安神药还偏烫 只好仔细掂量 那些解不开的误会*-*不该走的走了一位 那些歌还一路边走边放*-*酒精伤着我的脾胃 被浪费的时间还真是冤枉*-*自主思想凌驾 自以为的素质 无疑是强效的麻药*-*什么又被收入名下 精神还是物质 有些目的总是没法达到*-*伪善是赤裸的霸凌 是为了逞某些人口舌之快*-*多少人因此被骂停 没想过要被迫去接受失败*-*讲道理讲道义讲贸易讲教育讲到底都是在讲思想*-*他人坚持自己 自己否定他人 师长在效仿师长*-*苦练一身本领 精通琴棋书画 读遍叶圣陶老舍*-*为了变成什么样的人不惜违背自己 注定无法成为佼佼者*-*大道理你我都明白*-*可我们活在梦中迟迟不醒来*-*讲道理你我都能讲的很精彩*-*但是却打动不了自己的病态*-*大道理 都明白*-*在梦中 不醒来*-*我讲得 很精彩*-*你觉得 病态*-*究竟寻找什么 想必是一扇为我而开的天窗*-*穿过层层迷雾采集到足以根除心病的偏方*-*尽管我听尽了告诫 却在统一和爆裂 迂回着徘徊不定*-*所以希望可以对那个为我除病的人说一声感激不尽*-*怎样才对得起人事物是相对复杂的命题作文*-*如何定义过程无非看你如何定义定义本身*-*这几年所有人都病了这场灾难电影才刚刚上映*-*犹豫不决的我在祈祷最好不要因此丧命*-*大道理其实都明白 任何一本书上都有记载*-*它们不会推崇名牌 我们虚伪的本性却不易改*-*发作频繁的是彼此不想拆穿冥顽的劣根性*-*因此这首歌的存在也会显得平凡却生硬*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 167882,
+                  "mcpTrackId": "167882",
+                  "title": "清明雨上",
+                  "artist": "许嵩",
+                  "album": "自定义",
+                  "genre": "舒缓",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏舒缓氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 许嵩*-* 作词 : 许嵩*-*窗透初晓 日照西桥 云自摇*-*想你当年荷风微摆的衣角*-*木雕流金 岁月涟漪 七年前封笔*-*因为我今生挥毫只为你*-*雨打湿了眼眶 年年倚井盼归堂*-*最怕不觉泪已拆两行*-*我在人间彷徨 寻不到你的天堂*-*东瓶西镜放 恨不能遗忘*-*又是清明雨上 折菊寄到你身旁*-*把你最爱的歌来轻轻唱*-*远方有琴 愀然空灵 声声催天雨*-*涓涓心事说给自己听*-*月影憧憧 烟火几重 烛花红*-*红尘旧梦 梦断都成空*-*雨打湿了眼眶 年年倚井盼归堂*-*最怕不觉泪已拆两行*-*我在人间彷徨 寻不到你的天堂*-*东瓶西镜放 恨不能遗忘*-*又是清明雨上 折菊寄到你身旁*-*把你最爱的歌来轻轻唱*-*我在人间彷徨 寻不到你的天堂*-*东瓶西镜放 恨不能遗忘*-*又是清明雨上 折菊寄到你身旁*-*把你最爱的歌来轻轻唱*-**-**-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 25639331,
+                  "mcpTrackId": "25639331",
+                  "title": "在一起",
+                  "artist": "胡彦斌",
+                  "album": "大一号",
+                  "genre": "舒缓",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏舒缓氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "你说你有个性 她说她有脾气*-*你说你很帅气 她说她很美丽*-*你说你有诚意 她说她还很年轻*-*你说你不花心 她说她不相信*-**-*你们要在一起*-*在一起 在一起 在一起 在一起 在一起*-*有个人你说不出他什么好*-*可就是谁也代替不了*-*这也许就是一种暗号*-*这个暗号叫做心跳*-*你们要在一起*-*在一起 在一起 在一起 在一起 在一起*-*从来也没有什么天生一对*-*这些年错过了多多少少*-*想有人陪你慢慢变老*-*把握时间很重要*-*我要你们在一起*-**-*你说你有孝心 她说她很任性*-*你说你哄她开心 她说你有爱心*-*你说你不够细心 她说你总花言巧语*-*你说你们会在一起 她说这可不一定*-**-*你们要在一起*-*在一起 在一起 在一起 在一起 在一起*-*有个人你说不出他什么好*-*可就是谁也代替不了*-*这也许就是一种暗号*-*这个暗号叫做心跳*-**-*你们要在一起*-*在一起 在一起 在一起 在一起在一起*-**-*从来也没有什么天生一对*-*这些年错过了多多少少*-*想有人陪你慢慢变老*-*把握时间很重要*-*我要你们在一起*-**-*你们要在一起*-*在一起 在一起 在一起 在一起 在一起*-*从来也没有什么天生一对*-*这些年错过了多多少少*-*想有人陪你慢慢变老*-*把握时间很重要*-*我要你们在一起*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1394986365,
+                  "mcpTrackId": "1394986365",
+                  "title": "思念是一种病 Live版（Cover：齐秦）",
+                  "artist": "戴羽彤",
+                  "album": "戴羽彤的翻唱集",
+                  "genre": "宁静",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏宁静氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 齐秦*-* 作词 : 齐秦*-*当你在穿山越岭的另一边*-*我在孤独的路上没有尽头*-*时常感觉你在耳后的呼吸*-*却未曾感觉你在心口的鼻息*-*思念是一种病*-*思念是一种病*-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 399953251,
+                  "mcpTrackId": "399953251",
+                  "title": "Let you go",
+                  "artist": "牛奶咖啡",
+                  "album": "Let You Go",
+                  "genre": "浪漫",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏浪漫氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "[by:什么是被你需要]*-*[ti:Let You Go]*-*[ar:牛奶咖啡]*-*[al:]*-*[by:九九Lrc歌词网～www.99Lrc.net]*-* 作曲 : 格非*-* 作词 : 小乔*-*男：一个人的心跳*-*再快也不喧闹*-*在黑夜里 奔跑*-*安静的刚好*-*女：一个人的午觉*-*再久也没人闹*-*我已经习惯了*-*孤独的美好*-*合：两个人的世界*-*不一定能舞蹈*-*在不知不觉中*-*扰乱了步调*-*期待的越多*-*越会自寻烦恼*-*既然 曾深爱过*-*就请你再一次*-*抱紧我 忘记我*-*我放开手*-*因为你已经*-*不想问 不想说 不想留*-*所以我懂得*-*你现在 最想要 是自由*-*就让你走*-*让你走*-*我没有说*-*不说 不代表*-*我没有 痛哭过 眷恋过*-*既然这一生 没缘分*-*能抓紧你的手*-*你的手*-*Let you go*-*女：一个人的心跳*-*再快也不喧闹*-*在黑夜里 奔跑*-*安静的刚好*-*男：一个人的午觉*-*再久也没人闹*-*我已经 习惯了*-*孤独的美好*-*合：两个人的世界*-*不一定能舞蹈*-*在不知不觉中*-*扰乱了步调*-*期待的越多*-*越会自寻烦恼*-*既然 曾深爱过*-*就请你再一次*-*抱紧我 忘记我*-*我放开手*-*因为你已经*-*不想问 不想说 不想留*-*所以我懂得*-*你现在 最想要 是自由*-*就让你走*-*就让你走*-*让你走*-*我没有说*-*不说 不代表*-*我没有 痛哭过 眷恋过*-*既然这一生 没缘分*-*能抓紧你的手*-*你的手*-*Let you go*-*女：我放开手*-*因为你已经*-*不想问 不想说 不想留*-*男：所以我懂得*-*你现在 最想要 是自由*-*合：就让你走*-*让你走*-*我没有说*-*不说 不代表*-*我没有 痛哭过 眷恋过*-*既然这一生 没缘分*-*能抓紧你的手*-*你的手*-*Let you go*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 481598409,
+                  "mcpTrackId": "481598409",
+                  "title": "【钢琴】北京东路的日子",
+                  "artist": "昼夜",
+                  "album": "哄你入睡 II",
+                  "genre": "清新",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏清新氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1346472029,
+                  "mcpTrackId": "1346472029",
+                  "title": "不找了 （Cover：郭旭）",
+                  "artist": "隔壁老樊",
+                  "album": "大风遇到了雨",
+                  "genre": "怀旧",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏怀旧氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "我坐在角落*-*看霓虹闪烁*-*这个城市一如既往的寂寞*-*我知道 我的世界*-*已经没有你了*-*过了这么多年*-*也应该忘了*-*时常会软弱*-*也总想洒脱*-*我那迟迟不来的爱情*-*你在哪儿啊*-*有时候 张开怀抱*-*你才知道自己有多脆弱*-*总是习惯隐藏*-*不再乱想*-*不找了找不到的*-*你还在想些什么*-*这世界已经疯了*-*你就别再自找折磨*-*别找了找不到的*-*上帝已如此忙碌*-*该来她总会来的*-*别找了*-*时常会软弱*-*也总想洒脱*-*我那迟迟不来的爱情*-*你在哪儿啊*-*有时候 张开怀抱*-*你才知道自己有多脆弱*-*总是习惯隐藏*-*不再乱想*-*不找了找不到的*-*你还在想些什么*-*这世界已经疯了*-*你就别再自找折磨*-*别找了找不到的*-*上帝已如此忙碌*-*该来她总会来的*-*别找了*-*不找了找不到的*-*你还在想些什么*-*这世界已经疯了*-*你却还在自找折磨*-*别找了找不到的*-*上帝已如此忙碌*-*该来她总会来的*-*别找了别找了找不到的*-*上帝已如此忙碌*-*该来她总会来的*-*别找了*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 39635694,
+                  "mcpTrackId": "39635694",
+                  "title": "带不走的风景",
+                  "artist": "Jam",
+                  "album": "阿敬的单曲集",
+                  "genre": "思念",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏思念氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "[by:得宠不得宠]*-*[ti:带不走的风景]*-*[ar:作词:Jam]*-*[ar:作曲:Jam]*-*[al:]*-*[by:木木]*-* 作曲 : Jam*-* 作词 : Jam*-*沉默，在人群中捕获*-*花落在了窗口，等候*-*坠落，在静谧的山谷*-*风吹起了失落，笑我*-*是全新的诱惑，是干渴的沙漠*-*是忧虑的接驳，是深情的冷漠*-*在我的世界里，有荒凉的夏季*-*有温情的秋意，是带不走的风景*-*续你写的日记，读你谜一样的内心*-*这都是不小心，看破了你的违心*-*是全新的诱惑，是干渴的沙漠*-*是忧虑的接驳，是深情的冷漠*-*在我的世界里，有荒凉的夏季*-*有温情的秋意，是带不走的风景*-*续你写的日记，读你谜一样的内心*-*这都是不小心，看破了你的违心*-*在我的世界里，有荒凉的夏季*-*有温情的秋意，是带不走的风景*-*续你写的日记，读你谜一样的内心*-*这都是不小心，看破了你的违心*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1297743785,
+                  "mcpTrackId": "1297743785",
+                  "title": "下一站茶山刘 (Live)",
+                  "artist": "鹿先森乐队",
+                  "album": "音乐好朋友 第二季",
+                  "genre": "舒缓",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏舒缓氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 少年佩*-* 作词 : 少年佩/红鼻子小黑/李纤橙*-*时间 像武汉六月的大雨*-*一瞬间 淋湿了四个四季*-*仿佛 一切都还在原地*-*谈笑间 却多了分离*-*终于这一天来临*-*我们要各奔东西*-*那么这一餐*-*去桥楼还是新开的店*-*伤感的话不用说*-*忧愁的泪不用流*-*请往前走 不要回头*-*南湖大道的五三八*-*总会被奔驰的汽车代替呀*-*但那拥堵的一小时*-*是最美丽的虚度年华*-*绕不完的旧操场*-*也会有别人走过你我的印记呀*-*如果世界真那么大*-*我就从这里出发*-*宿舍楼下的流浪猫*-*从不爱吃你递来的火腿呀*-*文泰楼旁的车棚里*-*偶尔住着它们一家*-*那几个拼命的考试周*-*也成为往后说来就笑的珍藏啦*-*那八个字的校训*-*早已写进心底啦*-*岁月催促人长大*-*匆忙的脚步早已停不下*-*还没说完的话 就算了吧*-*总有些遗憾要学会放下*-*前路不需要太重的行囊*-*和过去和解吧*-*我会像永远不变的时光*-*一如既往*-*哪怕从此离开了家乡*-**-*主音吉他：董二胖*-*节奏吉他：杨博士*-*贝斯：李斯*-*键盘：冰冰*-*鼓手：PP*-*音乐总监：李卓*-*音响总监：王军鹏*-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 374621,
+                  "mcpTrackId": "374621",
+                  "title": "你在烦恼什么",
+                  "artist": "苏打绿",
+                  "album": "你在烦恼什么",
+                  "genre": "孤寂",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏孤寂氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 吴青峰*-* 作词 : 吴青峰*-*没有不会谢的花  没有不会退的浪*-*没有不会暗的光  你在烦恼什么吗*-**-*没有不会淡的疤  没有不会好的伤*-**-*没有不会停下来的绝望  你在忧郁什么啊*-**-*时间从来不回答  生命从来不喧哗*-*就算只有片刻我也不害怕*-*是片刻组成永恒哪*-**-*没有不会谢的花  没有不会退的浪*-**-*没有不会暗的光  你在烦恼什么吗*-**-*没有不会淡的疤  没有不会好的伤*-**-*没有不会停下来的绝望  你在忧郁什么啊*-*时间从来不回答  生命从来不喧哗*-**-*就算只有片刻我也不害怕*-*是片刻组成永恒哪*-**-*时间从来不回答*-**-*生命从来不喧哗*-*就算只有片刻我也不害怕*-*片刻组成永恒哪*-**-*就算只有片刻我也不害怕*-*片刻组成永恒哪*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                }
+              ],
+              "explanations": {},
+              "aiEnabled": true,
+              "aiSuccess": false,
+              "fallbackUsed": false,
+              "fallbackReason": "PERSISTED_PLAYLIST_PENDING_USE_MCP",
+              "candidateCount": 10,
+              "finalCount": 10
+            },
+            {
+              "key": "midnight",
+              "label": "深夜",
+              "mood": "沉浸低刺激",
+              "description": "适合安静收束注意力，保留沉浸感与低刺激体验。",
+              "playlistTitle": "深夜个性化歌单",
+              "playlistSubtitle": "深夜沉浸",
+              "playlistReason": "适合安静收束注意力，保留沉浸感与低刺激体验。最近偏好更靠近 unknown，并保留了当前时段需要的节奏与情绪。",
+              "tags": [
+                "沉浸",
+                "安静",
+                "低刺激",
+                "夜深人静"
+              ],
+              "tracks": [
+                {
+                  "id": 1325898283,
+                  "mcpTrackId": "1325898283",
+                  "title": "28",
+                  "artist": "Jony J",
+                  "album": "喜新恋旧",
+                  "genre": "genre-0",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏genre-0氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : Jony J*-* 作词 : Jony J*-*编曲：Peach-K*-*录音：郭子敬*-*混音：郭子敬*-*母带：郭子敬*-*一路上看很多*-*一路上听很多*-*一路上经过很多路口已经变很多*-*我不想变冷漠*-*更不想变沉默*-*我想要摆脱很多问题但我能否摆的脱*-*我不想被生活搞定边动着脑筋边一步一个脚印*-*我不想被别人扫兴快拼了小命用付出换来好运*-*知道没有那么容易只能拼尽全力在我还想拼的年纪*-*我不止要跨过钱币还要跨过权利把我爱的留在原地*-*想起我才二十刚出头*-*懂点皮毛就开始上路走*-*不会投篮就想进三分球*-*还没做好准备难免被撞破头*-*责怪幸运 为什么总是突然无影踪*-*为什么一点小事就紧绷*-*时间的催促在敲警钟*-*负面就像乌云压在我领空*-*于是当我被困住*-*只剩无止尽的欲望和愤怒*-*抱怨生活是发泄的任务*-*想要去的地方都没人跟我顺路*-*让我感觉像在走沙漠*-*看不到个头又害怕有差错*-*许的愿望 又经常不发货*-*每天等太阳升起然后等它落*-*有狮子王的野心但还在空着腹*-*甚至怀疑是不是条走得通的路*-*如果被现实绊倒了*-*what u gone do*-*这一切都像个试探看我撑不撑得住*-*I know*-*在最尴尬的年纪23岁*-*更尴尬的是我像个孩子*-*那些应该我做的还有责任都在翻倍*-*但只是个开始*-*I know it*-*这只是个开始*-*一路上看很多*-*一路上听很多*-*一路上经过很多路口已经变很多*-*我不想变冷漠*-*更不想变沉默*-*我想要摆脱很多问题但我能否摆的脱*-*当初跟着自己心里觉得对的念头选择想要走的路*-*知道现实不会对我特别关照至于未来怎样我也没个数*-*我的人生没有剧本 做的每个决定都是即兴*-*很多时候没有耐心去等*-*最后发现结果好坏都不一定*-*那在过去让我烦恼的小事又干嘛要在意*-*没有结果因为还不够卖力*-*我终于明白了no pain no gain*-*在28岁收到那时寄来的快递*-*也开始 受到更多的注视*-*直到我也成了别人的故事*-*家人不再担心我会窘迫的度日*-*但我想要的不仅仅是飘渺的数字*-*不仅仅是钱*-*不仅仅是那点名气带给我的甜*-*不仅仅是为了所谓出人头地打着招牌挂着我的衔*-*我想面对生活有说“不”的选择权*-*Yep 经过不断的碰壁*-*让我找到可以突破的缝隙*-*把对我的怀疑全都变成了动力*-*慢慢实现我想要的不止在梦里*-*我现在 一样还是天亮睡*-*算不上是轻松也不算累*-*赶路的时间还在不断催*-*倒也没有争分夺秒也没浪费*-*有时停下回头想起那一段*-*时光列车一直不断拉警报*-*提醒我继续开往下一站*-*会有更多麻烦问题要我多领教*-*I know it*-*一路上看很多*-*一路上听很多*-*一路上经过很多路口已经变很多*-*我不想变冷漠*-*更不想变沉默*-*我想要摆脱很多问题但我能否摆的脱*-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1352004629,
+                  "mcpTrackId": "1352004629",
+                  "title": "TAKE BACK (ft. AlphaSoul)",
+                  "artist": "Feezy",
+                  "album": "TAKE BACK",
+                  "genre": "感动",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏感动氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : Feezy/AlphaSoul*-* 作词 : Feezy/AlphaSoul*-*(Hook: Feezy)*-*这是我的生活*-*And I’m gonna take back*-*我是他们的银行*-*All they want is paycheck*-*太多问题需要我花时间对待*-*当你的敌人是你自己站在对岸*-*(I gotta take back)*-*这是我的生活*-*And I’m gonna take back*-*我是他们的银行*-*All they want is paycheck*-*太多问题需要我花时间对待*-*当你的敌人是你自己站在对岸*-*(I gotta take back)*-*Feezy:*-*我觉得他们都应该来联系我找一个出版商出一本自传*-*她们要接近我花力气试探*-*等价的利益 等价的置换*-*百分之百版权*-*我想要百分一百二的产权*-*我喜欢这忙碌的感觉*-*只有在歌里我才能够坦言*-*把股票和黄金 期权和不动产 全部都买一遍*-*他们还炫耀着衣柜而我已经投资了旗舰店*-**-*魔都到北京城 当我跟AlphaSoul他一见面*-*二手的马自达沃尔沃 现在就变成了保时捷*-*夺回我的生活 我才是主演*-*飞到马尔代夫学学浮潜*-*我需要你给我个期限*-*上帝创造人也只用七天*-*这环境瞬息万变时刻保持竞技状态*-*And we tryna eat, dawg 还在等着上菜*-*Bring me wine, bring me the bread*-*Bring me the hoes and I bring you the tip*-*I trade my soul for the ice cold drip*-*And take it back with nice old trick*-*Fxck yall people*-*I don’t even like yall people*-*Take it back, my big bro*-*给我个支点 我撬动地球*-*AlphaSoul:*-*Take it back*-*We gonna take it back*-*丢的债 必须全部都追回来  曾经在我碰壁时*-*抨击我命中注定*-*不会有未来*-*ok ok*-*把这负面情绪当助兴*-*Look now where we at*-*目标地带*-*必须争气*-*初出茅庐先破除封印*-*心中鸿鹄要大过生计*-*把这地下声波做成跨国生意*-*All my fans*-*塞满了live house*-*新唱片用来 变彩钞*-*不和势利的公司聊*-*我们自己给自己开工资条*-*Ok 太多被诱惑所诱杀的*-*肮脏生态中有几个role model*-*驻扎的 寄生虫暴发户*-*总把艺术家当成了叫花子*-*可是我和我兄弟还保持着气度*-*无数个付出的小时当义务*-*流量化时代做保值的艺术*-*心脏先需要有宝石的密度*-*Aye, getting paid*-*拿来满足 我的祈求*-*演出费 变更贵*-*但是自有贵的理由*-*新梯队 Burnin flame*-*匠人直火浇上汽油*-*Taking it back*-*Taking it back*-*反击的战役由我们起头*-*(Hook: Feezy)*-*这是我的生活*-*And I’m gonna take back*-*我是他们的银行*-*All they want is paycheck*-*太多问题需要我花时间对待*-*当你的敌人是你自己站在对岸*-*(I gotta take back)*-*这是我的生活*-*And I’m gonna take back*-*我是他们的银行*-*All they want is paycheck*-*太多问题需要我花时间对待*-*当你的敌人是你自己站在对岸*-*(I gotta take back)*-*Feezy:*-*Gotta take it back, back in my hands*-*少说多做 and we gotta stick to the plan*-*我的歌里没有大道理 but I need you understand*-*Where I’m from, who I am, and then what I represent*-*我是年轻无品的叛军*-*冠军之中的冠军*-*重新迎接酒精回到我的生活 我很贪心*-*I need more of this more of that, more of everything*-*更多话语权在现在才是奢侈品*-*家庭责任 经济纠纷 需要我的介入*-*我知道我的问题 不用你们揭露*-*还有谁能白手起家 不用公司资助*-*Like I said, who can made it 不用其他人支付*-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1396146256,
+                  "mcpTrackId": "1396146256",
+                  "title": "Real Me",
+                  "artist": "王以太",
+                  "album": "演.说.家",
+                  "genre": "感动",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏感动氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 王以太*-* 作词 : 王以太*-*制作人/编曲 Producer: 陈令韬*-*可能你并不在意聆听音乐*-*可能任何人的名字都没有听说过*-*可能所有信息只从网络拼凑*-*每天在外为了钱和尊严拼搏*-*可能有些时候你同样也会非常用力*-*想要摆脱懒惰但是谈何容易*-*现实的压力干扰你的梦境*-*想要做个梦 也要别人同意*-*我理解你但并不奢望你能理解我*-*毕竟哪个可以代替我切体验*-*我理解你需要所有人去理解你*-*所以才把底线放在微博里面*-*我也一样希望别个都能认真听我说*-*所以我在麦克风前和别个有区别*-*同时所有人都在逼我说*-*每句话 发自内心还是配合游戏规则*-*说白了这个show对我来说不是比赛*-*因为个性不能被人拿来指指点点*-*不管他人叫我闪火还是叫我以太*-*我的决定都考虑到了未来不是眼前*-*我绝对不会辜负任何一份信任*-*但是感恩难道要特地做给你看？*-*现在所有人都能熟练用keep it real*-*真正的real除了老天没人能评判*-*only God can judge me*-*不要在意我的脸 我的钱 我的选择*-*cause only God can judge me*-*不要过度揣测 当你也负担满背*-*but i love the real you*-*谢谢你在我撒子都没得的时候依然站在我的身边*-*let me bring out the real me*-*倾注真心用音乐来填补我的遗憾*-*就算赚很多钱也是real me*-*穷困潦倒我也保持real me*-*在我杯子里面加点酒精*-*天上偶尔他会划过流星*-*money 不能让我怀疑real me*-*再多问题我也保持real me*-*在我音乐里面继续走心*-*经典他肯定会超越流行*-*yea i feel great now*-*glory gonna stay now*-*yea i feel great now*-*glory gonna stay now*-*yea i feel great now*-*glory gonna stay now*-*yea i feel great now*-*glory gonna stay now*-*Please ride with me*-*Fly with me*-*Ride with me*-*Fly with me*-*混音 Mixing Engineer: 小武*-*人声制作 Vocal Production: 王晓夫*-*录音 Recording: 小武 @Sync Studio*-*母带 Mastering Engineer: Craig J Williams*-*监制 Music Supervisor: 王晓夫/陈令韬*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 150424,
+                  "mcpTrackId": "150424",
+                  "title": "不爱",
+                  "artist": "陶喆",
+                  "album": "太美丽",
+                  "genre": "浪漫",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏浪漫氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 陈熙/朱敬然*-* 作词 : 葛大为*-* 快阻止时间倒转*-* 当我们再次遇见*-* 怎样的表情最适合隐瞒*-* 我依然爱你很深*-**-* 别再多看我一眼*-* 别试探我真的感觉*-* 我怕忍不住又回头眷恋*-* 你连背影都温柔*-**-* 不爱就转身离开*-* 一个人把回忆推翻*-* 不爱 否定了未来*-* 你恨我 别心软 我也不为难*-**-* 不容许谁还牵伴*-* 误解了别离的美*-* 不可能重来这遗憾的爱*-* 我们都真实对待*-**-* 不爱就这么离开*-* 一个人被寂寞填满*-* 不爱只守着被爱*-* I LOVE YOU FOREVER 不能说出来*-**-* 不爱就转身离开*-* 一个人我学会忍耐*-* 不爱去哪找被爱*-* I LOVE YOU FOREVER 我微笑离开*-* I LOVE YOU FOREVER 就这样不爱*-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1381764098,
+                  "mcpTrackId": "1381764098",
+                  "title": "第一轮 现实VS梦想",
+                  "artist": "黄旭",
+                  "album": "中国新说唱2019 第八期",
+                  "genre": "genre-0",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏genre-0氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "编曲：L-BRODY、赫连长泓、SuperDeep、BFCat大肥猫、BEAT SHARE ( G.7 )、恩德Andy18、BEAT SHARE ( Provoke )*-**-*这是现实的flow（说唱技巧）*-*Ladies and gentlemen（女士们先生们）*-*My show time（我的表演时间）*-*“攀登”队*-**-*Fake rapper（模仿的歌手）闭上嘴*-*你的verse（主歌）太没劲*-*满嘴跑火车的话*-*说的内容我不信*-*肚子没货 忙着拿样*-*也装得不像*-*我向上攀爬边走边看*-*过程太疯狂*-*街头告诉我 报应有因果*-*别太着急*-*糟糕的环境害了你*-*也给你新的专题*-*人生如戏*-*谁是主角看完剧情始末*-*有多少扬名立万之后*-*惹来是非之祸*-*这城市像丛林*-*赶路脚步不会停*-*太多出身贫寒的兄弟摸黑前行*-*为了外婆的晚餐奔走*-*在街头犯错*-*夜深了打开麦克*-*编排着新的段落*-*这酷似的固执 隐藏着背后的故事*-*被现实放大的今天不能让梦想饿肚子*-*All my young bro（所有我年轻的兄弟们）*-*依然骄傲地昂着头*-*写着hustle story（奋斗的故事）*-*唱着everybody know（所有人都知道）*-*因为我坚持了多久我想你还不知道*-*过程挣扎了多久我想你还不知道*-*保持沉默了多久我想你还不知道*-*但我内心的强大一定超乎你预料*-**-*因为我坚持了多久我想你还不知道*-*过程挣扎了多久我想你还不知道*-*保持沉默了多久我想你还不知道*-*但我内心的强大*-*一定超乎你预料*-**-*02 福克斯*-*吴亦凡张震岳热狗战队“梦想”*-**-*Everybody hands up（所有人举起手来）*-*为了梦想 hands up（举起手来）*-*Everybody hands up（所有人举起手来）*-**-*能结出无花果 摩擦出花火*-*蓦然回首来往过客早已锈迹斑驳*-*而我依然是盖地虎的天王*-*镇河妖的宝塔*-*与天斗与地斗*-*与岁月神偷奋力去争夺*-*君子有弛也有张 上一炷祖上的香*-**-*风萧萧兮易水寒我带着京剧的腔*-*叹边疆无际的荒凉心中失落的伤*-*风水轮流转到头来断了多少念想*-*生活未免惆怅跌宕*-*但你不可失去信仰*-*就像是flow（说唱技巧）得流畅*-*独特有样 才越唱越爽*-*我们用正能量击溃负能量*-*懂行的战友都能跟着晃*-*跟着上 扫平那些虾兵蟹将*-*些许无奈 然痛并快乐的爱*-*忆往昔峥嵘岁月 青涩年华早已不在*-*身居燕雀之群 但心怀鸿鹄之志*-*寻觅志同道合之士 心智谱写真挚*-*这一句句歌词全部发自内心来源于真实*-*万千文人雅士看后都会敬我是条汉子*-*即将出师 胸怀大志 做好分内的事*-*谁上岸 谁期盼*-*为了梦想尖叫声来一次*-**-*03 杨和苏*-*潘玮柏邓紫棋战队“现实”*-*Bow down to the KeyNG（这就是杨和苏）*-*终于到了这一天*-*想说真话的人*-*还在勇敢地各抒己见*-*不知能活几天 被困在火里面*-*无止境向下掉呀掉呀 没有着力点*-*这悄悄 在唱反调调*-*被调教几次的小鸟*-*再也不敢再叫嚣了*-*长大的希望渺小了*-*不敢大声地 胡闹了*-*睡觉了 不叫了 脚脚不跳了*-*嘴巴对嘴巴抢救 也已无效了*-*But wake up (但是清醒一点)*-*这是一首小情歌*-*我跟你传授和平与爱 接着聊星座*-*他问 是情歌那你干嘛要唱这么用力*-*我说 我准备唱了这首歌就回家种地*-*我终于*-*明白了谁是我的敌人和兄弟*-*为什么用力*-*为什么说唱会冲击*-*他们思想太功利*-*任何东西*-*你想要改变就没有办法保持中立*-*So roll with me(和我一起摇摆)*-*Hip-hop(说唱)不是为了收视率*-*它代表每一个人 它代表的就是你*-*它藏在你的衣服扣子里手指里*-*生在这个时代向不盲从的人们致敬*-**-*04 新秀*-*吴亦凡张震岳热狗战队“梦想”*-**-*唱词：*-*有没有人要听真的freestyle（即兴说唱）*-*真正的freestyle（即兴说唱）*-**-*我不想套*-*所以我直接选择freestyle（即兴说唱）*-*我需要台下观众给我真正的躁*-*台下所有观众给我噪音和手*-*等我拿下这城去和爆音喝酒*-*兄弟 需要真的punchline（点睛之笔）*-*他们的punchline（点睛之笔）*-*最多只值三十块*-*兄弟 说到那些梦想家*-*你们还是回去唱《爱的供养》吧*-*兄弟*-*名字叫做黄旭*-*Freestyle（即兴说唱）可爱得像是杨幂*-*不想在这里对你们进行攻击*-*所以在这里准备真的东西*-*Freestyle（即兴说唱）我像是裁判*-*我的梦想是他们能回到台上*-*那些东西我不需要*-*你们几个有谁赢得了西奥*-**-*所以在这里不会说到《天堂来信》*-*黄旭天堂来信 直接江郎才尽*-**-*05 王大痣*-*潘玮柏邓紫棋战队“现实”*-**-*Now one shot one kill（百发百中）*-*Keep my head high（昂起我的头）*-*装好我干粮*-*那些假的peace bro（友好的兄弟）*-*我知道他们假装友好*-*But what I got（但我都知道）*-*最虚伪的不是那些idol（偶像）*-*是混在我身边的fake bro(假兄弟)*-*当我们face to face（面对面）*-*那些fakers（模仿者）被我识破*-*Fake brotherhood（友情出现裂缝）*-*不相信那些假的义气*-*嘴上说的实力 天花乱坠*-*那些不是我的兄弟名不副实*-*你那嘴上说的实力 我看不见在哪里*-*貌合神离我知道你们都想晋级*-*正义的化身和反派的克星*-*I do it for justice（我为了公平）*-*刚转了几个圈 又绕了几道弯*-*我听不懂你们在说什么*-*那些fake men（模仿者们）*-*唱着fake verse（模仿的主歌）*-*无所畏惧我动真格*-*Copy（模仿）着亚特兰大的flow（说唱技巧）*-*你怎么能代表China bro（中国的兄弟）*-*你怎么敢穿着中国红*-*你怎么敢说你祖先是中国龙*-*再说遍你来自哪*-*再说遍你来自哪*-*你看你穿的啥*-*教你们说中国话*-*好好学习day day up（天天向上）*-*看清你肤色*-*管好你自己的mouth（嘴）*-*祸从口出切记*-*不乖小心 我打*-*我看看啥是现实*-*告诉我啥是现实*-**-*06 L4WUDU*-*吴亦凡张震岳热狗战队“梦想”*-**-*都不想碰火药桶*-*更何况我又背起火箭筒*-*每天都吃火锅火气重*-*哪个比下哪个火力猛*-**-*不是只有一港*-*我来做个榜样*-*让他们收不到场*-*所有地方*-*反正都屡试不爽*-*布下了天罗地网*-*开始清场*-*你刚才还神采飞扬*-*我们都如愿以偿*-*他们口中的厉害也没得好强*-*让他们没得方向*-**-*你成为了你想要成为的人*-*不幸中的万幸我成为了自己*-*I’m not（我不是这样）*-*But these rappers（但这些说唱歌手们）*-*抛开了外壳生活都不能自理*-*他们都永远不敢看 不睁眼*-*想要永远地活在梦里*-*我在你面前把你喊醒*-*再比一个手势然后问你这是几*-*去练我不要的那些bar（小节）*-*你们都高大上很有文化*-*我们下里巴人不要你夸*-*他们那些全部耍得太假*-*耍音乐也没有问题*-*耍名气也没有问题*-*耍啥子都没得问题*-*这些东西只算入门级*-**-*07 黄旭 第二次上场*-*潘玮柏邓紫棋战队“现实”*-**-*SeanT肖恩恩：*-*Moving your body（舞动身体）*-*Moving（舞动起来）*-*别在这里*-**-*黄旭：*-*我注意到你看着我的表情*-*只有单膝跪着地却没有钻石在闪耀*-*我相信你也相信我对你的感情*-*虽然当时能给你的只有绿皮火车票*-**-*你说过有我在的地方就是家*-*虽然十年后的手牵手*-*已没有想探索的神秘*-*占有欲会被时间融化*-*我们血液里的传递*-*黄金刮不出的痕迹*-**-*如果爱情是个悬崖 头也不回往里跳*-*你陪我飞跃低谷高峰 多少钱都买不到*-*都说七年之痒你偏偏还往我怀里靠*-*我把荣华搬回家 门口你为我放礼炮*-**-*如今浮躁的人际 宣扬塑造的情义*-*信仰胡闹着成立 选择投靠或屏蔽*-*宁愿不要这人气 不能丢了你的笑*-*Fight for my home（为了家庭奋斗）*-*你在等我回家*-**-*SeanT肖恩恩：*-*请你看清现实*-*Moving（舞动起来） 请你看清现实*-*Moving（舞动起来）*-**-*08 Capper*-*吴亦凡张震岳热狗战队“梦想”*-**-*看到难得糊涂地哭诉*-*和反反复复地诉苦*-*无数个起起伏伏的路途*-*不辜负孤独*-*怆然涕下 正上演群雄与逐鹿*-*我大计划就差一划*-*而你得抱紧漂泊的独木*-*你技术差就记住他 别嫉妒他不惧误差*-*我出现 所有人注意*-*欢迎造梦艺术家*-*十分庆幸最近旧病也没有复发*-*这样状态下的我敢对视美杜莎*-*现在我生活过得也不算特别得没劲*-*有些事确实做得过了*-*怪我不回微信*-*不想再纠结于没人信的病*-*打碎变了形的镜子消除性质*-*抹掉对我定的性*-*你喜欢照片还是video（视频）*-*学会了加速以后 再考虑你的追求*-*西安足够酷的小孩儿到底还有几个*-*I’m Capper making good things（我正在做很棒的事）*-*轻松完成体测*-**-*做梦 跟我一起去做梦*-*做梦 跟我一起去做梦*-*做梦 你们只配去做梦*-*做梦吧 做梦吧*-*做梦 跟我一起去做梦*-*做梦 一起去做梦*-*做梦 跟我一起去做梦*-*做梦吧 你们做梦吧*-*Beat（鼓点）*-**-*09 Vex*-*潘玮柏邓紫棋战队“现实”*-**-*困难我都承受*-*面对质疑逆来顺受*-*他们还在说你不够格只会出丑*-*在沉默中发出怒吼*-*变成我的动力要让人们都*-*刮目相看 都来我的show（表演）*-*对未来的憧憬 梦不同的风景*-*要让我的名字*-*Everybody know（所有人都知道）*-*Don’t tell me（别告诉我）永远不会*-*出人头地会说你不对*-*现在比过去无畏 让自己问心无愧*-*最后痛苦变成唯一*-*面临兄弟背弃*-*会用酒精给自己麻醉*-*走回对的轨迹 对我有着非议*-*那些嘴脸在鬼鬼祟祟*-*最后被我通通砸碎*-*还有那些痛苦的回忆*-*Hater（对手）的轨迹也通通砸碎*-*前方道路黑暗也未必会让我畏惧*-*这样才会*-*才能看见夕阳的美丽*-*等年华褪去前才不被*-*我的梦想给击碎*-*Still on my way（我一直在路上）*-*我从小就不服*-*长大后*-*才知道努力是多么得累*-*一点点一点点吞噬着父母的包容心*-*自己是多么的fake（装）*-*就这样让自己明白了*-*跟对人做对事是多么的难能可贵*-**-*10 CREAM D*-*吴亦凡张震岳热狗战队“梦想”*-**-*All my rock star pick pick(为我兄弟们投票)*-*Follow the time tick tick(在倒计时)*-*Soldiers keep a big stick(我的兄弟们保持着强硬)*-*We still lit(依旧耀眼)*-*不灭的flame(荣誉)*-*Take take(拿到)赛后的战利品*-*Hey lit make a dream (梦想成真)*-*在实现的道路上交替着跨路障*-*完美的配合*-*We get it get it(我们做到了)*-*Bad thing everyday call me (每天都有麻烦事来找我)*-*晴朗之前可不止是暴雨*-*But(但是)*-*Bad thing(麻烦事)中悟得道理*-*枪林弹雨也顽强直到底*-*和fellows (兄弟们)占领了峭壁*-*极端的地域 提高了效率*-*So we make it you’d better know(我们正在创造 你最好知道)*-*赢回荣耀*-*Now we gonna go(现在我们准备出发了)*-*You’d better layback flow touch touch(你最好感受我的说唱技巧)*-*I’ll be back with my papa(我一定会回来的)*-*忙至late night(深夜)*-*状态king size(爆表)*-*直到day light (白天)*-*Drop the hot hot (炸出这首歌)*-*From Nous (厂牌)*-*We turn up(我们很躁)*-*目标 be a legend team(成为一支传奇队伍)*-*天生就好斗 从不露怯*-*赢满one two three four five years(赢得连续胜利)*-**-*Get up get up dream dream （为了梦想奋斗）*-*Get up get up get up dream dream （为了梦想奋斗）*-*Get up get up get up dream dream （为了梦想奋斗）*-*Get up get up get up dream dream （为了梦想奋斗）*-*Get up（奋斗）*-**-*11 Lil Boo：*-*潘玮柏邓紫棋战队“现实”*-**-*我曾把很多人当榜样努力*-*Try my best（用尽全力）*-*也曾和你一样*-*You wanna rap like that（你想做的说唱音乐）*-*所以现在在这里*-*在这继续freestyle(即兴说唱)*-*你知道新秀 根本就是背好*-*Everybody know know（大家都知道）*-*我背后G.E.M.Team(紫棋战队)潘玮柏*-*In the shining blazing house（在光芒之中）*-*还有TURBO*-*我们速度 就像Ninja Turtles(忍者神龟)*-*还是在这 还有BooM旭 (黄旭)*-*直到现在*-*Cue this tough beat (驾驭这个帅伴奏)*-*Everybody know我的punch(拳)*-*在这歌里 就是这样的样子*-*It’s your boy Lil Boo（这是你的男孩Lil Boo）*-*他们都说我增加这个游戏难度*-*还是秀得这么酷*-*让他们都知道 我现在就让你服输*-*Everybody know me(每个人都知道我)*-*你知道现在 我的嘴里多锋利*-*现在穿上我的大衣*-*现在招牌被我挂起*-**-*12 大傻*-*吴亦凡张震岳热狗战队“梦想”*-*唱词：*-*For my Hip-hop（为了我的说唱音乐）*-*For my dream（为了我的梦想）*-*把手借我*-**-*从五年级想学吉他 被拒绝以后*-*生物课写饶舌歌词 被老师批后*-*超大的裤子和耳机 同学的挑衅*-*外表轻狂 但明白一步一个脚印*-*从没忘记第一次*-*听Hip-hop（说唱音乐）多过瘾*-*尽管当时没拿得出手的作品*-*但我立志一定要写一首好的歌*-*随身听陪伴我和上下学的脚踏车*-*我甚至不懂什么叫原创*-*但即兴都翻唱 肯定没人原谅*-*也许身边只有不屑的眼神*-*也许爸妈不认为我有做音乐的潜能*-*在梦里见过成功 现实却违背初衷*-*别让我走捷径 我不怕全盘输空*-*当音乐不说真话 多尴尬*-*我的梦想*-*让Hip-hop stand up（让说唱音乐站起来）*-*Put your hands up（举起你们的手）*-*让Hip-hop stand up（让说唱音乐站起来）*-*Put your hands up（举起你们的手）*-*让Hip-hop stand up（让说唱音乐站起来）*-*Put your hands up（举起你们的手）*-*让Hip-hop stand up（让说唱音乐站起来）*-*Put your hands up（举起你们的手）*-*让Hip-hop stand up（让说唱音乐站起来）*-**-*13 KEY.L刘聪*-*潘玮柏邓紫棋战队“现实”*-**-*朋友圈微博都炸开花*-*自尊心炸开花*-*轮番轰炸你们耳膜*-*像在玩大淘沙*-*因为C-BLOCK（团体）来啦*-*因为KEY.L来啦*-*快回家躲好 门窗反锁好*-*我的小宇宙就快要爆发*-*不得了不得了不得了啦*-*前面的围墙快倒塌*-*人挤人脚踩到脚啦*-*胆子小的就快跑吧*-*街头在发酵着傲慢*-*人群中听见有人叫板*-*我们都吃了熊心豹子胆*-*就趁早在今夜去躁*-*我该出手才出手*-*平时保持低调和独立*-*准备好一步登天*-*也时刻准备好解码这土地*-*你在背后八卦我的身世*-*苍白而无力*-*我来帮你解开神秘*-*我出生的工厂制造着骨气*-*你太狂不想以后*-*你小心掉湘江里头*-*当我专辑发行后*-*叫我rich(尊贵的)80后*-*去球场播我的新歌 胜过你上早自习*-*来现场记得手机举高 帮我拍个小视频*-**-*14 DOOOBOI*-*吴亦凡张震岳热狗战队“梦想”*-**-*唱词：*-*我来告诉你什么是New Wave(新浪潮)*-**-*DOOOBOI I got sauce（我有腔调）*-*DOOOBOI I got sauce（我有腔调）*-*DOOOBOI I got sauce（我有腔调）*-*DOOOBOI I got sauce（我有腔调）*-*我的梦想是*-*我的我的梦想是*-*我的梦想每一天 不浪费我时间*-*录音棚每一天 看我都不新鲜*-*唱什么东西 我自己都不知道*-*我也不知道*-*随便说说说说说说说说说你们不知道*-*年纪小年纪小 脾气爆脾气爆*-*年纪小年纪小年纪小 脾气爆*-*你们都不行 就像在唱炒面筋*-*听你们的歌都不行 就像在唱炒面筋*-*Rainbow baby（彩虹宝宝）*-*Rainbow rainbow baby（彩虹宝宝）*-*Rainbow baby（彩虹宝宝）*-*Rainbow rainbow baby（彩虹宝宝）*-*Rainbow baby（彩虹宝宝）*-*Rainbow rainbow baby（彩虹宝宝）*-*Rainbow rainbow（彩虹宝宝）*-*赶紧回家睡觉吧*-*都不行*-*都不行*-*混音：时俊峰*-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 26425123,
+                  "mcpTrackId": "26425123",
+                  "title": "真爱等一下",
+                  "artist": "陶喆",
+                  "album": "再见你好吗 Hello Goodbye",
+                  "genre": "怀旧",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏怀旧氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 陶喆/蔡健雅*-* 作词 : 葛大为*-*周末守着烤箱*-*情人节也落单*-*红色炸弹一波一波轰炸*-*你怎么还不紧张*-*偏爱年轻女伴*-*熟女让你压力大*-*资深的高富帅还不成家*-*何时想戒掉流浪*-*会不会 世界只剩下我们*-*绝对不是行情太差*-*唱情歌唱到像顾问一样*-*为何单身却没解答*-*我相信 关于幸福的疑问*-*会得到满意的回答*-*我会在人群中静静观察*-*叫真爱等我一下*-**-*是你标准太高*-*还是都宅在家*-*身边朋友已经抱着娃娃*-*你还在抱着你的吉他*-*事业做得太大*-*却天天孤单回到家*-*多少人唱今天要嫁给他*-*何时轮你当新郎*-*会不会 世界只剩下我们*-*绝对不是行情太差*-*唱情歌唱到像顾问一样*-*为何单身却没解答*-*我相信 关于幸福的疑问*-*会得到满意的回答*-*我会在人群中静静观察*-*叫真爱等我一下*-*我知道(我也知道)*-*保持乐观(着急不来)*-*就陪我(你也陪我)*-*发发牢骚(互亏一下)*-*有一天(未来某天)*-*真的遇到(谁运气好)*-*记得帮我把关*-*他好不好*-**-*我期待 幸福会眷顾我们*-*一定有人懂得欣赏*-*爱情里没有人会是专家*-*我愿意慢慢去研究它*-*对的人 总会有那么一个*-*反正谁也抢不走他*-*我会用平常心不慌不忙*-*请真爱再等我一下*-**-*我期待 幸福会眷顾我们*-*一定有人懂得欣赏*-*爱情里没有人会是专家*-*我愿意慢慢研究它*-*对的人 总会有那么一个*-*反正谁也抢不走他*-*我会用平常心不慌不忙*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1408930588,
+                  "mcpTrackId": "1408930588",
+                  "title": "POUR IT UP",
+                  "artist": "404 RAPPER",
+                  "album": "POUR IT UP",
+                  "genre": "宁静",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏宁静氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "[by:SNEAKER夏老师]*-* 作曲 : 404 RAPPER*-* 作词 : 404 RAPPER*-*GHETTO BOY ON THE BLOCK 小兄弟CALL ME BIG BRO*-*别惹上TROUBLE 后才对我说 I NEED U*-*我们的队伍学不会怎么去低着头*-*我们的零花钱对你来说是 BIG BILL*-*都叫我029年少多金的CEO*-*DO YOU LIKE BEEF FEEL*-*你到不了的地步 BRO*-*你只能眼红嫉妒 BRO*-*RICH BOY FREAK FLOW*-*谁让我嚣张跋扈帅得就像 MEEK MILL*-*我们 BE HUMBLE 走在路上总是压低帽子*-*在机场围满粉丝拍照顺便摆个 POSE*-*同龄人喜欢车而我更喜欢大的 HOUSE*-*市中心的三百平米是我送给她的钥匙*-*花天酒地让欲望PUT IT ON MY LIFE*-*MAKE IT CASH 头脑总是转得飞快*-*从好莱坞山一路飞驰到了 RODEO DRIVE*-*原谅我年纪轻轻就坐进了MAYBACH*-*POUR IT UP  X7*-*POUR IT UP  X7*-*花天酒地就让欲望一直PUT IT ON MY LIFE*-*MAKE IT CASH 头脑总是转得飞快*-*从好莱坞山一路飞驰到了 RODEO DRIVE*-*原谅我年纪轻轻就坐进了MAYBACH*-*POUR IT UP  X7*-*POUR IT UP  X7*-*花天酒地就让欲望一直PUT IT ON MY LIFE*-*MAKE IT CASH 头脑总是转得飞快*-*从好莱坞山一路飞驰到了 RODEO DRIVE*-*原谅我年纪轻轻就坐进了MAYBACH*-*喜欢去澳门 SHOW HAND 看扔出的筹码翻倍*-*闪耀的钻石看起来会跟我更加般配*-*把这里洗劫一空然后扫荡每个专柜*-*临走甩点小费对你来说算是安慰*-*不是一个单位 雄狮已不再酣睡*-*原谅我年少多金总是让你透着酸味*-*HHH未来资产堪比国际级的关**-*活在蜜罐里公子哥刷卡样子很干脆*-*不停的WORK 清楚该怎么做*-*投资的眼光非常大胆出手总是特别阔*-*未发售的联名 ON MY FEET 是你没有的货*-*年轻有野心的资本家想当华尔街的 WOLF*-*POUR IT UP HOE 让我躺在钞票里面游*-*在办公室打高尔夫球 一笑泯恩仇*-*荣华富贵只跟我的BRO 随便开掉几万块的酒*-*POUR IT UP  X7*-*POUR IT UP  X7*-*花天酒地就让欲望一直PUT IT ON MY LIFE*-*MAKE IT CASH 头脑总是转得飞快*-*从好莱坞山一路飞驰到了 RODEO DRIVE*-*原谅我年纪轻轻就坐进了MAYBACH*-*POUR IT UP  X7*-*POUR IT UP  X7*-*花天酒地就让欲望一直PUT IT ON MY LIFE*-*MAKE IT CASH 头脑总是转得飞快*-*从好莱坞山一路飞驰到了 RODEO DRIVE*-*原谅我年纪轻轻就坐进了MAYBACH*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1294924898,
+                  "mcpTrackId": "1294924898",
+                  "title": "不醒",
+                  "artist": "安全着陆",
+                  "album": "安全自救手册",
+                  "genre": "宁静",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏宁静氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : Robaholic*-* 作词 : 泥鳅*-*编曲/混音 Robaholic*-*大道理你我都明白*-*可我们活在梦中迟迟不醒来*-*讲道理你我都能讲的很精彩*-*但是却打动不了自己的病态*-*大道理 都明白*-*在梦中 不醒来*-*我讲得 很精彩*-*你觉得 病态*-*又是习惯性的熬到天亮 城市就要苏醒我才入睡*-*泡的安神药还偏烫 只好仔细掂量 那些解不开的误会*-*不该走的走了一位 那些歌还一路边走边放*-*酒精伤着我的脾胃 被浪费的时间还真是冤枉*-*自主思想凌驾 自以为的素质 无疑是强效的麻药*-*什么又被收入名下 精神还是物质 有些目的总是没法达到*-*伪善是赤裸的霸凌 是为了逞某些人口舌之快*-*多少人因此被骂停 没想过要被迫去接受失败*-*讲道理讲道义讲贸易讲教育讲到底都是在讲思想*-*他人坚持自己 自己否定他人 师长在效仿师长*-*苦练一身本领 精通琴棋书画 读遍叶圣陶老舍*-*为了变成什么样的人不惜违背自己 注定无法成为佼佼者*-*大道理你我都明白*-*可我们活在梦中迟迟不醒来*-*讲道理你我都能讲的很精彩*-*但是却打动不了自己的病态*-*大道理 都明白*-*在梦中 不醒来*-*我讲得 很精彩*-*你觉得 病态*-*究竟寻找什么 想必是一扇为我而开的天窗*-*穿过层层迷雾采集到足以根除心病的偏方*-*尽管我听尽了告诫 却在统一和爆裂 迂回着徘徊不定*-*所以希望可以对那个为我除病的人说一声感激不尽*-*怎样才对得起人事物是相对复杂的命题作文*-*如何定义过程无非看你如何定义定义本身*-*这几年所有人都病了这场灾难电影才刚刚上映*-*犹豫不决的我在祈祷最好不要因此丧命*-*大道理其实都明白 任何一本书上都有记载*-*它们不会推崇名牌 我们虚伪的本性却不易改*-*发作频繁的是彼此不想拆穿冥顽的劣根性*-*因此这首歌的存在也会显得平凡却生硬*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 1405082016,
+                  "mcpTrackId": "1405082016",
+                  "title": "越来越不懂（Cover：蔡健雅）",
+                  "artist": "superluckyqi",
+                  "album": "SuperLuckyQi的中文翻唱",
+                  "genre": "感动",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏感动氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 蔡健雅*-* 作词 : 蔡健雅*-*在 我二十二岁时*-*回想起当时多么想谈恋爱*-*妈妈说就让它来*-*然而在 我三十二岁时*-*发现我没太多的心去等待*-*它失去某种色彩*-*得不到的就更加爱*-*太容易来的就不理睬*-*其实谁不想遇见真爱*-*爱得绝对 爱得坦白*-*以为遇上了就会明白*-*但每次它只留下惊鸿一瞥的感慨*-*我越来越不懂爱*-*才 三十二岁的我*-*虽然一个人过 也过得够精彩*-*偶尔才想谈恋爱*-*然而爱 总是乱了节拍*-*我只能够瞎猜 也许能中乐透彩*-*中了也觉得奇怪*-*得不到的就更加爱*-*太容易来的就不理睬*-*其实谁不想遇见真爱*-*爱得绝对 爱得坦白*-*以为遇上了就会明白*-*但每次它只留下惊鸿一瞥的感慨*-*我越来越不懂爱*-*得不到的无所谓*-*就算是自我安慰*-*没必要伤悲*-*得不到的就更加爱*-*太容易来的就不理睬*-*其实谁不想遇见真爱*-*爱得绝对 爱得坦白*-*以为遇上了就会明白*-*但每次它只留下惊鸿一瞥的感慨*-*我越来越不懂爱*-*以为遇上了就会明白*-*但每次它只留下惊鸿一瞥的感慨*-*我越来越不懂爱*-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                },
+                {
+                  "id": 167882,
+                  "mcpTrackId": "167882",
+                  "title": "清明雨上",
+                  "artist": "许嵩",
+                  "album": "自定义",
+                  "genre": "舒缓",
+                  "audioUrl": null,
+                  "artworkUrl": null,
+                  "durationSec": null,
+                  "description": "一首偏舒缓氛围的歌曲，适合在当前推荐场景中播放。",
+                  "lyrics": [
+                    "作曲 : 许嵩*-* 作词 : 许嵩*-*窗透初晓 日照西桥 云自摇*-*想你当年荷风微摆的衣角*-*木雕流金 岁月涟漪 七年前封笔*-*因为我今生挥毫只为你*-*雨打湿了眼眶 年年倚井盼归堂*-*最怕不觉泪已拆两行*-*我在人间彷徨 寻不到你的天堂*-*东瓶西镜放 恨不能遗忘*-*又是清明雨上 折菊寄到你身旁*-*把你最爱的歌来轻轻唱*-*远方有琴 愀然空灵 声声催天雨*-*涓涓心事说给自己听*-*月影憧憧 烟火几重 烛花红*-*红尘旧梦 梦断都成空*-*雨打湿了眼眶 年年倚井盼归堂*-*最怕不觉泪已拆两行*-*我在人间彷徨 寻不到你的天堂*-*东瓶西镜放 恨不能遗忘*-*又是清明雨上 折菊寄到你身旁*-*把你最爱的歌来轻轻唱*-*我在人间彷徨 寻不到你的天堂*-*东瓶西镜放 恨不能遗忘*-*又是清明雨上 折菊寄到你身旁*-*把你最爱的歌来轻轻唱*-**-**-**-*"
+                  ],
+                  "score": 0.0,
+                  "source": "LOCAL_DB"
+                }
+              ],
+              "explanations": {},
+              "aiEnabled": true,
+              "aiSuccess": false,
+              "fallbackUsed": false,
+              "fallbackReason": "PERSISTED_PLAYLIST_PENDING_USE_MCP",
+              "candidateCount": 10,
+              "finalCount": 10
+            }
+          ]
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "MCP调试接口-偏好后",
+      "method": "GET",
+      "path": "/api/recommendations/debug/mcp?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "status": 200,
+      "ms": 244.78,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "userId": "u_1428633ccfc94a2a",
+          "scene": "default",
+          "emotion": "neutral",
+          "requestedLimit": 10,
+          "coldStart": true,
+          "explorationRatio": 0.28,
+          "mappedArgs": {
+            "genres": [],
+            "descriptors": [
+              "balanced"
+            ],
+            "similar_to": [
+              "丁当 - 敢爱敢当"
+            ],
+            "secondary_genres": [],
+            "min_rating": 3.5,
+            "max_results": 10,
+            "hybrid_weight": 0.68
+          },
+          "rawMcpPayload": {
+            "count": 0,
+            "query": {
+              "similar_to": [
+                "丁当 - 敢爱敢当"
+              ],
+              "genres": [],
+              "secondary_genres": [],
+              "descriptors": [
+                "balanced"
+              ],
+              "min_rating": 3.5,
+              "max_results": 10,
+              "hybrid_weight": 0.68
+            },
+            "recommendations": []
+          },
+          "rawRecommendationCount": 0,
+          "matchedCount": 0,
+          "unmatchedCount": 0,
+          "fallbackTriggered": true,
+          "errorMessage": null,
+          "matches": [],
+          "fallbackTracks": [
+            {
+              "id": 1412672844,
+              "mcpTrackId": "1412672844",
+              "title": "Forget it （feat. Mac Ova Seas）",
+              "artist": "SETI / mac ova seas",
+              "album": "nightfall EP",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/_jRndEytHJkJbSkoOUQ49g==/109951169859352741.jpg",
+              "durationSec": 216,
+              "description": "榜单同步入库：Forget it （feat. Mac Ova Seas） - SETI / mac ova seas",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672843,
+              "mcpTrackId": "1412672843",
+              "title": "坚定的浪潮",
+              "artist": "念念不忘",
+              "album": "众生赋，人间录",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/-fDlxXgXgIzfn9--8SwJog==/109951172869512177.jpg",
+              "durationSec": 237,
+              "description": "榜单同步入库：坚定的浪潮 - 念念不忘",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672842,
+              "mcpTrackId": "1412672842",
+              "title": "坠夏",
+              "artist": "曾舜晞",
+              "album": "夏日戏剧",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/csqn0fgNHO3QDQ5llTjWOg==/109951173183850803.jpg",
+              "durationSec": 160,
+              "description": "榜单同步入库：坠夏 - 曾舜晞",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672841,
+              "mcpTrackId": "1412672841",
+              "title": "春树",
+              "artist": "银河快递",
+              "album": "春树",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/Frivz0wQeVOsU-mvuEqZZw==/109951173137293067.jpg",
+              "durationSec": 207,
+              "description": "榜单同步入库：春树 - 银河快递",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672840,
+              "mcpTrackId": "1412672840",
+              "title": "人间逍遥客",
+              "artist": "Winky诗",
+              "album": "人间逍遥客",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/A4QWaVJWR7X3NsjNCjlxcA==/109951173136991146.jpg",
+              "durationSec": 215,
+              "description": "榜单同步入库：人间逍遥客 - Winky诗",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672839,
+              "mcpTrackId": "1412672839",
+              "title": "SGA",
+              "artist": "CHILLSENONE / Top Barry",
+              "album": "V8",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/4NbUWGcSUwK_KS2awOjYMA==/109951173132859393.jpg",
+              "durationSec": 140,
+              "description": "榜单同步入库：SGA - CHILLSENONE / Top Barry",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672838,
+              "mcpTrackId": "1412672838",
+              "title": "旧商务",
+              "artist": "马赫mood / 夏辰熙",
+              "album": "旧商务",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/t_n9MCP07DpiaH95bK_hXg==/109951173149474396.jpg",
+              "durationSec": 222,
+              "description": "榜单同步入库：旧商务 - 马赫mood / 夏辰熙",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672837,
+              "mcpTrackId": "1412672837",
+              "title": "一半一半（Live）",
+              "artist": "希林娜依高 / 欧阳娣娣（Didi Ouyang） / 王晓赟子",
+              "album": "《超燃青春的合唱》第3期",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/_v6hX7K1aSLBq5fMtlxZXA==/109951173184162340.jpg",
+              "durationSec": 238,
+              "description": "榜单同步入库：一半一半（Live） - 希林娜依高 / 欧阳娣娣（Didi Ouyang） / 王晓赟子",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672836,
+              "mcpTrackId": "1412672836",
+              "title": "身不由己",
+              "artist": "丁当",
+              "album": "敢爱敢当",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/1KFjoJtWpnt16KiB4R0Kdw==/109951168144534489.jpg",
+              "durationSec": 255,
+              "description": "榜单同步入库：身不由己 - 丁当",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672835,
+              "mcpTrackId": "1412672835",
+              "title": "颜色",
+              "artist": "Gareth.T",
+              "album": "颜色",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/NBYS2W-x3p2IVNvHMcylMg==/109951170940524301.jpg",
+              "durationSec": 211,
+              "description": "榜单同步入库：颜色 - Gareth.T",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            }
+          ]
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "MCP调试接口-运动活力",
+      "method": "GET",
+      "path": "/api/recommendations/debug/mcp?scene=workout&emotion=energetic&limit=10",
+      "input": null,
+      "status": 200,
+      "ms": 723.15,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "userId": "u_1428633ccfc94a2a",
+          "scene": "workout",
+          "emotion": "energetic",
+          "requestedLimit": 10,
+          "coldStart": true,
+          "explorationRatio": 0.28,
+          "mappedArgs": {
+            "genres": [
+              "electronic"
+            ],
+            "descriptors": [
+              "intense",
+              "driving",
+              "uplifting",
+              "exciting"
+            ],
+            "similar_to": [
+              "丁当 - 敢爱敢当"
+            ],
+            "secondary_genres": [],
+            "min_rating": 3.5,
+            "max_results": 10,
+            "hybrid_weight": 0.68
+          },
+          "rawMcpPayload": {
+            "count": 10,
+            "query": {
+              "similar_to": [
+                "丁当 - 敢爱敢当"
+              ],
+              "genres": [
+                "electronic"
+              ],
+              "secondary_genres": [],
+              "descriptors": [
+                "intense",
+                "driving",
+                "uplifting",
+                "exciting"
+              ],
+              "min_rating": 3.5,
+              "max_results": 10,
+              "hybrid_weight": 0.68
+            },
+            "recommendations": [
+              {
+                "artist": "陈奕迅",
+                "album": "rice & shine",
+                "genres": [
+                  "rock",
+                  "思念",
+                  "electronic"
+                ],
+                "descriptors": [
+                  "driving",
+                  "emotional",
+                  "anthemic",
+                  "intense",
+                  "warm",
+                  "calm",
+                  "peaceful",
+                  "melodic",
+                  "energetic",
+                  "futuristic",
+                  "textured",
+                  "bright"
+                ],
+                "explanation": "frequently played (26 times), matches electronic genre, matches driving, intense descriptors",
+                "secondary_genres": [
+                  "melodic",
+                  "ambient"
+                ],
+                "similarity_score": 0.0,
+                "metadata_score": 0.6827803136799155,
+                "combined_score": 0.4642906133023426
+              },
+              {
+                "artist": "Feezy",
+                "album": "TAKE BACK",
+                "genres": [
+                  "ambient",
+                  "electronic",
+                  "r&b"
+                ],
+                "descriptors": [
+                  "calm",
+                  "peaceful",
+                  "immersive",
+                  "minimal",
+                  "soft",
+                  "dreamy",
+                  "energetic",
+                  "driving",
+                  "futuristic",
+                  "textured",
+                  "bright",
+                  "rhythmic"
+                ],
+                "explanation": "matches electronic genre, matches driving descriptor",
+                "secondary_genres": [
+                  "electronic",
+                  "ambient",
+                  "melodic"
+                ],
+                "similarity_score": 0.0,
+                "metadata_score": 0.6699999999999999,
+                "combined_score": 0.4556
+              },
+              {
+                "artist": "Ice Paper",
+                "album": "食色性也",
+                "genres": [
+                  "怀旧",
+                  "electronic",
+                  "hip hop",
+                  "孤寂"
+                ],
+                "descriptors": [
+                  "quiet",
+                  "peaceful",
+                  "minimal",
+                  "nostalgic",
+                  "warm",
+                  "energetic",
+                  "driving",
+                  "futuristic",
+                  "textured",
+                  "bright",
+                  "rhythmic",
+                  "confident"
+                ],
+                "explanation": "frequently played (83 times), matches electronic genre, matches driving descriptor",
+                "secondary_genres": [
+                  "ambient",
+                  "electronic"
+                ],
+                "similarity_score": 0.0,
+                "metadata_score": 0.6683566071718234,
+                "combined_score": 0.45448249287683995
+              },
+              {
+                "artist": "汪苏泷",
+                "album": "登陆计划",
+                "genres": [
+                  "治愈",
+                  "electronic"
+                ],
+                "descriptors": [
+                  "calm",
+                  "peaceful",
+                  "warm",
+                  "dreamy",
+                  "ethereal",
+                  "energetic",
+                  "driving",
+                  "futuristic",
+                  "textured",
+                  "bright",
+                  "rhythmic",
+                  "soft"
+                ],
+                "explanation": "highly rated (4.27/5), frequently played (41 times), matches electronic genre, matches driving descriptor",
+                "secondary_genres": [
+                  "ambient"
+                ],
+                "similarity_score": 0.0,
+                "metadata_score": 0.661270774199825,
+                "combined_score": 0.44966412645588105
+              },
+              {
+                "artist": "KnowKnow",
+                "album": "UFO",
+                "genres": [
+                  "ambient",
+                  "rock",
+                  "electronic",
+                  "hip hop"
+                ],
+                "descriptors": [
+                  "calm",
+                  "peaceful",
+                  "immersive",
+                  "minimal",
+                  "soft",
+                  "dreamy",
+                  "driving",
+                  "emotional",
+                  "anthemic",
+                  "intense",
+                  "warm",
+                  "melodic"
+                ],
+                "explanation": "highly rated (4.17/5), matches electronic genre, matches driving, intense descriptors",
+                "secondary_genres": [
+                  "electronic",
+                  "melodic",
+                  "ambient"
+                ],
+                "similarity_score": 0.0,
+                "metadata_score": 0.6587574989159952,
+                "combined_score": 0.4479550992628768
+              },
+              {
+                "artist": "岑宁儿",
+                "album": "Nothing is Under Control",
+                "genres": [
+                  "electronic",
+                  "folk",
+                  "jazz",
+                  "ambient"
+                ],
+                "descriptors": [
+                  "energetic",
+                  "driving",
+                  "futuristic",
+                  "textured",
+                  "bright",
+                  "rhythmic",
+                  "warm",
+                  "organic",
+                  "storytelling",
+                  "gentle",
+                  "intimate",
+                  "soft"
+                ],
+                "explanation": "frequently played (59 times), matches electronic genre, matches driving descriptor",
+                "secondary_genres": [
+                  "ambient",
+                  "melodic",
+                  "electronic"
+                ],
+                "similarity_score": 0.0,
+                "metadata_score": 0.6576792708653036,
+                "combined_score": 0.4472219041884065
+              },
+              {
+                "artist": "superluckyqi",
+                "album": "SuperLuckyQi的英文翻唱",
+                "genres": [
+                  "治愈",
+                  "electronic",
+                  "hip hop",
+                  "孤寂"
+                ],
+                "descriptors": [
+                  "calm",
+                  "peaceful",
+                  "warm",
+                  "energetic",
+                  "driving",
+                  "futuristic",
+                  "textured",
+                  "bright",
+                  "rhythmic",
+                  "confident",
+                  "urban",
+                  "focused"
+                ],
+                "explanation": "frequently played (56 times), matches electronic genre, matches driving descriptor",
+                "secondary_genres": [
+                  "ambient",
+                  "electronic"
+                ],
+                "similarity_score": 0.0,
+                "metadata_score": 0.6553229046393743,
+                "combined_score": 0.4456195751547745
+              },
+              {
+                "artist": "黄旭",
+                "album": "中国新说唱2019 第八期",
+                "genres": [
+                  "ambient",
+                  "electronic",
+                  "rock",
+                  "hip hop"
+                ],
+                "descriptors": [
+                  "calm",
+                  "peaceful",
+                  "immersive",
+                  "minimal",
+                  "soft",
+                  "dreamy",
+                  "energetic",
+                  "driving",
+                  "futuristic",
+                  "textured",
+                  "bright",
+                  "rhythmic"
+                ],
+                "explanation": "highly rated (4.3/5), frequently played (31 times), matches electronic genre, matches driving descriptor",
+                "secondary_genres": [
+                  "electronic",
+                  "ambient",
+                  "melodic"
+                ],
+                "similarity_score": 0.0,
+                "metadata_score": 0.6529291648599922,
+                "combined_score": 0.4439918321047947
+              },
+              {
+                "artist": "陶喆",
+                "album": "再见你好吗 Hello Goodbye",
+                "genres": [
+                  "治愈",
+                  "思念",
+                  "ambient",
+                  "electronic"
+                ],
+                "descriptors": [
+                  "calm",
+                  "peaceful",
+                  "warm",
+                  "immersive",
+                  "minimal",
+                  "soft",
+                  "dreamy",
+                  "melodic",
+                  "emotional",
+                  "energetic",
+                  "driving",
+                  "futuristic"
+                ],
+                "explanation": "frequently played (31 times), matches electronic genre, matches driving descriptor",
+                "secondary_genres": [
+                  "electronic",
+                  "ambient"
+                ],
+                "similarity_score": 0.0,
+                "metadata_score": 0.6364291648599922,
+                "combined_score": 0.43277183210479475
+              },
+              {
+                "artist": "404 RAPPER",
+                "album": "POUR IT UP",
+                "genres": [
+                  "ambient",
+                  "electronic",
+                  "hip hop"
+                ],
+                "descriptors": [
+                  "calm",
+                  "peaceful",
+                  "immersive",
+                  "minimal",
+                  "soft",
+                  "dreamy",
+                  "energetic",
+                  "driving",
+                  "futuristic",
+                  "textured",
+                  "bright",
+                  "rhythmic"
+                ],
+                "explanation": "highly rated (4.9/5), matches electronic genre, matches driving descriptor",
+                "secondary_genres": [
+                  "electronic",
+                  "ambient"
+                ],
+                "similarity_score": 0.0,
+                "metadata_score": 0.6279248366678547,
+                "combined_score": 0.4269888889341412
+              }
+            ]
+          },
+          "rawRecommendationCount": 10,
+          "matchedCount": 10,
+          "unmatchedCount": 0,
+          "fallbackTriggered": false,
+          "errorMessage": null,
+          "matches": [
+            {
+              "artist": "陈奕迅",
+              "album": "rice & shine",
+              "explanation": "frequently played (26 times), matches electronic genre, matches driving, intense descriptors",
+              "similarityScore": 0.0,
+              "metadataScore": 0.6827803136799155,
+              "combinedScore": 0.4642906133023426,
+              "matchedMusicId": 28563317,
+              "matchedTitle": "阴天快乐",
+              "matchedArtist": "陈奕迅",
+              "matchedAlbum": "rice & shine",
+              "recallSource": "mcp_exact",
+              "matched": true
+            },
+            {
+              "artist": "Feezy",
+              "album": "TAKE BACK",
+              "explanation": "matches electronic genre, matches driving descriptor",
+              "similarityScore": 0.0,
+              "metadataScore": 0.6699999999999999,
+              "combinedScore": 0.4556,
+              "matchedMusicId": 1352004629,
+              "matchedTitle": "TAKE BACK (ft. AlphaSoul)",
+              "matchedArtist": "Feezy",
+              "matchedAlbum": "TAKE BACK",
+              "recallSource": "mcp_exact",
+              "matched": true
+            },
+            {
+              "artist": "Ice Paper",
+              "album": "食色性也",
+              "explanation": "frequently played (83 times), matches electronic genre, matches driving descriptor",
+              "similarityScore": 0.0,
+              "metadataScore": 0.6683566071718234,
+              "combinedScore": 0.45448249287683995,
+              "matchedMusicId": 1327066230,
+              "matchedTitle": "5.红房间",
+              "matchedArtist": "Ice Paper",
+              "matchedAlbum": "食色性也",
+              "recallSource": "mcp_exact",
+              "matched": true
+            },
+            {
+              "artist": "汪苏泷",
+              "album": "登陆计划",
+              "explanation": "highly rated (4.27/5), frequently played (41 times), matches electronic genre, matches driving descriptor",
+              "similarityScore": 0.0,
+              "metadataScore": 0.661270774199825,
+              "combinedScore": 0.44966412645588105,
+              "matchedMusicId": 34852171,
+              "matchedTitle": "得不到的温柔",
+              "matchedArtist": "汪苏泷",
+              "matchedAlbum": "登陆计划",
+              "recallSource": "mcp_exact",
+              "matched": true
+            },
+            {
+              "artist": "KnowKnow",
+              "album": "UFO",
+              "explanation": "highly rated (4.17/5), matches electronic genre, matches driving, intense descriptors",
+              "similarityScore": 0.0,
+              "metadataScore": 0.6587574989159952,
+              "combinedScore": 0.4479550992628768,
+              "matchedMusicId": 1392170181,
+              "matchedTitle": "口袋头 (prod.birdie bands)",
+              "matchedArtist": "KnowKnow",
+              "matchedAlbum": "UFO",
+              "recallSource": "mcp_exact",
+              "matched": true
+            },
+            {
+              "artist": "岑宁儿",
+              "album": "Nothing is Under Control",
+              "explanation": "frequently played (59 times), matches electronic genre, matches driving descriptor",
+              "similarityScore": 0.0,
+              "metadataScore": 0.6576792708653036,
+              "combinedScore": 0.4472219041884065,
+              "matchedMusicId": 1323304862,
+              "matchedTitle": "换气",
+              "matchedArtist": "岑宁儿",
+              "matchedAlbum": "Nothing is Under Control",
+              "recallSource": "mcp_exact",
+              "matched": true
+            },
+            {
+              "artist": "superluckyqi",
+              "album": "SuperLuckyQi的英文翻唱",
+              "explanation": "frequently played (56 times), matches electronic genre, matches driving descriptor",
+              "similarityScore": 0.0,
+              "metadataScore": 0.6553229046393743,
+              "combinedScore": 0.4456195751547745,
+              "matchedMusicId": 1383677145,
+              "matchedTitle": "Senorita （中英文）（Cover：Shawn Mendes）",
+              "matchedArtist": "superluckyqi",
+              "matchedAlbum": "SuperLuckyQi的英文翻唱",
+              "recallSource": "mcp_exact",
+              "matched": true
+            },
+            {
+              "artist": "黄旭",
+              "album": "中国新说唱2019 第八期",
+              "explanation": "highly rated (4.3/5), frequently played (31 times), matches electronic genre, matches driving descriptor",
+              "similarityScore": 0.0,
+              "metadataScore": 0.6529291648599922,
+              "combinedScore": 0.4439918321047947,
+              "matchedMusicId": 1381764098,
+              "matchedTitle": "第一轮 现实VS梦想",
+              "matchedArtist": "黄旭",
+              "matchedAlbum": "中国新说唱2019 第八期",
+              "recallSource": "mcp_exact",
+              "matched": true
+            },
+            {
+              "artist": "陶喆",
+              "album": "再见你好吗 Hello Goodbye",
+              "explanation": "frequently played (31 times), matches electronic genre, matches driving descriptor",
+              "similarityScore": 0.0,
+              "metadataScore": 0.6364291648599922,
+              "combinedScore": 0.43277183210479475,
+              "matchedMusicId": 26425123,
+              "matchedTitle": "真爱等一下",
+              "matchedArtist": "陶喆",
+              "matchedAlbum": "再见你好吗 Hello Goodbye",
+              "recallSource": "mcp_exact",
+              "matched": true
+            },
+            {
+              "artist": "404 RAPPER",
+              "album": "POUR IT UP",
+              "explanation": "highly rated (4.9/5), matches electronic genre, matches driving descriptor",
+              "similarityScore": 0.0,
+              "metadataScore": 0.6279248366678547,
+              "combinedScore": 0.4269888889341412,
+              "matchedMusicId": 1408930588,
+              "matchedTitle": "POUR IT UP",
+              "matchedArtist": "404 RAPPER",
+              "matchedAlbum": "POUR IT UP",
+              "recallSource": "mcp_exact",
+              "matched": true
+            }
+          ],
+          "fallbackTracks": []
+        }
+      },
+      "error": null
+    }
+  ]
+}

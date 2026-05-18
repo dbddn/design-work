@@ -1,0 +1,1011 @@
+{
+  "state": {
+    "userId": "u_1428633ccfc94a2a",
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0XzczNzIxNTg5IiwidWlkIjoidV8xNDI4NjMzY2NmYzk0YTJhIiwiZ3Vlc3QiOmZhbHNlLCJpYXQiOjE3NzkwNzA0MzcsImV4cCI6MTc3OTE1NjgzN30.hR-vnp4H6G7Qc5znljymBE7qMidulIXmOFJ7FAL-Udc",
+    "trackId": 1412672836,
+    "playlistId": 25
+  },
+  "username": "test_73721589",
+  "email": "test_73721589@example.com",
+  "results": [
+    {
+      "module": "用户注册",
+      "method": "POST",
+      "path": "/api/auth/register",
+      "input": {
+        "username": "test_73721589",
+        "email": "test_73721589@example.com",
+        "password": "Pass123456"
+      },
+      "status": 200,
+      "ms": 190.56,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0XzczNzIxNTg5IiwidWlkIjoidV8xNDI4NjMzY2NmYzk0YTJhIiwiZ3Vlc3QiOmZhbHNlLCJpYXQiOjE3NzkwNzA0MzcsImV4cCI6MTc3OTE1NjgzN30.hR-vnp4H6G7Qc5znljymBE7qMidulIXmOFJ7FAL-Udc",
+          "tokenType": "Bearer",
+          "expireInSeconds": 86400,
+          "userId": "u_1428633ccfc94a2a",
+          "username": "test_73721589",
+          "guest": false
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "用户登录",
+      "method": "POST",
+      "path": "/api/auth/login",
+      "input": {
+        "username": "test_73721589",
+        "password": "Pass123456"
+      },
+      "status": 200,
+      "ms": 118.15,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0XzczNzIxNTg5IiwidWlkIjoidV8xNDI4NjMzY2NmYzk0YTJhIiwiZ3Vlc3QiOmZhbHNlLCJpYXQiOjE3NzkwNzA0MzcsImV4cCI6MTc3OTE1NjgzN30.hR-vnp4H6G7Qc5znljymBE7qMidulIXmOFJ7FAL-Udc",
+          "tokenType": "Bearer",
+          "expireInSeconds": 86400,
+          "userId": "u_1428633ccfc94a2a",
+          "username": "test_73721589",
+          "guest": false
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "音乐搜索",
+      "method": "GET",
+      "path": "/api/tracks/search?q=%E7%88%B1&page=0&size=5",
+      "input": null,
+      "status": 200,
+      "ms": 36.39,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "page": 0,
+          "size": 5,
+          "total": 610,
+          "items": [
+            {
+              "id": 1412672836,
+              "mcpTrackId": "1412672836",
+              "title": "身不由己",
+              "artist": "丁当",
+              "album": "敢爱敢当",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/1KFjoJtWpnt16KiB4R0Kdw==/109951168144534489.jpg",
+              "durationSec": 255,
+              "description": "榜单同步入库：身不由己 - 丁当",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412022967,
+              "mcpTrackId": "1412022967",
+              "title": "我爱他",
+              "artist": "王小帅",
+              "album": "我爱他",
+              "genre": "欢快",
+              "audioUrl": null,
+              "artworkUrl": null,
+              "durationSec": null,
+              "description": "一首偏欢快氛围的歌曲，适合在当前推荐场景中播放。",
+              "lyrics": [
+                "作曲 : 陈威全*-* 作词 : 黄婷*-*编曲：戴浪*-*吉他：邓仲伟*-*录音：熊臣熙*-*混音/母带：梁冬盛*-*制作人：石文*-**-**-*他的轻狂留在 某一节车厢*-*地下铁里的风 比回忆还重*-*整座城市一直等着我*-*有一段感情还在漂泊*-*对他唯一遗憾是分手那天*-*我奔腾的眼泪都停不下来*-*若那一刻重来 我不哭*-*让他知道我可以很好*-*我爱他 轰轰烈烈最疯狂*-*我的梦狠狠碎过却不会忘*-*曾为他相信明天就是未来*-*情节有多坏 都不肯醒来*-*我爱他 跌跌撞撞到绝望*-*我的心深深伤过却不会忘*-*我和他不再属于这个地方*-*最初的天堂 最终的荒唐*-**-*如果还有遗憾 又怎么样呢*-*伤了痛了懂了 就能好了吗*-*曾经依靠彼此的肩膀*-*如今各自在人海流浪*-*我爱他 轰轰烈烈最疯狂*-*我的梦狠狠碎过却不会忘*-*逃不开 爱越深越互相伤害*-*越深的依赖 越多的空白*-*该怎么去爱*-**-*我爱他 轰轰烈烈最疯狂*-*我的梦狠狠碎过却不会忘*-*曾为他相信明天就是未来*-*情节有多坏 都不肯醒来*-*我爱他 跌跌撞撞到绝望*-*我的心深深伤过却不会忘*-*我和他不再属于这个地方*-*最初的天堂 最终的荒唐*-*如果还有遗憾是分手那天*-*我奔腾的眼泪都停不下来*-*若那一刻重来 我不哭*-*让他知道我可以很好*-**-*"
+              ],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1409144677,
+              "mcpTrackId": "1409144677",
+              "title": "天使爱大象",
+              "artist": "徐佳莹",
+              "album": "天使爱大象",
+              "genre": "忧郁",
+              "audioUrl": null,
+              "artworkUrl": null,
+              "durationSec": null,
+              "description": "一首偏忧郁氛围的歌曲，适合在当前推荐场景中播放。",
+              "lyrics": [
+                "作曲 : 候志坚*-* 作词 : 吴子云*-*很喜欢原来那个不认识我的你，*-*很怀念原来那个不认识你的我，*-*我们不要变好不好，你会怎么说。*-*我们不要变好不好，你没说。*-*你的世界，你是主角，*-*关于我的误闯，你大方地陪我流浪。*-*那条控制思念的神经坏了，我轻易地被你淹没。*-*不过就是喜欢你很多很多，到底哪来的歉疚。*-*我的世界，你是主角，*-*关于我的误闯，流浪总有终章。*-*走进烟火里，看不见烟火，*-*走进你，看不见我。*-*很喜欢原来那个不认识我的你，*-*很怀念原来那个不认识你的我，*-*我们不要变好不好，你会怎么说。*-*我们不要变好不好，你没说。*-*"
+              ],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1408867658,
+              "mcpTrackId": "1408867658",
+              "title": "我爱",
+              "artist": "袁娅维",
+              "album": "1212",
+              "genre": "宁静",
+              "audioUrl": null,
+              "artworkUrl": null,
+              "durationSec": null,
+              "description": "一首偏宁静氛围的歌曲，适合在当前推荐场景中播放。",
+              "lyrics": [
+                "中文词SA：李聪*-*词曲OAOC: Malay、Trey Campbell、TIA袁娅维*-**-*不自觉地 笑起来*-*多诱人的 自在*-*烈的口红 跳出来*-*沾染一些 色彩*-**-*白白的 摇摇的 月亮*-*摇成了 慌张的 幻想*-*接一滴 掉落的 汗水*-**-*咬一口 花瓣的 暧昧*-*别让人 发现这 滋味*-*当我说 我要了 就要*-*现 在*-**-*Tired of lonely*-*That’s it, I’m done*-*我想我需要 爱*-**-*你可以放肆*-*可以宠爱*-*感觉你 感觉到我*-*如此合拍*-*I’m ready for  love*-*I’m ready for  love*-*I’m ready for  love*-**-*在哪里 藏起来*-*都不觉得意外*-*蒙着眼睛 靠过来*-*迎面来的 浪漫*-**-*白白的 摇摇的 月亮*-*摇成了 慌张的 幻想*-*接一滴 跌落的 汗水*-**-*咬一口 花瓣的 暧昧*-*别让人 发现这 滋味*-*当我说 我要了 就要*-*现 在*-**-*Tired of lonely*-*That’s it, I’m done*-*我想我需要 爱*-**-*你可以放肆*-*可以宠爱*-*感觉你 感觉到我*-*如此合拍*-*I’m ready for  love*-*I’m ready for  love*-*I’m ready for  love*-**-*是有些着急了*-*倒也 不用 太快*-*没什么着急的*-*都可以 慢慢 来*-**-*Tired of lonely*-*That’s it, I’m done*-*我想我需要 爱*-**-*你可以放肆*-*可以宠爱*-*感觉你 感觉到我*-*如此合拍*-*I’m ready for  love*-*I’m ready for  love*-*I’m ready for  love*-**-*制作人Producer ：Malay*-*录音Recording： Malay at Larrabee Studios, North Hollywood, CA *-*录音制作助理Assistant：Raul Lopez*-*配唱制作人Vocal Producer：Trey Campbell*-*和声及和声编写Background Vocals：TIA袁娅维*-*混音工程师Mixing: Manny Marroquin*-*混音录音室Mixing Studio: Larrabee Studios (North Hollywood, CA)*-*混音工程Mix Engineer: Chris Galland, Robin Florent, Scott Desmarais & Jeremie Inhaber*-*母带工程师Mastering： 周天澈（单曲） @Studio21A 、Michelle Mancini（专辑） @ Larrabee Studios (North Hollywood, CA)*-*"
+              ],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1407959794,
+              "mcpTrackId": "1407959794",
+              "title": "偏爱",
+              "artist": "阿肆",
+              "album": "偏爱",
+              "genre": "清新",
+              "audioUrl": null,
+              "artworkUrl": null,
+              "durationSec": null,
+              "description": "一首偏清新氛围的歌曲，适合在当前推荐场景中播放。",
+              "lyrics": [
+                "作曲 : 阿肆*-* 作词 : 阿肆*-*编曲:大眼炮、朴冉*-**-*人山人海*-*唯独对你偏爱*-*若你也正虚位以待*-*容许我郑重地表白*-*不曾崇拜 唯独你是例外 听到心跳打着节拍 当你一步步 走过来*-*过了怦然心动的年纪*-*没想到在路又竟然柳暗花明撞见你*-*太难得*-*像命中注定又不敢确信*-*想珍惜*-*却担心没被拒绝的勇气*-*算命师傅说*-*我今年犯太岁*-*所以丘比特*-*你在搞什么鬼*-*理智与情感*-*两个我在斗嘴*-*怎么办*-*诶诶诶*-*以为装作看似从容不迫 就会无人知晓我 在心里爱你爱得嚣张*-*人山人海*-*唯独对你偏爱*-*若你也正虚位以待*-*容许我郑重地表白*-*不曾崇拜*-*唯独你是例外 听到心跳打着节拍 当你一步步 走过来*-*过了胡作非为的年纪*-*是否还有敞开心扉去热烈爱人的能力*-*怕失败*-*每当遇到挫折就想放弃*-*怕难堪*-*所以做什么都小心翼翼*-*算命师傅说*-*我今年犯太岁*-*所以丘比特*-*你在搞什么鬼*-*爱难得可贵*-*我不能无作为*-*怎么办*-*啊啊啊*-*越是这样看似从容不迫 越是控制不了我 在心里爱你爱得嚣张*-*人山人海*-*唯独对你偏爱*-*若你也正虚位以待*-*容许我郑重地表白*-*不曾崇拜 唯独你是例外 听到心跳打着节拍 当你一步步 走过来*-*容许我郑重地表白*-*就想要爱你爱得嚣张*-*人山人海*-*唯独对你偏爱*-*若你也正虚位以待*-*容许我郑重地表白*-*不曾崇拜 唯独你是例外 听到心跳打着节拍 当你一步步 走过来 过来*-**-*制作人:大眼炮*-*录音师:夏坚@三木Studio*-*混音及母带工程:李金城@432hz studio*-*"
+              ],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            }
+          ],
+          "artistCard": {
+            "id": 7538,
+            "name": "戴爱玲",
+            "description": "戴爱玲（1978年6月22日 - ），台湾歌手，排湾族人，为屏东县春日乡归崇部落的贵族后裔，在歌坛有“铁肺女王”之称，又因其特殊身份而有“公主”的绰号。其音乐作品有《I will smile》、《千年之恋》、《沸腾》等。2013年，戴爱玲发行全新国语大碟《想你的距离》。",
+            "avatarUrl": ""
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "音乐播放资源获取",
+      "method": "GET",
+      "path": "/api/tracks/1412672836",
+      "input": null,
+      "status": 200,
+      "ms": 8.36,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "id": 1412672836,
+          "mcpTrackId": "1412672836",
+          "title": "身不由己",
+          "artist": "丁当",
+          "album": "敢爱敢当",
+          "genre": "unknown",
+          "audioUrl": null,
+          "artworkUrl": "http://p3.music.126.net/1KFjoJtWpnt16KiB4R0Kdw==/109951168144534489.jpg",
+          "durationSec": 255,
+          "description": "榜单同步入库：身不由己 - 丁当",
+          "lyrics": [],
+          "score": 0.0,
+          "source": "LOCAL_DB"
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "音乐播放资源刷新",
+      "method": "POST",
+      "path": "/api/tracks/1412672836/refresh-playback",
+      "input": null,
+      "status": 200,
+      "ms": 8.72,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "id": 1412672836,
+          "mcpTrackId": "1412672836",
+          "title": "身不由己",
+          "artist": "丁当",
+          "album": "敢爱敢当",
+          "genre": "unknown",
+          "audioUrl": null,
+          "artworkUrl": "http://p3.music.126.net/1KFjoJtWpnt16KiB4R0Kdw==/109951168144534489.jpg",
+          "durationSec": 255,
+          "description": "榜单同步入库：身不由己 - 丁当",
+          "lyrics": [],
+          "score": 0.0,
+          "source": "LOCAL_DB"
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "普通推荐",
+      "method": "GET",
+      "path": "/api/recommendations?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "status": 200,
+      "ms": 9.34,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "requestId": "u_1428633ccfc94a2a-onboarding",
+          "strategyVersion": "v2",
+          "hybridWeight": {
+            "collaborative": 0.05,
+            "scene": 0.17,
+            "content": 0.48,
+            "popular": 0.3
+          },
+          "tracks": [],
+          "userStage": "NEW_USER",
+          "guest": false,
+          "onboardingRequired": true,
+          "selectedGenres": [],
+          "onboardingOptions": [
+            "清新",
+            "治愈",
+            "欢快",
+            "孤寂",
+            "忧郁",
+            "思念",
+            "怀旧",
+            "宁静",
+            "舒缓",
+            "浪漫"
+          ],
+          "playCount30d": 0,
+          "summary": "先告诉我你偏爱的风格，我就能为你建立第一版听歌画像。"
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "分时段推荐",
+      "method": "GET",
+      "path": "/api/recommendations/dayparts?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "status": 200,
+      "ms": 16.75,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "requestId": "daypart-1779070437576",
+          "strategyVersion": "v2",
+          "userStage": "NEW_USER",
+          "guest": false,
+          "onboardingRequired": true,
+          "selectedGenres": [],
+          "onboardingOptions": [
+            "清新",
+            "治愈",
+            "欢快",
+            "孤寂",
+            "忧郁",
+            "思念",
+            "怀旧",
+            "宁静",
+            "舒缓",
+            "浪漫"
+          ],
+          "playCount30d": 0,
+          "summary": "先完成新手引导，我会根据你选择的风格为四个时段生成首版歌单。",
+          "playlists": []
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "歌单创建",
+      "method": "POST",
+      "path": "/api/playlists",
+      "input": {
+        "name": "论文测试歌单-220e"
+      },
+      "status": 200,
+      "ms": 15.01,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "playlistId": 25,
+          "userId": null,
+          "status": "created:论文测试歌单-220e"
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "歌曲加入歌单",
+      "method": "POST",
+      "path": "/api/playlists/25/tracks",
+      "input": {
+        "trackId": 1412672836
+      },
+      "status": 200,
+      "ms": 11.9,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "playlistId": 25,
+          "userId": null,
+          "status": "track_added:1412672836"
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "播放事件记录",
+      "method": "POST",
+      "path": "/api/player/events",
+      "input": {
+        "trackId": 1412672836,
+        "eventType": "play",
+        "progressSec": 30,
+        "completed": true
+      },
+      "status": 200,
+      "ms": 20.4,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": null
+      },
+      "error": null
+    },
+    {
+      "module": "播放历史记录",
+      "method": "GET",
+      "path": "/api/history?limit=10",
+      "input": null,
+      "status": 200,
+      "ms": 58.36,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": [
+          {
+            "id": 1798349964,
+            "trackId": 1412672836,
+            "title": "身不由己",
+            "artist": "丁当",
+            "album": "敢爱敢当",
+            "artworkUrl": "http://p3.music.126.net/1KFjoJtWpnt16KiB4R0Kdw==/109951168144534489.jpg",
+            "genre": "unknown",
+            "playedAt": "2026-05-18T02:13:57Z",
+            "playDurationSec": 30,
+            "completed": true,
+            "sourceType": "legacy_db"
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "module": "数据可视化-热力图",
+      "method": "GET",
+      "path": "/api/analytics/heatmap?days=30",
+      "input": null,
+      "status": 200,
+      "ms": 16.29,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": [
+          {
+            "date": "2026-05-18",
+            "count": 1
+          },
+          {
+            "date": "2026-05-17",
+            "count": 0
+          },
+          {
+            "date": "2026-05-16",
+            "count": 0
+          },
+          {
+            "date": "2026-05-15",
+            "count": 0
+          },
+          {
+            "date": "2026-05-14",
+            "count": 0
+          },
+          {
+            "date": "2026-05-13",
+            "count": 0
+          },
+          {
+            "date": "2026-05-12",
+            "count": 0
+          },
+          {
+            "date": "2026-05-11",
+            "count": 0
+          },
+          {
+            "date": "2026-05-10",
+            "count": 0
+          },
+          {
+            "date": "2026-05-09",
+            "count": 0
+          },
+          {
+            "date": "2026-05-08",
+            "count": 0
+          },
+          {
+            "date": "2026-05-07",
+            "count": 0
+          },
+          {
+            "date": "2026-05-06",
+            "count": 0
+          },
+          {
+            "date": "2026-05-05",
+            "count": 0
+          },
+          {
+            "date": "2026-05-04",
+            "count": 0
+          },
+          {
+            "date": "2026-05-03",
+            "count": 0
+          },
+          {
+            "date": "2026-05-02",
+            "count": 0
+          },
+          {
+            "date": "2026-05-01",
+            "count": 0
+          },
+          {
+            "date": "2026-04-30",
+            "count": 0
+          },
+          {
+            "date": "2026-04-29",
+            "count": 0
+          },
+          {
+            "date": "2026-04-28",
+            "count": 0
+          },
+          {
+            "date": "2026-04-27",
+            "count": 0
+          },
+          {
+            "date": "2026-04-26",
+            "count": 0
+          },
+          {
+            "date": "2026-04-25",
+            "count": 0
+          },
+          {
+            "date": "2026-04-24",
+            "count": 0
+          },
+          {
+            "date": "2026-04-23",
+            "count": 0
+          },
+          {
+            "date": "2026-04-22",
+            "count": 0
+          },
+          {
+            "date": "2026-04-21",
+            "count": 0
+          },
+          {
+            "date": "2026-04-20",
+            "count": 0
+          },
+          {
+            "date": "2026-04-19",
+            "count": 0
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "module": "数据可视化-流派分布",
+      "method": "GET",
+      "path": "/api/analytics/genres?days=30",
+      "input": null,
+      "status": 200,
+      "ms": 12.0,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": [
+          {
+            "genre": "unknown",
+            "count": 1
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "module": "不存在接口-/api/music/search",
+      "method": "GET",
+      "path": "/api/music/search?q=%E7%88%B1",
+      "input": null,
+      "status": 500,
+      "ms": 6.57,
+      "success": false,
+      "payload": {
+        "success": false,
+        "code": "INTERNAL_ERROR",
+        "message": "No static resource api/music/search.",
+        "data": null
+      },
+      "error": "HTTP Error 500: "
+    },
+    {
+      "module": "不存在接口-/api/analytics/genre-distribution",
+      "method": "GET",
+      "path": "/api/analytics/genre-distribution",
+      "input": null,
+      "status": 500,
+      "ms": 6.25,
+      "success": false,
+      "payload": {
+        "success": false,
+        "code": "INTERNAL_ERROR",
+        "message": "No static resource api/analytics/genre-distribution.",
+        "data": null
+      },
+      "error": "HTTP Error 500: "
+    },
+    {
+      "module": "不存在接口-/api/analytics/radar",
+      "method": "GET",
+      "path": "/api/analytics/radar",
+      "input": null,
+      "status": 500,
+      "ms": 21.03,
+      "success": false,
+      "payload": {
+        "success": false,
+        "code": "INTERNAL_ERROR",
+        "message": "No static resource api/analytics/radar.",
+        "data": null
+      },
+      "error": "HTTP Error 500: "
+    },
+    {
+      "module": "AI助手接口",
+      "method": "POST",
+      "path": "/api/assistant/chat",
+      "input": {
+        "message": "请根据我的听歌偏好推荐一首歌",
+        "history": [],
+        "scene": "default",
+        "emotion": "neutral"
+      },
+      "status": 200,
+      "ms": 221.1,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "reply": "当前 AI 助手暂时不可用，我先根据系统候选结果为你整理了一份本地推荐歌单。",
+          "playlistTitle": "为你生成的推荐歌单",
+          "playlistSummary": "这是根据你的提问“请根据我的听歌偏好推荐一首歌”整理出来的一份首版歌单。",
+          "playlist": [
+            {
+              "track": {
+                "id": 1412672844,
+                "mcpTrackId": "1412672844",
+                "title": "Forget it （feat. Mac Ova Seas）",
+                "artist": "SETI / mac ova seas",
+                "album": "nightfall EP",
+                "genre": "unknown",
+                "audioUrl": null,
+                "artworkUrl": "http://p4.music.126.net/_jRndEytHJkJbSkoOUQ49g==/109951169859352741.jpg",
+                "durationSec": 216,
+                "description": "榜单同步入库：Forget it （feat. Mac Ova Seas） - SETI / mac ova seas",
+                "lyrics": [],
+                "score": 0.0,
+                "source": "LOCAL_DB"
+              },
+              "reason": "系统根据你的当前需求挑选了这首更贴近场景的歌曲。"
+            },
+            {
+              "track": {
+                "id": 1412672843,
+                "mcpTrackId": "1412672843",
+                "title": "坚定的浪潮",
+                "artist": "念念不忘",
+                "album": "众生赋，人间录",
+                "genre": "unknown",
+                "audioUrl": null,
+                "artworkUrl": "http://p3.music.126.net/-fDlxXgXgIzfn9--8SwJog==/109951172869512177.jpg",
+                "durationSec": 237,
+                "description": "榜单同步入库：坚定的浪潮 - 念念不忘",
+                "lyrics": [],
+                "score": 0.0,
+                "source": "LOCAL_DB"
+              },
+              "reason": "系统根据你的当前需求挑选了这首更贴近场景的歌曲。"
+            },
+            {
+              "track": {
+                "id": 1412672842,
+                "mcpTrackId": "1412672842",
+                "title": "坠夏",
+                "artist": "曾舜晞",
+                "album": "夏日戏剧",
+                "genre": "unknown",
+                "audioUrl": null,
+                "artworkUrl": "http://p3.music.126.net/csqn0fgNHO3QDQ5llTjWOg==/109951173183850803.jpg",
+                "durationSec": 160,
+                "description": "榜单同步入库：坠夏 - 曾舜晞",
+                "lyrics": [],
+                "score": 0.0,
+                "source": "LOCAL_DB"
+              },
+              "reason": "系统根据你的当前需求挑选了这首更贴近场景的歌曲。"
+            },
+            {
+              "track": {
+                "id": 1412672841,
+                "mcpTrackId": "1412672841",
+                "title": "春树",
+                "artist": "银河快递",
+                "album": "春树",
+                "genre": "unknown",
+                "audioUrl": null,
+                "artworkUrl": "http://p4.music.126.net/Frivz0wQeVOsU-mvuEqZZw==/109951173137293067.jpg",
+                "durationSec": 207,
+                "description": "榜单同步入库：春树 - 银河快递",
+                "lyrics": [],
+                "score": 0.0,
+                "source": "LOCAL_DB"
+              },
+              "reason": "系统根据你的当前需求挑选了这首更贴近场景的歌曲。"
+            },
+            {
+              "track": {
+                "id": 1412672840,
+                "mcpTrackId": "1412672840",
+                "title": "人间逍遥客",
+                "artist": "Winky诗",
+                "album": "人间逍遥客",
+                "genre": "unknown",
+                "audioUrl": null,
+                "artworkUrl": "http://p4.music.126.net/A4QWaVJWR7X3NsjNCjlxcA==/109951173136991146.jpg",
+                "durationSec": 215,
+                "description": "榜单同步入库：人间逍遥客 - Winky诗",
+                "lyrics": [],
+                "score": 0.0,
+                "source": "LOCAL_DB"
+              },
+              "reason": "系统根据你的当前需求挑选了这首更贴近场景的歌曲。"
+            },
+            {
+              "track": {
+                "id": 1412672839,
+                "mcpTrackId": "1412672839",
+                "title": "SGA",
+                "artist": "CHILLSENONE / Top Barry",
+                "album": "V8",
+                "genre": "unknown",
+                "audioUrl": null,
+                "artworkUrl": "http://p3.music.126.net/4NbUWGcSUwK_KS2awOjYMA==/109951173132859393.jpg",
+                "durationSec": 140,
+                "description": "榜单同步入库：SGA - CHILLSENONE / Top Barry",
+                "lyrics": [],
+                "score": 0.0,
+                "source": "LOCAL_DB"
+              },
+              "reason": "系统根据你的当前需求挑选了这首更贴近场景的歌曲。"
+            }
+          ],
+          "model": "tongyi-xiaomi-analysis-pro",
+          "usedFallback": true,
+          "reasoningSummary": [
+            "本次已自动回退到系统候选池，方便你继续试听和挑选。"
+          ]
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "MCP调试接口",
+      "method": "GET",
+      "path": "/api/recommendations/debug/mcp?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "status": 200,
+      "ms": 102.89,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "userId": "u_1428633ccfc94a2a",
+          "scene": "default",
+          "emotion": "neutral",
+          "requestedLimit": 10,
+          "coldStart": true,
+          "explorationRatio": 0.28,
+          "mappedArgs": {
+            "genres": [],
+            "descriptors": [
+              "balanced"
+            ],
+            "similar_to": [
+              "丁当 - 敢爱敢当"
+            ],
+            "secondary_genres": [],
+            "min_rating": 3.5,
+            "max_results": 10,
+            "hybrid_weight": 0.68
+          },
+          "rawMcpPayload": {
+            "count": 0,
+            "query": {
+              "similar_to": [
+                "丁当 - 敢爱敢当"
+              ],
+              "genres": [],
+              "secondary_genres": [],
+              "descriptors": [
+                "balanced"
+              ],
+              "min_rating": 3.5,
+              "max_results": 10,
+              "hybrid_weight": 0.68
+            },
+            "recommendations": []
+          },
+          "rawRecommendationCount": 0,
+          "matchedCount": 0,
+          "unmatchedCount": 0,
+          "fallbackTriggered": true,
+          "errorMessage": null,
+          "matches": [],
+          "fallbackTracks": [
+            {
+              "id": 1412672844,
+              "mcpTrackId": "1412672844",
+              "title": "Forget it （feat. Mac Ova Seas）",
+              "artist": "SETI / mac ova seas",
+              "album": "nightfall EP",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/_jRndEytHJkJbSkoOUQ49g==/109951169859352741.jpg",
+              "durationSec": 216,
+              "description": "榜单同步入库：Forget it （feat. Mac Ova Seas） - SETI / mac ova seas",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672843,
+              "mcpTrackId": "1412672843",
+              "title": "坚定的浪潮",
+              "artist": "念念不忘",
+              "album": "众生赋，人间录",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/-fDlxXgXgIzfn9--8SwJog==/109951172869512177.jpg",
+              "durationSec": 237,
+              "description": "榜单同步入库：坚定的浪潮 - 念念不忘",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672842,
+              "mcpTrackId": "1412672842",
+              "title": "坠夏",
+              "artist": "曾舜晞",
+              "album": "夏日戏剧",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/csqn0fgNHO3QDQ5llTjWOg==/109951173183850803.jpg",
+              "durationSec": 160,
+              "description": "榜单同步入库：坠夏 - 曾舜晞",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672841,
+              "mcpTrackId": "1412672841",
+              "title": "春树",
+              "artist": "银河快递",
+              "album": "春树",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/Frivz0wQeVOsU-mvuEqZZw==/109951173137293067.jpg",
+              "durationSec": 207,
+              "description": "榜单同步入库：春树 - 银河快递",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672840,
+              "mcpTrackId": "1412672840",
+              "title": "人间逍遥客",
+              "artist": "Winky诗",
+              "album": "人间逍遥客",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/A4QWaVJWR7X3NsjNCjlxcA==/109951173136991146.jpg",
+              "durationSec": 215,
+              "description": "榜单同步入库：人间逍遥客 - Winky诗",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672839,
+              "mcpTrackId": "1412672839",
+              "title": "SGA",
+              "artist": "CHILLSENONE / Top Barry",
+              "album": "V8",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/4NbUWGcSUwK_KS2awOjYMA==/109951173132859393.jpg",
+              "durationSec": 140,
+              "description": "榜单同步入库：SGA - CHILLSENONE / Top Barry",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672838,
+              "mcpTrackId": "1412672838",
+              "title": "旧商务",
+              "artist": "马赫mood / 夏辰熙",
+              "album": "旧商务",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/t_n9MCP07DpiaH95bK_hXg==/109951173149474396.jpg",
+              "durationSec": 222,
+              "description": "榜单同步入库：旧商务 - 马赫mood / 夏辰熙",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672837,
+              "mcpTrackId": "1412672837",
+              "title": "一半一半（Live）",
+              "artist": "希林娜依高 / 欧阳娣娣（Didi Ouyang） / 王晓赟子",
+              "album": "《超燃青春的合唱》第3期",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/_v6hX7K1aSLBq5fMtlxZXA==/109951173184162340.jpg",
+              "durationSec": 238,
+              "description": "榜单同步入库：一半一半（Live） - 希林娜依高 / 欧阳娣娣（Didi Ouyang） / 王晓赟子",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672836,
+              "mcpTrackId": "1412672836",
+              "title": "身不由己",
+              "artist": "丁当",
+              "album": "敢爱敢当",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p3.music.126.net/1KFjoJtWpnt16KiB4R0Kdw==/109951168144534489.jpg",
+              "durationSec": 255,
+              "description": "榜单同步入库：身不由己 - 丁当",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            },
+            {
+              "id": 1412672835,
+              "mcpTrackId": "1412672835",
+              "title": "颜色",
+              "artist": "Gareth.T",
+              "album": "颜色",
+              "genre": "unknown",
+              "audioUrl": null,
+              "artworkUrl": "http://p4.music.126.net/NBYS2W-x3p2IVNvHMcylMg==/109951170940524301.jpg",
+              "durationSec": 211,
+              "description": "榜单同步入库：颜色 - Gareth.T",
+              "lyrics": [],
+              "score": 0.0,
+              "source": "LOCAL_DB"
+            }
+          ]
+        }
+      },
+      "error": null
+    },
+    {
+      "module": "MCP失败后本地回退逻辑-访客锁定",
+      "method": "GET",
+      "path": "/api/recommendations?scene=default&emotion=neutral&limit=10",
+      "input": null,
+      "status": 200,
+      "ms": 23.54,
+      "success": true,
+      "payload": {
+        "success": true,
+        "code": "OK",
+        "message": "success",
+        "data": {
+          "requestId": "guest-locked",
+          "strategyVersion": "v2",
+          "hybridWeight": {
+            "popular": 1.0
+          },
+          "tracks": [],
+          "userStage": "VISITOR",
+          "guest": true,
+          "onboardingRequired": false,
+          "selectedGenres": [],
+          "onboardingOptions": [
+            "清新",
+            "治愈",
+            "欢快",
+            "孤寂",
+            "忧郁",
+            "思念",
+            "怀旧",
+            "宁静",
+            "舒缓",
+            "浪漫"
+          ],
+          "playCount30d": 0,
+          "summary": "登录后可查看专属推荐、保存偏好，并持续积累你的听歌画像。"
+        }
+      },
+      "error": null
+    }
+  ]
+}

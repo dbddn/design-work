@@ -1,0 +1,91 @@
+spring:
+  application:
+    name: reco-backend
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://127.0.0.1:3306/design?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&characterEncoding=utf8&connectTimeout=3000&socketTimeout=5000}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:123456}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 3000
+      validation-timeout: 2000
+      maximum-pool-size: 10
+  jdbc:
+    template:
+      query-timeout: 5
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+  flyway:
+    enabled: false
+    locations: classpath:db/migration
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+server:
+  port: ${SERVER_PORT:8080}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+app:
+  security:
+    jwt-secret: ${JWT_SECRET:change-me-in-prod-change-me-in-prod-123456}
+    jwt-expire-seconds: ${JWT_EXPIRE_SECONDS:86400}
+  mcp:
+    base-url: ${MCP_BASE_URL:http://localhost:9000}
+    connect-timeout-ms: 300
+    read-timeout-ms: 6000
+    project-root: ${MCP_PROJECT_ROOT:D:/TestMCP/grant-mcp-main}
+    server-command: ${MCP_SERVER_COMMAND:node}
+    server-entry: ${MCP_SERVER_ENTRY:D:/TestMCP/grant-mcp-main/dist/index.js}
+    helper-script: ${MCP_HELPER_SCRIPT:C:/Users/LIUHENGRU/Desktop/design-1/backend/tools/mcp-tool-call.mjs}
+  ai:
+    api-key: ${DASHSCOPE_API_KEY:sk-674de33255564feca31354c6ae83b6c5}
+    base-url: ${DASHSCOPE_BASE_URL:https://dashscope.aliyuncs.com/api/v2/apps/protocols/compatible-mode/v1}
+    model: ${DASHSCOPE_MODEL:tongyi-xiaomi-analysis-pro}
+    thinking-enabled: ${DASHSCOPE_THINKING_ENABLED:true}
+    timeout-seconds: ${DASHSCOPE_TIMEOUT_SECONDS:40}
+    daypart-timeout-seconds: ${DASHSCOPE_DAYPART_TIMEOUT_SECONDS:6}
+  daypart-ai:
+    enabled: ${DAYPART_AI_ENABLED:true}
+    base-url: ${DAYPART_AI_BASE_URL:http://localhost:11434}
+    model: ${DAYPART_AI_MODEL:qwen2.5:1.5b}
+    timeout-seconds: ${DAYPART_AI_TIMEOUT_SECONDS:60}
+  netease-api:
+    enabled: ${NETEASE_API_ENABLED:true}
+    base-url: ${NETEASE_API_BASE_URL:http://127.0.0.1:3000}
+    timeout-ms: ${NETEASE_API_TIMEOUT_MS:1800}
+    default-level: ${NETEASE_API_LEVEL:standard}
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      mcpService:
+        slidingWindowSize: 20
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5s
+  retry:
+    instances:
+      mcpService:
+        maxAttempts: 3
+        waitDuration: 200ms
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
