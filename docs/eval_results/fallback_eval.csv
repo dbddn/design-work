@@ -1,0 +1,8 @@
+﻿异常类型,是否触发回退,回退策略,最终是否返回歌曲,最终返回数量,响应时间,日志证据,结果说明
+MCP 请求失败、超时或无法匹配,是,MCP/AI 失败后使用本地推荐候选,是,12.11,1892.71 ms,recommendation_log 聚合记录 245 条,使用真实推荐日志归类，未改写生产数据。
+MCP 返回空候选,是,NO_MCP_CANDIDATES_USE_LOCAL,是,10.00,5940.52 ms,recommendation_log 聚合记录 25 条,使用真实推荐日志归类，未改写生产数据。
+AI 文案生成失败或超时,是,AI_CALL_FAILED_USE_MCP,是,10.00,7138.07 ms,recommendation_log 聚合记录 101 条,使用真实推荐日志归类，未改写生产数据。
+其他回退,是,PERSISTED_PLAYLIST_PENDING_USE_MCP,是,10.00,27757.69 ms,recommendation_log 聚合记录 52 条,使用真实推荐日志归类，未改写生产数据。
+MCP 请求超时,未观测,真实日志中未出现该精确异常类型,N/A,N/A,N/A,recommendation_log 最近 30 天无对应记录,未人为修改数据库或伪造 MCP 返回，因此作为未观测项记录。
+MCP 返回候选但无法匹配本地 musics 表,未观测,真实日志中未出现该精确异常类型,N/A,N/A,N/A,recommendation_log 最近 30 天无对应记录,未人为修改数据库或伪造 MCP 返回，因此作为未观测项记录。
+本地候选数量不足,未观测,真实日志中未出现该精确异常类型,N/A,N/A,N/A,recommendation_log 最近 30 天无对应记录,未人为修改数据库或伪造 MCP 返回，因此作为未观测项记录。

@@ -8,6 +8,8 @@ public record AssistantChatRequest(
         @NotBlank String message,
         List<AssistantMessageDto> history,
         String scene,
-        String emotion
+        String emotion,
+        String style,
+        Long currentTrackId
 ) {
 }

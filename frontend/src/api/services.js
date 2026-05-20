@@ -43,6 +43,7 @@ export const tracksApi = {
 export const playlistsApi = {
   mine: () => get('/playlists/mine'),
   create: (body) => post('/playlists', body),
+  listTracks: (playlistId, limit = 100) => get(`/playlists/${playlistId}/tracks`, { limit }),
   createTrackRelation: (playlistId, body) => post(`/playlists/${playlistId}/tracks`, body),
   updateFavoriteState: (playlistId, body) => post(`/playlists/${playlistId}/favorite`, body)
 };
@@ -84,15 +85,15 @@ export const exploreApi = {
 export const recommendationsApi = {
   list: ({ scene = 'default', emotion = 'neutral', limit = 20 } = {}) =>
     get('/recommendations', { scene, emotion, limit }),
-  dayparts: async ({ scene = 'default', emotion = 'neutral', limit = 10 } = {}) => {
-    const requestKey = JSON.stringify({ scene, emotion, limit });
+  dayparts: async ({ scene = 'default', emotion = 'neutral', limit = 10, timeSlot, refresh = false } = {}) => {
+    const requestKey = JSON.stringify({ scene, emotion, limit, timeSlot: timeSlot || '', refresh: Boolean(refresh) });
     if (activeDaypartRequest && activeDaypartRequestKey === requestKey) {
       return activeDaypartRequest;
     }
 
     activeDaypartRequestKey = requestKey;
     activeDaypartRequest = http.get('/recommendations/dayparts', {
-      params: { scene, emotion, limit },
+      params: { scene, emotion, limit, timeSlot, refresh },
       timeout: 30000
     })
       .then((payload) => payload?.data)
@@ -114,7 +115,7 @@ export const recommendationsApi = {
 
 export const assistantApi = {
   chat: async (body) => {
-    const payload = await http.post('/assistant/chat', body, { timeout: 45000 });
+    const payload = await http.post('/assistant/chat', body, { timeout: 90000 });
     return payload?.data;
   }
 };
@@ -147,6 +148,7 @@ export const artistApi = {
 export const playlistApi = {
   mine: playlistsApi.mine,
   create: (name) => playlistsApi.create({ name }),
+  tracks: playlistsApi.listTracks,
   addTrack: (playlistId, trackId) => playlistsApi.createTrackRelation(playlistId, { trackId }),
   favorite: (playlistId, favorite = true) => playlistsApi.updateFavoriteState(playlistId, { favorite })
 };
@@ -162,8 +164,8 @@ export const communityApi = {
 export const recommendationApi = {
   list: (scene = 'default', emotion = 'neutral', limit = 20) =>
     recommendationsApi.list({ scene, emotion, limit }),
-  dayparts: (scene = 'default', emotion = 'neutral', limit = 10) =>
-    recommendationsApi.dayparts({ scene, emotion, limit }),
+  dayparts: (scene = 'default', emotion = 'neutral', limit = 10, options = {}) =>
+    recommendationsApi.dayparts({ scene, emotion, limit, ...options }),
   saveOnboardingPreferences: recommendationsApi.saveOnboardingPreferences,
   feedback: recommendationsApi.createFeedback,
   strategy: recommendationsApi.getStrategy

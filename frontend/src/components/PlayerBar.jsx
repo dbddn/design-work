@@ -7,15 +7,6 @@ const formatTime = (seconds) => {
   return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 };
 
-const ratingMarks = [1, 2, 3, 4, 5];
-
-const isValidGenre = (value) => {
-  const text = String(value || '').trim();
-  if (!text) return false;
-  const normalized = text.toLowerCase();
-  return normalized !== 'unknown' && normalized !== '未分类';
-};
-
 export default function PlayerBar({
   track,
   onPrev,
@@ -23,12 +14,9 @@ export default function PlayerBar({
   onSkip,
   onToggleFavorite,
   onOpenDetail,
-  onRate,
-  isFavorited = false,
-  currentRating = 0
+  isFavorited = false
 }) {
   const audioRef = useRef(null);
-  const [expanded, setExpanded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(Boolean(track));
   const [progress, setProgress] = useState(0);
   const [coverFailed, setCoverFailed] = useState(false);
@@ -59,13 +47,14 @@ export default function PlayerBar({
       return undefined;
     }
 
-    audio.src = track.audioUrl;
-    audio.currentTime = 0;
-    if (isPlaying) {
-      audio.play().catch(() => setIsPlaying(false));
+    if (audio.src !== track.audioUrl) {
+      audio.src = track.audioUrl;
+      audio.currentTime = 0;
+      audio.load();
     }
+    audio.play().catch(() => setIsPlaying(false));
     return undefined;
-  }, [hasAudio, isPlaying, track]);
+  }, [hasAudio, track?.audioUrl]);
 
   const handleTogglePlay = () => {
     if (!track || !hasAudio) {
@@ -94,16 +83,18 @@ export default function PlayerBar({
     }
   };
 
-  const title = track?.title || '暂无播放记录';
+  if (!track) {
+    return <div className="player-hover-zone" aria-hidden="true" />;
+  }
+
+  const title = track?.title || '暂无播放';
   const artist = track?.artist || '等待选择歌曲';
-  const album = track?.album || '点击首页或搜索结果开始播放';
-  const genre = track?.genre || '';
-  const description = track?.description || '播放器会展示当前歌曲的歌词与简介。';
-  const lyrics =
-    Array.isArray(track?.lyrics) && track.lyrics.length > 0 ? track.lyrics : ['暂无歌词内容'];
+  const album = track?.album || '从首页或搜索结果开始播放';
 
   return (
-    <div className={`player-bar glass-panel ${expanded ? 'expanded' : ''}`}>
+    <>
+    <div className="player-hover-zone" aria-hidden="true" />
+    <div className="player-bar glass-panel">
       <audio
         ref={audioRef}
         preload="metadata"
@@ -125,8 +116,8 @@ export default function PlayerBar({
         <button
           type="button"
           className="player-cover compact"
-          onClick={() => setExpanded((value) => !value)}
-          aria-label="展开播放器详情"
+          onClick={() => onOpenDetail?.(track)}
+          aria-label="打开歌曲详情"
         >
           {track?.artworkUrl && !coverFailed ? (
             <img src={track.artworkUrl} alt={`${title} 封面`} onError={() => setCoverFailed(true)} />
@@ -157,88 +148,31 @@ export default function PlayerBar({
             max={Math.max(duration, progress, 1)}
             value={Math.min(progress, Math.max(duration, progress, 1))}
             onChange={(event) => handleSeek(event.target.value)}
-            disabled={!track || !hasAudio}
+            disabled={!hasAudio}
           />
           <span>{formatTime(duration)}</span>
         </div>
 
         <div className="player-controls compact">
-          <button type="button" className="icon-btn" onClick={onPrev} disabled={!track}>
+          <button type="button" className="icon-btn" onClick={onPrev}>
             上一首
           </button>
-          <button type="button" className="icon-btn primary" onClick={handleTogglePlay} disabled={!track || !hasAudio}>
+          <button type="button" className="icon-btn primary" onClick={handleTogglePlay} disabled={!hasAudio}>
             {isPlaying ? '暂停' : '播放'}
           </button>
-          <button type="button" className="icon-btn" onClick={onNext || onSkip} disabled={!track}>
+          <button type="button" className="icon-btn" onClick={onNext || onSkip}>
             下一首
           </button>
-          <button
-            type="button"
-            className={`icon-btn ${isFavorited ? 'active' : ''}`}
-            onClick={onToggleFavorite}
-            disabled={!track}
-          >
+          <button type="button" className={`icon-btn ${isFavorited ? 'active' : ''}`} onClick={onToggleFavorite}>
             {isFavorited ? '已收藏' : '收藏'}
           </button>
-          <button type="button" className="icon-btn" onClick={() => track && onOpenDetail?.(track)} disabled={!track}>
+          <button type="button" className="icon-btn" onClick={() => onOpenDetail?.(track)}>
             详情
           </button>
+          {!hasAudio ? <span className="chip soft">暂无音源</span> : null}
         </div>
       </div>
-
-      <div className="player-utility-row">
-        <div className="player-rating-group" aria-label="歌曲评分">
-          <span className="player-rating-label">评分</span>
-          <div className="player-rating-stars">
-            {ratingMarks.map((score) => (
-              <button
-                key={score}
-                type="button"
-                className={`rating-star ${currentRating >= score ? 'active' : ''}`}
-                onClick={() => onRate?.(score)}
-                disabled={!track}
-                aria-label={`评 ${score} 分`}
-              >
-                ★
-              </button>
-            ))}
-          </div>
-        </div>
-        {!hasAudio && track ? <span className="chip soft">当前歌曲暂无可用音源</span> : null}
-        <button
-          type="button"
-          className="player-expand-trigger"
-          onClick={() => setExpanded((value) => !value)}
-          disabled={!track}
-        >
-          {expanded ? '收起歌词与信息' : '展开歌词与信息'}
-        </button>
-      </div>
-
-      {expanded ? (
-        <div className="player-details">
-          <div className="detail-card">
-            <span className="eyebrow">歌曲信息</span>
-            <h4>{album}</h4>
-            <div className="chips">
-              {isValidGenre(genre) ? <span className="genre-pill">{genre}</span> : null}
-              <span className="chip soft">{artist}</span>
-            </div>
-            <p className="detail-copy">{description}</p>
-            <button type="button" className="btn subtle small" onClick={() => track && onOpenDetail?.(track)}>
-              打开歌曲详情页
-            </button>
-          </div>
-          <div className="detail-card">
-            <span className="eyebrow">歌词</span>
-            <div className="lyrics-block">
-              {lyrics.map((line, index) => (
-                <p key={`${line}-${index}`}>{line}</p>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : null}
     </div>
+    </>
   );
 }

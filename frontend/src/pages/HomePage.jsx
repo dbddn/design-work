@@ -4,6 +4,12 @@ import CommunityPage from './CommunityPage';
 import { chartsApi, recommendationApi, trackApi } from '../api/services';
 import { buildDaypartGroups } from '../utils/dayparts';
 import { getErrorMessage, toArray } from '../utils/view';
+import toplistIcon1 from '../../icon/1.svg';
+import toplistIcon2 from '../../icon/2.svg';
+import toplistIcon3 from '../../icon/3.svg';
+import toplistIcon4 from '../../icon/4.svg';
+import playIcon from '../../icon/bofang.svg';
+import detailIcon from '../../icon/xiangqing.svg';
 
 const sceneOptions = [
   ['default', '默认'],
@@ -78,6 +84,34 @@ const getChartTrack = (item, title) => ({
   genre: normalizeText(item?.genre, '')
 });
 
+const buildPersonalHotCharts = (historyRows) => {
+  const grouped = new Map();
+  toArray(historyRows).forEach((item) => {
+    const trackId = item?.trackId || item?.id || '';
+    const title = formatTrackTitle(item, '');
+    if (!title) return;
+    const artist = formatTrackArtist(item, '未知歌手');
+    const key = trackId ? `id:${trackId}` : `${title}::${artist}`;
+    const current = grouped.get(key) || {
+      id: trackId || key,
+      track: title,
+      title,
+      artist,
+      album: item?.album || '',
+      artworkUrl: item?.artworkUrl || '',
+      genre: item?.genre || '',
+      playCount: 0
+    };
+    current.playCount += 1;
+    grouped.set(key, current);
+  });
+
+  return [...grouped.values()]
+    .sort((left, right) => right.playCount - left.playCount || String(left.title).localeCompare(String(right.title), 'zh-Hans-CN'))
+    .slice(0, 5)
+    .map((item, index) => ({ ...item, rank: index + 1 }));
+};
+
 const getOptionLabel = (options, value, fallback) =>
   options.find(([key]) => key === value)?.[1] || fallback;
 
@@ -87,6 +121,43 @@ const buildSongShelfTags = (result, scene, emotion) => {
   const emotionLabel = getOptionLabel(emotionOptions, emotion, '平静');
   return ['每日推荐', sceneLabel, emotionLabel, ...selectedGenres];
 };
+
+const daypartCopy = {
+  morning: {
+    title: '晨间唤醒歌单',
+    description:
+      '用轻盈、明亮的旋律把状态慢慢打开，优先挑选节奏不急、情绪干净的歌曲，适合洗漱、通勤前和刚坐到桌前的第一段时间。'
+  },
+  afternoon: {
+    title: '午后续航歌单',
+    description:
+      '在容易分神的下午补上一点稳定推力，歌曲会兼顾旋律记忆点和适度节奏感，适合工作、学习、整理任务时持续播放。'
+  },
+  evening: {
+    title: '夜幕松弛歌单',
+    description:
+      '把白天的紧绷感慢慢降下来，选择更有叙事感和空间感的曲目，适合晚饭后、回家路上或一个人安静放空的时候。'
+  },
+  midnight: {
+    title: '深夜漫游歌单',
+    description:
+      '偏向安静、细腻和沉浸的听感，减少过强的鼓点刺激，让旋律陪你写东西、想事情，或者把情绪轻轻放回夜色里。'
+  }
+};
+
+const getDaypartCopy = (group = {}) => {
+  const preset = daypartCopy[group.key] || {};
+  return {
+    title: normalizeText(group.playlistTitle, preset.title || normalizeText(group.mood, '专属时段歌单'))
+      .replace('上午个性化歌单', '晨间唤醒歌单')
+      .replace('下午个性化歌单', '午后续航歌单')
+      .replace('晚上个性化歌单', '夜幕松弛歌单')
+      .replace('深夜个性化歌单', '深夜漫游歌单'),
+    description: preset.description || '用更贴近当前时段的旋律、节奏和情绪铺底，让这组歌曲自然贴合当下的环境。'
+  };
+};
+
+const toplistIcons = [toplistIcon1, toplistIcon2, toplistIcon3, toplistIcon4];
 
 function ChartPanel({ title, items, onPlay, themeIndex }) {
   const safeItems = toArray(items).slice(0, 5);
@@ -114,7 +185,7 @@ function ChartPanel({ title, items, onPlay, themeIndex }) {
             );
           })
         ) : (
-          <div className="chart-feature-empty">暂无数据</div>
+          <div className="chart-feature-empty">鏆傛棤鏁版嵁</div>
         )}
       </div>
     </section>
@@ -255,14 +326,15 @@ export default function HomePage({ onPlay, onOpenDetail }) {
 
     const run = async () => {
       try {
-        const [hotData, newData, neteaseData] = await Promise.all([
-          chartsApi.listHot(),
+        const [historyData, newData, neteaseData] = await Promise.all([
+          trackApi.history(100),
           chartsApi.listNew(),
           chartsApi.listNeteaseToplist(4, 5)
         ]);
-        const [enrichedHot, enrichedNew] = await Promise.all([enrichChartItems(hotData), enrichChartItems(newData)]);
+        const personalHot = buildPersonalHotCharts(historyData);
+        const enrichedNew = await enrichChartItems(newData);
         if (!cancelled) {
-          setHotCharts(enrichedHot);
+          setHotCharts(personalHot);
           setNewCharts(enrichedNew);
           setNeteaseToplists(toArray(neteaseData));
         }
@@ -338,14 +410,31 @@ export default function HomePage({ onPlay, onOpenDetail }) {
   );
 
   const displayToplists = useMemo(() => {
-    const fromApi = toArray(neteaseToplists);
+    const personalHotList = hotCharts.length > 0
+      ? {
+          id: 'personal-hot',
+          name: '热歌榜',
+          coverImgUrl: '',
+          updateFrequency: '来自我的听歌记录 Top5',
+          tracks: hotCharts.slice(0, 5).map((item) => ({
+            localTrackId: item?.id,
+            title: item?.track || item?.title || '未知歌曲',
+            artist: item?.artist || '未知歌手',
+            album: item?.album || '',
+            artworkUrl: item?.artworkUrl || '',
+            playCount: item?.playCount || 0
+          }))
+        }
+      : null;
+
+    const fromApi = toArray(neteaseToplists).filter((item) => item?.name !== '热歌榜');
     const hasTrackData = fromApi.some((item) => toArray(item?.tracks).length > 0);
     if (fromApi.length > 0 && hasTrackData) {
-      const preferredNames = ['飙升榜', '新歌榜', '热歌榜', '原创榜'];
+      const preferredNames = ['飙升榜', '新歌榜', '原创榜'];
       const preferred = preferredNames
         .map((name) => fromApi.find((item) => item?.name === name))
         .filter(Boolean);
-      const merged = [...preferred];
+      const merged = personalHotList ? [personalHotList, ...preferred] : [...preferred];
       for (const item of fromApi) {
         if (merged.length >= 4) break;
         if (!merged.some((entry) => String(entry?.id) === String(item?.id))) {
@@ -355,19 +444,9 @@ export default function HomePage({ onPlay, onOpenDetail }) {
       return merged.slice(0, 4);
     }
 
-    // Fallback to local chart data when NetEase API is unavailable.
     const fallbackCards = [];
-    if (hotCharts.length > 0) {
-      fallbackCards.push({
-        id: 1,
-        name: '飙升榜',
-        coverImgUrl: '',
-        updateFrequency: '本地更新',
-        tracks: hotCharts.slice(0, 5).map((item) => ({
-          title: item?.track || item?.title || '未知歌曲',
-          artist: item?.artist || '未知歌手'
-        }))
-      });
+    if (personalHotList) {
+      fallbackCards.push(personalHotList);
     }
     if (newCharts.length > 0) {
       fallbackCards.push({
@@ -397,13 +476,13 @@ export default function HomePage({ onPlay, onOpenDetail }) {
 
     const cards = [...baseTracks];
     if (hotCharts[0]) {
-      const hotTrack = getChartTrack(hotCharts[0], '飙升榜');
+      const hotTrack = getChartTrack(hotCharts[0], '热歌榜');
       cards.push({
         type: 'chart',
         key: 'hot-chart',
-        title: '飙升榜',
+        title: '热歌榜',
         subtitle: hotTrack.title,
-        meta: '热度上升',
+        meta: '听歌记录 Top5',
         track: hotTrack,
         style: getArtworkStyle(hotTrack, chartThemes[0])
       });
@@ -687,7 +766,7 @@ export default function HomePage({ onPlay, onOpenDetail }) {
               </div>
 
               {heroCards.length > 1 ? (
-                <div className="hero-dots" aria-label="轮播分页">
+                <div className="hero-dots" aria-label="杞挱鍒嗛〉">
                   {heroCards.map((item, index) => (
                     <button
                       key={item.key}
@@ -722,7 +801,7 @@ export default function HomePage({ onPlay, onOpenDetail }) {
             <p>当前仍可浏览排行榜与社区内容。</p>
           </div>
           <div className="state-actions">
-            <button type="button" className="btn" onClick={logoutGuest}>返回登录</button>
+            <button type="button" className="btn" onClick={logoutGuest}>杩斿洖鐧诲綍</button>
           </div>
         </section>
       ) : null}
@@ -732,7 +811,7 @@ export default function HomePage({ onPlay, onOpenDetail }) {
           <section className="glass-card state-panel onboarding-modal">
             <div className="onboarding-hero">
               <div className="onboarding-copy">
-                <span className="eyebrow">新手引导</span>
+                <span className="eyebrow">鏂版墜寮曞</span>
                 <h3>{onboardingStepMeta[onboardingStep].title}</h3>
                 <p>{onboardingStepMeta[onboardingStep].desc}</p>
               </div>
@@ -740,7 +819,7 @@ export default function HomePage({ onPlay, onOpenDetail }) {
 
             <div className="onboarding-stage">
               <div className="onboarding-section">
-                <span className="chip soft">性别</span>
+                <span className="chip soft">鎬у埆</span>
                 <div className="row">
                   {genderOptions.map(([value, label]) => (
                     <button
@@ -756,7 +835,7 @@ export default function HomePage({ onPlay, onOpenDetail }) {
               </div>
 
               <div className="onboarding-section">
-                <span className="chip soft">偏好风格</span>
+                <span className="chip soft">鍋忓ソ椋庢牸</span>
                 <div className="preference-chip-grid">
                   {toArray(result?.onboardingOptions).map((genre) => (
                     <button
@@ -803,7 +882,9 @@ export default function HomePage({ onPlay, onOpenDetail }) {
               {daypartResult?.summary ? <p className="section-supporting-text">{daypartResult.summary}</p> : null}
             </div>
             <div className="playlist-scroller">
-              {curatedDayparts.map((group) => (
+              {curatedDayparts.map((group) => {
+                const copy = getDaypartCopy(group);
+                return (
                 <article
                   className="playlist-card playlist-card-enhanced"
                   key={group.key}
@@ -820,11 +901,11 @@ export default function HomePage({ onPlay, onOpenDetail }) {
                   <div className="playlist-card-head">
                     <div>
                       <span className="eyebrow">{group.label}</span>
-                      <h4>{group.playlistTitle || group.mood}</h4>
+                      <h4>{copy.title}</h4>
                     </div>
-                    <span className="tag">{group.aiSuccess ? 'AI' : '回退'}</span>
+                    <span className="tag">今日精选</span>
                   </div>
-                  <p className="playlist-card-description">{group.playlistSubtitle || group.playlistReason || group.description}</p>
+                  <p className="playlist-card-description">{copy.description}</p>
                   <div className="mini-track-list">
                     {toArray(group.tracks).length > 0 ? (
                       toArray(group.tracks).slice(0, 3).map((track) => (
@@ -846,7 +927,8 @@ export default function HomePage({ onPlay, onOpenDetail }) {
                     )}
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </div>
             </div>
           </section>
@@ -863,7 +945,7 @@ export default function HomePage({ onPlay, onOpenDetail }) {
                 onClick={rotateRecommendationCards}
                 disabled={loading || visibleRecommendedTracks.length === 0}
               >
-                可连续换一批 · 点击刷新
+                换一批 · 点击刷新
               </button>
             </div>
             <div className="song-shelf-toolbar">
@@ -913,23 +995,22 @@ export default function HomePage({ onPlay, onOpenDetail }) {
       <section className="discover-block">
         <div className="discover-block-head">
           <h2>榜单精选</h2>
-          <span>来自网易云榜单</span>
         </div>
         {displayToplists.length > 0 ? (
           <div className="toplist-grid">
-            {displayToplists.map((list) => (
+            {displayToplists.map((list, listIndex) => (
               <article className="toplist-card" key={`toplist-${list.id || list.name}`}>
                 <div className="toplist-head">
                   <div className="toplist-cover-wrap">
-                    {list.coverImgUrl ? (
-                      <img className="toplist-cover" src={list.coverImgUrl} alt={list.name || '榜单封面'} />
-                    ) : (
-                      <div className="toplist-cover-fallback">榜</div>
-                    )}
+                    <img
+                      className="toplist-cover-icon"
+                      src={toplistIcons[listIndex % toplistIcons.length]}
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </div>
                   <div className="toplist-meta">
                     <h3>{list.name || '未命名榜单'}</h3>
-                    <span>{list.updateFrequency || '实时更新'}</span>
                   </div>
                 </div>
 
@@ -947,19 +1028,21 @@ export default function HomePage({ onPlay, onOpenDetail }) {
                       <span className="toplist-track-actions">
                         <button
                           type="button"
-                          className="btn subtle small"
+                          className="btn subtle small icon-only"
                           onClick={() => playToplistTrack(list, track)}
                           disabled={Boolean(track.__placeholder)}
+                          aria-label={`播放 ${track.title || '未知歌曲'}`}
                         >
-                          播放
+                          <img src={playIcon} alt="" aria-hidden="true" />
                         </button>
                         <button
                           type="button"
-                          className="btn subtle small"
+                          className="btn subtle small icon-only"
                           onClick={() => openToplistTrackDetail(list, track)}
                           disabled={Boolean(track.__placeholder)}
+                          aria-label={`查看 ${track.title || '未知歌曲'} 详情`}
                         >
-                          详情
+                          <img src={detailIcon} alt="" aria-hidden="true" />
                         </button>
                       </span>
                     </div>

@@ -15,6 +15,12 @@ public class LegacyFeatureTableInitializer {
               AND table_name = ?
               AND column_name = ?
             """;
+    private static final String TABLE_EXISTS_SQL = """
+            SELECT COUNT(*)
+            FROM information_schema.tables
+            WHERE table_schema = DATABASE()
+              AND table_name = ?
+            """;
 
     @Bean
     ApplicationRunner initLegacyFeatureTables(JdbcTemplate jdbcTemplate) {
@@ -144,10 +150,35 @@ public class LegacyFeatureTableInitializer {
                     "ALTER TABLE recommendation_log ADD COLUMN ai_final_count INT NOT NULL DEFAULT 0");
             addColumnIfMissing(jdbcTemplate, "recommendation_log", "fallback_reason",
                     "ALTER TABLE recommendation_log ADD COLUMN fallback_reason VARCHAR(255) NULL");
+            addColumnIfMissing(jdbcTemplate, "artists", "avatar_url",
+                    "ALTER TABLE artists ADD COLUMN avatar_url VARCHAR(500) NULL");
+
+            jdbcTemplate.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS daypart_preference_tags (
+                      id BIGINT NOT NULL AUTO_INCREMENT,
+                      time_slot VARCHAR(32) NOT NULL,
+                      preference_type VARCHAR(32) NOT NULL,
+                      label VARCHAR(255) NOT NULL,
+                      rank_no INT NOT NULL,
+                      sample_count INT NOT NULL DEFAULT 0,
+                      source_window_days INT NOT NULL DEFAULT 30,
+                      generated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                      active_flag TINYINT(1) NOT NULL DEFAULT 1,
+                      PRIMARY KEY (id),
+                      KEY idx_daypart_preference_active (active_flag, preference_type, time_slot, rank_no),
+                      KEY idx_daypart_preference_generated_at (generated_at)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+                    """
+            );
         };
     }
 
     private void addColumnIfMissing(JdbcTemplate jdbcTemplate, String tableName, String columnName, String alterSql) {
+        Integer tableCount = jdbcTemplate.queryForObject(TABLE_EXISTS_SQL, Integer.class, tableName);
+        if (tableCount == null || tableCount == 0) {
+            return;
+        }
         Integer count = jdbcTemplate.queryForObject(COLUMN_EXISTS_SQL, Integer.class, tableName, columnName);
         if (count == null || count == 0) {
             jdbcTemplate.execute(alterSql);

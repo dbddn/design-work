@@ -35,9 +35,11 @@ public class RecommendationController {
             @RequestHeader(value = "X-User-Id", defaultValue = "guest") String userId,
             @RequestParam(defaultValue = "default") String scene,
             @RequestParam(defaultValue = "neutral") String emotion,
-            @RequestParam(defaultValue = "10") int limit
+            @RequestParam(defaultValue = "10") int limit,
+            @RequestParam(required = false) String timeSlot,
+            @RequestParam(defaultValue = "false") boolean refresh
     ) {
-        return ApiResponse.ok(recommendationService.recommendDaypartPlaylists(userId, scene, emotion, limit));
+        return ApiResponse.ok(recommendationService.recommendDaypartPlaylists(userId, scene, emotion, limit, timeSlot, refresh));
     }
 
     @PostMapping("/onboarding/preferences")

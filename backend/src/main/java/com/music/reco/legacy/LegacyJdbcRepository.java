@@ -27,6 +27,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.Time;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -170,7 +171,7 @@ public class LegacyJdbcRepository {
         return jdbcTemplate.query(
                 """
                 SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        COALESCE(m.play_count, 0) AS play_count
                 FROM musics m
                 LEFT JOIN genres g ON m.genre_id = g.id
@@ -248,7 +249,7 @@ public class LegacyJdbcRepository {
         String trimmed = keyword.trim();
         List<ArtistSummaryDto> exactRows = jdbcTemplate.query(
                 """
-                SELECT id, name, description
+                SELECT id, name, description, avatar_url
                 FROM artists
                 WHERE name = ?
                 ORDER BY id ASC
@@ -258,7 +259,7 @@ public class LegacyJdbcRepository {
                         rs.getLong("id"),
                         rs.getString("name"),
                         rs.getString("description"),
-                        ""
+                        rs.getString("avatar_url")
                 ),
                 trimmed
         );
@@ -268,7 +269,7 @@ public class LegacyJdbcRepository {
 
         List<ArtistSummaryDto> fuzzyRows = jdbcTemplate.query(
                 """
-                SELECT id, name, description
+                SELECT id, name, description, avatar_url
                 FROM artists
                 WHERE name LIKE ?
                 ORDER BY id ASC
@@ -278,7 +279,7 @@ public class LegacyJdbcRepository {
                         rs.getLong("id"),
                         rs.getString("name"),
                         rs.getString("description"),
-                        ""
+                        rs.getString("avatar_url")
                 ),
                 "%" + trimmed + "%"
         );
@@ -288,7 +289,7 @@ public class LegacyJdbcRepository {
     public ArtistDetailDto getArtistDetail(Long artistId, int page, int size) {
         Map<String, Object> artist = jdbcTemplate.queryForMap(
                 """
-                SELECT id, name, description
+                SELECT id, name, description, avatar_url
                 FROM artists
                 WHERE id = ?
                 """,
@@ -303,7 +304,7 @@ public class LegacyJdbcRepository {
         List<TrackDto> tracks = jdbcTemplate.query(
                 """
                 SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        COALESCE(m.play_count, 0) AS play_count
                 FROM musics m
                 JOIN music_artists ma ON ma.music_id = m.id
@@ -334,7 +335,7 @@ public class LegacyJdbcRepository {
             tracks = jdbcTemplate.query(
                     """
                     SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                           COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                           COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                            COALESCE(m.play_count, 0) AS play_count
                     FROM musics m
                     LEFT JOIN genres g ON m.genre_id = g.id
@@ -378,7 +379,7 @@ public class LegacyJdbcRepository {
                 ((Number) artist.get("id")).longValue(),
                 artistName,
                 artist.get("description") == null ? "" : String.valueOf(artist.get("description")),
-                "",
+                artist.get("avatar_url") == null ? "" : String.valueOf(artist.get("avatar_url")),
                 safePage,
                 safeSize,
                 hasMore,
@@ -390,7 +391,7 @@ public class LegacyJdbcRepository {
         List<TrackDto> rows = jdbcTemplate.query(
                 """
                 SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        COALESCE(m.play_count, 0) AS play_count
                 FROM musics m
                 LEFT JOIN genres g ON m.genre_id = g.id
@@ -496,7 +497,7 @@ public class LegacyJdbcRepository {
         List<TrackDto> rows = jdbcTemplate.query(
                 """
                 SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        COALESCE(m.play_count, 0) AS play_count
                 FROM musics m
                 LEFT JOIN genres g ON m.genre_id = g.id
@@ -542,7 +543,7 @@ public class LegacyJdbcRepository {
         return jdbcTemplate.query(
                 """
                 SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        COALESCE(m.play_count, 0) AS play_count
                 FROM musics m
                 LEFT JOIN genres g ON m.genre_id = g.id
@@ -577,7 +578,7 @@ public class LegacyJdbcRepository {
         return jdbcTemplate.query(
                 """
                 SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        COALESCE(m.play_count, 0) AS play_count
                 FROM musics m
                 LEFT JOIN genres g ON m.genre_id = g.id
@@ -615,11 +616,11 @@ public class LegacyJdbcRepository {
             List<TrackDto> filtered = jdbcTemplate.query(
                     """
                     SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                           COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                           COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                            COALESCE(m.play_count, 0) AS play_count
                     FROM musics m
                     LEFT JOIN genres g ON m.genre_id = g.id
-                    WHERE LOWER(COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown')) LIKE ?
+                    WHERE LOWER(COALESCE(NULLIF(g.description, ''), '其他风格')) LIKE ?
                     ORDER BY m.play_count DESC, m.rate DESC, m.id DESC
                     LIMIT ?
                     """,
@@ -646,7 +647,7 @@ public class LegacyJdbcRepository {
         return jdbcTemplate.query(
                 """
                 SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        COALESCE(m.play_count, 0) AS play_count
                 FROM musics m
                 LEFT JOIN genres g ON m.genre_id = g.id
@@ -702,7 +703,7 @@ public class LegacyJdbcRepository {
                 """
                 SELECT h.record_id, h.music_id, h.played_at, h.ms_played, h.skipped, h.source_type,
                        m.name, m.artist_names, m.album_name, m.cover_url,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name
                 FROM listen_history h
                 LEFT JOIN musics m ON CAST(h.music_id AS CHAR) = CAST(m.id AS CHAR)
                 LEFT JOIN genres g ON m.genre_id = g.id
@@ -749,19 +750,56 @@ public class LegacyJdbcRepository {
         return new UserStatsResponse(playCount7d, total, skipRate, likeCount);
     }
 
+    public List<Map<String, Object>> findRecentFeedbackSignals(String userId, int limit) {
+        if (userId == null || userId.isBlank()) {
+            return List.of();
+        }
+        return jdbcTemplate.query(
+                """
+                SELECT f.music_id, m.name, m.artist_names, m.album_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
+                       f.rating, f.liked_flag, f.skipped_flag, f.feedback_source, f.feedback_at
+                FROM user_music_feedback f
+                LEFT JOIN musics m ON m.id = f.music_id
+                LEFT JOIN genres g ON m.genre_id = g.id
+                WHERE f.user_id = ?
+                ORDER BY f.feedback_at DESC, f.id DESC
+                LIMIT ?
+                """,
+                (rs, rowNum) -> {
+                    Map<String, Object> row = new LinkedHashMap<>();
+                    row.put("trackId", rs.getLong("music_id"));
+                    row.put("title", rs.getString("name"));
+                    row.put("artist", firstString(rs.getString("artist_names"), ""));
+                    row.put("album", rs.getString("album_name"));
+                    row.put("genre", rs.getString("genre_name"));
+                    row.put("rating", safeInteger(rs.getObject("rating")));
+                    row.put("liked", rs.getBoolean("liked_flag"));
+                    row.put("skipped", rs.getBoolean("skipped_flag"));
+                    row.put("source", rs.getString("feedback_source"));
+                    row.put("feedbackAt", rs.getTimestamp("feedback_at") == null
+                            ? null
+                            : rs.getTimestamp("feedback_at").toInstant().toString());
+                    return row;
+                },
+                userId,
+                Math.max(1, limit)
+        );
+    }
+
     public List<String> findUserTopGenreLabels(String userId, int limit) {
         if (userId == null || userId.isBlank()) {
             return List.of();
         }
         return jdbcTemplate.query(
                 """
-                SELECT COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                SELECT COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        COUNT(1) AS total
                 FROM listen_history h
                 JOIN musics m ON h.music_id = m.id
                 LEFT JOIN genres g ON m.genre_id = g.id
                 WHERE h.user_id = ?
-                GROUP BY COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown')
+                GROUP BY COALESCE(NULLIF(g.description, ''), '其他风格')
                 ORDER BY total DESC, MAX(m.play_count) DESC
                 LIMIT ?
                 """,
@@ -773,6 +811,181 @@ public class LegacyJdbcRepository {
                 .map(String::trim)
                 .filter(value -> !value.isBlank())
                 .toList();
+    }
+
+    public Map<String, List<String>> findGlobalTimeSlotTopGenreLabels(int limit) {
+        Map<String, List<String>> snapshot = findActiveDaypartPreferenceLabels("genre", limit);
+        if (!snapshot.isEmpty()) {
+            return snapshot;
+        }
+        return aggregateGlobalTimeSlotTopGenreLabels(limit);
+    }
+
+    public Map<String, List<String>> aggregateGlobalTimeSlotTopGenreLabels(int limit) {
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(
+                """
+                SELECT time_slot, genre_name, COUNT(1) AS total, MAX(play_count) AS max_play_count
+                FROM (
+                    SELECT
+                        CASE
+                            WHEN HOUR(h.played_at) < 6 THEN 'midnight'
+                            WHEN HOUR(h.played_at) < 12 THEN 'morning'
+                            WHEN HOUR(h.played_at) < 18 THEN 'afternoon'
+                            ELSE 'evening'
+                        END AS time_slot,
+                        COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
+                        COALESCE(m.play_count, 0) AS play_count
+                    FROM listen_history h
+                    JOIN musics m ON h.music_id = m.id
+                    LEFT JOIN genres g ON m.genre_id = g.id
+                    WHERE h.played_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+                ) slot_genres
+                GROUP BY time_slot, genre_name
+                ORDER BY time_slot, total DESC, max_play_count DESC
+                """
+        );
+        Map<String, List<String>> grouped = new LinkedHashMap<>();
+        for (Map<String, Object> row : rows) {
+            String slot = String.valueOf(row.get("time_slot"));
+            String genre = row.get("genre_name") == null ? "" : String.valueOf(row.get("genre_name")).trim();
+            if (slot.isBlank() || genre.isBlank()) {
+                continue;
+            }
+            List<String> values = grouped.computeIfAbsent(slot, key -> new ArrayList<>());
+            if (values.size() < Math.max(1, limit) && !values.contains(genre)) {
+                values.add(genre);
+            }
+        }
+        return grouped;
+    }
+
+    public Map<String, List<String>> findGlobalTimeSlotTopArtistNames(int limit) {
+        Map<String, List<String>> snapshot = findActiveDaypartPreferenceLabels("artist", limit);
+        if (!snapshot.isEmpty()) {
+            return snapshot;
+        }
+        return aggregateGlobalTimeSlotTopArtistNames(limit);
+    }
+
+    public Map<String, List<String>> aggregateGlobalTimeSlotTopArtistNames(int limit) {
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(
+                """
+                SELECT time_slot, artist_names, COUNT(1) AS total, MAX(play_count) AS max_play_count
+                FROM (
+                    SELECT
+                        CASE
+                            WHEN HOUR(h.played_at) < 6 THEN 'midnight'
+                            WHEN HOUR(h.played_at) < 12 THEN 'morning'
+                            WHEN HOUR(h.played_at) < 18 THEN 'afternoon'
+                            ELSE 'evening'
+                        END AS time_slot,
+                        m.artist_names,
+                        COALESCE(m.play_count, 0) AS play_count
+                    FROM listen_history h
+                    JOIN musics m ON h.music_id = m.id
+                    WHERE h.played_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+                      AND COALESCE(m.artist_names, '') <> ''
+                ) slot_artists
+                GROUP BY time_slot, artist_names
+                ORDER BY time_slot, total DESC, max_play_count DESC
+                """
+        );
+        Map<String, List<String>> grouped = new LinkedHashMap<>();
+        for (Map<String, Object> row : rows) {
+            String slot = String.valueOf(row.get("time_slot"));
+            String artist = firstString(row.get("artist_names") == null ? "" : String.valueOf(row.get("artist_names")), "").trim();
+            if (slot.isBlank() || artist.isBlank()) {
+                continue;
+            }
+            List<String> values = grouped.computeIfAbsent(slot, key -> new ArrayList<>());
+            if (values.size() < Math.max(1, limit) && !values.contains(artist)) {
+                values.add(artist);
+            }
+        }
+        return grouped;
+    }
+
+    public boolean hasFreshDaypartPreferenceSnapshot(int maxAgeSeconds) {
+        Integer count = jdbcTemplate.queryForObject(
+                """
+                SELECT COUNT(1)
+                FROM daypart_preference_tags
+                WHERE active_flag = 1
+                  AND generated_at >= DATE_SUB(NOW(), INTERVAL ? SECOND)
+                """,
+                Integer.class,
+                Math.max(1, maxAgeSeconds)
+        );
+        return count != null && count > 0;
+    }
+
+    public void replaceActiveDaypartPreferenceSnapshot(Map<String, List<String>> genreLabels,
+                                                       Map<String, List<String>> artistLabels,
+                                                       int sourceWindowDays) {
+        jdbcTemplate.update(
+                "UPDATE daypart_preference_tags SET active_flag = 0 WHERE active_flag = 1"
+        );
+        insertDaypartPreferenceLabels("genre", genreLabels, sourceWindowDays);
+        insertDaypartPreferenceLabels("artist", artistLabels, sourceWindowDays);
+    }
+
+    private void insertDaypartPreferenceLabels(String preferenceType,
+                                               Map<String, List<String>> labelsBySlot,
+                                               int sourceWindowDays) {
+        for (Map.Entry<String, List<String>> entry : safePreferenceMap(labelsBySlot).entrySet()) {
+            String timeSlot = entry.getKey();
+            List<String> labels = entry.getValue();
+            for (int index = 0; index < labels.size(); index++) {
+                String label = labels.get(index);
+                if (timeSlot == null || timeSlot.isBlank() || label == null || label.isBlank()) {
+                    continue;
+                }
+                jdbcTemplate.update(
+                        """
+                        INSERT INTO daypart_preference_tags
+                          (time_slot, preference_type, label, rank_no, sample_count, source_window_days, generated_at, active_flag)
+                        VALUES (?, ?, ?, ?, ?, ?, NOW(), 1)
+                        """,
+                        timeSlot.trim(),
+                        preferenceType,
+                        label.trim(),
+                        index + 1,
+                        labels.size(),
+                        sourceWindowDays
+                );
+            }
+        }
+    }
+
+    private Map<String, List<String>> findActiveDaypartPreferenceLabels(String preferenceType, int limit) {
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(
+                """
+                SELECT time_slot, label
+                FROM daypart_preference_tags
+                WHERE active_flag = 1
+                  AND preference_type = ?
+                ORDER BY time_slot, rank_no, generated_at DESC
+                """,
+                preferenceType
+        );
+        Map<String, List<String>> grouped = new LinkedHashMap<>();
+        int resolvedLimit = Math.max(1, limit);
+        for (Map<String, Object> row : rows) {
+            String slot = row.get("time_slot") == null ? "" : String.valueOf(row.get("time_slot")).trim();
+            String label = row.get("label") == null ? "" : String.valueOf(row.get("label")).trim();
+            if (slot.isBlank() || label.isBlank()) {
+                continue;
+            }
+            List<String> labels = grouped.computeIfAbsent(slot, key -> new ArrayList<>());
+            if (labels.size() < resolvedLimit && !labels.contains(label)) {
+                labels.add(label);
+            }
+        }
+        return grouped;
+    }
+
+    private Map<String, List<String>> safePreferenceMap(Map<String, List<String>> value) {
+        return value == null ? Map.of() : value;
     }
 
     public List<String> findUserTopArtistNames(String userId, int limit) {
@@ -944,11 +1157,11 @@ public class LegacyJdbcRepository {
         return jdbcTemplate.query(
                 """
                 SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        COALESCE(m.play_count, 0) AS play_count
                 FROM musics m
                 LEFT JOIN genres g ON m.genre_id = g.id
-                WHERE COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') IN (%s)
+                WHERE COALESCE(NULLIF(g.description, ''), '其他风格') IN (%s)
                 ORDER BY m.play_count DESC, m.rate DESC, m.id DESC
                 LIMIT ?
                 """.formatted(placeholders),
@@ -996,10 +1209,10 @@ public class LegacyJdbcRepository {
     public List<String> topGenreLabels(int limit) {
         return jdbcTemplate.query(
                 """
-                SELECT COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name
+                SELECT COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name
                 FROM musics m
                 LEFT JOIN genres g ON m.genre_id = g.id
-                GROUP BY COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown')
+                GROUP BY COALESCE(NULLIF(g.description, ''), '其他风格')
                 ORDER BY COUNT(1) DESC
                 LIMIT ?
                 """,
@@ -1114,6 +1327,7 @@ public class LegacyJdbcRepository {
                 WHERE user_id = ?
                   AND scene_tag = ?
                   AND COALESCE(is_active, 1) = 1
+                  AND updated_at >= CURRENT_DATE
                 ORDER BY updated_at DESC, id DESC
                 """,
                 (rs, rowNum) -> new StoredPlaylistRecord(
@@ -1136,7 +1350,7 @@ public class LegacyJdbcRepository {
         return jdbcTemplate.query(
                 """
                 SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        COALESCE(m.play_count, 0) AS play_count
                 FROM playlist_musics pm
                 JOIN musics m ON m.id = pm.music_id
@@ -1287,10 +1501,10 @@ public class LegacyJdbcRepository {
                 """,
                 (rs, rowNum) -> new PlaylistSummaryDto(
                         rs.getLong("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
+                        repairMojibake(rs.getString("name")),
+                        repairMojibake(rs.getString("description")),
                         rs.getString("cover_url"),
-                        rs.getString("mood_tag"),
+                        repairMojibake(rs.getString("mood_tag")),
                         rs.getString("scene_tag"),
                         rs.getInt("song_count"),
                         rs.getLong("favorite_count"),
@@ -1317,10 +1531,10 @@ public class LegacyJdbcRepository {
                 """,
                 (rs, rowNum) -> new PlaylistSummaryDto(
                         rs.getLong("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
+                        repairMojibake(rs.getString("name")),
+                        repairMojibake(rs.getString("description")),
                         rs.getString("cover_url"),
-                        rs.getString("mood_tag"),
+                        repairMojibake(rs.getString("mood_tag")),
                         rs.getString("scene_tag"),
                         rs.getInt("song_count"),
                         rs.getLong("favorite_count"),
@@ -1445,6 +1659,21 @@ public class LegacyJdbcRepository {
         return count != null && count > 0;
     }
 
+    private String repairMojibake(String value) {
+        if (value == null || value.isBlank()) {
+            return value;
+        }
+        if (!value.matches(".*[脙脗盲氓忙莽猫茅].*")) {
+            return value;
+        }
+        try {
+            String repaired = new String(value.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+            return repaired.isBlank() ? value : repaired;
+        } catch (Exception ignored) {
+            return value;
+        }
+    }
+
     public List<ChartItemDto> hotCharts(int limit) {
         return jdbcTemplate.query(
                 "SELECT id, name FROM musics ORDER BY play_count DESC, rate DESC, id DESC LIMIT ?",
@@ -1477,7 +1706,7 @@ public class LegacyJdbcRepository {
                                 THEN CAST(SUBSTRING(CAST(m.release_year AS CHAR), 1, 4) AS UNSIGNED)
                             ELSE NULL
                         END AS release_year_value,
-                        COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name
+                        COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name
                     FROM musics m
                     LEFT JOIN genres g ON m.genre_id = g.id
                     WHERE COALESCE(m.is_active, 1) = 1
@@ -1521,7 +1750,7 @@ public class LegacyJdbcRepository {
                                 THEN CAST(SUBSTRING(CAST(m.release_year AS CHAR), 1, 4) AS UNSIGNED)
                             ELSE NULL
                         END AS release_year_value,
-                        COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name
+                        COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name
                     FROM musics m
                     LEFT JOIN genres g ON m.genre_id = g.id
                     WHERE COALESCE(m.is_active, 1) = 1
@@ -1567,7 +1796,7 @@ public class LegacyJdbcRepository {
         return jdbcTemplate.query(
                 """
                 SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description, m.lyric,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        COALESCE(m.play_count, 0) AS play_count
                 FROM musics m
                 LEFT JOIN genres g ON m.genre_id = g.id
@@ -1582,7 +1811,7 @@ public class LegacyJdbcRepository {
                             ELSE NULL
                         END
                       ) BETWEEN ? AND ?
-                  AND (? = '' OR COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') = ?)
+                  AND (? = '' OR COALESCE(NULLIF(g.description, ''), '其他风格') = ?)
                 ORDER BY COALESCE(m.play_count, 0) DESC, m.id DESC
                 LIMIT ?
                 """,
@@ -1637,13 +1866,13 @@ public class LegacyJdbcRepository {
     public List<GenreDistributionDto> genreDistribution(String userId, int days) {
         return jdbcTemplate.query(
                 """
-                SELECT COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name, COUNT(1) AS total
+                SELECT COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name, COUNT(1) AS total
                 FROM listen_history h
                 JOIN musics m ON CAST(h.music_id AS CHAR) = CAST(m.id AS CHAR)
                 LEFT JOIN genres g ON m.genre_id = g.id
                 WHERE h.user_id = ?
                   AND h.played_at >= DATE_SUB(NOW(), INTERVAL ? DAY)
-                GROUP BY COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown')
+                GROUP BY COALESCE(NULLIF(g.description, ''), '其他风格')
                 ORDER BY total DESC
                 LIMIT 8
                 """,
@@ -1778,7 +2007,7 @@ public class LegacyJdbcRepository {
         return jdbcTemplate.query(
                 """
                 SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description,
-                       COALESCE(NULLIF(g.description, ''), CONCAT('genre-', m.genre_id), 'unknown') AS genre_name,
+                       COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        uf.rating, uf.feedback_at
                 FROM user_music_feedback uf
                 JOIN (
@@ -1899,16 +2128,30 @@ public class LegacyJdbcRepository {
                 name,
                 firstString(artistNamesJson, "Unknown Artist"),
                 albumName == null || albumName.isBlank() ? "Unknown Album" : albumName,
-                genreName == null || genreName.isBlank() ? "unknown" : genreName,
+                normalizeGenreName(genreName),
                 audioAsset.audioUrl(),
                 audioAsset.artworkUrl(),
                 toDurationSeconds(duration),
-                resolveTrackDescription(description, genreName),
+                resolveTrackDescription(description, normalizeGenreName(genreName)),
                 splitLyrics(lyric),
                 playCount == null ? 0.0 : playCount.doubleValue(),
                 "LOCAL_DB"
         );
         return neteaseApiTrackFallbackService.enrichTrack(localTrack, false);
+    }
+
+    private String normalizeGenreName(String genreName) {
+        if (genreName == null || genreName.isBlank()) {
+            return "其他风格";
+        }
+        String text = genreName.trim();
+        String normalized = text.toLowerCase(Locale.ROOT);
+        if ("unknown".equals(normalized)
+                || "未分类".equals(text)
+                || normalized.matches("genre-\\d+")) {
+            return "其他风格";
+        }
+        return text;
     }
 
     private String firstString(String json, String fallback) {
@@ -2048,3 +2291,4 @@ public class LegacyJdbcRepository {
                 .collect(Collectors.toList());
     }
 }
+

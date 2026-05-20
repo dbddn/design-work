@@ -25,8 +25,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -47,6 +49,7 @@ public class RecommendationService {
     private final TimeSlotPlaylistOrchestratorService timeSlotPlaylistOrchestratorService;
     private final DaypartPlaylistSnapshotService daypartPlaylistSnapshotService;
     private final DaypartPlaylistGenerationCoordinator daypartPlaylistGenerationCoordinator;
+    private final UserPreferenceContextService userPreferenceContextService;
 
     public RecommendationService(HybridWeightStrategyService strategyService,
                                  LegacyJdbcRepository legacyJdbcRepository,
@@ -55,7 +58,8 @@ public class RecommendationService {
                                  McpCandidateToTrackMatcher mcpCandidateToTrackMatcher,
                                  TimeSlotPlaylistOrchestratorService timeSlotPlaylistOrchestratorService,
                                  DaypartPlaylistSnapshotService daypartPlaylistSnapshotService,
-                                 DaypartPlaylistGenerationCoordinator daypartPlaylistGenerationCoordinator) {
+                                 DaypartPlaylistGenerationCoordinator daypartPlaylistGenerationCoordinator,
+                                 UserPreferenceContextService userPreferenceContextService) {
         this.strategyService = strategyService;
         this.legacyJdbcRepository = legacyJdbcRepository;
         this.mcpClient = mcpClient;
@@ -64,6 +68,7 @@ public class RecommendationService {
         this.timeSlotPlaylistOrchestratorService = timeSlotPlaylistOrchestratorService;
         this.daypartPlaylistSnapshotService = daypartPlaylistSnapshotService;
         this.daypartPlaylistGenerationCoordinator = daypartPlaylistGenerationCoordinator;
+        this.userPreferenceContextService = userPreferenceContextService;
     }
 
     public RecommendationResponse recommend(String userId, String scene, String emotion, int limit) {
@@ -87,7 +92,7 @@ public class RecommendationService {
         }
 
         StrategySnapshot snapshot = strategyService.generate(userId, scene, emotion, stats.playCount30d(), stats.skipRate30d());
-        UserPreferenceContext context = buildUserPreferenceContext(userId, stats, selectedGenres);
+        UserPreferenceContext context = userPreferenceContextService.build(userId, stats, selectedGenres);
         List<TrackDto> tracks = resolveRecommendationTracks(userId, scene, emotion, limit, stats, snapshot, context);
         String requestId = "local-" + startedAt;
 
@@ -125,12 +130,23 @@ public class RecommendationService {
         );
     }
 
-    public DaypartRecommendationResponse recommendDaypartPlaylists(String userId, String scene, String emotion, int limit) {
+    public DaypartRecommendationResponse recommendDaypartPlaylists(String userId,
+                                                                   String scene,
+                                                                   String emotion,
+                                                                   int limit,
+                                                                   String timeSlot,
+                                                                   boolean refresh) {
+        String resolvedTimeSlot = resolveTimeSlot(timeSlot);
+        String requestedTimeSlot = normalizeTimeSlot(timeSlot);
         if (isGuestUser(userId)) {
             return new DaypartRecommendationResponse(
                     "guest-dayparts",
                     STRATEGY_VERSION,
                     "VISITOR",
+                    requestedTimeSlot,
+                    resolvedTimeSlot,
+                    false,
+                    false,
                     true,
                     false,
                     List.of(),
@@ -143,8 +159,8 @@ public class RecommendationService {
 
         long startedAt = System.currentTimeMillis();
         String requestId = "daypart-" + startedAt;
-        log.info("daypart request start requestId={} userId={} scene={} emotion={} limit={}",
-                requestId, userId, scene, emotion, limit);
+        log.info("daypart request start requestId={} userId={} scene={} emotion={} limit={} requestedTimeSlot={} resolvedTimeSlot={} refresh={}",
+                requestId, userId, scene, emotion, limit, requestedTimeSlot, resolvedTimeSlot, refresh);
         UserStatsResponse stats = legacyJdbcRepository.buildUserStats(userId);
         List<String> selectedGenres = legacyJdbcRepository.findOnboardingGenres(userId);
         List<String> onboardingOptions = legacyJdbcRepository.onboardingGenreOptions(ONBOARDING_OPTION_LIMIT);
@@ -154,6 +170,10 @@ public class RecommendationService {
                     requestId,
                     STRATEGY_VERSION,
                     "NEW_USER",
+                    requestedTimeSlot,
+                    resolvedTimeSlot,
+                    false,
+                    false,
                     false,
                     true,
                     selectedGenres,
@@ -166,9 +186,10 @@ public class RecommendationService {
 
         StrategySnapshot snapshot = strategyService.generate(userId, scene, emotion, stats.playCount30d(), stats.skipRate30d());
         List<TimeSlotPlaylistDto> storedPlaylists = daypartPlaylistSnapshotService.loadStoredPlaylists(userId, scene, emotion, limit);
-        boolean hasCompleteStored = daypartPlaylistSnapshotService.hasCompleteStoredPlaylists(userId, scene, emotion, limit);
+        boolean hasCompleteStored = !refresh && daypartPlaylistSnapshotService.hasCompleteStoredPlaylists(userId, scene, emotion, limit);
 
         List<TimeSlotPlaylistOrchestratorService.TimeSlotPlaylistBuildResult> buildResults;
+        boolean generationQueued;
         if (hasCompleteStored) {
             buildResults = storedPlaylists.stream()
                     .map(playlist -> new TimeSlotPlaylistOrchestratorService.TimeSlotPlaylistBuildResult(
@@ -179,20 +200,26 @@ public class RecommendationService {
                             playlist.finalCount(),
                             playlist.fallbackReason()))
                     .toList();
-            log.info("daypart request hit stored snapshot requestId={} playlistCount={}",
-                    requestId, buildResults.size());
+            generationQueued = false;
+            log.info("daypart request hit stored snapshot requestId={} userId={} timeSlot={} playlistCount={} finalSongCount={}",
+                    requestId, userId, resolvedTimeSlot, buildResults.size(),
+                    buildResults.stream().mapToInt(TimeSlotPlaylistOrchestratorService.TimeSlotPlaylistBuildResult::aiFinalCount).sum());
         } else {
-            daypartPlaylistGenerationCoordinator.enqueue(userId, scene, emotion, limit, "api-request");
+            daypartPlaylistGenerationCoordinator.enqueue(userId, scene, emotion, limit, refresh ? "api-refresh" : "api-request");
             buildResults = daypartPlaylistSnapshotService.buildFastView(requestId, userId, scene, emotion, limit);
-            log.info("daypart request using fast MCP view requestId={} queued={} playlistCount={}",
+            generationQueued = daypartPlaylistGenerationCoordinator.isQueued(userId, scene, emotion);
+            log.info("daypart request using fast MCP view requestId={} userId={} timeSlot={} cacheHit=false queued={} playlistCount={} finalSongCount={}",
                     requestId,
-                    daypartPlaylistGenerationCoordinator.isQueued(userId, scene, emotion),
-                    buildResults.size());
+                    userId,
+                    resolvedTimeSlot,
+                    generationQueued,
+                    buildResults.size(),
+                    buildResults.stream().mapToInt(TimeSlotPlaylistOrchestratorService.TimeSlotPlaylistBuildResult::aiFinalCount).sum());
         }
 
         int latencyMs = Math.toIntExact(Math.max(0, System.currentTimeMillis() - startedAt));
-        log.info("daypart request built requestId={} latencyMs={} playlistCount={}",
-                requestId, latencyMs, buildResults.size());
+        log.info("daypart request built requestId={} userId={} timeSlot={} cacheHit={} queued={} latencyMs={} playlistCount={}",
+                requestId, userId, resolvedTimeSlot, hasCompleteStored, generationQueued, latencyMs, buildResults.size());
 
         for (TimeSlotPlaylistOrchestratorService.TimeSlotPlaylistBuildResult buildResult : buildResults) {
             TimeSlotPlaylistDto playlist = buildResult.playlist();
@@ -220,6 +247,10 @@ public class RecommendationService {
                 requestId,
                 STRATEGY_VERSION,
                 resolveUserStage(stats),
+                requestedTimeSlot,
+                resolvedTimeSlot,
+                hasCompleteStored,
+                generationQueued,
                 false,
                 false,
                 selectedGenres,
@@ -228,6 +259,10 @@ public class RecommendationService {
                 buildDaypartSummary(stats, selectedGenres, buildResults),
                 buildResults.stream().map(TimeSlotPlaylistOrchestratorService.TimeSlotPlaylistBuildResult::playlist).toList()
         );
+    }
+
+    public DaypartRecommendationResponse recommendDaypartPlaylists(String userId, String scene, String emotion, int limit) {
+        return recommendDaypartPlaylists(userId, scene, emotion, limit, null, false);
     }
 
     public RecommendationResponse saveOnboardingPreferences(String userId, RecommendationOnboardingRequest request) {
@@ -277,7 +312,7 @@ public class RecommendationService {
         UserStatsResponse stats = legacyJdbcRepository.buildUserStats(userId);
         List<String> selectedGenres = legacyJdbcRepository.findOnboardingGenres(userId);
         StrategySnapshot snapshot = strategyService.generate(userId, scene, emotion, stats.playCount30d(), stats.skipRate30d());
-        UserPreferenceContext context = buildUserPreferenceContext(userId, stats, selectedGenres);
+        UserPreferenceContext context = userPreferenceContextService.build(userId, stats, selectedGenres);
         McpHybridRecommendationArgs args = mcpQueryMappingService.buildRecommendationArgs(
                 scene,
                 emotion,
@@ -407,22 +442,6 @@ public class RecommendationService {
         return legacyJdbcRepository.recommendTracks(scene, emotion, limit);
     }
 
-    private UserPreferenceContext buildUserPreferenceContext(String userId,
-                                                             UserStatsResponse stats,
-                                                             List<String> onboardingGenres) {
-        List<String> userTopGenres = legacyJdbcRepository.findUserTopGenreLabels(userId, 3);
-        List<String> effectiveGenres = userTopGenres.isEmpty() ? onboardingGenres : userTopGenres;
-        return new UserPreferenceContext(
-                effectiveGenres,
-                legacyJdbcRepository.findUserTopArtistNames(userId, 3),
-                legacyJdbcRepository.findUserTopAlbums(userId, 3),
-                legacyJdbcRepository.findRecentAnchorAlbums(userId, 3),
-                stats.playCount30d(),
-                stats.skipRate30d(),
-                stats.playCount30d() < SPARSE_USER_THRESHOLD
-        );
-    }
-
     private RecommendationResponse lockedGuestResponse() {
         return new RecommendationResponse(
                 "guest-locked",
@@ -511,6 +530,41 @@ public class RecommendationService {
 
     private boolean isGuestUser(String userId) {
         return userId == null || userId.isBlank() || userId.startsWith("guest");
+    }
+
+    private String resolveTimeSlot(String requested) {
+        String normalized = normalizeTimeSlot(requested);
+        if (!normalized.isBlank()) {
+            return normalized;
+        }
+        int hour = LocalTime.now().getHour();
+        if (hour < 6) {
+            return "midnight";
+        }
+        if (hour < 12) {
+            return "morning";
+        }
+        if (hour < 18) {
+            return "afternoon";
+        }
+        return "evening";
+    }
+
+    private String normalizeTimeSlot(String value) {
+        if (value == null || value.isBlank()) {
+            return "";
+        }
+        String normalized = value.trim().toLowerCase(Locale.ROOT);
+        if ("night".equals(normalized) || "late_night".equals(normalized)) {
+            return "midnight";
+        }
+        if ("morning".equals(normalized)
+                || "afternoon".equals(normalized)
+                || "evening".equals(normalized)
+                || "midnight".equals(normalized)) {
+            return normalized;
+        }
+        return "";
     }
 
     private McpRecommendationDebugMatchDto toDebugMatch(McpRecommendationItem item,

@@ -29,6 +29,9 @@ export default function ProfilePage({
   const [genres, setGenres] = useState([]);
   const [playlists, setPlaylists] = useState({ created: [], favorites: [] });
   const [playlistName, setPlaylistName] = useState('');
+  const [selectedPlaylist, setSelectedPlaylist] = useState(null);
+  const [selectedPlaylistTracks, setSelectedPlaylistTracks] = useState([]);
+  const [loadingPlaylistTracks, setLoadingPlaylistTracks] = useState(false);
   const [creatingPlaylist, setCreatingPlaylist] = useState(false);
   const [msg, setMsg] = useState('');
   const [error, setError] = useState('');
@@ -180,13 +183,32 @@ export default function ProfilePage({
     }
   };
 
+  const openPlaylist = async (playlist) => {
+    if (!playlist?.id) return;
+    setSelectedPlaylist(playlist);
+    setSelectedPlaylistTracks([]);
+    setLoadingPlaylistTracks(true);
+    setError('');
+    try {
+      const rows = await playlistApi.tracks(playlist.id, 100);
+      setSelectedPlaylistTracks(toArray(rows));
+    } catch (requestError) {
+      setError(getErrorMessage(requestError, '歌单歌曲加载失败，请稍后重试'));
+    } finally {
+      setLoadingPlaylistTracks(false);
+    }
+  };
+
   const favoriteCount = useMemo(
     () => favoriteTracks.filter((item) => trackFeedback[String(item?.id)]?.liked === true).length,
     [favoriteTracks, trackFeedback]
   );
 
   const manualCreatedPlaylists = useMemo(
-    () => toArray(playlists.created).filter((playlist) => String(playlist?.sceneTag || '').toLowerCase() === 'personal'),
+    () => toArray(playlists.created).filter((playlist) => {
+      const sceneTag = String(playlist?.sceneTag || '').toLowerCase();
+      return sceneTag === 'personal' || !sceneTag;
+    }),
     [playlists.created]
   );
 
@@ -284,6 +306,9 @@ export default function ProfilePage({
                   <button type="button" className="btn subtle small" onClick={() => toggleFavoritePlaylist(playlist)}>
                     {playlist.favorited ? '取消收藏' : '收藏歌单'}
                   </button>
+                  <button type="button" className="btn subtle small" onClick={() => openPlaylist(playlist)}>
+                    查看
+                  </button>
                 </article>
               ))
             ) : (
@@ -335,6 +360,48 @@ export default function ProfilePage({
           </div>
         </section>
       </div>
+
+      {selectedPlaylist ? (
+        <section className="glass-card">
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow">歌单详情</span>
+              <h3>{selectedPlaylist.name || `歌单 #${selectedPlaylist.id}`}</h3>
+              <p>{selectedPlaylist.description || '用户自建歌单'}</p>
+            </div>
+            <button type="button" className="btn subtle small" onClick={() => setSelectedPlaylist(null)}>
+              收起
+            </button>
+          </div>
+          <div className="history-list history-list-detailed">
+            {loadingPlaylistTracks ? (
+              <p>正在加载歌单歌曲...</p>
+            ) : selectedPlaylistTracks.length > 0 ? (
+              selectedPlaylistTracks.map((track) => (
+                <article className="history-row history-row-detailed" key={`playlist-track-${selectedPlaylist.id}-${track.id}`}>
+                  <div className="history-row-main">
+                    <strong>{track.title || '未命名歌曲'}</strong>
+                    <p>{track.artist || '未知歌手'} · {track.album || '未知专辑'}</p>
+                    <div className="chips">
+                      <span className="genre-pill">{track.genre || '未分类'}</span>
+                    </div>
+                  </div>
+                  <div className="history-row-actions">
+                    <button type="button" className="btn subtle small" onClick={() => onPlay?.(track)}>
+                      播放
+                    </button>
+                    <button type="button" className="btn subtle small" onClick={() => onOpenDetail?.(track)}>
+                      详情
+                    </button>
+                  </div>
+                </article>
+              ))
+            ) : (
+              <p>这个歌单还没有歌曲，可以在歌曲详情页添加歌曲。</p>
+            )}
+          </div>
+        </section>
+      ) : null}
 
       <section className="glass-card">
         <div className="section-heading">

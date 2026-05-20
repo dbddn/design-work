@@ -132,15 +132,6 @@ public class NeteaseApiTrackFallbackService {
             return directId;
         }
 
-        directId = parseSongId(track == null || track.id() == null ? null : String.valueOf(track.id()));
-        if (directId != null) {
-            JsonNode detailRoot = getJson("/song/detail?ids=" + directId);
-            JsonNode songs = detailRoot.path("songs");
-            if (songs.isArray() && !songs.isEmpty()) {
-                return directId;
-            }
-        }
-
         String keyword = buildSearchKeyword(track);
         if (keyword.isBlank()) {
             return null;

@@ -32,6 +32,7 @@ export default function CommunityPage({ embedded = false, onPlay, onOpenDetail }
   const [commentText, setCommentText] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [visiblePostCount, setVisiblePostCount] = useState(7);
 
   const trackOptions = useMemo(() => {
     const unique = new Map();
@@ -66,6 +67,7 @@ export default function CommunityPage({ embedded = false, onPlay, onOpenDetail }
     try {
       const nextPosts = toArray(await communityApi.listPosts());
       setPosts(nextPosts);
+      setVisiblePostCount((count) => Math.min(Math.max(count, 7), nextPosts.length || 7));
 
       const commentPairs = await Promise.all(
         nextPosts.map(async (post) => {
@@ -382,7 +384,7 @@ export default function CommunityPage({ embedded = false, onPlay, onOpenDetail }
 
       <div className="community-feed">
         {posts.length > 0 ? (
-          posts.map((post) => {
+          posts.slice(0, visiblePostCount).map((post) => {
             const payload = parseSharePayload(post.content);
             const comments = toArray(commentsByPost[post.postId]);
             const heading =
@@ -492,6 +494,13 @@ export default function CommunityPage({ embedded = false, onPlay, onOpenDetail }
             <p>分享一首最近播放，给这里放第一首歌。</p>
           </section>
         )}
+        {posts.length > visiblePostCount ? (
+          <div className="community-load-more">
+            <button type="button" className="btn subtle" onClick={() => setVisiblePostCount((count) => Math.min(count + 5, posts.length))}>
+              查看更多
+            </button>
+          </div>
+        ) : null}
       </div>
     </>
   );

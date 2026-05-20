@@ -20,23 +20,29 @@ const sceneLabels = {
   sleep: '睡前'
 };
 
-const formatTrackTitle = (track) => track?.title || track?.name || '未命名歌曲';
-const formatTrackArtist = (track) => track?.artist || track?.artists || track?.singer || '未知歌手';
 const UNKNOWN_GENRE_LABEL = '其他风格';
+
+const formatTrackTitle = (track) => track?.title || track?.name || '未知歌曲';
+const formatTrackArtist = (track) => track?.artist || track?.artists || track?.singer || '未知歌手';
+const isLocalDbTrack = (track) => Number.isFinite(Number(track?.id)) && Number(track.id) > 0;
 
 const isKnownGenre = (value) => {
   const text = String(value || '').trim();
   if (!text) return false;
   const normalized = text.toLowerCase();
-  return normalized !== 'unknown' && normalized !== '未分类';
+  return normalized !== 'unknown' && normalized !== '未分类' && !/^genre-\d+$/i.test(text);
 };
-
-const isLocalDbTrack = (track) => Number.isFinite(Number(track?.id)) && Number(track.id) > 0;
 
 const getTrackGenre = (track) => (isKnownGenre(track?.genre) ? String(track.genre).trim() : UNKNOWN_GENRE_LABEL);
 
 const sanitizeTracks = (tracks) =>
-  toArray(tracks).filter((track) => isLocalDbTrack(track) || formatTrackTitle(track) !== '未命名歌曲');
+  toArray(tracks).filter((track) => isLocalDbTrack(track) || formatTrackTitle(track) !== '未知歌曲');
+
+const sanitizeTags = (items) =>
+  toArray(items)
+    .map((item) => String(item || '').trim())
+    .filter((item) => item && !/^genre-\d+$/i.test(item) && item.toLowerCase() !== 'unknown')
+    .slice(0, 6);
 
 const formatDuration = (seconds) => {
   const safe = Number(seconds);
@@ -70,6 +76,26 @@ export default function DaypartPlaylistPage({ onPlay, onOpenDetail, currentTrack
   const [error, setError] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('all');
 
+  const loadPlaylist = async ({ refresh = false } = {}) => {
+    setLoading(true);
+    setError('');
+    try {
+      const payload = await recommendationApi.dayparts(scene, emotion, minimumTracks, {
+        timeSlot: meta.key,
+        refresh
+      });
+      const matchedGroup = toArray(payload?.playlists).find((group) => group.key === meta.key);
+      setPlaylistData(matchedGroup || initialPlaylist);
+      setTracks(sanitizeTracks(matchedGroup?.tracks || initialTracks));
+    } catch (requestError) {
+      setPlaylistData(initialPlaylist);
+      setTracks(sanitizeTracks(initialTracks));
+      setError(getErrorMessage(requestError, '时段歌单加载失败，请稍后重试'));
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     let cancelled = false;
 
@@ -84,7 +110,7 @@ export default function DaypartPlaylistPage({ onPlay, onOpenDetail, currentTrack
       setLoading(true);
       setError('');
       try {
-        const payload = await recommendationApi.dayparts(scene, emotion, minimumTracks);
+        const payload = await recommendationApi.dayparts(scene, emotion, minimumTracks, { timeSlot: meta.key });
         const matchedGroup = toArray(payload?.playlists).find((group) => group.key === meta.key);
         if (!cancelled) {
           setPlaylistData(matchedGroup || initialPlaylist);
@@ -128,8 +154,8 @@ export default function DaypartPlaylistPage({ onPlay, onOpenDetail, currentTrack
 
   const heroTrack = visibleTracks[0] || tracks[0] || null;
   const topGenres = useMemo(() => uniqueTopValues(tracks, getTrackGenre, 4), [tracks]);
-  const tagItems = toArray(playlistData?.tags).length > 0
-    ? toArray(playlistData?.tags)
+  const tagItems = sanitizeTags(playlistData?.tags).length > 0
+    ? sanitizeTags(playlistData?.tags)
     : [meta.label, meta.mood, emotionLabels[emotion] || '平静', sceneLabels[scene] || '默认'];
 
   return (
@@ -181,6 +207,14 @@ export default function DaypartPlaylistPage({ onPlay, onOpenDetail, currentTrack
                 disabled={!heroTrack}
               >
                 查看头图歌曲
+              </button>
+              <button
+                type="button"
+                className="btn subtle"
+                onClick={() => loadPlaylist({ refresh: true })}
+                disabled={loading}
+              >
+                重新生成
               </button>
             </div>
 

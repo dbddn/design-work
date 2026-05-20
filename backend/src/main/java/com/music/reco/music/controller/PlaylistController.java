@@ -6,9 +6,12 @@ import com.music.reco.music.dto.PlaylistCollectionDto;
 import com.music.reco.music.dto.PlaylistFavoriteRequest;
 import com.music.reco.music.dto.PlaylistOperationResponse;
 import com.music.reco.music.dto.PlaylistTrackRequest;
+import com.music.reco.music.dto.TrackDto;
 import com.music.reco.music.service.PlaylistService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/playlists")
@@ -28,6 +31,13 @@ public class PlaylistController {
     @GetMapping("/mine")
     public ApiResponse<PlaylistCollectionDto> mine(@RequestHeader(value = "X-User-Id", defaultValue = "guest") String userId) {
         return ApiResponse.ok(playlistService.mine(userId));
+    }
+
+    @GetMapping("/{id}/tracks")
+    public ApiResponse<List<TrackDto>> tracks(@RequestHeader(value = "X-User-Id", defaultValue = "guest") String userId,
+                                              @PathVariable Long id,
+                                              @RequestParam(defaultValue = "100") int limit) {
+        return ApiResponse.ok(playlistService.tracks(userId, id, limit));
     }
 
     @PostMapping("/{id}/tracks")

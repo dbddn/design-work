@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.music.reco.legacy.LegacyJdbcRepository;
 import com.music.reco.music.dto.TrackDto;
 import com.music.reco.recommendation.dto.TimeSlotPlaylistDto;
-import com.music.reco.recommendation.dto.UserPreferenceContext;
 import com.music.reco.recommendation.strategy.HybridWeightStrategyService;
 import com.music.reco.recommendation.strategy.StrategySnapshot;
 import com.music.reco.user.dto.UserStatsResponse;
@@ -13,30 +12,33 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class DaypartPlaylistSnapshotService {
     private static final Logger log = LoggerFactory.getLogger(DaypartPlaylistSnapshotService.class);
     private static final List<String> SLOT_ORDER = List.of("morning", "afternoon", "evening", "midnight");
-    private static final int SPARSE_USER_THRESHOLD = 30;
 
     private final LegacyJdbcRepository legacyJdbcRepository;
     private final HybridWeightStrategyService strategyService;
     private final TimeSlotPlaylistOrchestratorService orchestratorService;
+    private final UserPreferenceContextService userPreferenceContextService;
     private final ObjectMapper objectMapper;
 
     public DaypartPlaylistSnapshotService(LegacyJdbcRepository legacyJdbcRepository,
                                           HybridWeightStrategyService strategyService,
                                           TimeSlotPlaylistOrchestratorService orchestratorService,
+                                          UserPreferenceContextService userPreferenceContextService,
                                           ObjectMapper objectMapper) {
         this.legacyJdbcRepository = legacyJdbcRepository;
         this.strategyService = strategyService;
         this.orchestratorService = orchestratorService;
+        this.userPreferenceContextService = userPreferenceContextService;
         this.objectMapper = objectMapper;
     }
 
@@ -59,8 +61,28 @@ public class DaypartPlaylistSnapshotService {
 
     public boolean hasCompleteStoredPlaylists(String userId, String scene, String emotion, int limit) {
         List<TimeSlotPlaylistDto> stored = loadStoredPlaylists(userId, scene, emotion, limit);
-        return stored.size() == SLOT_ORDER.size()
-                && stored.stream().allMatch(playlist -> playlist.tracks() != null && playlist.tracks().size() >= Math.min(limit, 10));
+        boolean noCrossSlotOverlap = hasNoCrossSlotOverlap(stored);
+        boolean complete = stored.size() == SLOT_ORDER.size()
+                && stored.stream().allMatch(playlist -> playlist.tracks() != null && playlist.tracks().size() >= Math.min(limit, 10))
+                && noCrossSlotOverlap;
+        log.info("daypart cache check userId={} scene={} emotion={} hit={} playlistCount={} requiredSlots={} minTracks={} noCrossSlotOverlap={}",
+                userId, scene, emotion, complete, stored.size(), SLOT_ORDER.size(), Math.min(limit, 10), noCrossSlotOverlap);
+        return complete;
+    }
+
+    private boolean hasNoCrossSlotOverlap(List<TimeSlotPlaylistDto> playlists) {
+        Set<Long> usedTrackIds = new LinkedHashSet<>();
+        for (TimeSlotPlaylistDto playlist : playlists) {
+            for (TrackDto track : safeTracks(playlist.tracks())) {
+                if (track == null || track.id() == null) {
+                    continue;
+                }
+                if (!usedTrackIds.add(track.id())) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public List<TimeSlotPlaylistOrchestratorService.TimeSlotPlaylistBuildResult> generateAndStore(String requestId,
@@ -71,7 +93,7 @@ public class DaypartPlaylistSnapshotService {
         UserStatsResponse stats = legacyJdbcRepository.buildUserStats(userId);
         List<String> selectedGenres = legacyJdbcRepository.findOnboardingGenres(userId);
         StrategySnapshot snapshot = strategyService.generate(userId, scene, emotion, stats.playCount30d(), stats.skipRate30d());
-        UserPreferenceContext context = buildUserPreferenceContext(userId, stats, selectedGenres);
+        var context = userPreferenceContextService.build(userId, stats, selectedGenres);
         List<TimeSlotPlaylistOrchestratorService.TimeSlotPlaylistBuildResult> buildResults =
                 orchestratorService.buildPlaylists(requestId, userId, scene, emotion, limit, snapshot, context);
         savePlaylists(userId, scene, emotion, buildResults);
@@ -86,7 +108,7 @@ public class DaypartPlaylistSnapshotService {
         UserStatsResponse stats = legacyJdbcRepository.buildUserStats(userId);
         List<String> selectedGenres = legacyJdbcRepository.findOnboardingGenres(userId);
         StrategySnapshot snapshot = strategyService.generate(userId, scene, emotion, stats.playCount30d(), stats.skipRate30d());
-        UserPreferenceContext context = buildUserPreferenceContext(userId, stats, selectedGenres);
+        var context = userPreferenceContextService.build(userId, stats, selectedGenres);
         return orchestratorService.buildPlaylistsMcpOnly(requestId, userId, scene, emotion, limit, snapshot, context);
     }
 
@@ -122,6 +144,9 @@ public class DaypartPlaylistSnapshotService {
                     legacyJdbcRepository.addTrackToPlaylist(userId, playlistId, track.id());
                 }
             }
+            log.info("daypart snapshot stored userId={} sceneTag={} timeSlot={} playlistId={} songCount={} aiSuccess={} fallback={}",
+                    userId, sceneTag, playlist.key(), playlistId, safeTracks(playlist.tracks()).size(),
+                    playlist.aiSuccess(), playlist.fallbackUsed());
         }
     }
 
@@ -145,22 +170,6 @@ public class DaypartPlaylistSnapshotService {
                 safeString(metadata.get("fallbackReason"), null),
                 tracks.size(),
                 tracks.size()
-        );
-    }
-
-    private UserPreferenceContext buildUserPreferenceContext(String userId,
-                                                             UserStatsResponse stats,
-                                                             List<String> onboardingGenres) {
-        List<String> userTopGenres = legacyJdbcRepository.findUserTopGenreLabels(userId, 3);
-        List<String> effectiveGenres = userTopGenres.isEmpty() ? onboardingGenres : userTopGenres;
-        return new UserPreferenceContext(
-                effectiveGenres,
-                legacyJdbcRepository.findUserTopArtistNames(userId, 3),
-                legacyJdbcRepository.findUserTopAlbums(userId, 3),
-                legacyJdbcRepository.findRecentAnchorAlbums(userId, 3),
-                stats.playCount30d(),
-                stats.skipRate30d(),
-                stats.playCount30d() < SPARSE_USER_THRESHOLD
         );
     }
 

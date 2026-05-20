@@ -25,7 +25,7 @@ http.interceptors.response.use(
   (err) => {
     const status = err?.response?.status;
     const timeoutMessage = err?.code === 'ECONNABORTED' || String(err?.message || '').includes('timeout')
-      ? '请求超时，请确认后端服务和数据库已启动'
+      ? '请求超时，请确认后端服务、数据库和本地 Ollama 模型正在响应'
       : null;
     const message =
       err?.response?.data?.message ||

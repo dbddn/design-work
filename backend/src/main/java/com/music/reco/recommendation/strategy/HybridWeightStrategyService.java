@@ -14,21 +14,21 @@ public class HybridWeightStrategyService {
         double explorationRatio;
 
         if (playCount30d == 0) {
-            weight.put("popular", 0.30);
-            weight.put("content", 0.48);
-            weight.put("scene", 0.17);
+            weight.put("popular", 0.20);
+            weight.put("content", 0.55);
+            weight.put("scene", 0.20);
             weight.put("collaborative", 0.05);
-            explorationRatio = 0.18;
+            explorationRatio = 0.24;
         } else if (playCount30d < 30) {
-            weight.put("popular", 0.18);
-            weight.put("content", 0.44);
+            weight.put("popular", 0.14);
+            weight.put("content", 0.42);
             weight.put("scene", 0.22);
-            weight.put("collaborative", 0.16);
+            weight.put("collaborative", 0.22);
             explorationRatio = 0.28;
         } else if (playCount30d < 80) {
             double sceneWeight = "commute".equalsIgnoreCase(scene) ? 0.24 : 0.20;
-            double collaborativeWeight = skipRate30d > 0.35 ? 0.28 : 0.34;
-            double contentWeight = 0.28;
+            double collaborativeWeight = skipRate30d > 0.35 ? 0.30 : 0.36;
+            double contentWeight = 0.26;
             double popularWeight = Math.max(0.10, 1.0 - sceneWeight - collaborativeWeight - contentWeight);
             weight.put("popular", popularWeight);
             weight.put("content", contentWeight);
@@ -37,8 +37,8 @@ public class HybridWeightStrategyService {
             explorationRatio = skipRate30d > 0.35 ? 0.22 : 0.16;
         } else {
             double sceneWeight = "commute".equalsIgnoreCase(scene) ? 0.25 : 0.20;
-            double collabWeight = skipRate30d > 0.35 ? 0.38 : 0.46;
-            double contentWeight = 0.20;
+            double collabWeight = skipRate30d > 0.35 ? 0.40 : 0.50;
+            double contentWeight = 0.18;
             double popularWeight = Math.max(0.10, 1.0 - sceneWeight - collabWeight - contentWeight);
             weight.put("popular", popularWeight);
             weight.put("content", contentWeight);

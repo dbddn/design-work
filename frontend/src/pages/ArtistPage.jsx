@@ -75,7 +75,16 @@ export default function ArtistPage({ onPlay, onOpenDetail, currentTrack }) {
           <div className="artist-state">{error}</div>
         ) : (
           <div className="artist-hero-layout">
-            <div className="artist-copy artist-copy-text-only">
+            <div className="artist-portrait-panel">
+              {artist?.avatarUrl ? (
+                <img src={artist.avatarUrl} alt={`${artist?.name || '歌手'} 照片`} className="artist-portrait-img" />
+              ) : (
+                <div className="artist-portrait-fallback">
+                  <span>{String(artist?.name || '?').trim().slice(0, 1)}</span>
+                </div>
+              )}
+            </div>
+            <div className="artist-copy">
               <span className="eyebrow">歌手详情</span>
               <h2>{artist?.name || '未知歌手'}</h2>
               <p className="artist-desc">{artist?.description || '暂无歌手简介。'}</p>

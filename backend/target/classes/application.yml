@@ -52,17 +52,19 @@ app:
     server-entry: ${MCP_SERVER_ENTRY:D:/TestMCP/grant-mcp-main/dist/index.js}
     helper-script: ${MCP_HELPER_SCRIPT:C:/Users/LIUHENGRU/Desktop/design-1/backend/tools/mcp-tool-call.mjs}
   ai:
-    api-key: ${DASHSCOPE_API_KEY:sk-674de33255564feca31354c6ae83b6c5}
-    base-url: ${DASHSCOPE_BASE_URL:https://dashscope.aliyuncs.com/api/v2/apps/protocols/compatible-mode/v1}
-    model: ${DASHSCOPE_MODEL:tongyi-xiaomi-analysis-pro}
-    thinking-enabled: ${DASHSCOPE_THINKING_ENABLED:true}
-    timeout-seconds: ${DASHSCOPE_TIMEOUT_SECONDS:40}
-    daypart-timeout-seconds: ${DASHSCOPE_DAYPART_TIMEOUT_SECONDS:6}
+    api-key: ${OLLAMA_API_KEY:}
+    base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+    model: ${OLLAMA_MODEL:qwen:7b}
+    thinking-enabled: ${OLLAMA_THINKING_ENABLED:false}
+    timeout-seconds: ${OLLAMA_TIMEOUT_SECONDS:90}
+    daypart-timeout-seconds: ${OLLAMA_DAYPART_TIMEOUT_SECONDS:6}
   daypart-ai:
     enabled: ${DAYPART_AI_ENABLED:true}
-    base-url: ${DAYPART_AI_BASE_URL:http://localhost:11434}
-    model: ${DAYPART_AI_MODEL:qwen2.5:1.5b}
-    timeout-seconds: ${DAYPART_AI_TIMEOUT_SECONDS:60}
+    provider: ${DAYPART_AI_PROVIDER:seed}
+    api-key: ${DAYPART_AI_API_KEY:}
+    base-url: ${DAYPART_AI_BASE_URL:https://ark.cn-beijing.volces.com/api/v3}
+    model: ${DAYPART_AI_MODEL:ep-20260324224330-nsjjn}
+    timeout-seconds: ${DAYPART_AI_TIMEOUT_SECONDS:90}
   netease-api:
     enabled: ${NETEASE_API_ENABLED:true}
     base-url: ${NETEASE_API_BASE_URL:http://127.0.0.1:3000}

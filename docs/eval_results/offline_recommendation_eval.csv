@@ -1,0 +1,6 @@
+﻿推荐策略,测试用户数,Precision@10,Recall@10,HitRate@10,NDCG@10,说明
+MCP候选召回 + 本地匹配,3,0.0000,0.0000,0.0000,0.0000,基于真实 listen_history、user_music_feedback 按时间 8:2 划分；样本不足用户采用最后一个正样本近似验证。
+内容标签推荐 baseline,16,0.0625,0.1735,0.2500,0.1096,基于真实 listen_history、user_music_feedback 按时间 8:2 划分；样本不足用户采用最后一个正样本近似验证。
+混合策略 + 分时段推荐,3,0.0000,0.0000,0.0000,0.0000,基于真实 listen_history、user_music_feedback 按时间 8:2 划分；样本不足用户采用最后一个正样本近似验证。
+混合策略推荐,4,0.2000,0.4286,0.5000,0.3073,基于真实 listen_history、user_music_feedback 按时间 8:2 划分；样本不足用户采用最后一个正样本近似验证。
+热门推荐 baseline,16,0.0188,0.0218,0.1250,0.0278,基于真实 listen_history、user_music_feedback 按时间 8:2 划分；样本不足用户采用最后一个正样本近似验证。

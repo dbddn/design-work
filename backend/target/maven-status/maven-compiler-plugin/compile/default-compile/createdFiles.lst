@@ -12,6 +12,7 @@ com\music\reco\recommendation\service\DaypartPlaylistSnapshotService$1.class
 com\music\reco\music\dto\ArtistDetailDto.class
 com\music\reco\music\controller\TrackController.class
 com\music\reco\assistant\dto\AiCompletionResult.class
+com\music\reco\recommendation\service\DaypartLlmClientService.class
 com\music\reco\mcp\dto\McpTrackDto.class
 com\music\reco\assistant\dto\AssistantMessageDto.class
 com\music\reco\config\DaypartPlaylistWarmupRunner.class
@@ -84,6 +85,7 @@ com\music\reco\user\dto\UserProfileResponse.class
 com\music\reco\recommendation\service\TimeSlotPlaylistOrchestratorService$RefinementResult.class
 com\music\reco\analytics\dto\HeatmapPointDto.class
 com\music\reco\music\service\PlaylistService.class
+com\music\reco\recommendation\service\UserPreferenceContextService.class
 com\music\reco\mcp\service\McpResponseNormalizer.class
 com\music\reco\domain\repository\TrackRepository.class
 com\music\reco\mcp\client\WebClientMcpClient$2.class
@@ -120,6 +122,7 @@ com\music\reco\music\service\DiscoveryService.class
 com\music\reco\RecoBackendApplication.class
 com\music\reco\legacy\LegacyJdbcRepository$1.class
 com\music\reco\recommendation\dto\McpRecommendationDebugMatchDto.class
+com\music\reco\recommendation\service\DaypartPreferenceSnapshotService.class
 com\music\reco\domain\repository\UserTrackFeedbackRepository.class
 com\music\reco\mcp\dto\McpSearchLibraryArgs.class
 com\music\reco\music\dto\HistoryItemDto.class

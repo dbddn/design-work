@@ -17,7 +17,9 @@ const isValidTag = (value) => {
   return normalized !== 'unknown' && normalized !== '未分类';
 };
 
-export default function TrackDetailPage({ onPlay, currentTrack }) {
+const ratingMarks = [1, 2, 3, 4, 5];
+
+export default function TrackDetailPage({ onPlay, currentTrack, trackFeedback = {}, onRateTrack }) {
   const navigate = useNavigate();
   const { trackId } = useParams();
   const [track, setTrack] = useState(null);
@@ -159,6 +161,7 @@ export default function TrackDetailPage({ onPlay, currentTrack }) {
   }
 
   const isPlaying = currentTrack?.id === track?.id || currentTrack?.mcpTrackId === track?.mcpTrackId;
+  const currentRating = Number(trackFeedback[String(track?.id)]?.rating || 0);
 
   return (
     <div className="page">
@@ -197,6 +200,23 @@ export default function TrackDetailPage({ onPlay, currentTrack }) {
             <div className="chips">
               <span className="chip soft">时长 {formatDuration(track.durationSec || track.duration)}</span>
               {isPlaying ? <span className="chip soft">当前播放中</span> : null}
+            </div>
+
+            <div className="track-detail-rating-panel" aria-label="歌曲评分">
+              <span>我的评分</span>
+              <div className="track-detail-rating-stars">
+                {ratingMarks.map((score) => (
+                  <button
+                    key={score}
+                    type="button"
+                    className={`rating-star ${currentRating >= score ? 'active' : ''}`}
+                    onClick={() => onRateTrack?.(track, score)}
+                    aria-label={`评 ${score} 分`}
+                  >
+                    ★
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="track-detail-actions">

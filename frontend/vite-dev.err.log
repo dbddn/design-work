@@ -1,0 +1,51 @@
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/history?limit=60[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/playlists/mine[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/recommendations?scene=default&emotion=neutral&limit=12[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/recommendations/dayparts?scene=default&emotion=neutral&limit=10&refresh=false[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/history?limit=100[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/charts/new[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/charts/netease/toplist?limit=4&trackLimit=5[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/history?limit=60[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/playlists/mine[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/recommendations?scene=default&emotion=neutral&limit=12[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/history?limit=100[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/charts/new[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/charts/netease/toplist?limit=4&trackLimit=5[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/community/posts[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:52:50[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/community/posts[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:54:06[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/tracks/artists/1?page=0&size=10[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+[2m17:54:06[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/tracks/artists/1?page=0&size=10[39m
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)

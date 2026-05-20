@@ -19,11 +19,14 @@ import java.util.List;
 public class MusicService {
     private final LegacyJdbcRepository legacyJdbcRepository;
     private final NeteaseApiTrackFallbackService neteaseApiTrackFallbackService;
+    private final NeteaseArtistImageService neteaseArtistImageService;
 
     public MusicService(LegacyJdbcRepository legacyJdbcRepository,
-                        NeteaseApiTrackFallbackService neteaseApiTrackFallbackService) {
+                        NeteaseApiTrackFallbackService neteaseApiTrackFallbackService,
+                        NeteaseArtistImageService neteaseArtistImageService) {
         this.legacyJdbcRepository = legacyJdbcRepository;
         this.neteaseApiTrackFallbackService = neteaseApiTrackFallbackService;
+        this.neteaseArtistImageService = neteaseArtistImageService;
     }
 
     public SearchResponse search(String keyword, int page, int size) {
@@ -39,12 +42,28 @@ public class MusicService {
     }
 
     public ArtistDetailDto artistDetail(Long artistId, int page, int size) {
-        return legacyJdbcRepository.getArtistDetail(artistId, page, size);
+        ArtistDetailDto artist = legacyJdbcRepository.getArtistDetail(artistId, page, size);
+        String avatarUrl = neteaseArtistImageService.resolveAvatarUrl(artist.name(), artist.avatarUrl());
+        if (avatarUrl == artist.avatarUrl() || (avatarUrl != null && avatarUrl.equals(artist.avatarUrl()))) {
+            return artist;
+        }
+        return new ArtistDetailDto(
+                artist.id(),
+                artist.name(),
+                artist.description(),
+                avatarUrl,
+                artist.page(),
+                artist.size(),
+                artist.hasMore(),
+                artist.hotTracks()
+        );
     }
 
     public ArtistSummaryDto resolveArtist(String artistName) {
-        return legacyJdbcRepository.findArtistCard(artistName)
+        ArtistSummaryDto artist = legacyJdbcRepository.findArtistCard(artistName)
                 .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND, "artist not found"));
+        String avatarUrl = neteaseArtistImageService.resolveAvatarUrl(artist.name(), artist.avatarUrl());
+        return new ArtistSummaryDto(artist.id(), artist.name(), artist.description(), avatarUrl);
     }
 
     public TrackDto detail(Long id) {

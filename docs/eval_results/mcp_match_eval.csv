@@ -1,0 +1,7 @@
+﻿测试场景,测试次数,MCP平均候选数,本地平均匹配数,本地匹配率,平均最终返回数,回退触发率,可播放率,说明
+normal:default/neutral,240,0.00,0.00,N/A,12.12,0.0000,见接口性能表,基于 recommendation_log 中 mcp_candidate_count、result_count 与 fallback_reason 汇总；日志未单独保存 MCP 原始未匹配候选数。
+afternoon:default/neutral,122,10.49,10.49,1.0000,10.00,0.3607,见接口性能表,基于 recommendation_log 中 mcp_candidate_count、result_count 与 fallback_reason 汇总；日志未单独保存 MCP 原始未匹配候选数。
+evening:default/neutral,122,10.49,10.49,1.0000,10.00,0.2787,见接口性能表,基于 recommendation_log 中 mcp_candidate_count、result_count 与 fallback_reason 汇总；日志未单独保存 MCP 原始未匹配候选数。
+midnight:default/neutral,122,10.49,10.49,1.0000,10.00,0.3197,见接口性能表,基于 recommendation_log 中 mcp_candidate_count、result_count 与 fallback_reason 汇总；日志未单独保存 MCP 原始未匹配候选数。
+morning:default/neutral,122,10.49,10.49,1.0000,10.00,0.5000,见接口性能表,基于 recommendation_log 中 mcp_candidate_count、result_count 与 fallback_reason 汇总；日志未单独保存 MCP 原始未匹配候选数。
+normal:afternoon/neutral,5,0.00,0.00,N/A,12.00,0.0000,见接口性能表,基于 recommendation_log 中 mcp_candidate_count、result_count 与 fallback_reason 汇总；日志未单独保存 MCP 原始未匹配候选数。

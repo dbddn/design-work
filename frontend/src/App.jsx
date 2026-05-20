@@ -317,6 +317,22 @@ export default function App() {
     }
   };
 
+  const rateSpecificTrack = async (track, rating) => {
+    if (!track?.id || !rating) return;
+    const liked = Boolean(trackFeedback[String(track.id)]?.liked);
+    try {
+      await recommendationApi.feedback({
+        trackId: track.id,
+        rating,
+        liked,
+        skipped: false
+      });
+      updateTrackFeedbackState(track.id, { rating, liked });
+    } catch (error) {
+      console.error('Operation failed', error);
+    }
+  };
+
   const skipTrack = async () => {
     if (!currentTrack) return;
     try {
@@ -418,7 +434,17 @@ export default function App() {
             path="/artists/:artistId"
             element={<ArtistPage onPlay={playTrack} onOpenDetail={openTrackDetail} currentTrack={currentTrack} />}
           />
-          <Route path="/tracks/:trackId" element={<TrackDetailPage onPlay={playTrack} currentTrack={currentTrack} />} />
+          <Route
+            path="/tracks/:trackId"
+            element={
+              <TrackDetailPage
+                onPlay={playTrack}
+                currentTrack={currentTrack}
+                trackFeedback={trackFeedback}
+                onRateTrack={rateSpecificTrack}
+              />
+            }
+          />
           <Route path="/analytics" element={<Navigate to="/profile" replace />} />
           <Route path="/explore" element={<ExplorePage onPlay={playTrack} onOpenDetail={openTrackDetail} />} />
           <Route path="/charts" element={<Navigate to="/" replace />} />
@@ -453,11 +479,9 @@ export default function App() {
         onSkip={skipTrack}
         onToggleFavorite={() => toggleFavoriteTrack(currentTrack)}
         onOpenDetail={openTrackDetail}
-        onRate={rateTrack}
         isFavorited={currentLiked}
-        currentRating={currentRating}
       />
-      <AssistantWidget onPlay={playTrack} onOpenDetail={openTrackDetail} />
+      <AssistantWidget currentTrack={currentTrack} onPlay={playTrack} onOpenDetail={openTrackDetail} />
     </div>
   );
 }

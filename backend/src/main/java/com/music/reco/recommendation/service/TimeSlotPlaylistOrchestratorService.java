@@ -7,8 +7,11 @@ import com.music.reco.assistant.dto.AiPromptMessage;
 import com.music.reco.legacy.LegacyJdbcRepository;
 import com.music.reco.mcp.client.McpClient;
 import com.music.reco.mcp.dto.McpHybridRecommendationArgs;
+import com.music.reco.mcp.dto.McpLibraryReleaseItem;
+import com.music.reco.mcp.dto.McpLibrarySearchPayload;
 import com.music.reco.mcp.dto.McpRecommendationItem;
 import com.music.reco.mcp.dto.McpRecommendationPayload;
+import com.music.reco.mcp.dto.McpSearchLibraryArgs;
 import com.music.reco.music.dto.FavoriteTrackDto;
 import com.music.reco.music.dto.HistoryItemDto;
 import com.music.reco.music.dto.TrackDto;
@@ -73,20 +76,20 @@ public class TimeSlotPlaylistOrchestratorService {
         private final McpClient mcpClient;
         private final McpQueryMappingService mcpQueryMappingService;
         private final McpCandidateToTrackMatcher mcpCandidateToTrackMatcher;
-        private final OllamaDaypartLlmService ollamaDaypartLlmService;
+        private final DaypartLlmClientService daypartLlmClientService;
         private final ObjectMapper objectMapper;
 
         public TimeSlotPlaylistOrchestratorService(LegacyJdbcRepository legacyJdbcRepository,
                         McpClient mcpClient,
                         McpQueryMappingService mcpQueryMappingService,
                         McpCandidateToTrackMatcher mcpCandidateToTrackMatcher,
-                        OllamaDaypartLlmService ollamaDaypartLlmService,
+                        DaypartLlmClientService daypartLlmClientService,
                         ObjectMapper objectMapper) {
                 this.legacyJdbcRepository = legacyJdbcRepository;
                 this.mcpClient = mcpClient;
                 this.mcpQueryMappingService = mcpQueryMappingService;
                 this.mcpCandidateToTrackMatcher = mcpCandidateToTrackMatcher;
-                this.ollamaDaypartLlmService = ollamaDaypartLlmService;
+                this.daypartLlmClientService = daypartLlmClientService;
                 this.objectMapper = objectMapper;
         }
 
@@ -103,10 +106,15 @@ public class TimeSlotPlaylistOrchestratorService {
                 List<FavoriteTrackDto> favoriteTracks = safeList(legacyJdbcRepository.listFavoriteTracks(userId, 6));
                 UserSignalBundle userSignals = new UserSignalBundle(recentHistory, favoriteTracks);
 
-                return TIME_SLOTS.stream()
-                                .map(slot -> buildSinglePlaylist(requestId, userId, slot, scene, emotion, limit, snapshot, context,
-                                                userSignals))
-                                .toList();
+                Set<Long> usedTrackIds = new LinkedHashSet<>();
+                List<TimeSlotPlaylistBuildResult> results = new ArrayList<>();
+                for (TimeSlotDefinition slot : TIME_SLOTS) {
+                        TimeSlotPlaylistBuildResult result = buildSinglePlaylist(
+                                        requestId, userId, slot, scene, emotion, limit, snapshot, context, userSignals,
+                                        usedTrackIds);
+                        results.add(result);
+                }
+                return results;
         }
 
         public List<TimeSlotPlaylistBuildResult> buildPlaylistsMcpOnly(String requestId,
@@ -122,10 +130,15 @@ public class TimeSlotPlaylistOrchestratorService {
                 List<FavoriteTrackDto> favoriteTracks = safeList(legacyJdbcRepository.listFavoriteTracks(userId, 6));
                 UserSignalBundle userSignals = new UserSignalBundle(recentHistory, favoriteTracks);
 
-                return TIME_SLOTS.stream()
-                                .map(slot -> buildSinglePlaylistMcpOnly(requestId, userId, slot, scene, emotion, limit,
-                                                snapshot, context, userSignals))
-                                .toList();
+                Set<Long> usedTrackIds = new LinkedHashSet<>();
+                List<TimeSlotPlaylistBuildResult> results = new ArrayList<>();
+                for (TimeSlotDefinition slot : TIME_SLOTS) {
+                        TimeSlotPlaylistBuildResult result = buildSinglePlaylistMcpOnly(
+                                        requestId, userId, slot, scene, emotion, limit, snapshot, context, userSignals,
+                                        usedTrackIds);
+                        results.add(result);
+                }
+                return results;
         }
 
         private TimeSlotPlaylistBuildResult buildSinglePlaylist(String requestId,
@@ -136,19 +149,23 @@ public class TimeSlotPlaylistOrchestratorService {
                         int limit,
                         StrategySnapshot snapshot,
                         UserPreferenceContext context,
-                        UserSignalBundle userSignals) {
+                        UserSignalBundle userSignals,
+                        Set<Long> usedTrackIds) {
                 try {
-                        CandidateRecallResult recall = recallCandidates(requestId, userId, slot, scene, emotion, limit, snapshot,
-                                        context);
-                        RefinementResult refinement = refinePlaylist(requestId, slot, recall, context, userSignals, limit);
+                        int recallLimit = Math.max(limit, limit * TIME_SLOTS.size());
+                        CandidateRecallResult recall = recallCandidates(requestId, userId, slot, scene, emotion, recallLimit,
+                                        snapshot, context);
+                        RefinementResult refinement = refinePlaylist(requestId, slot, recall, context, userSignals, snapshot, limit);
                         List<TrackDto> directRecallTracks = recall.candidates().stream()
                                         .map(RecommendationCandidate::track)
-                                        .limit(limit)
                                         .toList();
 
-                        List<TrackDto> finalTracks = refinement.tracks().isEmpty()
+                        List<TrackDto> preferredTracks = refinement.tracks().isEmpty()
                                         ? directRecallTracks
                                         : refinement.tracks();
+                        int beforeDedupeCount = preferredTracks.size();
+                        List<TrackDto> finalTracks = selectAndReserveUniqueTracks(preferredTracks, usedTrackIds, limit);
+                        int crossSlotDuplicateCount = Math.max(0, beforeDedupeCount - finalTracks.size());
 
                         String fallbackReason = refinement.fallbackReason();
                         boolean fallbackUsed = fallbackReason != null && !fallbackReason.isBlank();
@@ -157,22 +174,23 @@ public class TimeSlotPlaylistOrchestratorService {
                                         slot.label(),
                                         slot.mood(),
                                         slot.description(),
-                                        firstNonBlank(refinement.playlistTitle(), slot.label() + "个性化歌单"),
-                                        firstNonBlank(refinement.playlistSubtitle(), slot.goal()),
+                                        firstNonBlank(refinement.playlistTitle(), defaultPlaylistTitle(slot)),
+                                        firstNonBlank(refinement.playlistSubtitle(), defaultPlaylistSubtitle(slot)),
                                         firstNonBlank(refinement.playlistReason(),
-                                                        defaultReason(slot, context, userSignals, fallbackUsed)),
+                                                        defaultReasonLong(slot, context, userSignals, fallbackUsed)),
                                         mergeTags(slot.tags(), refinement.tags()),
                                         finalTracks,
                                         refinement.explanations(),
-                                        ollamaDaypartLlmService.isEnabled(),
+                                        daypartLlmClientService.isEnabled(),
                                         refinement.aiSuccess(),
                                         fallbackUsed,
                                         fallbackReason,
                                         recall.mcpCandidateCount(),
                                         finalTracks.size());
 
-                        log.info("daypart slot built requestId={} key={} tracks={} mcpCandidates={} aiAttempted={} aiSuccess={} fallbackReason={}",
+                        log.info("daypart slot built requestId={} key={} tracks={} mcpCandidates={} crossSlotDuplicatesRemoved={} aiAttempted={} aiSuccess={} fallbackReason={}",
                                         requestId, slot.key(), finalTracks.size(), recall.mcpCandidateCount(),
+                                        crossSlotDuplicateCount,
                                         refinement.aiAttempted(),
                                         refinement.aiSuccess(), fallbackReason);
 
@@ -189,8 +207,8 @@ public class TimeSlotPlaylistOrchestratorService {
                                         userId, slot, scene, emotion, Math.max(MIN_CANDIDATE_LIMIT, limit), context);
                         List<TrackDto> fallbackTracks = localFallback.stream()
                                         .map(RecommendationCandidate::track)
-                                        .limit(limit)
                                         .toList();
+                        fallbackTracks = selectAndReserveUniqueTracks(fallbackTracks, usedTrackIds, limit);
                         TimeSlotPlaylistDto playlist = new TimeSlotPlaylistDto(
                                         slot.key(),
                                         slot.label(),
@@ -198,11 +216,11 @@ public class TimeSlotPlaylistOrchestratorService {
                                         slot.description(),
                                         slot.label() + "涓€у寲姝屽崟",
                                         slot.goal(),
-                                        defaultReason(slot, context, userSignals, true),
+                                        defaultReasonLong(slot, context, userSignals, true),
                                         slot.tags(),
                                         fallbackTracks,
                                         Map.of(),
-                                        ollamaDaypartLlmService.isEnabled(),
+                                        daypartLlmClientService.isEnabled(),
                                         false,
                                         true,
                                         "DAYPART_SLOT_FAILED_USE_LOCAL",
@@ -226,13 +244,16 @@ public class TimeSlotPlaylistOrchestratorService {
                         int limit,
                         StrategySnapshot snapshot,
                         UserPreferenceContext context,
-                        UserSignalBundle userSignals) {
-                CandidateRecallResult recall = recallCandidates(requestId, userId, slot, scene, emotion, limit, snapshot,
+                        UserSignalBundle userSignals,
+                        Set<Long> usedTrackIds) {
+                int recallLimit = Math.max(limit, limit * TIME_SLOTS.size());
+                CandidateRecallResult recall = recallCandidates(requestId, userId, slot, scene, emotion, recallLimit, snapshot,
                                 context);
-                List<TrackDto> finalTracks = recall.candidates().stream()
+                List<TrackDto> preferredTracks = recall.candidates().stream()
                                 .map(RecommendationCandidate::track)
-                                .limit(limit)
                                 .toList();
+                List<TrackDto> finalTracks = selectAndReserveUniqueTracks(preferredTracks, usedTrackIds, limit);
+                int crossSlotDuplicateCount = Math.max(0, preferredTracks.size() - finalTracks.size());
                 boolean usedLocalFallback = !recall.hasMcpCandidates();
                 String fallbackReason = usedLocalFallback
                                 ? "NO_MCP_CANDIDATES_USE_LOCAL"
@@ -243,21 +264,22 @@ public class TimeSlotPlaylistOrchestratorService {
                                 slot.label(),
                                 slot.mood(),
                                 slot.description(),
-                                slot.label() + "个性化歌单",
-                                slot.goal(),
-                                defaultReason(slot, context, userSignals, usedLocalFallback),
+                                defaultPlaylistTitle(slot),
+                                defaultPlaylistSubtitle(slot),
+                                defaultReasonLong(slot, context, userSignals, usedLocalFallback),
                                 slot.tags(),
                                 finalTracks,
                                 Map.of(),
-                                ollamaDaypartLlmService.isEnabled(),
+                                daypartLlmClientService.isEnabled(),
                                 false,
                                 usedLocalFallback,
                                 fallbackReason,
                                 recall.mcpCandidateCount(),
                                 finalTracks.size());
 
-                log.info("daypart fast slot built requestId={} key={} tracks={} mcpCandidates={} fallbackReason={}",
-                                requestId, slot.key(), finalTracks.size(), recall.mcpCandidateCount(), fallbackReason);
+                log.info("daypart fast slot built requestId={} key={} tracks={} mcpCandidates={} crossSlotDuplicatesRemoved={} fallbackReason={}",
+                                requestId, slot.key(), finalTracks.size(), recall.mcpCandidateCount(),
+                                crossSlotDuplicateCount, fallbackReason);
 
                 return new TimeSlotPlaylistBuildResult(
                                 playlist,
@@ -266,6 +288,24 @@ public class TimeSlotPlaylistOrchestratorService {
                                 recall.mcpCandidateCount(),
                                 finalTracks.size(),
                                 fallbackReason);
+        }
+
+        private List<TrackDto> selectAndReserveUniqueTracks(List<TrackDto> tracks, Set<Long> usedTrackIds, int limit) {
+                List<TrackDto> selected = new ArrayList<>();
+                Set<Long> selectedIds = new LinkedHashSet<>();
+                for (TrackDto track : safeList(tracks)) {
+                        if (track == null || track.id() == null || usedTrackIds.contains(track.id())
+                                        || selectedIds.contains(track.id())) {
+                                continue;
+                        }
+                        selected.add(track);
+                        selectedIds.add(track.id());
+                        if (selected.size() >= limit) {
+                                break;
+                        }
+                }
+                usedTrackIds.addAll(selectedIds);
+                return selected;
         }
 
         private CandidateRecallResult recallCandidates(String requestId,
@@ -284,19 +324,25 @@ public class TimeSlotPlaylistOrchestratorService {
                                 candidateLimit,
                                 snapshot,
                                 context);
-                log.info("daypart mcp primary query requestId={} key={} args={}", requestId, slot.key(), summarizeArgs(primaryArgs));
+                log.info("daypart mcp primary query requestId={} key={} userContext={} args={}",
+                                requestId, slot.key(), summarizeUserContext(context), summarizeArgs(primaryArgs));
                 RecommendationRecallBundle recommendationBundle = recallByRecommendations(requestId, slot.key(), primaryArgs,
                                 candidateLimit);
                 if (!recommendationBundle.candidates().isEmpty()) {
-                        List<RecommendationCandidate> finalCandidates = recommendationBundle.candidates().stream()
-                                        .limit(candidateLimit)
-                                        .toList();
+                        List<RecommendationCandidate> localFill = recommendationBundle.candidates().size() < candidateLimit
+                                        ? localFallbackCandidates(userId, slot, scene, emotion, candidateLimit, context)
+                                        : List.of();
+                        List<RecommendationCandidate> finalCandidates = applyDiversity(
+                                        mergeCandidates(recommendationBundle.candidates(), localFill),
+                                        candidateLimit);
+                        int fillCount = Math.max(0, finalCandidates.size() - recommendationBundle.candidates().size());
                         List<McpRecommendationItem> rawItems = recommendationBundle.rawItems();
                         Map<String, List<String>> insights = rawItems.isEmpty()
                                         ? buildGenreInsightsFromCandidates(finalCandidates)
                                         : buildGenreInsights(rawItems);
-                        log.info("daypart mcp recall merged requestId={} key={} source=get_recommendations candidates={} rawItems={}",
-                                        requestId, slot.key(), finalCandidates.size(), rawItems.size());
+                        log.info("daypart mcp recall merged requestId={} key={} source=get_recommendations rawItems={} localMatched={} fillCount={} diversifiedCandidates={}",
+                                        requestId, slot.key(), rawItems.size(), recommendationBundle.candidates().size(),
+                                        fillCount, finalCandidates.size());
                         return new CandidateRecallResult(
                                         finalCandidates,
                                         finalCandidates.size(),
@@ -304,10 +350,31 @@ public class TimeSlotPlaylistOrchestratorService {
                                         insights);
                 }
 
+                List<RecommendationCandidate> libraryCandidates = recallBySearchLibrary(requestId, slot.key(), primaryArgs,
+                                candidateLimit);
+                if (!libraryCandidates.isEmpty()) {
+                        List<RecommendationCandidate> localFill = libraryCandidates.size() < candidateLimit
+                                        ? localFallbackCandidates(userId, slot, scene, emotion, candidateLimit, context)
+                                        : List.of();
+                        List<RecommendationCandidate> finalCandidates = applyDiversity(
+                                        mergeCandidates(libraryCandidates, localFill),
+                                        candidateLimit);
+                        int fillCount = Math.max(0, finalCandidates.size() - libraryCandidates.size());
+                        log.info("daypart mcp recall merged requestId={} key={} source=search_library localMatched={} fillCount={} diversifiedCandidates={}",
+                                        requestId, slot.key(), libraryCandidates.size(), fillCount, finalCandidates.size());
+                        return new CandidateRecallResult(
+                                        finalCandidates,
+                                        libraryCandidates.size(),
+                                        List.of(),
+                                        buildGenreInsightsFromCandidates(finalCandidates));
+                }
+
                 List<RecommendationCandidate> localFallback = localFallbackCandidates(userId, slot, scene, emotion,
                                 candidateLimit, context);
-                log.info("daypart local fallback requestId={} key={} candidates={}", requestId, slot.key(), localFallback.size());
-                return new CandidateRecallResult(localFallback, 0, List.of(), Map.of());
+                List<RecommendationCandidate> diversifiedFallback = applyDiversity(localFallback, candidateLimit);
+                log.info("daypart local fallback requestId={} key={} fallbackTriggered=true candidates={} diversifiedCandidates={}",
+                                requestId, slot.key(), localFallback.size(), diversifiedFallback.size());
+                return new CandidateRecallResult(diversifiedFallback, 0, List.of(), Map.of());
         }
 
         private RecommendationRecallBundle recallByRecommendations(String requestId,
@@ -343,6 +410,44 @@ public class TimeSlotPlaylistOrchestratorService {
                                         requestId, slotKey, error.getMessage());
                 }
                 return new RecommendationRecallBundle(List.of(), List.of());
+        }
+
+        private List<RecommendationCandidate> recallBySearchLibrary(String requestId,
+                        String slotKey,
+                        McpHybridRecommendationArgs primaryArgs,
+                        int candidateLimit) {
+                try {
+                        McpSearchLibraryArgs searchArgs = new McpSearchLibraryArgs(
+                                        null,
+                                        null,
+                                        primaryArgs.genres(),
+                                        primaryArgs.secondaryGenres(),
+                                        primaryArgs.descriptors(),
+                                        primaryArgs.minRating(),
+                                        candidateLimit);
+                        log.info("daypart mcp recall request requestId={} key={} stage=search_library genres={} descriptors={} minRating={} maxResults={}",
+                                        requestId, slotKey, searchArgs.genres(), searchArgs.descriptors(),
+                                        searchArgs.minRating(), searchArgs.maxResults());
+                        McpLibrarySearchPayload payload = mcpClient.searchLibrary(searchArgs);
+                        List<McpLibraryReleaseItem> rawItems = payload.results() == null ? List.of() : payload.results();
+                        List<RecommendationCandidate> matchedCandidates = rawItems.stream()
+                                        .map(mcpCandidateToTrackMatcher::matchLibraryRelease)
+                                        .flatMap(Optional::stream)
+                                        .collect(Collectors.collectingAndThen(
+                                                        Collectors.toMap(
+                                                                        RecommendationCandidate::musicId,
+                                                                        candidate -> candidate,
+                                                                        (left, right) -> left,
+                                                                        LinkedHashMap::new),
+                                                        map -> map.values().stream().limit(candidateLimit).toList()));
+                        log.info("daypart mcp recall response requestId={} key={} stage=search_library rawItems={} matchedCandidates={}",
+                                        requestId, slotKey, rawItems.size(), matchedCandidates.size());
+                        return matchedCandidates;
+                } catch (Exception error) {
+                        log.warn("daypart mcp recall failed requestId={} key={} stage=search_library message={}",
+                                        requestId, slotKey, error.getMessage());
+                        return List.of();
+                }
         }
 
         private List<RecommendationCandidate> localFallbackCandidates(String userId,
@@ -391,11 +496,68 @@ public class TimeSlotPlaylistOrchestratorService {
                                 .toList();
         }
 
+        private List<RecommendationCandidate> mergeCandidates(List<RecommendationCandidate> primary,
+                        List<RecommendationCandidate> fill) {
+                LinkedHashMap<Long, RecommendationCandidate> merged = new LinkedHashMap<>();
+                for (RecommendationCandidate candidate : safeList(primary)) {
+                        if (candidate != null && candidate.musicId() != null) {
+                                merged.putIfAbsent(candidate.musicId(), candidate);
+                        }
+                }
+                for (RecommendationCandidate candidate : safeList(fill)) {
+                        if (candidate != null && candidate.musicId() != null) {
+                                merged.putIfAbsent(candidate.musicId(), candidate);
+                        }
+                }
+                return new ArrayList<>(merged.values());
+        }
+
+        private List<RecommendationCandidate> applyDiversity(List<RecommendationCandidate> candidates, int limit) {
+                Map<String, Integer> artistCount = new LinkedHashMap<>();
+                Map<String, Integer> albumCount = new LinkedHashMap<>();
+                Map<String, Integer> genreCount = new LinkedHashMap<>();
+                List<RecommendationCandidate> selected = new ArrayList<>();
+                List<RecommendationCandidate> deferred = new ArrayList<>();
+
+                for (RecommendationCandidate candidate : safeList(candidates)) {
+                        if (candidate == null || candidate.track() == null || candidate.musicId() == null) {
+                                continue;
+                        }
+                        TrackDto track = candidate.track();
+                        String artist = normalizeBucket(track.artist());
+                        String album = normalizeBucket(track.album());
+                        String genre = normalizeBucket(track.genre());
+                        boolean overConcentrated = artistCount.getOrDefault(artist, 0) >= 2
+                                        || albumCount.getOrDefault(album, 0) >= 2
+                                        || genreCount.getOrDefault(genre, 0) >= 4;
+                        if (overConcentrated) {
+                                deferred.add(candidate);
+                                continue;
+                        }
+                        selected.add(candidate);
+                        artistCount.merge(artist, 1, Integer::sum);
+                        albumCount.merge(album, 1, Integer::sum);
+                        genreCount.merge(genre, 1, Integer::sum);
+                        if (selected.size() >= limit) {
+                                return selected;
+                        }
+                }
+
+                for (RecommendationCandidate candidate : deferred) {
+                        selected.add(candidate);
+                        if (selected.size() >= limit) {
+                                break;
+                        }
+                }
+                return selected;
+        }
+
         private RefinementResult refinePlaylist(String requestId,
                         TimeSlotDefinition slot,
                         CandidateRecallResult recall,
                         UserPreferenceContext context,
                         UserSignalBundle userSignals,
+                        StrategySnapshot snapshot,
                         int limit) {
                 if (recall.candidates().isEmpty()) {
                         return RefinementResult.fallback("NO_CANDIDATES");
@@ -405,7 +567,7 @@ public class TimeSlotPlaylistOrchestratorService {
                                         requestId, slot.key(), recall.candidates().size());
                         return RefinementResult.fallback("NO_MCP_CANDIDATES_USE_LOCAL");
                 }
-                if (!ollamaDaypartLlmService.isEnabled()) {
+                if (!daypartLlmClientService.isEnabled()) {
                         log.info("daypart skip ai requestId={} key={} reason=DAYPART_AI_DISABLED candidateCount={}",
                                         requestId, slot.key(), recall.candidates().size());
                         return RefinementResult.fallback("AI_DISABLED");
@@ -417,10 +579,10 @@ public class TimeSlotPlaylistOrchestratorService {
                 }
 
                 try {
-                        AiCompletionResult completion = ollamaDaypartLlmService.complete(
+                        AiCompletionResult completion = daypartLlmClientService.complete(
                                         requestId,
                                         slot.key(),
-                                        buildPromptMessages(slot, recall, context, userSignals, limit));
+                                        buildPromptMessages(slot, recall, context, userSignals, snapshot, limit));
                         log.info("daypart ai decorate success requestId={} key={} contentChars={}",
                                         requestId,
                                         slot.key(),
@@ -444,6 +606,7 @@ public class TimeSlotPlaylistOrchestratorService {
                         CandidateRecallResult recall,
                         UserPreferenceContext context,
                         UserSignalBundle userSignals,
+                        StrategySnapshot snapshot,
                         int limit) {
                 return List.of(
                                 new AiPromptMessage(
@@ -471,13 +634,91 @@ public class TimeSlotPlaylistOrchestratorService {
                                                                 """),
                                 new AiPromptMessage(
                                                 "user",
-                                                buildUserPrompt(slot, recall, context, userSignals, limit)));
+                                                buildUserPrompt(slot, recall, context, userSignals, snapshot, limit)),
+                                new AiPromptMessage(
+                                                "user",
+                                                buildWeightAndPreferencePrompt(slot, context, snapshot)),
+                                new AiPromptMessage(
+                                                "user",
+                                                buildRankingInstruction(slot, context, snapshot)));
+        }
+
+        private String buildWeightAndPreferencePrompt(TimeSlotDefinition slot,
+                        UserPreferenceContext context,
+                        StrategySnapshot snapshot) {
+                return """
+                                权重与偏好来源：
+                                - popular=%s
+                                - content=%s，来源=全体用户在 %s 时段的高频风格/歌手。
+                                - scene=%s，来源=时段目标、场景和情绪配置。
+                                - collaborative=%s，来源=当前用户自己的播放、收藏、评分、跳过和近期锚点。
+                                - explorationRatio=%s
+                                全体用户该时段偏好：genres=%s, artists=%s。
+                                当前用户个人偏好：genres=%s, artists=%s, albums=%s, anchors=%s。
+                                """.formatted(
+                                formatNullable(snapshot.hybridWeight().get("popular")),
+                                formatNullable(snapshot.hybridWeight().get("content")),
+                                slot.key(),
+                                formatNullable(snapshot.hybridWeight().get("scene")),
+                                formatNullable(snapshot.hybridWeight().get("collaborative")),
+                                formatNullable(snapshot.explorationRatio()),
+                                joinReadable(trimToSize(globalTimeSlotGenres(context, slot.key()), 3)),
+                                joinReadable(trimToSize(globalTimeSlotArtists(context, slot.key()), 3)),
+                                joinReadable(trimToSize(context.topGenres(), 3)),
+                                joinReadable(trimToSize(context.topArtists(), 3)),
+                                joinReadable(trimToSize(context.topAlbums(), 3)),
+                                joinReadable(trimToSize(context.recentAnchorAlbums(), 3)));
+        }
+
+        private String buildRankingInstruction(UserPreferenceContext context) {
+                return """
+                                请在固定候选歌曲中排序并返回歌单，不允许新增候选之外的歌曲。
+                                JSON 必须包含 playlistTitle、playlistSubtitle、playlistReason、tags、orderedTrackIds、explanations。
+                                orderedTrackIds 只能使用候选列表中真实存在的 id。
+                                排序规则：
+                                1. 先匹配当前时段目标和语义描述词。
+                                2. 再匹配用户高频风格、歌手、近期播放、收藏和评分。
+                                3. 再根据用户阶段调整探索强度：新用户更分散，稀疏用户适度探索，成熟用户更贴近历史偏好。
+                                4. 最后限制同一歌手、同一专辑、同一流派过度集中。
+                                个人数据：playCount30d=%d, skipRate30d=%s, feedbackCount=%d, positiveFeedback=%d, negativeFeedback=%d。
+                                """.formatted(
+                                context.playCount30d(),
+                                formatNullable(context.skipRate30d()),
+                                context.feedbackCount(),
+                                context.positiveFeedbackCount(),
+                                context.negativeFeedbackCount());
+        }
+
+        private String buildRankingInstruction(TimeSlotDefinition slot,
+                        UserPreferenceContext context,
+                        StrategySnapshot snapshot) {
+                return """
+                                排序规则：
+                                1. 当前时段是 %s，目标是“%s”，先保证歌曲适合这个时间段。
+                                2. 内容过滤信号来自“全体用户在该时段的偏好”，content=%s。
+                                3. 协同过滤信号来自“当前用户自己的听歌偏好”，collaborative=%s。
+                                4. 新用户或数据稀疏用户更依赖 content 与 scene，成熟用户更提高 collaborative；当前用户阶段=%s。
+                                5. orderedTrackIds 只能使用候选中的真实 id，并保持同一歌手、同一专辑、同一流派不过度集中。
+                                6. 标题和说明必须基于真实候选与真实偏好，不要编造不存在的歌曲或用户行为。
+                                个人数据：playCount30d=%d, skipRate30d=%s, feedbackCount=%d, positiveFeedback=%d, negativeFeedback=%d。
+                                """.formatted(
+                                slot.label(),
+                                slot.goal(),
+                                formatNullable(snapshot.hybridWeight().get("content")),
+                                formatNullable(snapshot.hybridWeight().get("collaborative")),
+                                resolveUserStage(context),
+                                context.playCount30d(),
+                                formatNullable(context.skipRate30d()),
+                                context.feedbackCount(),
+                                context.positiveFeedbackCount(),
+                                context.negativeFeedbackCount());
         }
 
         private String buildUserPrompt(TimeSlotDefinition slot,
                         CandidateRecallResult recall,
                         UserPreferenceContext context,
                         UserSignalBundle userSignals,
+                        StrategySnapshot snapshot,
                         int limit) {
 
                 List<RecommendationCandidate> selectedCandidates = recall.candidates().stream()
@@ -543,10 +784,7 @@ public class TimeSlotPlaylistOrchestratorService {
                                         new TypeReference<>() {
                                         });
 
-                        List<TrackDto> fixedTracks = safeList(candidates).stream()
-                                        .map(RecommendationCandidate::track)
-                                        .limit(limit)
-                                        .toList();
+                        List<TrackDto> fixedTracks = orderTracksByAiIds(candidates, parsed.get("orderedTrackIds"), limit);
 
                         List<String> tags = safeList((List<?>) parsed.get("tags")).stream()
                                         .map(String::valueOf)
@@ -564,8 +802,8 @@ public class TimeSlotPlaylistOrchestratorService {
                                         safeTextValue(parsed.get("playlistReason"), ""),
                                         tags,
                                         fixedTracks,
-                                Map.of(),
-                                null);
+                            readExplanationMap(parsed.get("explanations")),
+                            null);
                 } catch (Exception error) {
                         log.warn("daypart ai parse failed key={} message={} raw={}",
                                         slot.key(), error.getMessage(), safeText(rawContent), error);
@@ -590,6 +828,62 @@ public class TimeSlotPlaylistOrchestratorService {
                                 .replace('\uFF08', '(')
                                 .replace('\uFF09', ')')
                                 .trim();
+        }
+
+        private List<TrackDto> orderTracksByAiIds(List<RecommendationCandidate> candidates, Object rawIds, int limit) {
+                LinkedHashMap<Long, TrackDto> candidateMap = new LinkedHashMap<>();
+                for (RecommendationCandidate candidate : safeList(candidates)) {
+                        if (candidate != null && candidate.musicId() != null && candidate.track() != null) {
+                                candidateMap.putIfAbsent(candidate.musicId(), candidate.track());
+                        }
+                }
+
+                List<TrackDto> ordered = new ArrayList<>();
+                if (rawIds instanceof List<?> ids) {
+                        for (Object idValue : ids) {
+                                Long id = parseLong(idValue);
+                                TrackDto track = id == null ? null : candidateMap.remove(id);
+                                if (track != null) {
+                                        ordered.add(track);
+                                }
+                                if (ordered.size() >= limit) {
+                                        return ordered;
+                                }
+                        }
+                }
+
+                for (TrackDto track : candidateMap.values()) {
+                        ordered.add(track);
+                        if (ordered.size() >= limit) {
+                                break;
+                        }
+                }
+                return ordered;
+        }
+
+        private Map<String, String> readExplanationMap(Object value) {
+                if (!(value instanceof Map<?, ?> rawMap)) {
+                        return Map.of();
+                }
+                Map<String, String> explanations = new LinkedHashMap<>();
+                rawMap.forEach((key, rawValue) -> {
+                        String text = rawValue == null ? "" : String.valueOf(rawValue).trim();
+                        if (key != null && !text.isBlank()) {
+                                explanations.put(String.valueOf(key), text);
+                        }
+                });
+                return explanations;
+        }
+
+        private Long parseLong(Object value) {
+                if (value == null) {
+                        return null;
+                }
+                try {
+                        return Long.parseLong(String.valueOf(value).trim());
+                } catch (Exception ignored) {
+                        return null;
+                }
         }
 
         private Map<String, List<String>> buildGenreInsights(List<McpRecommendationItem> rawItems) {
@@ -739,6 +1033,18 @@ public class TimeSlotPlaylistOrchestratorService {
                                 + ", hybridWeight=" + args.hybridWeight();
         }
 
+        private String summarizeUserContext(UserPreferenceContext context) {
+                return "playCount30d=" + context.playCount30d()
+                                + ", skipRate30d=" + formatNullable(context.skipRate30d())
+                                + ", feedbackCount=" + context.feedbackCount()
+                                + ", positiveFeedback=" + context.positiveFeedbackCount()
+                                + ", negativeFeedback=" + context.negativeFeedbackCount()
+                                + ", topGenres=" + safeList(context.topGenres())
+                                + ", topArtists=" + safeList(context.topArtists())
+                                + ", globalTimeSlotGenres=" + context.globalTimeSlotGenres()
+                                + ", globalTimeSlotArtists=" + context.globalTimeSlotArtists();
+        }
+
         private String defaultReason(TimeSlotDefinition slot,
                         UserPreferenceContext context,
                         UserSignalBundle userSignals,
@@ -750,6 +1056,41 @@ public class TimeSlotPlaylistOrchestratorService {
                                                 : "系统优先根据当前时段氛围做了候选整理";
                 String suffix = fallbackUsed ? "，本次已自动回退到稳定候选结果。" : "，并保留了当前时段需要的节奏与情绪。";
                 return slot.description() + preferenceSummary + suffix;
+        }
+
+        private String defaultReasonLong(TimeSlotDefinition slot,
+                        UserPreferenceContext context,
+                        UserSignalBundle userSignals,
+                        boolean fallbackUsed) {
+                String preferenceSummary = !context.topGenres().isEmpty()
+                                ? "系统参考了你近期更常出现的 " + String.join(" / ", context.topGenres()) + " 倾向"
+                                : !userSignals.favoriteTitles().isEmpty()
+                                                ? "系统参考了你近期收藏和播放过的歌曲气质"
+                                                : "系统优先采用当前时段下全体用户更常出现的风格偏好";
+                String suffix = fallbackUsed
+                                ? "。本次模型文案或 MCP 召回未完全命中，后端已自动回退到本地稳定候选，但仍保留了时段目标、个人画像和多样性约束。"
+                                : "。歌曲顺序会尽量兼顾当下时段、你的个人画像以及不同歌手和风格之间的层次，避免整张歌单听起来过于单一。";
+                return slot.description() + preferenceSummary + suffix;
+        }
+
+        private String defaultPlaylistTitle(TimeSlotDefinition slot) {
+                return switch (slot.key()) {
+                        case "morning" -> "晨光唤醒歌单";
+                        case "afternoon" -> "午后续航歌单";
+                        case "evening" -> "晚间松弛歌单";
+                        case "midnight" -> "深夜低语歌单";
+                        default -> slot.label() + "精选歌单";
+                };
+        }
+
+        private String defaultPlaylistSubtitle(TimeSlotDefinition slot) {
+                return switch (slot.key()) {
+                        case "morning" -> "用清亮节奏把状态慢慢打开";
+                        case "afternoon" -> "稳住专注感，也给情绪留一点空气";
+                        case "evening" -> "把白天放下，留给夜晚一点柔和";
+                        case "midnight" -> "低刺激、慢沉浸，适合独处时轻轻播放";
+                        default -> slot.goal();
+                };
         }
 
         private String resolveFallbackScene(TimeSlotDefinition slot, String requestedScene) {
@@ -778,6 +1119,34 @@ public class TimeSlotPlaylistOrchestratorService {
                 };
         }
 
+        private List<String> globalTimeSlotGenres(UserPreferenceContext context, String timeSlot) {
+                return safeMapList(context.globalTimeSlotGenres(), timeSlot);
+        }
+
+        private List<String> globalTimeSlotArtists(UserPreferenceContext context, String timeSlot) {
+                return safeMapList(context.globalTimeSlotArtists(), timeSlot);
+        }
+
+        private List<String> safeMapList(Map<String, List<String>> values, String key) {
+                if (values == null || key == null) {
+                        return List.of();
+                }
+                return safeList(values.get(key.trim().toLowerCase(Locale.ROOT)));
+        }
+
+        private String resolveUserStage(UserPreferenceContext context) {
+                if (context.playCount30d() == 0) {
+                        return "NEW_USER";
+                }
+                if (context.playCount30d() < 30) {
+                        return "SPARSE_USER";
+                }
+                if (context.playCount30d() < 80) {
+                        return "GROWING_USER";
+                }
+                return "MATURE_USER";
+        }
+
         private String joinReadable(List<String> values) {
                 List<String> safe = safeList(values).stream()
                                 .filter(Objects::nonNull)
@@ -789,6 +1158,10 @@ public class TimeSlotPlaylistOrchestratorService {
 
         private String safeText(String value) {
                 return value == null || value.isBlank() ? "暂无" : value.trim();
+        }
+
+        private String normalizeBucket(String value) {
+                return value == null || value.isBlank() ? "-" : value.trim().toLowerCase(Locale.ROOT);
         }
 
         private String safeTextValue(Object value, String fallback) {

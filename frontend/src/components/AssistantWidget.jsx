@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { assistantApi } from '../api/services';
 import { getErrorMessage, toArray } from '../utils/view';
 
@@ -8,7 +8,43 @@ const quickPrompts = [
   '帮我做一份适合下雨天独处的推荐歌单'
 ];
 
-export default function AssistantWidget({ onPlay, onOpenDetail }) {
+const inferScene = () => {
+  const hour = new Date().getHours();
+  if (hour < 6) return 'late_night';
+  if (hour < 12) return 'morning';
+  if (hour < 18) return 'afternoon';
+  return 'evening';
+};
+
+const readAssistantPosition = () => {
+  try {
+    const saved = JSON.parse(localStorage.getItem('assistant:floating-position') || 'null');
+    if (saved && Number.isFinite(saved.x) && Number.isFinite(saved.y)) {
+      return saved;
+    }
+  } catch {
+    // ignore invalid saved position
+  }
+  return { x: Math.max(24, window.innerWidth - 88), y: Math.max(96, window.innerHeight - 168) };
+};
+
+const getAssistantPanelPosition = (position) => {
+  const panelWidth = Math.min(460, window.innerWidth - 32);
+  const panelHeight = Math.min(620, window.innerHeight - 112);
+  const left = Math.min(Math.max(12, position.x), window.innerWidth - panelWidth - 12);
+  const belowTop = position.y + 68;
+  const aboveTop = position.y - panelHeight - 12;
+  const hasRoomBelow = belowTop + panelHeight <= window.innerHeight - 16;
+  const top = hasRoomBelow ? belowTop : Math.max(16, aboveTop);
+
+  return {
+    left,
+    top,
+    maxHeight: panelHeight
+  };
+};
+
+export default function AssistantWidget({ currentTrack, onPlay, onOpenDetail }) {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -25,6 +61,10 @@ export default function AssistantWidget({ onPlay, onOpenDetail }) {
   const [reasoningSummary, setReasoningSummary] = useState([]);
   const [modelName, setModelName] = useState('');
   const [usedFallback, setUsedFallback] = useState(false);
+  const [position, setPosition] = useState(readAssistantPosition);
+  const dragRef = useRef({ dragging: false, moved: false, offsetX: 0, offsetY: 0 });
+  const suppressClickRef = useRef(false);
+  const panelPosition = getAssistantPanelPosition(position);
 
   const historyPayload = useMemo(
     () =>
@@ -48,21 +88,27 @@ export default function AssistantWidget({ onPlay, onOpenDetail }) {
     try {
       const data = await assistantApi.chat({
         message,
-        history: historyPayload
+        history: historyPayload,
+        scene: inferScene(),
+        emotion: 'neutral',
+        style: currentTrack?.genre || '',
+        currentTrackId: currentTrack?.id || null
       });
       setMessages((current) => [
         ...current,
         {
           role: 'assistant',
-          content: data?.reply || '我已经先为你整理好一份推荐歌单。'
+          content: data?.assistantReply || data?.reply || '我已经先为你整理好一份推荐歌单。'
         }
       ]);
       setPlaylistTitle(data?.playlistTitle || '推荐歌单');
-      setPlaylistSummary(data?.playlistSummary || '');
-      setPlaylist(toArray(data?.playlist));
+      setPlaylistSummary(data?.recommendationReason || data?.playlistSummary || '');
+      const playlistItems = toArray(data?.playlist);
+      const songItems = toArray(data?.songs).map((track) => ({ track, reason: data?.recommendationReason || '' }));
+      setPlaylist(playlistItems.length ? playlistItems : songItems);
       setReasoningSummary(toArray(data?.reasoningSummary));
       setModelName(data?.model || '');
-      setUsedFallback(Boolean(data?.usedFallback));
+      setUsedFallback(Boolean(data?.fallback ?? data?.usedFallback));
     } catch (requestError) {
       setError(getErrorMessage(requestError, '智能助手暂时不可用，请稍后重试'));
     } finally {
@@ -70,19 +116,80 @@ export default function AssistantWidget({ onPlay, onOpenDetail }) {
     }
   };
 
+  const startDrag = (event) => {
+    dragRef.current = {
+      dragging: true,
+      moved: false,
+      offsetX: event.clientX - position.x,
+      offsetY: event.clientY - position.y
+    };
+    suppressClickRef.current = false;
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  };
+
+  const moveDrag = (event) => {
+    if (!dragRef.current.dragging) return;
+    const nextX = Math.min(Math.max(12, event.clientX - dragRef.current.offsetX), window.innerWidth - 68);
+    const nextY = Math.min(Math.max(72, event.clientY - dragRef.current.offsetY), window.innerHeight - 68);
+    if (Math.abs(nextX - position.x) > 2 || Math.abs(nextY - position.y) > 2) {
+      dragRef.current.moved = true;
+      suppressClickRef.current = true;
+    }
+    const nextPosition = { x: nextX, y: nextY };
+    setPosition(nextPosition);
+    localStorage.setItem('assistant:floating-position', JSON.stringify(nextPosition));
+  };
+
+  const endDrag = () => {
+    window.setTimeout(() => {
+      dragRef.current.dragging = false;
+      dragRef.current.moved = false;
+    }, 120);
+  };
+
   return (
     <>
       <button
         type="button"
         className="assistant-fab"
+        style={{ left: position.x, top: position.y }}
+        title="拖动调整位置，点击打开 AI 助手"
         aria-label="打开智能推荐助手"
-        onClick={() => setOpen((value) => !value)}
+        onPointerDown={startDrag}
+        onPointerMove={moveDrag}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onClick={() => {
+          if (dragRef.current.moved || suppressClickRef.current) {
+            suppressClickRef.current = false;
+            return;
+          }
+          setOpen((value) => !value);
+        }}
       >
-        AI
+        <svg
+          t="1779090656925"
+          className="icon assistant-fab-icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path d="M683.7 922.7h-345c-73.5 0-133.3-59.8-133.3-133.3V459.8c0-73.5 59.8-133.3 133.3-133.3h345c73.5 0 133.3 59.8 133.3 133.3v329.6c0 73.5-59.8 133.3-133.3 133.3z m-345-506.9c-24.3 0-44.1 19.8-44.1 44.1v329.6c0 24.3 19.8 44.1 44.1 44.1h345c24.3 0 44.1-19.8 44.1-44.1V459.8c0-24.3-19.8-44.1-44.1-44.1h-345zM914.3 759.6c-24.6 0-44.6-20-44.6-44.6V534.3c0-24.6 20-44.6 44.6-44.6s44.6 20 44.6 44.6V715c0 24.7-20 44.6-44.6 44.6zM111.7 759.6c-24.6 0-44.6-20-44.6-44.6V534.3c0-24.6 20-44.6 44.6-44.6s44.6 20 44.6 44.6V715c0 24.7-19.9 44.6-44.6 44.6z" fill="#2c2c2c" />
+          <path d="M511.2 415.8c-24.6 0-44.6-20-44.6-44.6V239.3c0-24.6 20-44.6 44.6-44.6s44.6 20 44.6 44.6v131.9c0 24.6-20 44.6-44.6 44.6z" fill="#2c2c2c" />
+          <path d="M511.2 276.6c-49.2 0-89.2-40-89.2-89.2s40-89.2 89.2-89.2 89.2 40 89.2 89.2-40 89.2-89.2 89.2z m0-89.2h0.2-0.2z m0 0h0.2-0.2z m0 0h0.2-0.2z m0 0h0.2-0.2z m0 0z m0 0h0.2-0.2z m0 0h0.2-0.2z m0-0.1h0.2-0.2zM399 675.5c-28.1 0-50.9-22.8-50.9-50.9 0-28.1 22.8-50.9 50.9-50.9s50.9 22.8 50.9 50.9c0 28.1-22.8 50.9-50.9 50.9zM622.9 675.5c-28.1 0-50.9-22.8-50.9-50.9 0-28.1 22.8-50.9 50.9-50.9 28.1 0 50.9 22.8 50.9 50.9 0 28.1-22.8 50.9-50.9 50.9z" fill="#2c2c2c" />
+        </svg>
       </button>
 
       {open ? (
-        <section className="assistant-panel glass-panel">
+        <section
+          className="assistant-panel glass-panel"
+          style={{
+            left: panelPosition.left,
+            top: panelPosition.top,
+            maxHeight: panelPosition.maxHeight
+          }}
+        >
           <div className="assistant-panel-glow assistant-panel-glow-a" />
           <div className="assistant-panel-glow assistant-panel-glow-b" />
 
