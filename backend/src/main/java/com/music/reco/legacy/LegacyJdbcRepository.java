@@ -69,7 +69,9 @@ public class LegacyJdbcRepository {
     public Optional<UserProfileResponse> findUserProfile(String userId) {
         List<UserProfileResponse> rows = jdbcTemplate.query(
                 """
-                SELECT user_id, username, email, timezone, gender, age_range, province, avatar_url, bio, preferred_genres
+                SELECT user_id, username, email, timezone, gender, age_range, province,
+                       COALESCE(NULLIF(avatar_data, ''), avatar_url) AS avatar_url,
+                       bio, preferred_genres
                 FROM users
                 WHERE user_id = ?
                 """,
@@ -94,7 +96,9 @@ public class LegacyJdbcRepository {
     public Optional<UserProfileResponse> findUserByUsername(String username) {
         List<UserProfileResponse> rows = jdbcTemplate.query(
                 """
-                SELECT user_id, username, email, timezone, gender, age_range, province, avatar_url, bio, preferred_genres
+                SELECT user_id, username, email, timezone, gender, age_range, province,
+                       COALESCE(NULLIF(avatar_data, ''), avatar_url) AS avatar_url,
+                       bio, preferred_genres
                 FROM users
                 WHERE username = ?
                 LIMIT 1
@@ -159,6 +163,18 @@ public class LegacyJdbcRepository {
                 passwordHash
         );
         return userId;
+    }
+
+    public void createUserShell(String userId, String username, String email) {
+        jdbcTemplate.update(
+                """
+                INSERT INTO users (user_id, username, email, password_hash, role, status, timezone, created_at, updated_at, last_login_at)
+                VALUES (?, ?, ?, '', 'USER', 'ACTIVE', 'Asia/Shanghai', NOW(), NOW(), NOW())
+                """,
+                userId,
+                username,
+                email
+        );
     }
 
     public void updateLastLoginAt(String userId) {
@@ -425,6 +441,24 @@ public class LegacyJdbcRepository {
         String safeArtist = artist == null || artist.isBlank() ? "未知歌手" : artist.trim();
         String safeAlbum = album == null ? "" : album.trim();
 
+        String externalTrackId = neteaseTrackId == null ? null : String.valueOf(neteaseTrackId);
+
+        if (externalTrackId != null && hasColumn("musics", "mcp_track_id")) {
+            List<Long> byExternalId = jdbcTemplate.query(
+                    """
+                    SELECT id
+                    FROM musics
+                    WHERE mcp_track_id = ?
+                    LIMIT 1
+                    """,
+                    (rs, rowNum) -> rs.getLong("id"),
+                    externalTrackId
+            );
+            if (!byExternalId.isEmpty()) {
+                return byExternalId.get(0);
+            }
+        }
+
         List<Long> existing = jdbcTemplate.query(
                 """
                 SELECT m.id
@@ -443,7 +477,9 @@ public class LegacyJdbcRepository {
                 safeArtist
         );
         if (!existing.isEmpty()) {
-            return existing.get(0);
+            Long existingId = existing.get(0);
+            updateExternalTrackIdIfPossible(existingId, externalTrackId);
+            return existingId;
         }
 
         String artistNamesJson;
@@ -458,8 +494,8 @@ public class LegacyJdbcRepository {
             jdbcTemplate.update(
                     """
                     INSERT INTO musics
-                    (name, artist_names, album_name, cover_url, duration, source_type, release_year, audio_url, description, play_count, is_active)
-                    VALUES (?, ?, ?, ?, ?, 'NETEASE_TOPLIST', ?, '', ?, 0, 1)
+                    (name, artist_names, album_name, cover_url, duration, source_type, release_year, audio_url, description, play_count, is_active, mcp_track_id)
+                    VALUES (?, ?, ?, ?, ?, 'NETEASE_TOPLIST', ?, '', ?, 0, 1, ?)
                     """,
                     safeTitle,
                     artistNamesJson,
@@ -467,7 +503,8 @@ public class LegacyJdbcRepository {
                     coverUrl,
                     durationSec,
                     releaseYear,
-                    description
+                    description,
+                    externalTrackId
             );
         } catch (DataAccessException firstError) {
             jdbcTemplate.update(
@@ -486,7 +523,44 @@ public class LegacyJdbcRepository {
         }
 
         Long newId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Long.class);
+        updateExternalTrackIdIfPossible(newId, externalTrackId);
         return newId == null ? -1L : newId;
+    }
+
+    private void updateExternalTrackIdIfPossible(Long localTrackId, String externalTrackId) {
+        if (localTrackId == null || externalTrackId == null || externalTrackId.isBlank() || !hasColumn("musics", "mcp_track_id")) {
+            return;
+        }
+        try {
+            jdbcTemplate.update(
+                    """
+                    UPDATE musics
+                    SET mcp_track_id = ?
+                    WHERE id = ?
+                      AND (mcp_track_id IS NULL OR mcp_track_id = '')
+                    """,
+                    externalTrackId,
+                    localTrackId
+            );
+        } catch (DataAccessException ignored) {
+            // Keep playback resilient if legacy databases have not been migrated yet.
+        }
+    }
+
+    private boolean hasColumn(String tableName, String columnName) {
+        Integer count = jdbcTemplate.queryForObject(
+                """
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = DATABASE()
+                  AND table_name = ?
+                  AND column_name = ?
+                """,
+                Integer.class,
+                tableName,
+                columnName
+        );
+        return count != null && count > 0;
     }
 
     public Optional<TrackDto> findTrackByArtistAndAlbum(String artist, String album) {
@@ -1124,7 +1198,8 @@ public class LegacyJdbcRepository {
         jdbcTemplate.update(
                 """
                 UPDATE users
-                SET username = ?, email = ?, timezone = ?, gender = ?, age_range = ?, province = ?, avatar_url = ?, bio = ?, updated_at = NOW()
+                SET username = ?, email = ?, timezone = ?, gender = ?, age_range = ?, province = ?,
+                    avatar_url = COALESCE(?, avatar_url), bio = ?, updated_at = NOW()
                 WHERE user_id = ?
                 """,
                 username,
@@ -1135,6 +1210,14 @@ public class LegacyJdbcRepository {
                 province,
                 avatarUrl,
                 bio,
+                userId
+        );
+    }
+
+    public void updateUserAvatarData(String userId, String avatarData) {
+        jdbcTemplate.update(
+                "UPDATE users SET avatar_data = ?, updated_at = NOW() WHERE user_id = ?",
+                avatarData,
                 userId
         );
     }
@@ -2006,7 +2089,7 @@ public class LegacyJdbcRepository {
 
         return jdbcTemplate.query(
                 """
-                SELECT m.id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description,
+                SELECT m.id, m.mcp_track_id, m.name, m.artist_names, m.album_name, m.cover_url, m.duration, m.description,
                        COALESCE(NULLIF(g.description, ''), '其他风格') AS genre_name,
                        uf.rating, uf.feedback_at
                 FROM user_music_feedback uf
@@ -2026,6 +2109,7 @@ public class LegacyJdbcRepository {
                 """,
                 (rs, rowNum) -> new FavoriteTrackDto(
                         rs.getLong("id"),
+                        rs.getString("mcp_track_id"),
                         rs.getString("name"),
                         firstString(rs.getString("artist_names"), ""),
                         rs.getString("album_name"),
@@ -2124,7 +2208,7 @@ public class LegacyJdbcRepository {
         LocalSongAssetService.AudioAsset audioAsset = localSongAssetService.resolveTrackAsset(id, coverUrl);
         TrackDto localTrack = new TrackDto(
                 id,
-                String.valueOf(id),
+                resolveExternalTrackId(id),
                 name,
                 firstString(artistNamesJson, "Unknown Artist"),
                 albumName == null || albumName.isBlank() ? "Unknown Album" : albumName,
@@ -2138,6 +2222,29 @@ public class LegacyJdbcRepository {
                 "LOCAL_DB"
         );
         return neteaseApiTrackFallbackService.enrichTrack(localTrack, false);
+    }
+
+    private String resolveExternalTrackId(Long localTrackId) {
+        if (localTrackId == null || !hasColumn("musics", "mcp_track_id")) {
+            return null;
+        }
+        try {
+            List<String> rows = jdbcTemplate.query(
+                    """
+                    SELECT mcp_track_id
+                    FROM musics
+                    WHERE id = ?
+                      AND mcp_track_id IS NOT NULL
+                      AND mcp_track_id <> ''
+                    LIMIT 1
+                    """,
+                    (rs, rowNum) -> rs.getString("mcp_track_id"),
+                    localTrackId
+            );
+            return rows.stream().findFirst().orElse(null);
+        } catch (DataAccessException ignored) {
+            return null;
+        }
     }
 
     private String normalizeGenreName(String genreName) {

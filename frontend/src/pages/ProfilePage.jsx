@@ -36,6 +36,8 @@ export default function ProfilePage({
   const [msg, setMsg] = useState('');
   const [error, setError] = useState('');
   const [savingProfile, setSavingProfile] = useState(false);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
+  const [profileEditorOpen, setProfileEditorOpen] = useState(false);
   const [chartDays, setChartDays] = useState(30);
   const [form, setForm] = useState({
     username: '',
@@ -48,24 +50,8 @@ export default function ProfilePage({
     bio: ''
   });
 
-  const loadBase = async () => {
-    const [profileData, statsData, historyData, favoriteData, playlistData] = await Promise.all([
-      userApi.me(),
-      userApi.stats(),
-      trackApi.history(40),
-      trackApi.favorites(40),
-      playlistApi.mine()
-    ]);
-
-    const nextProfile = profileData || null;
-    setProfile(nextProfile);
-    setStats(statsData || null);
-    setHistory(toArray(historyData).slice(0, 40));
-    setFavoriteTracks(toArray(favoriteData));
-    setPlaylists({
-      created: toArray(playlistData?.created),
-      favorites: toArray(playlistData?.favorites)
-    });
+  const applyProfile = (nextProfile) => {
+    setProfile(nextProfile || null);
     setForm({
       username: nextProfile?.username || '',
       email: nextProfile?.email || '',
@@ -76,10 +62,34 @@ export default function ProfilePage({
       avatarUrl: nextProfile?.avatarUrl || '',
       bio: nextProfile?.bio || ''
     });
-
     if (nextProfile?.username) {
       localStorage.setItem('username', nextProfile.username);
     }
+    if (nextProfile?.avatarUrl) {
+      localStorage.setItem('avatarUrl', nextProfile.avatarUrl);
+    } else {
+      localStorage.removeItem('avatarUrl');
+    }
+    window.dispatchEvent(new CustomEvent('music:user-updated', { detail: nextProfile || null }));
+  };
+
+  const loadBase = async () => {
+    const [profileData, statsData, historyData, favoriteData, playlistData] = await Promise.all([
+      userApi.me(),
+      userApi.stats(),
+      trackApi.history(40),
+      trackApi.favorites(40),
+      playlistApi.mine()
+    ]);
+
+    applyProfile(profileData || null);
+    setStats(statsData || null);
+    setHistory(toArray(historyData).slice(0, 40));
+    setFavoriteTracks(toArray(favoriteData));
+    setPlaylists({
+      created: toArray(playlistData?.created),
+      favorites: toArray(playlistData?.favorites)
+    });
   };
 
   const loadCharts = async (days) => {
@@ -144,15 +154,41 @@ export default function ProfilePage({
         bio: form.bio.trim()
       });
 
-      setProfile(saved || null);
-      if (saved?.username) {
-        localStorage.setItem('username', saved.username);
-      }
+      applyProfile(saved || null);
+      setProfileEditorOpen(false);
       setMsg('个人资料已更新。');
     } catch (requestError) {
       setError(getErrorMessage(requestError, '个人资料保存失败，请稍后重试'));
     } finally {
       setSavingProfile(false);
+    }
+  };
+
+  const uploadAvatar = async (event) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      setError('请选择图片文件作为头像。');
+      return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      setError('头像不能超过 2MB。');
+      return;
+    }
+
+    setUploadingAvatar(true);
+    setError('');
+    setMsg('');
+    try {
+      const saved = await userApi.uploadAvatar(file);
+      applyProfile(saved || null);
+      setMsg('头像已上传并保存。');
+    } catch (requestError) {
+      setError(getErrorMessage(requestError, '头像上传失败，请稍后重试'));
+    } finally {
+      setUploadingAvatar(false);
     }
   };
 
@@ -212,11 +248,6 @@ export default function ProfilePage({
     [playlists.created]
   );
 
-  const favoritedPlaylists = useMemo(
-    () => toArray(playlists.favorites).filter((playlist) => Boolean(playlist?.favorited)),
-    [playlists.favorites]
-  );
-
   const visibleFavoriteTracks = useMemo(
     () => favoriteTracks.filter((item) => trackFeedback[String(item?.id)]?.liked === true),
     [favoriteTracks, trackFeedback]
@@ -224,20 +255,39 @@ export default function ProfilePage({
 
   const historyPreview = useMemo(() => history.slice(0, 3), [history]);
 
+  const renderTrackActions = (track) => (
+    <div className="profile-favorite-actions">
+      <button type="button" className="btn subtle small" onClick={() => onPlay?.(track)}>
+        播放
+      </button>
+      <button type="button" className="btn subtle small" onClick={() => onOpenDetail?.(track)}>
+        详情
+      </button>
+    </div>
+  );
+
+  const avatarNode = (url, name, large = false) => (
+    <div className={`profile-avatar-preview ${large ? 'large' : ''}`}>
+      {url ? <img src={url} alt="头像" /> : <span>{String(name || 'U').slice(0, 1).toUpperCase()}</span>}
+    </div>
+  );
+
   return (
     <div className="page profile-page">
       <section className="hero hero-profile compact profile-hero-compact">
         <div className="profile-head glass-panel profile-head-compact">
+          {avatarNode(profile?.avatarUrl, profile?.username)}
           <div className="profile-head-main">
             <span className="eyebrow">个人中心</span>
             <strong>@{profile?.username || '听歌用户'}</strong>
-            <p>
-              {profile?.email || '未绑定邮箱'} · {profile?.timezone || 'Asia/Shanghai'}
-            </p>
+            <p>{profile?.email || '未绑定邮箱'} · {profile?.timezone || 'Asia/Shanghai'}</p>
           </div>
           <div className="chips profile-head-chips">
             <span className="genre-pill">{genderLabels[profile?.gender] || '暂未设置'}</span>
             {profile?.province ? <span className="chip soft">{profile.province}</span> : null}
+            <button type="button" className="btn subtle small" onClick={() => setProfileEditorOpen(true)}>
+              编辑资料
+            </button>
           </div>
         </div>
       </section>
@@ -252,12 +302,12 @@ export default function ProfilePage({
         <section className="metric-card profile-metric-card">
           <span className="eyebrow">7 天</span>
           <h3>{stats?.playCount7d || 0}</h3>
-          <p>近一周播放</p>
+          <p>最近一周播放</p>
         </section>
         <section className="metric-card profile-metric-card">
           <span className="eyebrow">30 天</span>
           <h3>{stats?.playCount30d || 0}</h3>
-          <p>近一月播放</p>
+          <p>最近一月播放</p>
         </section>
         <section className="metric-card profile-metric-card">
           <span className="eyebrow">收藏</span>
@@ -303,12 +353,14 @@ export default function ProfilePage({
                       <span className="chip soft">{playlist.favoriteCount || 0} 人收藏</span>
                     </div>
                   </div>
-                  <button type="button" className="btn subtle small" onClick={() => toggleFavoritePlaylist(playlist)}>
+                  <div className="profile-playlist-actions">
+                    <button type="button" className="btn subtle small" onClick={() => toggleFavoritePlaylist(playlist)}>
                     {playlist.favorited ? '取消收藏' : '收藏歌单'}
                   </button>
-                  <button type="button" className="btn subtle small" onClick={() => openPlaylist(playlist)}>
+                    <button type="button" className="btn subtle small" onClick={() => openPlaylist(playlist)}>
                     查看
-                  </button>
+                    </button>
+                  </div>
                 </article>
               ))
             ) : (
@@ -386,14 +438,7 @@ export default function ProfilePage({
                       <span className="genre-pill">{track.genre || '未分类'}</span>
                     </div>
                   </div>
-                  <div className="history-row-actions">
-                    <button type="button" className="btn subtle small" onClick={() => onPlay?.(track)}>
-                      播放
-                    </button>
-                    <button type="button" className="btn subtle small" onClick={() => onOpenDetail?.(track)}>
-                      详情
-                    </button>
-                  </div>
+                  {renderTrackActions(track)}
                 </article>
               ))
             ) : (
@@ -403,75 +448,94 @@ export default function ProfilePage({
         </section>
       ) : null}
 
-      <section className="glass-card">
-        <div className="section-heading">
-          <div>
-            <span className="eyebrow">个人资料</span>
-            <h3>修改账号信息</h3>
-          </div>
-        </div>
+      {profileEditorOpen ? (
+        <div className="modal-backdrop profile-editor-backdrop" role="dialog" aria-modal="true">
+          <section className="glass-card profile-editor-modal">
+            <button type="button" className="modal-close-btn" onClick={() => setProfileEditorOpen(false)}>
+              ×
+            </button>
+            <div className="section-heading">
+              <div>
+                <span className="eyebrow">个人资料</span>
+                <h3>修改账号信息</h3>
+              </div>
+            </div>
 
-        <div className="profile-form-grid">
-          <input
-            value={form.username}
-            onChange={(event) => setForm((current) => ({ ...current, username: event.target.value }))}
-            placeholder="用户名"
-          />
-          <input
-            value={form.email}
-            onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
-            placeholder="邮箱"
-          />
-          <select
-            value={form.gender}
-            onChange={(event) => setForm((current) => ({ ...current, gender: event.target.value }))}
-          >
-            <option value="unknown">暂未设置</option>
-            <option value="male">男</option>
-            <option value="female">女</option>
-          </select>
-          <input
-            value={form.ageRange}
-            onChange={(event) => setForm((current) => ({ ...current, ageRange: event.target.value }))}
-            placeholder="年龄段，例如 18-24"
-          />
-          <input
-            value={form.province}
-            onChange={(event) => setForm((current) => ({ ...current, province: event.target.value }))}
-            placeholder="地区 / 省份"
-          />
-          <input
-            value={form.timezone}
-            onChange={(event) => setForm((current) => ({ ...current, timezone: event.target.value }))}
-            placeholder="时区"
-          />
-          <input
-            value={form.avatarUrl}
-            onChange={(event) => setForm((current) => ({ ...current, avatarUrl: event.target.value }))}
-            placeholder="头像链接"
-          />
-          <input
-            value={form.bio}
-            onChange={(event) => setForm((current) => ({ ...current, bio: event.target.value }))}
-            placeholder="个性签名"
-          />
-        </div>
+            <div className="profile-editor-avatar">
+              <label className={`profile-avatar-upload-card ${uploadingAvatar ? 'disabled' : ''}`}>
+                {avatarNode(form.avatarUrl, form.username, true)}
+                <span>{uploadingAvatar ? '上传中...' : '更换头像'}</span>
+                <input type="file" accept="image/*" onChange={uploadAvatar} disabled={uploadingAvatar} />
+              </label>
+              <div>
+                <strong>头像预览</strong>
+                <p>点击头像上传图片，保存到数据库后会同步更新所有头像位置。</p>
+              </div>
+            </div>
 
-        <div className="state-actions" style={{ marginTop: 16 }}>
-          <div className="chips">
-            {toArray(profile?.preferredGenres).map((genre) => (
-              <span key={genre} className="genre-pill">
-                {genre}
-              </span>
-            ))}
-          </div>
-          <button className="btn" onClick={saveProfile} disabled={savingProfile}>
-            {savingProfile ? '保存中...' : '保存资料'}
-          </button>
-        </div>
+            <div className="profile-form-grid">
+              <input
+                value={form.username}
+                onChange={(event) => setForm((current) => ({ ...current, username: event.target.value }))}
+                placeholder="用户名"
+              />
+              <input
+                value={form.email}
+                onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
+                placeholder="邮箱"
+              />
+              <select
+                value={form.gender}
+                onChange={(event) => setForm((current) => ({ ...current, gender: event.target.value }))}
+              >
+                <option value="unknown">暂未设置</option>
+                <option value="male">男</option>
+                <option value="female">女</option>
+              </select>
+              <input
+                value={form.ageRange}
+                onChange={(event) => setForm((current) => ({ ...current, ageRange: event.target.value }))}
+                placeholder="年龄段，例如 18-24"
+              />
+              <input
+                value={form.province}
+                onChange={(event) => setForm((current) => ({ ...current, province: event.target.value }))}
+                placeholder="地区 / 省份"
+              />
+              <input
+                value={form.timezone}
+                onChange={(event) => setForm((current) => ({ ...current, timezone: event.target.value }))}
+                placeholder="时区"
+              />
+              <input
+                value={form.avatarUrl}
+                onChange={(event) => setForm((current) => ({ ...current, avatarUrl: event.target.value }))}
+                placeholder="头像链接"
+              />
+              <input
+                value={form.bio}
+                onChange={(event) => setForm((current) => ({ ...current, bio: event.target.value }))}
+                placeholder="个性签名"
+              />
+            </div>
 
-        {msg ? <p className="inline-feedback">{msg}</p> : null}
-      </section>
+            <div className="state-actions" style={{ marginTop: 16 }}>
+              <div className="chips">
+                {toArray(profile?.preferredGenres).map((genre) => (
+                  <span key={genre} className="genre-pill">
+                    {genre}
+                  </span>
+                ))}
+              </div>
+              <button className="btn" onClick={saveProfile} disabled={savingProfile}>
+                {savingProfile ? '保存中...' : '保存资料'}
+              </button>
+            </div>
+          </section>
+        </div>
+      ) : null}
+
+      {msg ? <p className="inline-feedback">{msg}</p> : null}
 
       <div className="dashboard-grid">
         <section className="glass-card">
@@ -488,6 +552,14 @@ export default function ProfilePage({
             {historyPreview.length > 0 ? (
               historyPreview.map((item) => {
                 const isPlaying = currentTrack?.id === item.trackId;
+                const track = {
+                  id: item.trackId,
+                  title: item.title,
+                  artist: item.artist,
+                  album: item.album,
+                  artworkUrl: item.artworkUrl,
+                  genre: item.genre
+                };
                 return (
                   <article className={`history-row history-row-detailed ${isPlaying ? 'is-playing' : ''}`} key={item.id || `${item.trackId}-${item.playedAt}`}>
                     <div className="history-row-main">
@@ -499,40 +571,7 @@ export default function ProfilePage({
                         {isPlaying ? <span className="chip soft">当前播放中</span> : null}
                       </div>
                     </div>
-                    <div className="history-row-actions">
-                      <button
-                        type="button"
-                        className="btn subtle small"
-                        onClick={() =>
-                          onPlay?.({
-                            id: item.trackId,
-                            title: item.title,
-                            artist: item.artist,
-                            album: item.album,
-                            artworkUrl: item.artworkUrl,
-                            genre: item.genre
-                          })
-                        }
-                      >
-                        播放
-                      </button>
-                      <button
-                        type="button"
-                        className="btn subtle small"
-                        onClick={() =>
-                          onOpenDetail?.({
-                            id: item.trackId,
-                            title: item.title,
-                            artist: item.artist,
-                            album: item.album,
-                            artworkUrl: item.artworkUrl,
-                            genre: item.genre
-                          })
-                        }
-                      >
-                        详情
-                      </button>
-                    </div>
+                    {renderTrackActions(track)}
                   </article>
                 );
               })

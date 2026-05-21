@@ -2,6 +2,7 @@ package com.music.reco.music.dto;
 
 public record FavoriteTrackDto(
         Long id,
+        String mcpTrackId,
         String title,
         String artist,
         String album,

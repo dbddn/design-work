@@ -3,6 +3,13 @@
 > vite --host 127.0.0.1
 
 
-  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m291[22m[2m[0m ms[22m
+  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m311[22m[2m[0m ms[22m
 
   [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m5173[22m/[39m
+[2m11:24:46[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/pages/AuthPage.jsx, /src/pages/SearchPage.jsx, /src/pages/ExplorePage.jsx, /src/pages/CommunityPage.jsx, /src/pages/PlaybackHistoryPage.jsx, /src/pages/ArtistPage.jsx, /src/pages/DaypartPlaylistPage.jsx, /src/pages/TrackDetailPage.jsx, /src/pages/ProfilePage.jsx, /src/components/AssistantWidget.jsx, /src/pages/HomePage.jsx[22m
+[2m11:26:27[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/TrackDetailPage.jsx[22m
+[2m11:26:38[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/TrackDetailPage.jsx[22m
+[2m11:26:53[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx[22m
+[2m11:27:09[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/HomePage.jsx[22m
+[2m11:38:10[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx[22m
+[2m11:52:03[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx[22m

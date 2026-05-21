@@ -96,6 +96,7 @@ C:\Users\LIUHENGRU\Desktop\design-new\backend\src\main\java\com\music\reco\music
 C:\Users\LIUHENGRU\Desktop\design-new\backend\src\main\java\com\music\reco\music\service\NeteaseArtistImageService.java
 C:\Users\LIUHENGRU\Desktop\design-new\backend\src\main\java\com\music\reco\music\service\NeteaseChartService.java
 C:\Users\LIUHENGRU\Desktop\design-new\backend\src\main\java\com\music\reco\music\service\PlaylistService.java
+C:\Users\LIUHENGRU\Desktop\design-new\backend\src\main\java\com\music\reco\music\service\TrackIdentityService.java
 C:\Users\LIUHENGRU\Desktop\design-new\backend\src\main\java\com\music\reco\RecoBackendApplication.java
 C:\Users\LIUHENGRU\Desktop\design-new\backend\src\main\java\com\music\reco\recommendation\controller\RecommendationController.java
 C:\Users\LIUHENGRU\Desktop\design-new\backend\src\main\java\com\music\reco\recommendation\dto\DaypartRecommendationResponse.java

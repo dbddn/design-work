@@ -11,6 +11,10 @@ const unwrap = async (promise) => {
 const get = (url, params) => unwrap(http.get(url, { params }));
 const post = (url, body) => unwrap(http.post(url, body));
 const put = (url, body) => unwrap(http.put(url, body));
+const postMultipart = (url, formData) =>
+  unwrap(http.post(url, formData, {
+    timeout: 30000
+  }));
 
 // RESTful resource APIs
 export const authApi = {
@@ -26,6 +30,11 @@ export const authApi = {
 export const usersApi = {
   getMe: () => get('/users/me'),
   updateMe: (body) => put('/users/me', body),
+  uploadAvatar: (file) => {
+    const formData = new FormData();
+    formData.append('avatar', file);
+    return postMultipart('/users/me/avatar', formData);
+  },
   getMyStats: () => get('/users/me/stats')
 };
 
@@ -34,6 +43,7 @@ export const tracksApi = {
   get: (id) => get(`/tracks/${id}`),
   listComments: (id) => get(`/tracks/${id}/comments`),
   createComment: (id, body) => post(`/tracks/${id}/comments`, body),
+  favorite: (id, body) => post(`/recommendations/feedback`, { trackId: id, ...body }),
   getArtist: (artistId, page = 0, size = 10) => get(`/tracks/artists/${artistId}`, { page, size }),
   refreshPlayback: (id) => post(`/tracks/${id}/refresh-playback`),
   listHistory: ({ limit = 40 } = {}) => get('/history', { limit }),
@@ -124,7 +134,8 @@ export const assistantApi = {
 export const userApi = {
   me: usersApi.getMe,
   stats: usersApi.getMyStats,
-  update: usersApi.updateMe
+  update: usersApi.updateMe,
+  uploadAvatar: usersApi.uploadAvatar
 };
 
 export const trackApi = {
@@ -133,6 +144,7 @@ export const trackApi = {
   comments: tracksApi.listComments,
   comment: (trackId, content) => tracksApi.createComment(trackId, { content }),
   favorites: (limit = 40) => get('/tracks/favorites', { limit }),
+  favorite: (trackId, favorite = true, rating = null) => tracksApi.favorite(trackId, { liked: favorite, rating, skipped: false }),
   artist: tracksApi.getArtist,
   resolveArtist: (name) => get('/tracks/artists/resolve', { name }),
   refreshPlayback: tracksApi.refreshPlayback,

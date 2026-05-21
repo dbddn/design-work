@@ -76,6 +76,16 @@ export default function SearchPage({ onPlay, onOpenDetail }) {
         </div>
       </section>
 
+      {loading ? (
+        <div className="search-loading-mask" aria-live="polite">
+          <div className="search-loading-panel">
+            <span />
+            <strong>正在搜索</strong>
+            <p>结果马上出来</p>
+          </div>
+        </div>
+      ) : null}
+
       {artistCard ? (
         <section className="glass-card artist-search-card">
           <div className="artist-search-card-copy">

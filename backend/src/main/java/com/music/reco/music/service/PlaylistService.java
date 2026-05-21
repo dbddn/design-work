@@ -12,9 +12,12 @@ import java.util.List;
 @Service
 public class PlaylistService {
     private final LegacyJdbcRepository legacyJdbcRepository;
+    private final TrackIdentityService trackIdentityService;
 
-    public PlaylistService(LegacyJdbcRepository legacyJdbcRepository) {
+    public PlaylistService(LegacyJdbcRepository legacyJdbcRepository,
+                           TrackIdentityService trackIdentityService) {
         this.legacyJdbcRepository = legacyJdbcRepository;
+        this.trackIdentityService = trackIdentityService;
     }
 
     public PlaylistOperationResponse create(String userId, String name) {
@@ -24,8 +27,9 @@ public class PlaylistService {
     }
 
     public PlaylistOperationResponse addTrack(String userId, Long playlistId, Long trackId) {
-        legacyJdbcRepository.addTrackToPlaylist(userId, playlistId, trackId);
-        return new PlaylistOperationResponse(playlistId, null, "track_added:" + trackId);
+        Long localTrackId = trackIdentityService.resolveLocalTrackId(trackId);
+        legacyJdbcRepository.addTrackToPlaylist(userId, playlistId, localTrackId);
+        return new PlaylistOperationResponse(playlistId, localTrackId, "track_added:" + localTrackId);
     }
 
     public PlaylistOperationResponse favorite(String userId, Long playlistId, boolean favorite) {

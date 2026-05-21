@@ -12,7 +12,7 @@ import PlaybackHistoryPage from './pages/PlaybackHistoryPage';
 import CommunityPage from './pages/CommunityPage';
 import PlayerBar from './components/PlayerBar';
 import AssistantWidget from './components/AssistantWidget';
-import { recommendationApi, trackApi } from './api/services';
+import { recommendationApi, trackApi, userApi } from './api/services';
 import { toArray } from './utils/view';
 
 const navItems = [
@@ -71,6 +71,8 @@ const normalizeTrack = (track = {}) => ({
   source: track.source || 'LOCAL_DB'
 });
 
+const playbackLookupId = (track = {}) => track.mcpTrackId || track.id;
+
 const normalizeTrackOrNull = (track) => {
   if (!track || typeof track !== 'object') return null;
   return normalizeTrack(track);
@@ -88,11 +90,13 @@ export default function App() {
   const [navSuggestions, setNavSuggestions] = useState([]);
   const [navSearchOpen, setNavSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState(() => ({
+    username: localStorage.getItem('username') || localStorage.getItem('userId') || '游客',
+    avatarUrl: localStorage.getItem('avatarUrl') || ''
+  }));
 
-  const username = useMemo(
-    () => localStorage.getItem('username') || localStorage.getItem('userId') || '游客',
-    [authed]
-  );
+  const username = currentUser?.username || localStorage.getItem('username') || localStorage.getItem('userId') || '游客';
+  const avatarUrl = currentUser?.avatarUrl || localStorage.getItem('avatarUrl') || '';
 
   const currentFeedback = currentTrack?.id ? trackFeedback[String(currentTrack.id)] || {} : {};
   const currentRating = Number(currentFeedback?.rating || 0);
@@ -103,6 +107,48 @@ export default function App() {
     setNavSuggestions([]);
     setNavSearchOpen(false);
   }, [location.pathname, location.search]);
+
+  useEffect(() => {
+    if (!authed) return undefined;
+    let cancelled = false;
+
+    const applyUser = (profile) => {
+      const nextUser = {
+        username: profile?.username || localStorage.getItem('username') || localStorage.getItem('userId') || '游客',
+        avatarUrl: profile?.avatarUrl || ''
+      };
+      setCurrentUser(nextUser);
+      localStorage.setItem('username', nextUser.username);
+      if (nextUser.avatarUrl) {
+        localStorage.setItem('avatarUrl', nextUser.avatarUrl);
+      } else {
+        localStorage.removeItem('avatarUrl');
+      }
+    };
+
+    const loadUser = async () => {
+      try {
+        const profile = await userApi.me();
+        if (!cancelled) applyUser(profile);
+      } catch {
+        if (!cancelled) {
+          setCurrentUser({
+            username: localStorage.getItem('username') || localStorage.getItem('userId') || '游客',
+            avatarUrl: localStorage.getItem('avatarUrl') || ''
+          });
+        }
+      }
+    };
+
+    const handleUserUpdated = (event) => applyUser(event.detail);
+
+    loadUser();
+    window.addEventListener('music:user-updated', handleUserUpdated);
+    return () => {
+      cancelled = true;
+      window.removeEventListener('music:user-updated', handleUserUpdated);
+    };
+  }, [authed]);
 
   useEffect(() => {
     const timer = window.setTimeout(async () => {
@@ -144,6 +190,49 @@ export default function App() {
     localStorage.setItem(TRACK_FEEDBACK_KEY, JSON.stringify(trackFeedback));
   }, [trackFeedback]);
 
+  useEffect(() => {
+    if (!authed) return undefined;
+    let cancelled = false;
+
+    const syncFavoriteFeedback = async () => {
+      try {
+        const favoriteTracks = await trackApi.favorites(100);
+        if (cancelled) return;
+        const rows = toArray(favoriteTracks);
+        if (!rows.length) return;
+
+        setTrackFeedback((current) => {
+          let changed = false;
+          const next = { ...current };
+          rows.forEach((track) => {
+            if (!track?.id) return;
+            const key = String(track.id);
+            const currentFeedback = next[key] || {};
+            const rating = track.rating ?? currentFeedback.rating ?? null;
+            if (currentFeedback.liked !== true || currentFeedback.rating !== rating) {
+              next[key] = {
+                ...currentFeedback,
+                liked: true,
+                rating
+              };
+              changed = true;
+            }
+          });
+          return changed ? next : current;
+        });
+      } catch (error) {
+        console.error('Operation failed', error);
+      }
+    };
+
+    syncFavoriteFeedback();
+    window.addEventListener('music:library-updated', syncFavoriteFeedback);
+    return () => {
+      cancelled = true;
+      window.removeEventListener('music:library-updated', syncFavoriteFeedback);
+    };
+  }, [authed]);
+
   if (!authed) {
     return <AuthPage onAuthed={() => setAuthed(true)} />;
   }
@@ -152,7 +241,9 @@ export default function App() {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
+    localStorage.removeItem('avatarUrl');
     setCurrentTrack(null);
+    setCurrentUser({ username: '游客', avatarUrl: '' });
     setAuthed(false);
   };
 
@@ -176,7 +267,7 @@ export default function App() {
   const recordPlayEvent = async (track) => {
     try {
       await trackApi.playerEvent({
-        trackId: track?.id || 1,
+        trackId: playbackLookupId(track) || 1,
         eventType: 'play',
         progressSec: 0,
         completed: false
@@ -189,59 +280,25 @@ export default function App() {
   const resolvePlayableTrack = async (track) => {
     const normalized = normalizeTrack(track);
 
-    const findPlayableBySearch = async () => {
-      const keyword = `${normalized.title || ''} ${normalized.artist || ''}`.trim();
-      if (!keyword) return null;
-
-      const searchPayload = await trackApi.search(keyword, 0, 10);
-      const candidates = toArray(searchPayload?.items);
-
-      for (const item of candidates) {
-        if (!item?.id) continue;
-        try {
-          const detail = await trackApi.detail(item.id);
-          const detailTrack = normalizeTrack(detail || item);
-          if (detailTrack.audioUrl) {
-            return detailTrack;
-          }
-        } catch {
-          // ignore and continue
-        }
-      }
-
-      const first = candidates[0];
-      if (!first) return null;
-      if (first.id) {
-        const detail = await trackApi.detail(first.id);
-        return normalizeTrack(detail || first);
-      }
-      return normalizeTrack(first);
-    };
-
     try {
-      if (normalized.id) {
-        const refreshed = await trackApi.refreshPlayback(normalized.id);
+      const lookupId = playbackLookupId(normalized);
+      if (lookupId) {
+        const refreshed = await trackApi.refreshPlayback(lookupId);
         const refreshedTrack = normalizeTrack(refreshed || normalized);
         if (refreshedTrack.audioUrl) {
           return refreshedTrack;
         }
 
-        const detail = await trackApi.detail(normalized.id);
+        const detail = await trackApi.detail(lookupId);
         const detailTrack = normalizeTrack(detail || refreshedTrack);
         if (detailTrack.audioUrl) {
           return detailTrack;
         }
 
-        const searchedTrack = await findPlayableBySearch();
-        return searchedTrack || detailTrack;
+        return detailTrack;
       }
 
-      if (normalized.title) {
-        const searchedTrack = await findPlayableBySearch();
-        if (searchedTrack) {
-          return searchedTrack;
-        }
-      }
+      return normalized;
     } catch (error) {
       console.error('Operation failed', error);
     }
@@ -414,7 +471,7 @@ export default function App() {
         <div className="topbar-actions">
           <div className="avatar-menu">
             <button className="avatar-btn" onClick={() => setMenuOpen((value) => !value)} aria-label="用户菜单">
-              <span>{String(username).slice(0, 1).toUpperCase()}</span>
+              {avatarUrl ? <img src={avatarUrl} alt="头像" /> : <span>{String(username).slice(0, 1).toUpperCase()}</span>}
             </button>
             {menuOpen && (
               <div className="avatar-panel">
@@ -442,6 +499,7 @@ export default function App() {
                 currentTrack={currentTrack}
                 trackFeedback={trackFeedback}
                 onRateTrack={rateSpecificTrack}
+                onToggleFavorite={toggleFavoriteTrack}
               />
             }
           />

@@ -8,6 +8,7 @@ import com.music.reco.mcp.dto.McpHybridRecommendationArgs;
 import com.music.reco.mcp.dto.McpRecommendationItem;
 import com.music.reco.mcp.dto.McpRecommendationPayload;
 import com.music.reco.music.dto.TrackDto;
+import com.music.reco.music.service.TrackIdentityService;
 import com.music.reco.recommendation.dto.DaypartRecommendationResponse;
 import com.music.reco.recommendation.dto.McpRecommendationDebugMatchDto;
 import com.music.reco.recommendation.dto.McpRecommendationDebugResponse;
@@ -50,6 +51,7 @@ public class RecommendationService {
     private final DaypartPlaylistSnapshotService daypartPlaylistSnapshotService;
     private final DaypartPlaylistGenerationCoordinator daypartPlaylistGenerationCoordinator;
     private final UserPreferenceContextService userPreferenceContextService;
+    private final TrackIdentityService trackIdentityService;
 
     public RecommendationService(HybridWeightStrategyService strategyService,
                                  LegacyJdbcRepository legacyJdbcRepository,
@@ -59,7 +61,8 @@ public class RecommendationService {
                                  TimeSlotPlaylistOrchestratorService timeSlotPlaylistOrchestratorService,
                                  DaypartPlaylistSnapshotService daypartPlaylistSnapshotService,
                                  DaypartPlaylistGenerationCoordinator daypartPlaylistGenerationCoordinator,
-                                 UserPreferenceContextService userPreferenceContextService) {
+                                 UserPreferenceContextService userPreferenceContextService,
+                                 TrackIdentityService trackIdentityService) {
         this.strategyService = strategyService;
         this.legacyJdbcRepository = legacyJdbcRepository;
         this.mcpClient = mcpClient;
@@ -69,6 +72,7 @@ public class RecommendationService {
         this.daypartPlaylistSnapshotService = daypartPlaylistSnapshotService;
         this.daypartPlaylistGenerationCoordinator = daypartPlaylistGenerationCoordinator;
         this.userPreferenceContextService = userPreferenceContextService;
+        this.trackIdentityService = trackIdentityService;
     }
 
     public RecommendationResponse recommend(String userId, String scene, String emotion, int limit) {
@@ -296,7 +300,7 @@ public class RecommendationService {
     public void feedback(String userId, RecommendationFeedbackRequest request) {
         legacyJdbcRepository.insertRecommendationFeedback(
                 userId,
-                request.trackId(),
+                trackIdentityService.resolveLocalTrackId(request.trackId()),
                 request.rating(),
                 request.liked(),
                 request.skipped(),

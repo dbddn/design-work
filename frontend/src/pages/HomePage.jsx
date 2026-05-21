@@ -185,7 +185,7 @@ function ChartPanel({ title, items, onPlay, themeIndex }) {
             );
           })
         ) : (
-          <div className="chart-feature-empty">鏆傛棤鏁版嵁</div>
+          <div className="chart-feature-empty">暂无数据</div>
         )}
       </div>
     </section>
@@ -608,7 +608,7 @@ export default function HomePage({ onPlay, onOpenDetail }) {
     if (!track) return;
     onPlay?.({
       id: track.localTrackId || undefined,
-      mcpTrackId: track.localTrackId ? String(track.localTrackId) : undefined,
+      mcpTrackId: track.neteaseTrackId ? String(track.neteaseTrackId) : undefined,
       title: track.title || '未知歌曲',
       artist: track.artist || '未知歌手',
       album: track.album || toplist?.name || '榜单推荐',

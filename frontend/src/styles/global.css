@@ -493,10 +493,18 @@ span {
   width: 42px;
   height: 42px;
   border-radius: 50%;
+  overflow: hidden;
   background: linear-gradient(135deg, rgba(0, 122, 255, 0.92), rgba(103, 183, 255, 0.82));
   color: #fff;
   cursor: pointer;
   box-shadow: 0 10px 24px rgba(0, 122, 255, 0.18);
+}
+
+.avatar-btn img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .avatar-panel {
@@ -2622,10 +2630,40 @@ span {
   border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
+.profile-avatar-preview {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  flex: 0 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.14), rgba(103, 183, 255, 0.28));
+  color: var(--primary);
+  font-size: 24px;
+  font-weight: 800;
+  border: 1px solid rgba(0, 122, 255, 0.1);
+}
+
+.profile-avatar-preview.large {
+  width: 92px;
+  height: 92px;
+  border-radius: 26px;
+  font-size: 34px;
+}
+
+.profile-avatar-preview img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
 .profile-head-main {
   display: grid;
   gap: 6px;
   min-width: 0;
+  flex: 1 1 auto;
 }
 
 .profile-head-main strong {
@@ -2890,6 +2928,111 @@ span {
   -webkit-backdrop-filter: blur(10px);
 }
 
+.profile-editor-modal {
+  position: relative;
+  width: min(980px, 100%);
+  max-height: min(88vh, 820px);
+  overflow: auto;
+  padding: 28px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 122, 255, 0.1);
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.profile-editor-avatar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 16px 0 18px;
+}
+
+.profile-editor-avatar p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.profile-avatar-upload-card {
+  position: relative;
+  display: grid;
+  cursor: pointer;
+}
+
+.profile-avatar-upload-card.disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.profile-avatar-upload-card > span {
+  position: absolute;
+  inset: auto 8px 8px;
+  display: grid;
+  place-items: center;
+  min-height: 28px;
+  border-radius: 999px;
+  background: rgba(0, 122, 255, 0.92);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 10px 22px rgba(0, 122, 255, 0.2);
+}
+
+.profile-avatar-upload-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.search-loading-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: grid;
+  place-items: center;
+  background: rgba(245, 247, 250, 0.66);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.search-loading-panel {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  min-width: 220px;
+  padding: 26px 30px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-lg);
+}
+
+.search-loading-panel span {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 3px solid rgba(0, 122, 255, 0.16);
+  border-top-color: var(--primary);
+  animation: spin 0.8s linear infinite;
+}
+
+.search-loading-panel p {
+  margin: 0;
+  color: var(--muted);
+}
+
 .song-detail-modal {
   width: min(1080px, 100%);
   max-height: min(88vh, 920px);
@@ -2991,9 +3134,18 @@ span {
 }
 
 .lyrics-block.large {
-  max-height: 320px;
+  max-height: 420px;
   overflow: auto;
-  padding-right: 6px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(245, 247, 250, 0.72);
+  border: 1px solid rgba(0, 122, 255, 0.06);
+}
+
+.lyrics-block.large p {
+  margin: 0 0 10px;
+  line-height: 1.85;
+  white-space: normal;
 }
 
 .track-detail-rating-panel {
@@ -3503,6 +3655,12 @@ span {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.playlist-detail-actions .btn {
+  min-width: 118px;
+  justify-content: center;
 }
 
 .playlist-detail-meta {
@@ -3556,7 +3714,7 @@ span {
 .playlist-table-head,
 .playlist-table-row {
   display: grid;
-  grid-template-columns: 48px minmax(220px, 2.2fr) 88px minmax(120px, 1fr) minmax(140px, 1fr) 148px;
+  grid-template-columns: 48px minmax(220px, 2.2fr) minmax(120px, 1fr) minmax(140px, 1fr) 148px;
   gap: 14px;
   align-items: center;
 }
@@ -3644,6 +3802,7 @@ span {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .playlist-table-empty {
@@ -3658,8 +3817,11 @@ span {
 }
 
 .track-detail-content-grid {
-  gap: 34px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 58px;
   align-items: start;
+  margin-top: 26px;
 }
 
 .profile-playlist-list,
@@ -3667,6 +3829,18 @@ span {
 .track-comment-list {
   display: grid;
   gap: 14px;
+}
+
+.profile-playlist-list,
+.profile-favorite-list {
+  max-height: 430px;
+  overflow-y: auto;
+  padding-right: 6px;
+  align-content: start;
+}
+
+.profile-playlist-grid > .glass-card {
+  min-height: 560px;
 }
 
 .profile-playlist-item,
@@ -3684,9 +3858,22 @@ span {
 
 .profile-playlist-item {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) minmax(176px, auto);
   align-items: center;
-  gap: 10px;
+  gap: 16px;
+}
+
+.profile-playlist-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.profile-playlist-actions .btn {
+  min-width: 74px;
+  padding-inline: 14px;
 }
 
 .profile-playlist-copy,
@@ -3700,6 +3887,7 @@ span {
 .track-comment-composer {
   display: grid;
   gap: 12px;
+  margin-bottom: 22px;
 }
 
 .track-playlist-create {
@@ -3974,6 +4162,12 @@ span {
   }
 }
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 1180px) {
   .profile-playlist-grid,
   .track-detail-content-grid,
@@ -3999,7 +4193,7 @@ span {
 
   .playlist-table-head,
   .playlist-table-row {
-    grid-template-columns: 40px minmax(180px, 2fr) 80px minmax(110px, 1fr) minmax(120px, 1fr) 132px;
+    grid-template-columns: 40px minmax(180px, 2fr) minmax(110px, 1fr) minmax(120px, 1fr) 132px;
   }
 
   .topbar,
@@ -4085,6 +4279,10 @@ span {
   }
 
   .playlist-table-actions {
+    justify-content: flex-start;
+  }
+
+  .profile-playlist-actions {
     justify-content: flex-start;
   }
 

@@ -214,7 +214,7 @@ public class TimeSlotPlaylistOrchestratorService {
                                         slot.label(),
                                         slot.mood(),
                                         slot.description(),
-                                        slot.label() + "涓€у寲姝屽崟",
+                                        slot.label() + "个性化歌单",
                                         slot.goal(),
                                         defaultReasonLong(slot, context, userSignals, true),
                                         slot.tags(),

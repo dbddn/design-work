@@ -47,7 +47,7 @@ export default function PlayerBar({
       return undefined;
     }
 
-    if (audio.src !== track.audioUrl) {
+    if (audio.getAttribute('src') !== track.audioUrl) {
       audio.src = track.audioUrl;
       audio.currentTime = 0;
       audio.load();
@@ -93,86 +93,86 @@ export default function PlayerBar({
 
   return (
     <>
-    <div className="player-hover-zone" aria-hidden="true" />
-    <div className="player-bar glass-panel">
-      <audio
-        ref={audioRef}
-        preload="metadata"
-        onLoadedMetadata={(event) => {
-          const nextDuration = Number(event.currentTarget.duration);
-          if (Number.isFinite(nextDuration) && nextDuration > 0) {
-            setResolvedDuration(nextDuration);
-            setProgress(0);
-          }
-        }}
-        onTimeUpdate={(event) => setProgress(event.currentTarget.currentTime || 0)}
-        onEnded={() => {
-          setIsPlaying(false);
-          onNext?.();
-        }}
-      />
+      <div className="player-hover-zone" aria-hidden="true" />
+      <div className="player-bar glass-panel">
+        <audio
+          ref={audioRef}
+          preload="metadata"
+          onLoadedMetadata={(event) => {
+            const nextDuration = Number(event.currentTarget.duration);
+            if (Number.isFinite(nextDuration) && nextDuration > 0) {
+              setResolvedDuration(nextDuration);
+              setProgress(0);
+            }
+          }}
+          onTimeUpdate={(event) => setProgress(event.currentTarget.currentTime || 0)}
+          onEnded={() => {
+            setIsPlaying(false);
+            onNext?.();
+          }}
+        />
 
-      <div className="player-main compact">
-        <button
-          type="button"
-          className="player-cover compact"
-          onClick={() => onOpenDetail?.(track)}
-          aria-label="打开歌曲详情"
-        >
-          {track?.artworkUrl && !coverFailed ? (
-            <img src={track.artworkUrl} alt={`${title} 封面`} onError={() => setCoverFailed(true)} />
-          ) : (
-            <span
-              className="player-cover-fill"
-              style={{
-                background:
-                  track?.artwork ||
-                  'linear-gradient(135deg, rgba(0,122,255,0.94), rgba(88,182,255,0.82) 55%, rgba(255,255,255,0.95))'
-              }}
+        <div className="player-main compact">
+          <button
+            type="button"
+            className="player-cover compact"
+            onClick={() => onOpenDetail?.(track)}
+            aria-label="打开歌曲详情"
+          >
+            {track?.artworkUrl && !coverFailed ? (
+              <img src={track.artworkUrl} alt={`${title} 封面`} onError={() => setCoverFailed(true)} />
+            ) : (
+              <span
+                className="player-cover-fill"
+                style={{
+                  background:
+                    track?.artwork ||
+                    'linear-gradient(135deg, rgba(0,122,255,0.94), rgba(88,182,255,0.82) 55%, rgba(255,255,255,0.95))'
+                }}
+              />
+            )}
+            <span className="player-cover-shade" />
+          </button>
+
+          <div className="player-meta compact">
+            <strong>{title}</strong>
+            <p>{artist}</p>
+            <span className="player-meta-subtle">{album}</span>
+          </div>
+
+          <div className="player-progress compact">
+            <span>{formatTime(progress)}</span>
+            <input
+              type="range"
+              min="0"
+              max={Math.max(duration, progress, 1)}
+              value={Math.min(progress, Math.max(duration, progress, 1))}
+              onChange={(event) => handleSeek(event.target.value)}
+              disabled={!hasAudio}
             />
-          )}
-          <span className="player-cover-shade" />
-        </button>
+            <span>{formatTime(duration)}</span>
+          </div>
 
-        <div className="player-meta compact">
-          <strong>{title}</strong>
-          <p>{artist}</p>
-          <span className="player-meta-subtle">{album}</span>
-        </div>
-
-        <div className="player-progress compact">
-          <span>{formatTime(progress)}</span>
-          <input
-            type="range"
-            min="0"
-            max={Math.max(duration, progress, 1)}
-            value={Math.min(progress, Math.max(duration, progress, 1))}
-            onChange={(event) => handleSeek(event.target.value)}
-            disabled={!hasAudio}
-          />
-          <span>{formatTime(duration)}</span>
-        </div>
-
-        <div className="player-controls compact">
-          <button type="button" className="icon-btn" onClick={onPrev}>
-            上一首
-          </button>
-          <button type="button" className="icon-btn primary" onClick={handleTogglePlay} disabled={!hasAudio}>
-            {isPlaying ? '暂停' : '播放'}
-          </button>
-          <button type="button" className="icon-btn" onClick={onNext || onSkip}>
-            下一首
-          </button>
-          <button type="button" className={`icon-btn ${isFavorited ? 'active' : ''}`} onClick={onToggleFavorite}>
-            {isFavorited ? '已收藏' : '收藏'}
-          </button>
-          <button type="button" className="icon-btn" onClick={() => onOpenDetail?.(track)}>
-            详情
-          </button>
-          {!hasAudio ? <span className="chip soft">暂无音源</span> : null}
+          <div className="player-controls compact">
+            <button type="button" className="icon-btn" onClick={onPrev} aria-label="上一首">
+              上一首
+            </button>
+            <button type="button" className="icon-btn primary" onClick={handleTogglePlay} disabled={!hasAudio}>
+              {isPlaying ? '暂停' : '播放'}
+            </button>
+            <button type="button" className="icon-btn" onClick={onNext || onSkip} aria-label="下一首">
+              下一首
+            </button>
+            <button type="button" className={`icon-btn ${isFavorited ? 'active' : ''}`} onClick={onToggleFavorite}>
+              {isFavorited ? '已收藏' : '收藏'}
+            </button>
+            <button type="button" className="icon-btn" onClick={() => onOpenDetail?.(track)}>
+              详情
+            </button>
+            {!hasAudio ? <span className="chip soft">暂无音源</span> : null}
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 }

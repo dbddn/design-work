@@ -17,9 +17,27 @@ const isValidTag = (value) => {
   return normalized !== 'unknown' && normalized !== '未分类';
 };
 
+const cleanLyricLine = (line) =>
+  String(line || '')
+    .replace(/\[[^\]]*]/g, '')
+    .replace(/[*\u002a\uFF0A]+/g, '')
+    .replace(/[\u00B7\u2022]+/g, ' ')
+    .replace(/[-_]{2,}/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const buildLyricLines = (lyrics) => {
+  const source = Array.isArray(lyrics) ? lyrics : [];
+  const lines = source
+    .flatMap((line) => String(line || '').split(/[*\u002a\uFF0A]+|(?<=[\u3002\uFF01\uFF1F!?])\s*|\n+/))
+    .map(cleanLyricLine)
+    .filter(Boolean);
+  return lines.length ? lines : ['暂无歌词'];
+};
+
 const ratingMarks = [1, 2, 3, 4, 5];
 
-export default function TrackDetailPage({ onPlay, currentTrack, trackFeedback = {}, onRateTrack }) {
+export default function TrackDetailPage({ onPlay, currentTrack, trackFeedback = {}, onRateTrack, onToggleFavorite }) {
   const navigate = useNavigate();
   const { trackId } = useParams();
   const [track, setTrack] = useState(null);
@@ -78,7 +96,7 @@ export default function TrackDetailPage({ onPlay, currentTrack, trackFeedback = 
         return;
       }
     } catch {
-      // ignore and fallback to search
+      // Fall back to search when artist resolution is unavailable.
     }
     navigate(`/search?q=${encodeURIComponent(value)}`);
   };
@@ -162,6 +180,8 @@ export default function TrackDetailPage({ onPlay, currentTrack, trackFeedback = 
 
   const isPlaying = currentTrack?.id === track?.id || currentTrack?.mcpTrackId === track?.mcpTrackId;
   const currentRating = Number(trackFeedback[String(track?.id)]?.rating || 0);
+  const currentLiked = Boolean(trackFeedback[String(track?.id)]?.liked);
+  const lyricLines = buildLyricLines(track.lyrics);
 
   return (
     <div className="page">
@@ -211,7 +231,7 @@ export default function TrackDetailPage({ onPlay, currentTrack, trackFeedback = 
                     type="button"
                     className={`rating-star ${currentRating >= score ? 'active' : ''}`}
                     onClick={() => onRateTrack?.(track, score)}
-                    aria-label={`评 ${score} 分`}
+                    aria-label={`评分 ${score} 分`}
                   >
                     ★
                   </button>
@@ -232,6 +252,13 @@ export default function TrackDetailPage({ onPlay, currentTrack, trackFeedback = 
                 }}
               >
                 加入歌单
+              </button>
+              <button
+                type="button"
+                className={`btn subtle ${currentLiked ? 'active' : ''}`}
+                onClick={() => onToggleFavorite?.(track)}
+              >
+                {currentLiked ? '已收藏' : '收藏歌曲'}
               </button>
             </div>
 
@@ -306,7 +333,7 @@ export default function TrackDetailPage({ onPlay, currentTrack, trackFeedback = 
             </div>
           </div>
           <div className="lyrics-block large">
-            {(Array.isArray(track.lyrics) && track.lyrics.length ? track.lyrics : ['暂无歌词']).map((line, index) => (
+            {lyricLines.map((line, index) => (
               <p key={`${line}-${index}`}>{line}</p>
             ))}
           </div>

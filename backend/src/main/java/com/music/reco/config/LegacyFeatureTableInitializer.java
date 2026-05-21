@@ -152,6 +152,10 @@ public class LegacyFeatureTableInitializer {
                     "ALTER TABLE recommendation_log ADD COLUMN fallback_reason VARCHAR(255) NULL");
             addColumnIfMissing(jdbcTemplate, "artists", "avatar_url",
                     "ALTER TABLE artists ADD COLUMN avatar_url VARCHAR(500) NULL");
+            addColumnIfMissing(jdbcTemplate, "users", "avatar_data",
+                    "ALTER TABLE users ADD COLUMN avatar_data LONGTEXT NULL");
+            addColumnIfMissing(jdbcTemplate, "musics", "mcp_track_id",
+                    "ALTER TABLE musics ADD COLUMN mcp_track_id VARCHAR(128) NULL");
 
             jdbcTemplate.execute(
                     """

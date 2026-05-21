@@ -44,14 +44,6 @@ const sanitizeTags = (items) =>
     .filter((item) => item && !/^genre-\d+$/i.test(item) && item.toLowerCase() !== 'unknown')
     .slice(0, 6);
 
-const formatDuration = (seconds) => {
-  const safe = Number(seconds);
-  if (!Number.isFinite(safe) || safe <= 0) return '--:--';
-  const mins = Math.floor(safe / 60);
-  const secs = Math.floor(safe % 60);
-  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-};
-
 const uniqueTopValues = (items, mapper, limit = 3) =>
   [...new Set(toArray(items).map(mapper).filter(Boolean))].slice(0, limit);
 
@@ -265,7 +257,6 @@ export default function DaypartPlaylistPage({ onPlay, onOpenDetail, currentTrack
             <div className="playlist-table-head">
               <span>#</span>
               <span>歌曲标题</span>
-              <span>时长</span>
               <span>歌手</span>
               <span>专辑</span>
               <span>操作</span>
@@ -293,7 +284,6 @@ export default function DaypartPlaylistPage({ onPlay, onOpenDetail, currentTrack
                       {isPlaying ? <span className="playlist-playing-badge">当前播放中</span> : null}
                     </div>
                   </div>
-                  <span>{formatDuration(track?.durationSec || track?.duration)}</span>
                   <span title={formatTrackArtist(track)}>{formatTrackArtist(track)}</span>
                   <span title={track?.album || '未知专辑'}>{track?.album || '未知专辑'}</span>
                   <div className="playlist-table-actions">

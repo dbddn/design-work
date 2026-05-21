@@ -20,13 +20,16 @@ public class MusicService {
     private final LegacyJdbcRepository legacyJdbcRepository;
     private final NeteaseApiTrackFallbackService neteaseApiTrackFallbackService;
     private final NeteaseArtistImageService neteaseArtistImageService;
+    private final TrackIdentityService trackIdentityService;
 
     public MusicService(LegacyJdbcRepository legacyJdbcRepository,
                         NeteaseApiTrackFallbackService neteaseApiTrackFallbackService,
-                        NeteaseArtistImageService neteaseArtistImageService) {
+                        NeteaseArtistImageService neteaseArtistImageService,
+                        TrackIdentityService trackIdentityService) {
         this.legacyJdbcRepository = legacyJdbcRepository;
         this.neteaseApiTrackFallbackService = neteaseApiTrackFallbackService;
         this.neteaseArtistImageService = neteaseArtistImageService;
+        this.trackIdentityService = trackIdentityService;
     }
 
     public SearchResponse search(String keyword, int page, int size) {
@@ -67,29 +70,32 @@ public class MusicService {
     }
 
     public TrackDto detail(Long id) {
-        TrackDto track = legacyJdbcRepository.findTrack(id)
+        Long localTrackId = trackIdentityService.resolveLocalTrackId(id);
+        TrackDto track = legacyJdbcRepository.findTrack(localTrackId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND, "track not found"));
         return neteaseApiTrackFallbackService.enrichTrack(track, true);
     }
 
     public TrackDto refreshPlayback(Long id) {
-        TrackDto track = legacyJdbcRepository.findTrack(id)
+        Long localTrackId = trackIdentityService.resolveLocalTrackId(id);
+        TrackDto track = legacyJdbcRepository.findTrack(localTrackId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND, "track not found"));
         return neteaseApiTrackFallbackService.refreshTrack(track, false);
     }
 
     public List<MusicCommentDto> comments(Long trackId) {
-        return legacyJdbcRepository.listMusicComments(trackId);
+        return legacyJdbcRepository.listMusicComments(trackIdentityService.resolveLocalTrackId(trackId));
     }
 
     public MusicCommentDto createComment(Long trackId, String userId, String content) {
-        return legacyJdbcRepository.createMusicComment(trackId, userId, content);
+        return legacyJdbcRepository.createMusicComment(trackIdentityService.resolveLocalTrackId(trackId), userId, content);
     }
 
     public void recordEvent(String userId, PlayerEventRequest request) {
+        Long localTrackId = trackIdentityService.resolveLocalTrackId(request.trackId());
         legacyJdbcRepository.insertHistory(
                 userId,
-                request.trackId(),
+                localTrackId,
                 request.progressSec(),
                 Boolean.TRUE.equals(request.completed()),
                 request.eventType()

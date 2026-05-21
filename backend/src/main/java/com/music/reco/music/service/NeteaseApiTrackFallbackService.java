@@ -137,12 +137,53 @@ public class NeteaseApiTrackFallbackService {
             return null;
         }
 
-        JsonNode searchRoot = getJson("/cloudsearch?limit=1&keywords=" + UriUtils.encode(keyword, StandardCharsets.UTF_8));
+        JsonNode searchRoot = getJson("/cloudsearch?type=1&limit=10&keywords=" + UriUtils.encode(keyword, StandardCharsets.UTF_8));
         JsonNode songs = searchRoot.path("result").path("songs");
         if (!songs.isArray() || songs.isEmpty()) {
             return null;
         }
-        return songs.get(0).path("id").isNumber() ? songs.get(0).path("id").asLong() : null;
+        JsonNode bestSong = chooseBestSong(track, songs);
+        return bestSong != null && bestSong.path("id").isNumber() ? bestSong.path("id").asLong() : null;
+    }
+
+    private JsonNode chooseBestSong(TrackDto track, JsonNode songs) {
+        String expectedTitle = normalizeForMatch(track == null ? null : track.title());
+        String expectedArtist = normalizeForMatch(track == null ? null : track.artist());
+        JsonNode bestSong = null;
+        int bestScore = Integer.MIN_VALUE;
+
+        for (JsonNode song : songs) {
+            String candidateTitle = normalizeForMatch(song.path("name").asText(""));
+            String candidateArtists = "";
+            JsonNode artists = song.path("ar");
+            if (artists.isArray()) {
+                StringBuilder builder = new StringBuilder();
+                for (JsonNode artist : artists) {
+                    if (!builder.isEmpty()) {
+                        builder.append(' ');
+                    }
+                    builder.append(artist.path("name").asText(""));
+                }
+                candidateArtists = normalizeForMatch(builder.toString());
+            }
+
+            int score = 0;
+            if (!expectedTitle.isBlank() && candidateTitle.equals(expectedTitle)) {
+                score += 100;
+            } else if (!expectedTitle.isBlank() && (candidateTitle.contains(expectedTitle) || expectedTitle.contains(candidateTitle))) {
+                score += 45;
+            }
+            if (!expectedArtist.isBlank() && candidateArtists.contains(expectedArtist)) {
+                score += 60;
+            }
+            if (score > bestScore) {
+                bestScore = score;
+                bestSong = song;
+            }
+        }
+
+        int minimumScore = expectedArtist.isBlank() ? 80 : 120;
+        return bestScore >= minimumScore ? bestSong : null;
     }
 
     private Long parseSongId(String rawValue) {
@@ -173,6 +214,15 @@ public class NeteaseApiTrackFallbackService {
 
     private String safePart(String value) {
         return value == null ? "" : value.trim();
+    }
+
+    private String normalizeForMatch(String value) {
+        if (value == null) {
+            return "";
+        }
+        return value.toLowerCase()
+                .replaceAll("\\s+", "")
+                .replaceAll("[\\p{Punct}，。！？、：；“”‘’《》（）【】\\[\\]]", "");
     }
 
     private String resolveCacheKey(TrackDto track) {

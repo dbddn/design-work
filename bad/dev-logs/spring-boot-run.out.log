@@ -1,0 +1,436 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.music:reco-backend >-----------------------
+[INFO] Building reco-backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot-maven-plugin:3.3.4:run (default-cli) > test-compile @ reco-backend >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:resources (default-resources) @ reco-backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.13.0:compile (default-compile) @ reco-backend ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:testResources (default-testResources) @ reco-backend ---
+[INFO] skip non existing resourceDirectory C:\Users\LIUHENGRU\Desktop\design-new\backend\src\test\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.13.0:testCompile (default-testCompile) @ reco-backend ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target\test-classes
+[INFO] 由于在类路径中发现了一个或多个处理程序，因此启用了
+  批注处理。未来发行版的 javac 可能会禁用批注处理，
+  除非至少按名称指定了一个处理程序 (-processor)，
+  或指定了搜索路径 (--processor-path, --processor-module-path)，
+  或显式启用了批注处理 (-proc:only, -proc:full)。
+  可使用 -Xlint:-options 隐藏此消息。
+  可使用 -proc:none 禁用批注处理。
+[INFO] 
+[INFO] <<< spring-boot-maven-plugin:3.3.4:run (default-cli) < test-compile @ reco-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:3.3.4:run (default-cli) @ reco-backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.4)
+
+2026-05-21T10:42:04.927+08:00  INFO 42704 --- [reco-backend] [           main] com.music.reco.RecoBackendApplication    : Starting RecoBackendApplication using Java 21.0.7 with PID 42704 (C:\Users\LIUHENGRU\Desktop\design-new\backend\target\classes started by LIUHENGRU in C:\Users\LIUHENGRU\Desktop\design-new\backend)
+2026-05-21T10:42:04.930+08:00  INFO 42704 --- [reco-backend] [           main] com.music.reco.RecoBackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-05-21T10:42:06.080+08:00  INFO 42704 --- [reco-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-21T10:42:06.210+08:00  INFO 42704 --- [reco-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 122 ms. Found 5 JPA repository interfaces.
+2026-05-21T10:42:07.072+08:00  INFO 42704 --- [reco-backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-21T10:42:07.095+08:00  INFO 42704 --- [reco-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-21T10:42:07.095+08:00  INFO 42704 --- [reco-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2026-05-21T10:42:07.169+08:00  INFO 42704 --- [reco-backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-21T10:42:07.170+08:00  INFO 42704 --- [reco-backend] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2181 ms
+2026-05-21T10:42:07.599+08:00  INFO 42704 --- [reco-backend] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-21T10:42:07.644+08:00  INFO 42704 --- [reco-backend] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-05-21T10:42:07.671+08:00  INFO 42704 --- [reco-backend] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-21T10:42:07.900+08:00  INFO 42704 --- [reco-backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-21T10:42:07.922+08:00  INFO 42704 --- [reco-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-21T10:42:08.043+08:00  INFO 42704 --- [reco-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b756a62
+2026-05-21T10:42:08.044+08:00  INFO 42704 --- [reco-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-21T10:42:08.087+08:00  WARN 42704 --- [reco-backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-21T10:42:08.831+08:00  INFO 42704 --- [reco-backend] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-21T10:42:08.834+08:00  INFO 42704 --- [reco-backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-21T10:42:09.935+08:00  WARN 42704 --- [reco-backend] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: c57c4829-20e4-4379-b321-c9b64794a79e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-05-21T10:42:09.947+08:00  INFO 42704 --- [reco-backend] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-05-21T10:42:11.569+08:00  INFO 42704 --- [reco-backend] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-05-21T10:42:11.712+08:00  INFO 42704 --- [reco-backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-05-21T10:42:11.728+08:00  INFO 42704 --- [reco-backend] [           main] com.music.reco.RecoBackendApplication    : Started RecoBackendApplication in 7.358 seconds (process running for 7.812)
+2026-05-21T10:42:11.848+08:00  INFO 42704 --- [reco-backend] [           main] c.m.r.c.DaypartPlaylistWarmupRunner      : daypart warmup enqueued userCount=3 users=[u_7d9829823d4f41fa, u_e9275f46fd9547d2, u_d37892b681e744ad]
+2026-05-21T10:42:11.848+08:00  INFO 42704 --- [reco-backend] [neration-worker] r.s.DaypartPlaylistGenerationCoordinator : daypart queue start requestId=daypart-async-1779331331848 userId=u_7d9829823d4f41fa scene=default emotion=neutral trigger=startup-warmup
+2026-05-21T10:42:11.894+08:00  INFO 42704 --- [reco-backend] [           main] m.r.r.s.DaypartPreferenceSnapshotService : daypart preference snapshot fresh trigger=startup maxAgeSeconds=259200
+2026-05-21T10:42:11.899+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart build start requestId=daypart-async-1779331331848 userId=u_7d9829823d4f41fa scene=default emotion=neutral limit=10
+2026-05-21T10:42:11.928+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331331848 key=morning userContext=playCount30d=23, skipRate30d=0.0000, feedbackCount=11, positiveFeedback=9, negativeFeedback=7, topGenres=[其他风格, 治愈, 忧郁], topArtists=[杨和苏KeyNG, 颜人中, Top Barry / INDEcompany], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[杨和苏KeyNG - 加冕], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, calm, steady, exciting], minRating=3.4, maxResults=30, hybridWeight=0.6507999999999999
+2026-05-21T10:42:11.928+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331331848 key=morning stage=primary args=similarTo=[杨和苏KeyNG - 加冕], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, calm, steady, exciting], minRating=3.4, maxResults=30, hybridWeight=0.6507999999999999
+2026-05-21T10:42:12.050+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=20887
+2026-05-21T10:42:35.533+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-21T10:42:35.534+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-21T10:42:35.535+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-21T10:43:49.597+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331331848 key=morning stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:44:04.625+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:44:04.632+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=93
+2026-05-21T10:44:04.633+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331331848 key=morning source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:44:04.641+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331331848 key=morning fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:44:04.644+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331331848 key=morning tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:44:04.644+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331331848 key=afternoon userContext=playCount30d=23, skipRate30d=0.0000, feedbackCount=11, positiveFeedback=9, negativeFeedback=7, topGenres=[其他风格, 治愈, 忧郁], topArtists=[杨和苏KeyNG, 颜人中, Top Barry / INDEcompany], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[杨和苏KeyNG - 加冕], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, minimal, steady, light], minRating=3.5, maxResults=30, hybridWeight=0.6507999999999999
+2026-05-21T10:44:04.644+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331331848 key=afternoon stage=primary args=similarTo=[杨和苏KeyNG - 加冕], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, minimal, steady, light], minRating=3.5, maxResults=30, hybridWeight=0.6507999999999999
+2026-05-21T10:44:04.663+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=21374
+2026-05-21T10:44:43.235+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331331848 key=afternoon stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:44:43.417+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:44:43.422+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=88
+2026-05-21T10:44:43.422+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331331848 key=afternoon source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:44:43.423+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331331848 key=afternoon fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:44:43.424+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331331848 key=afternoon tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:44:43.425+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331331848 key=evening userContext=playCount30d=23, skipRate30d=0.0000, feedbackCount=11, positiveFeedback=9, negativeFeedback=7, topGenres=[其他风格, 治愈, 忧郁], topArtists=[杨和苏KeyNG, 颜人中, Top Barry / INDEcompany], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[杨和苏KeyNG - 加冕], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, balanced], minRating=3.3, maxResults=30, hybridWeight=0.6507999999999999
+2026-05-21T10:44:43.425+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331331848 key=evening stage=primary args=similarTo=[杨和苏KeyNG - 加冕], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, balanced], minRating=3.3, maxResults=30, hybridWeight=0.6507999999999999
+2026-05-21T10:44:43.445+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=21483
+2026-05-21T10:46:16.545+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331331848 key=evening stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:46:16.615+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:46:16.620+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=88
+2026-05-21T10:46:16.620+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331331848 key=evening source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:46:16.620+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331331848 key=evening fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:46:16.621+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331331848 key=evening tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:46:16.621+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331331848 key=midnight userContext=playCount30d=23, skipRate30d=0.0000, feedbackCount=11, positiveFeedback=9, negativeFeedback=7, topGenres=[其他风格, 治愈, 忧郁], topArtists=[杨和苏KeyNG, 颜人中, Top Barry / INDEcompany], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[杨和苏KeyNG - 加冕], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, melancholic], minRating=3.7, maxResults=30, hybridWeight=0.6507999999999999
+2026-05-21T10:46:16.621+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331331848 key=midnight stage=primary args=similarTo=[杨和苏KeyNG - 加冕], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, melancholic], minRating=3.7, maxResults=30, hybridWeight=0.6507999999999999
+2026-05-21T10:46:16.635+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=20851
+2026-05-21T10:46:22.829+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-4] c.m.r.r.service.RecommendationService    : daypart request start requestId=daypart-1779331582829 userId=u_7d9829823d4f41fa scene=default emotion=neutral limit=10 requestedTimeSlot= resolvedTimeSlot=morning refresh=false
+2026-05-21T10:46:22.856+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-2] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T10:46:23.392+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-4] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart cache check userId=u_7d9829823d4f41fa scene=default emotion=neutral hit=true playlistCount=4 requiredSlots=4 minTracks=10 noCrossSlotOverlap=true
+2026-05-21T10:46:23.400+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-4] c.m.r.r.service.RecommendationService    : daypart request hit stored snapshot requestId=daypart-1779331582829 userId=u_7d9829823d4f41fa timeSlot=morning playlistCount=4 finalSongCount=40
+2026-05-21T10:46:23.400+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-4] c.m.r.r.service.RecommendationService    : daypart request built requestId=daypart-1779331582829 userId=u_7d9829823d4f41fa timeSlot=morning cacheHit=true queued=false latencyMs=571 playlistCount=4
+2026-05-21T10:46:23.505+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-7] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T10:46:35.945+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331331848 key=midnight stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:46:36.063+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.service.RecommendationService    : daypart request start requestId=daypart-1779331596063 userId=u_7d9829823d4f41fa scene=default emotion=neutral limit=10 requestedTimeSlot= resolvedTimeSlot=morning refresh=false
+2026-05-21T10:46:36.082+08:00  INFO 42704 --- [reco-backend] [io-8080-exec-10] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T10:46:36.082+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart cache check userId=u_7d9829823d4f41fa scene=default emotion=neutral hit=true playlistCount=4 requiredSlots=4 minTracks=10 noCrossSlotOverlap=true
+2026-05-21T10:46:36.082+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.service.RecommendationService    : daypart request hit stored snapshot requestId=daypart-1779331596063 userId=u_7d9829823d4f41fa timeSlot=morning playlistCount=4 finalSongCount=40
+2026-05-21T10:46:36.082+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.service.RecommendationService    : daypart request built requestId=daypart-1779331596063 userId=u_7d9829823d4f41fa timeSlot=morning cacheHit=true queued=false latencyMs=19 playlistCount=4
+2026-05-21T10:46:36.104+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:46:36.110+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=88
+2026-05-21T10:46:36.110+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331331848 key=midnight source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:46:36.111+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331331848 key=midnight fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:46:36.113+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331331848 key=midnight tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:46:36.181+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_7d9829823d4f41fa sceneTag=daypart:default:neutral timeSlot=morning playlistId=1 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:46:36.232+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_7d9829823d4f41fa sceneTag=daypart:default:neutral timeSlot=afternoon playlistId=2 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:46:36.279+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_7d9829823d4f41fa sceneTag=daypart:default:neutral timeSlot=evening playlistId=3 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:46:36.340+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_7d9829823d4f41fa sceneTag=daypart:default:neutral timeSlot=midnight playlistId=4 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:46:36.340+08:00  INFO 42704 --- [reco-backend] [neration-worker] r.s.DaypartPlaylistGenerationCoordinator : daypart queue completed requestId=daypart-async-1779331331848 userId=u_7d9829823d4f41fa scene=default emotion=neutral status=STORED
+2026-05-21T10:46:36.340+08:00  INFO 42704 --- [reco-backend] [neration-worker] r.s.DaypartPlaylistGenerationCoordinator : daypart queue start requestId=daypart-async-1779331596340 userId=u_e9275f46fd9547d2 scene=default emotion=neutral trigger=startup-warmup
+2026-05-21T10:46:36.354+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart build start requestId=daypart-async-1779331596340 userId=u_e9275f46fd9547d2 scene=default emotion=neutral limit=10
+2026-05-21T10:46:36.372+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331596340 key=morning userContext=playCount30d=120, skipRate30d=0.0833, feedbackCount=30, positiveFeedback=28, negativeFeedback=2, topGenres=[怀旧, 思念, 感动], topArtists=[薛之谦, 韩红, 王泽科], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[AY楊佬叁 - 了解一下, 毛不易 - 在无风时, 王泽科 - 这一生关于你的风景], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, calm, steady, exciting], minRating=3.6999999999999997, maxResults=30, hybridWeight=0.88
+2026-05-21T10:46:36.372+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331596340 key=morning stage=primary args=similarTo=[AY楊佬叁 - 了解一下, 毛不易 - 在无风时, 王泽科 - 这一生关于你的风景], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, calm, steady, exciting], minRating=3.6999999999999997, maxResults=30, hybridWeight=0.88
+2026-05-21T10:46:36.391+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=20425
+2026-05-21T10:46:36.507+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T10:46:43.469+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331596340 key=morning stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:47:08.030+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:47:08.033+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=93
+2026-05-21T10:47:08.033+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331596340 key=morning source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:47:08.034+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331596340 key=morning fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:47:08.034+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331596340 key=morning tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:47:08.034+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331596340 key=afternoon userContext=playCount30d=120, skipRate30d=0.0833, feedbackCount=30, positiveFeedback=28, negativeFeedback=2, topGenres=[怀旧, 思念, 感动], topArtists=[薛之谦, 韩红, 王泽科], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[AY楊佬叁 - 了解一下, 毛不易 - 在无风时, 王泽科 - 这一生关于你的风景], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, minimal, steady, light], minRating=3.6999999999999997, maxResults=30, hybridWeight=0.88
+2026-05-21T10:47:08.034+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331596340 key=afternoon stage=primary args=similarTo=[AY楊佬叁 - 了解一下, 毛不易 - 在无风时, 王泽科 - 这一生关于你的风景], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, minimal, steady, light], minRating=3.6999999999999997, maxResults=30, hybridWeight=0.88
+2026-05-21T10:47:08.052+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=21221
+2026-05-21T10:47:09.628+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331596340 key=afternoon stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:47:09.823+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:47:09.828+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=88
+2026-05-21T10:47:09.828+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331596340 key=afternoon source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:47:09.829+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331596340 key=afternoon fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:47:09.829+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331596340 key=afternoon tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:47:09.829+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331596340 key=evening userContext=playCount30d=120, skipRate30d=0.0833, feedbackCount=30, positiveFeedback=28, negativeFeedback=2, topGenres=[怀旧, 思念, 感动], topArtists=[薛之谦, 韩红, 王泽科], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[AY楊佬叁 - 了解一下, 毛不易 - 在无风时, 王泽科 - 这一生关于你的风景], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, balanced], minRating=3.6999999999999997, maxResults=30, hybridWeight=0.88
+2026-05-21T10:47:09.829+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331596340 key=evening stage=primary args=similarTo=[AY楊佬叁 - 了解一下, 毛不易 - 在无风时, 王泽科 - 这一生关于你的风景], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, balanced], minRating=3.6999999999999997, maxResults=30, hybridWeight=0.88
+2026-05-21T10:47:09.843+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=20878
+2026-05-21T10:47:10.156+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331596340 key=evening stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:47:10.217+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:47:10.221+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=88
+2026-05-21T10:47:10.221+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331596340 key=evening source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:47:10.221+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331596340 key=evening fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:47:10.221+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331596340 key=evening tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:47:10.222+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331596340 key=midnight userContext=playCount30d=120, skipRate30d=0.0833, feedbackCount=30, positiveFeedback=28, negativeFeedback=2, topGenres=[怀旧, 思念, 感动], topArtists=[薛之谦, 韩红, 王泽科], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[AY楊佬叁 - 了解一下, 毛不易 - 在无风时, 王泽科 - 这一生关于你的风景], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, melancholic], minRating=3.7, maxResults=30, hybridWeight=0.88
+2026-05-21T10:47:10.222+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331596340 key=midnight stage=primary args=similarTo=[AY楊佬叁 - 了解一下, 毛不易 - 在无风时, 王泽科 - 这一生关于你的风景], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, melancholic], minRating=3.7, maxResults=30, hybridWeight=0.88
+2026-05-21T10:47:10.235+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=20866
+2026-05-21T10:47:10.561+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331596340 key=midnight stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:47:10.789+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:47:10.793+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=88
+2026-05-21T10:47:10.793+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331596340 key=midnight source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:47:10.794+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331596340 key=midnight fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:47:10.794+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331596340 key=midnight tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:47:10.841+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_e9275f46fd9547d2 sceneTag=daypart:default:neutral timeSlot=morning playlistId=34 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:47:10.892+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_e9275f46fd9547d2 sceneTag=daypart:default:neutral timeSlot=afternoon playlistId=35 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:47:10.938+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_e9275f46fd9547d2 sceneTag=daypart:default:neutral timeSlot=evening playlistId=36 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:47:10.979+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_e9275f46fd9547d2 sceneTag=daypart:default:neutral timeSlot=midnight playlistId=37 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:47:10.979+08:00  INFO 42704 --- [reco-backend] [neration-worker] r.s.DaypartPlaylistGenerationCoordinator : daypart queue completed requestId=daypart-async-1779331596340 userId=u_e9275f46fd9547d2 scene=default emotion=neutral status=STORED
+2026-05-21T10:47:10.979+08:00  INFO 42704 --- [reco-backend] [neration-worker] r.s.DaypartPlaylistGenerationCoordinator : daypart queue start requestId=daypart-async-1779331630979 userId=u_d37892b681e744ad scene=default emotion=neutral trigger=startup-warmup
+2026-05-21T10:47:10.984+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart build start requestId=daypart-async-1779331630979 userId=u_d37892b681e744ad scene=default emotion=neutral limit=10
+2026-05-21T10:47:10.999+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331630979 key=morning userContext=playCount30d=18, skipRate30d=0.1111, feedbackCount=8, positiveFeedback=8, negativeFeedback=0, topGenres=[治愈, 欢快, 清新], topArtists=[新旭, en, 周兴哲], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[新旭 - 新旭大人], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, calm, steady, exciting], minRating=3.4, maxResults=30, hybridWeight=0.7507999999999999
+2026-05-21T10:47:10.999+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331630979 key=morning stage=primary args=similarTo=[新旭 - 新旭大人], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, calm, steady, exciting], minRating=3.4, maxResults=30, hybridWeight=0.7507999999999999
+2026-05-21T10:47:11.015+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=21049
+2026-05-21T10:47:11.445+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331630979 key=morning stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:47:29.920+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:47:29.925+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=93
+2026-05-21T10:47:29.925+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331630979 key=morning source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:47:29.926+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331630979 key=morning fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:47:29.927+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331630979 key=morning tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:47:29.927+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331630979 key=afternoon userContext=playCount30d=18, skipRate30d=0.1111, feedbackCount=8, positiveFeedback=8, negativeFeedback=0, topGenres=[治愈, 欢快, 清新], topArtists=[新旭, en, 周兴哲], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[新旭 - 新旭大人], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, minimal, steady, light], minRating=3.5, maxResults=30, hybridWeight=0.7507999999999999
+2026-05-21T10:47:29.927+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331630979 key=afternoon stage=primary args=similarTo=[新旭 - 新旭大人], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[focused, minimal, steady, light], minRating=3.5, maxResults=30, hybridWeight=0.7507999999999999
+2026-05-21T10:47:29.948+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=21394
+2026-05-21T10:47:30.339+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331630979 key=afternoon stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:47:30.597+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:47:30.603+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=88
+2026-05-21T10:47:30.604+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331630979 key=afternoon source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:47:30.605+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331630979 key=afternoon fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:47:30.605+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331630979 key=afternoon tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:47:30.605+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331630979 key=evening userContext=playCount30d=18, skipRate30d=0.1111, feedbackCount=8, positiveFeedback=8, negativeFeedback=0, topGenres=[治愈, 欢快, 清新], topArtists=[新旭, en, 周兴哲], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[新旭 - 新旭大人], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, balanced], minRating=3.3, maxResults=30, hybridWeight=0.7507999999999999
+2026-05-21T10:47:30.605+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331630979 key=evening stage=primary args=similarTo=[新旭 - 新旭大人], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, balanced], minRating=3.3, maxResults=30, hybridWeight=0.7507999999999999
+2026-05-21T10:47:30.625+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=21477
+2026-05-21T10:47:31.012+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331630979 key=evening stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:47:31.122+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:47:31.128+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=88
+2026-05-21T10:47:31.128+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331630979 key=evening source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:47:31.128+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331630979 key=evening fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:47:31.129+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331630979 key=evening tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:47:31.129+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp primary query requestId=daypart-async-1779331630979 key=midnight userContext=playCount30d=18, skipRate30d=0.1111, feedbackCount=8, positiveFeedback=8, negativeFeedback=0, topGenres=[治愈, 欢快, 清新], topArtists=[新旭, en, 周兴哲], globalTimeSlotGenres={afternoon=[怀旧, 欢快, 思念], evening=[怀旧, 思念, 欢快], midnight=[怀旧, 思念, 欢快], morning=[怀旧, 欢快, 思念]}, globalTimeSlotArtists={afternoon=[宝宝巴士, 颜人中, 袁娅维], evening=[宝宝巴士, 王泽科, 新旭], midnight=[薛之谦, 王菲, 妖姬], morning=[卫兰, 丁当, 杨千嬅]} args=similarTo=[新旭 - 新旭大人], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, melancholic], minRating=3.7, maxResults=30, hybridWeight=0.7507999999999999
+2026-05-21T10:47:31.129+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall request requestId=daypart-async-1779331630979 key=midnight stage=primary args=similarTo=[新旭 - 新旭大人], genres=[nostalgic, pop, ambient], secondaryGenres=[], descriptors=[soft, peaceful, relaxing, melancholic], minRating=3.7, maxResults=30, hybridWeight=0.7507999999999999
+2026-05-21T10:47:31.142+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=20849
+2026-05-21T10:47:31.554+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall response requestId=daypart-async-1779331630979 key=midnight stage=primary rawItems=30 matchedCandidates=30
+2026-05-21T10:47:31.864+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=94
+2026-05-21T10:47:31.869+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=analyze_genre stdoutLength=88
+2026-05-21T10:47:31.869+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart mcp recall merged requestId=daypart-async-1779331630979 key=midnight source=get_recommendations rawItems=30 localMatched=30 fillCount=10 diversifiedCandidates=40
+2026-05-21T10:47:31.871+08:00  WARN 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart ai decorate failed requestId=daypart-async-1779331630979 key=midnight fallback=AI_CALL_FAILED_USE_MCP message=daypart Seed API key is not configured
+
+com.music.reco.common.exception.BusinessException: daypart Seed API key is not configured
+	at com.music.reco.recommendation.service.DaypartLlmClientService.completeSeed(DaypartLlmClientService.java:58) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartLlmClientService.complete(DaypartLlmClientService.java:53) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.refinePlaylist(TimeSlotPlaylistOrchestratorService.java:582) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildSinglePlaylist(TimeSlotPlaylistOrchestratorService.java:158) ~[classes/:na]
+	at com.music.reco.recommendation.service.TimeSlotPlaylistOrchestratorService.buildPlaylists(TimeSlotPlaylistOrchestratorService.java:112) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistSnapshotService.generateAndStore(DaypartPlaylistSnapshotService.java:98) ~[classes/:na]
+	at com.music.reco.recommendation.service.DaypartPlaylistGenerationCoordinator.lambda$enqueue$1(DaypartPlaylistGenerationCoordinator.java:43) ~[classes/:na]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-05-21T10:47:31.871+08:00  INFO 42704 --- [reco-backend] [neration-worker] .r.s.TimeSlotPlaylistOrchestratorService : daypart slot built requestId=daypart-async-1779331630979 key=midnight tracks=10 mcpCandidates=40 crossSlotDuplicatesRemoved=30 aiAttempted=true aiSuccess=false fallbackReason=AI_CALL_FAILED_USE_MCP
+2026-05-21T10:47:31.918+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_d37892b681e744ad sceneTag=daypart:default:neutral timeSlot=morning playlistId=38 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:47:31.965+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_d37892b681e744ad sceneTag=daypart:default:neutral timeSlot=afternoon playlistId=39 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:47:32.025+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_d37892b681e744ad sceneTag=daypart:default:neutral timeSlot=evening playlistId=40 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:47:32.079+08:00  INFO 42704 --- [reco-backend] [neration-worker] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart snapshot stored userId=u_d37892b681e744ad sceneTag=daypart:default:neutral timeSlot=midnight playlistId=41 songCount=10 aiSuccess=false fallback=true
+2026-05-21T10:47:32.079+08:00  INFO 42704 --- [reco-backend] [neration-worker] r.s.DaypartPlaylistGenerationCoordinator : daypart queue completed requestId=daypart-async-1779331630979 userId=u_d37892b681e744ad scene=default emotion=neutral status=STORED
+2026-05-21T11:13:35.691+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-5] c.m.r.r.service.RecommendationService    : daypart request start requestId=daypart-1779333215691 userId=u_7d9829823d4f41fa scene=default emotion=neutral limit=10 requestedTimeSlot= resolvedTimeSlot=morning refresh=false
+2026-05-21T11:13:35.717+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-8] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T11:13:35.719+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-5] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart cache check userId=u_7d9829823d4f41fa scene=default emotion=neutral hit=true playlistCount=4 requiredSlots=4 minTracks=10 noCrossSlotOverlap=true
+2026-05-21T11:13:35.719+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-5] c.m.r.r.service.RecommendationService    : daypart request hit stored snapshot requestId=daypart-1779333215691 userId=u_7d9829823d4f41fa timeSlot=morning playlistCount=4 finalSongCount=40
+2026-05-21T11:13:35.719+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-5] c.m.r.r.service.RecommendationService    : daypart request built requestId=daypart-1779333215691 userId=u_7d9829823d4f41fa timeSlot=morning cacheHit=true queued=false latencyMs=28 playlistCount=4
+2026-05-21T11:13:35.816+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-2] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T11:14:08.872+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-5] c.m.r.r.service.RecommendationService    : daypart request start requestId=daypart-1779333248872 userId=u_7d9829823d4f41fa scene=default emotion=neutral limit=10 requestedTimeSlot= resolvedTimeSlot=morning refresh=false
+2026-05-21T11:14:08.904+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-5] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart cache check userId=u_7d9829823d4f41fa scene=default emotion=neutral hit=true playlistCount=4 requiredSlots=4 minTracks=10 noCrossSlotOverlap=true
+2026-05-21T11:14:08.904+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-5] c.m.r.r.service.RecommendationService    : daypart request hit stored snapshot requestId=daypart-1779333248872 userId=u_7d9829823d4f41fa timeSlot=morning playlistCount=4 finalSongCount=40
+2026-05-21T11:14:08.904+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-5] c.m.r.r.service.RecommendationService    : daypart request built requestId=daypart-1779333248872 userId=u_7d9829823d4f41fa timeSlot=morning cacheHit=true queued=false latencyMs=32 playlistCount=4
+2026-05-21T11:14:08.904+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-7] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T11:14:09.093+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-7] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T11:14:19.716+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-1] c.m.r.r.service.RecommendationService    : daypart request start requestId=daypart-1779333259716 userId=u_7d9829823d4f41fa scene=default emotion=neutral limit=10 requestedTimeSlot= resolvedTimeSlot=morning refresh=false
+2026-05-21T11:14:19.744+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-8] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T11:14:19.750+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-1] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart cache check userId=u_7d9829823d4f41fa scene=default emotion=neutral hit=true playlistCount=4 requiredSlots=4 minTracks=10 noCrossSlotOverlap=true
+2026-05-21T11:14:19.750+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-1] c.m.r.r.service.RecommendationService    : daypart request hit stored snapshot requestId=daypart-1779333259716 userId=u_7d9829823d4f41fa timeSlot=morning playlistCount=4 finalSongCount=40
+2026-05-21T11:14:19.750+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-1] c.m.r.r.service.RecommendationService    : daypart request built requestId=daypart-1779333259716 userId=u_7d9829823d4f41fa timeSlot=morning cacheHit=true queued=false latencyMs=34 playlistCount=4
+2026-05-21T11:14:20.009+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-8] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T11:14:35.415+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-4] c.m.r.r.service.RecommendationService    : daypart request start requestId=daypart-1779333275415 userId=u_7d9829823d4f41fa scene=default emotion=neutral limit=10 requestedTimeSlot= resolvedTimeSlot=morning refresh=false
+2026-05-21T11:14:35.442+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T11:14:35.451+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-4] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart cache check userId=u_7d9829823d4f41fa scene=default emotion=neutral hit=true playlistCount=4 requiredSlots=4 minTracks=10 noCrossSlotOverlap=true
+2026-05-21T11:14:35.451+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-4] c.m.r.r.service.RecommendationService    : daypart request hit stored snapshot requestId=daypart-1779333275415 userId=u_7d9829823d4f41fa timeSlot=morning playlistCount=4 finalSongCount=40
+2026-05-21T11:14:35.451+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-4] c.m.r.r.service.RecommendationService    : daypart request built requestId=daypart-1779333275415 userId=u_7d9829823d4f41fa timeSlot=morning cacheHit=true queued=false latencyMs=36 playlistCount=4
+2026-05-21T11:14:35.706+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T11:18:17.396+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.service.RecommendationService    : daypart request start requestId=daypart-1779333497396 userId=u_7d9829823d4f41fa scene=default emotion=neutral limit=10 requestedTimeSlot= resolvedTimeSlot=morning refresh=false
+2026-05-21T11:18:17.425+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-7] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T11:18:17.427+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart cache check userId=u_7d9829823d4f41fa scene=default emotion=neutral hit=true playlistCount=4 requiredSlots=4 minTracks=10 noCrossSlotOverlap=true
+2026-05-21T11:18:17.427+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.service.RecommendationService    : daypart request hit stored snapshot requestId=daypart-1779333497396 userId=u_7d9829823d4f41fa timeSlot=morning playlistCount=4 finalSongCount=40
+2026-05-21T11:18:17.427+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.service.RecommendationService    : daypart request built requestId=daypart-1779333497396 userId=u_7d9829823d4f41fa timeSlot=morning cacheHit=true queued=false latencyMs=31 playlistCount=4
+2026-05-21T11:18:17.524+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-3] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=386
+2026-05-21T11:20:44.942+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.service.RecommendationService    : daypart request start requestId=daypart-1779333644942 userId=u_7d9829823d4f41fa scene=default emotion=neutral limit=10 requestedTimeSlot= resolvedTimeSlot=morning refresh=false
+2026-05-21T11:20:44.968+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-2] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=396
+2026-05-21T11:20:44.970+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.s.DaypartPlaylistSnapshotService : daypart cache check userId=u_7d9829823d4f41fa scene=default emotion=neutral hit=true playlistCount=4 requiredSlots=4 minTracks=10 noCrossSlotOverlap=true
+2026-05-21T11:20:44.970+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.service.RecommendationService    : daypart request hit stored snapshot requestId=daypart-1779333644942 userId=u_7d9829823d4f41fa timeSlot=morning playlistCount=4 finalSongCount=40
+2026-05-21T11:20:44.970+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-6] c.m.r.r.service.RecommendationService    : daypart request built requestId=daypart-1779333644942 userId=u_7d9829823d4f41fa timeSlot=morning cacheHit=true queued=false latencyMs=28 playlistCount=4
+2026-05-21T11:20:45.111+08:00  INFO 42704 --- [reco-backend] [nio-8080-exec-7] c.m.reco.mcp.client.WebClientMcpClient   : mcp tool response tool=get_recommendations stdoutLength=396

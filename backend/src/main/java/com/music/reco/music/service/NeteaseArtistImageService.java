@@ -46,7 +46,10 @@ public class NeteaseArtistImageService {
                 return Optional.empty();
             }
 
-            JsonNode artist = artists.get(0);
+            JsonNode artist = chooseBestArtist(artistName, artists);
+            if (artist == null) {
+                return Optional.empty();
+            }
             String image = firstNonBlank(
                     artist.path("picUrl").asText(null),
                     artist.path("img1v1Url").asText(null),
@@ -77,6 +80,37 @@ public class NeteaseArtistImageService {
                 .bodyToMono(String.class)
                 .block(Duration.ofMillis(Math.max(500, properties.timeoutMs())));
         return objectMapper.readTree(payload == null ? "{}" : payload);
+    }
+
+    private JsonNode chooseBestArtist(String artistName, JsonNode artists) {
+        String expectedName = normalizeForMatch(artistName);
+        JsonNode bestArtist = null;
+        int bestScore = Integer.MIN_VALUE;
+
+        for (JsonNode artist : artists) {
+            String candidateName = normalizeForMatch(artist.path("name").asText(""));
+            int score = 0;
+            if (!expectedName.isBlank() && candidateName.equals(expectedName)) {
+                score += 100;
+            } else if (!expectedName.isBlank() && (candidateName.contains(expectedName) || expectedName.contains(candidateName))) {
+                score += 45;
+            }
+            if (score > bestScore) {
+                bestScore = score;
+                bestArtist = artist;
+            }
+        }
+
+        return bestScore >= 45 ? bestArtist : null;
+    }
+
+    private String normalizeForMatch(String value) {
+        if (value == null) {
+            return "";
+        }
+        return value.toLowerCase()
+                .replaceAll("\\s+", "")
+                .replaceAll("[\\p{Punct}，。！？、：；“”‘’《》（）【】\\[\\]]", "");
     }
 
     private String firstNonBlank(String... values) {
